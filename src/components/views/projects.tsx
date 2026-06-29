@@ -1,7 +1,7 @@
-export default function Home() {
+export default function Projects() {
   return (
     <div className="flex flex-col items-center justify-center min-h-dvh bg-gray-900">
-      <p className="text-white">Home Page</p>
+      <p className="text-white">Projects Section</p>
     </div>
   );
 }
