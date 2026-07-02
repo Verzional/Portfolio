@@ -127,4 +127,17 @@
   html {
     @apply font-sans;
   }
+
+  /* Custom Fonts */
+  @theme {
+      --font-family-edo-sz: "Edo SZ", sans-serif;
+  }
+  
+  @font-face {
+      font-family: "Edo SZ";
+      src: url("/fonts/edosz.ttf") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+  }
 }
+
