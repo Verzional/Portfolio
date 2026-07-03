@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Lato } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
@@ -8,7 +10,7 @@ const lato = Lato({
   subsets: ["latin"],
   variable: "--font-lato",
   display: "swap",
-});  
+});
 
 export const metadata: Metadata = {
   title: "Verzional",
@@ -25,7 +27,11 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", "font-sans", lato.variable)}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        {children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

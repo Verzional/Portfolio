@@ -1,22 +1,27 @@
 "use client";
 
 import { useMenu } from "@/hooks/use-menu";
+import { useCallback } from "react";
+
+const navItems = ["Projects", "Skills", "Experience", "Socials"];
+const projectDescriptions = [
+  "Inventory of completed applications and development repositories",
+  "Tree of mastered frameworks and unlocked technologies.",
+  "Quest log of professional roles and key contributions.",
+  "External nodes for digital profiles and networking channels.",
+];
 
 export default function Hero() {
-  const navItems = ["Projects", "Skills", "Experience", "Socials"];
-  
+  const handleSelect = useCallback((index: number) => {
+    console.log(`Selected: ${navItems[index]}`);
+  }, []);
+
   const { activeIndex, setActiveIndex } = useMenu({
     itemCount: navItems.length,
-    onSelect: (index) => console.log(`Selected: ${navItems[index]}`),
+    onSelect: handleSelect,
   });
   
   const activeItem = navItems[activeIndex];
-  const projectDescriptions = [
-    "Collection of completed applications and repositories.",
-    "Interactive mapping of core technologies, frameworks, AND DEVELOPMENT TOOLS.",
-    "Chronological timeline of roles, professional milestones, and timelines.",
-    "Project 4: A social media platform that connects people with similar interests.",
-  ];
 
   return (
     <div className="relative flex h-dvh w-full overflow-hidden">
@@ -54,8 +59,18 @@ export default function Hero() {
                 return (
                   <button
                     key={item}
-                    onMouseEnter={() => setActiveIndex(index)}
-                    onClick={() => console.log(`Clicked: ${item}`)}
+                    onPointerMove={(e) => {
+                      if (e.pointerType === "mouse" && activeIndex !== index) {
+                        setActiveIndex(index);
+                      }
+                    }}
+                    onClick={() => {
+                      if (activeIndex === index) {
+                        console.log(`Navigating to: ${item}`);
+                      } else {
+                        setActiveIndex(index);
+                      }
+                    }}
                     className={`w-[95%] pt-2 pb-4 pl-16 text-left text-6xl transition-colors ${
                       isActive ? "relative bg-menu-select" : ""
                     }`}
