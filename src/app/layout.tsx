@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Lato } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
-const montserrat = Montserrat({
+const lato = Lato({
+  weight: ["100", "300", "400", "700", "900"],
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-lato",
   display: "swap",
-});
+});  
 
 export const metadata: Metadata = {
   title: "Verzional",
@@ -22,7 +23,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", "font-sans", montserrat.variable)}
+      className={cn("h-full", "antialiased", "font-sans", lato.variable)}
     >
       <body className="flex min-h-full flex-col">{children}</body>
     </html>

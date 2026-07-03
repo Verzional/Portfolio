@@ -134,20 +134,30 @@
 /* Custom Theme Variables */
 @theme {
   --font-edo-sz: "Edo SZ", sans-serif;
-  --font-montserrat: "Montserrat", sans-serif;
+  --font-lato: "Lato", sans-serif;
+  
   --background-image-menu-select: linear-gradient(
     to right,
     #d4030d 0%,
     #7d0400 15%,
     #510505 50%,
-    #250505 100%
+    rgba(37, 5, 5, 0) 100%
   );
+  
   --background-image-divider: linear-gradient(
     to right,
     rgba(255, 255, 255, 0) 0%,
     #cccccc 50%,
     rgba(153, 153, 153, 0) 100%
   );
+  
+  --background-image-sidebar-bleed: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 60%,
+      rgba(0, 0, 0, 0.4) 85%,
+      rgba(0, 0, 0, 0) 100%
+    );
 }
 
 /* Custom Fonts */
