@@ -1,6 +1,16 @@
+"use client";
+
+import { useMenu } from "@/hooks/use-menu";
+
 export default function Hero() {
   const navItems = ["Projects", "Skills", "Experience", "Socials"];
-  const activeItem = "Projects";
+  
+  const { activeIndex, setActiveIndex } = useMenu({
+    itemCount: navItems.length,
+    onSelect: (index) => console.log(`Selected: ${navItems[index]}`),
+  });
+  
+  const activeItem = navItems[activeIndex];
   const projectDescriptions = [
     "Collection of completed applications and repositories.",
     "Interactive mapping of core technologies, frameworks, AND DEVELOPMENT TOOLS.",
@@ -38,13 +48,15 @@ export default function Hero() {
 
             {/* Navigation Items */}
             <nav className="flex flex-col gap-8 font-edo-sz text-foreground">
-              {navItems.map((item) => {
-                const isActive = item === activeItem;
+              {navItems.map((item, index) => {
+                const isActive = index === activeIndex;
 
                 return (
                   <button
                     key={item}
-                    className={`w-[95%] pt-2 pb-4 pl-16 text-left text-6xl ${
+                    onMouseEnter={() => setActiveIndex(index)}
+                    onClick={() => console.log(`Clicked: ${item}`)}
+                    className={`w-[95%] pt-2 pb-4 pl-16 text-left text-6xl transition-colors ${
                       isActive ? "relative bg-menu-select" : ""
                     }`}
                   >

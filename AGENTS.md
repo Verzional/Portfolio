@@ -23,6 +23,7 @@ This document provides instructions, context, and strict guardrails for any AI a
 * **Do no harm:** Never blindly delete code without understanding its dependencies.
 * **No placeholder code:** Do not output `// ... existing code ...` or `TODO: implement` unless explicitly asked to provide a high-level skeleton. Provide complete, functional snippets.
 * **Keep it DRY:** Before writing new utility functions, search the existing `[utils/helpers directory]` to see if an equivalent already exists.
+* **Implement best practices:** Follow the latest best practices for React, TypeScript, and Next.js. Avoid deprecated patterns.
 
 ### 2. Architecture & File Structure
 Ensure all generated files are placed in the correct directories according to this architecture:
