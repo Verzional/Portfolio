@@ -56,11 +56,10 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.5474 0.2229 28.27);
   --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --secondary-foreground: oklch(1 0 0) --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.8452 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -128,16 +127,30 @@
     @apply font-sans;
   }
 
-  /* Custom Fonts */
+  /* Custom Theme Variables */
   @theme {
-      --font-family-edo-sz: "Edo SZ", sans-serif;
+    --font-edo-sz: "Edo SZ", sans-serif;
+    --font-oswald: "Oswald", sans-serif;
+    --background-image-menu-select: linear-gradient(
+      to right,
+      #d4030d 0%,
+      #7d0400 15%,
+      #510505 50%,
+      #250505 100%
+    );
+    --background-image-divider: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      #cccccc 50%,
+      rgba(153, 153, 153, 0) 100%
+    );
   }
-  
+
+  /* Custom Fonts */
   @font-face {
-      font-family: "Edo SZ";
-      src: url("/fonts/edosz.ttf") format("truetype");
-      font-weight: normal;
-      font-style: normal;
+    font-family: "Edo SZ";
+    src: url("/fonts/edosz.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
   }
 }
-
