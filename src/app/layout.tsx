@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Oswald } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
-const oswald = Oswald({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-oswald",
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", "font-sans", oswald.variable)}
+      className={cn("h-full", "antialiased", "font-sans", montserrat.variable)}
     >
       <body className="flex min-h-full flex-col">{children}</body>
     </html>

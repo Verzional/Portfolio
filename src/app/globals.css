@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+/* @custom-variant dark (&:is(.dark *)); */
 
 @theme inline {
   --color-background: var(--background);
@@ -49,8 +49,8 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: oklch(0 0 0);
+  --foreground: oklch(1 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -58,7 +58,8 @@
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.5474 0.2229 28.27);
   --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(1 0 0) --muted: oklch(0.97 0 0);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.8452 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
@@ -72,7 +73,7 @@
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
+  --sidebar: oklch(0 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
@@ -82,6 +83,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+/*
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -106,7 +108,7 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
@@ -115,6 +117,7 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+*/
 
 @layer base {
   * {
@@ -126,31 +129,31 @@
   html {
     @apply font-sans;
   }
+}
 
-  /* Custom Theme Variables */
-  @theme {
-    --font-edo-sz: "Edo SZ", sans-serif;
-    --font-oswald: "Oswald", sans-serif;
-    --background-image-menu-select: linear-gradient(
-      to right,
-      #d4030d 0%,
-      #7d0400 15%,
-      #510505 50%,
-      #250505 100%
-    );
-    --background-image-divider: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0) 0%,
-      #cccccc 50%,
-      rgba(153, 153, 153, 0) 100%
-    );
-  }
+/* Custom Theme Variables */
+@theme {
+  --font-edo-sz: "Edo SZ", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --background-image-menu-select: linear-gradient(
+    to right,
+    #d4030d 0%,
+    #7d0400 15%,
+    #510505 50%,
+    #250505 100%
+  );
+  --background-image-divider: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    #cccccc 50%,
+    rgba(153, 153, 153, 0) 100%
+  );
+}
 
-  /* Custom Fonts */
-  @font-face {
-    font-family: "Edo SZ";
-    src: url("/fonts/edosz.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-  }
+/* Custom Fonts */
+@font-face {
+  font-family: "Edo SZ";
+  src: url("/fonts/edosz.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
