@@ -2,9 +2,9 @@ export default function Hero() {
   const navItems = ["Projects", "Skills", "Experience", "Socials"];
   const activeItem = "Projects";
   const projectDescriptions = [
-    "View completed applications and open-source repositories.",
-    "Project 2: A mobile app that helps users find nearby restaurants and read reviews.",
-    "Project 3: An e-commerce platform that enables users to buy and sell products online.",
+    "Collection of completed applications and repositories.",
+    "Interactive mapping of core technologies, frameworks, AND DEVELOPMENT TOOLS.",
+    "Chronological timeline of roles, professional milestones, and timelines.",
     "Project 4: A social media platform that connects people with similar interests.",
   ];
 
@@ -12,15 +12,19 @@ export default function Hero() {
     <div className="relative flex h-dvh w-full overflow-hidden">
       {/* Background Image */}
       <div
-        className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-10"
-        style={{ backgroundImage: `url('/images/Dragon.png')` }}
+        className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-2"
+        style={{ backgroundImage: `url('/images/BG-Dragon.webp')` }}
       />
 
+      {/* Background Glow */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-hero-glow" />
+
       {/* Sidebar Bleed */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[55%] bg-sidebar-bleed" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[45%] bg-sidebar-bleed" />
 
       {/* Interactive Layer */}
       <div className="relative z-20 flex h-full w-full bg-transparent">
+        
         {/* Sidebar */}
         <aside className="flex h-full w-[40%] flex-col justify-center bg-transparent py-24">
           <div>
@@ -30,7 +34,7 @@ export default function Hero() {
             </h2>
 
             {/* Divider */}
-            <div className="my-6 h-0.5 w-full bg-divider" />
+            <div className="my-6 h-0.5 w-[90%] bg-divider" />
 
             {/* Navigation Items */}
             <nav className="flex flex-col gap-8 font-edo-sz text-foreground">
@@ -40,7 +44,7 @@ export default function Hero() {
                 return (
                   <button
                     key={item}
-                    className={`w-full pt-2 pb-4 pl-16 text-left text-6xl ${
+                    className={`w-[95%] pt-2 pb-4 pl-16 text-left text-6xl ${
                       isActive ? "relative bg-menu-select" : ""
                     }`}
                   >
@@ -53,7 +57,7 @@ export default function Hero() {
 
           <div>
             {/* Divider */}
-            <div className="my-6 h-0.5 w-full bg-divider" />
+            <div className="my-6 h-0.5 w-[90%] bg-divider" />
             
             {/* Description */}
             <p className="w-full px-16 font-lato text-2xl font-bold tracking-widest text-muted-foreground">
