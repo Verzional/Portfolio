@@ -159,21 +159,41 @@
     rgba(0, 0, 0, 0) 100%
   );
 
+  --background-image-sidebar-bleed-mobile: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0.4) 85%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
   --background-image-hero-glow:
-  /* Blue */
     radial-gradient(
       circle at 80% 20%,
       rgba(37, 180, 226, 0.15) 0%,
       rgba(20, 99, 124, 0.05) 40%,
       transparent 90%
     ),
-    /* Red */
-      radial-gradient(
-        circle at 55% 90%,
-        rgba(139, 20, 20, 0.25) 0%,
-        rgba(37, 5, 5, 0.1) 50%,
-        transparent 90%
-      );
+    radial-gradient(
+      circle at 55% 90%,
+      rgba(139, 20, 20, 0.25) 0%,
+      rgba(37, 5, 5, 0.1) 50%,
+      transparent 90%
+    );
+
+  --background-image-hero-glow-mobile:
+    radial-gradient(
+      circle at 45% 35%,
+      rgba(37, 180, 226, 0.15) 0%,
+      rgba(20, 99, 124, 0.05) 90%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at 35% 70%,
+      rgba(139, 20, 20, 0.25) 0%,
+      rgba(37, 5, 5, 0.1) 70%,
+      transparent 100%
+    );
 }
 
 /* Custom Fonts */
