@@ -131,6 +131,12 @@
   }
 }
 
+@utility transition-sidebar {
+  transition-property: width;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* Custom Theme Variables */
 @theme {
   --font-edo-sz: "Edo SZ", sans-serif;
@@ -202,4 +208,5 @@
   src: url("/fonts/edosz.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }

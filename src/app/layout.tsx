@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Lato } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { AppShell } from "@/components/layout/app-shell";
 import "./globals.css";
 
 const lato = Lato({
@@ -28,7 +29,7 @@ export default function RootLayout({
       className={cn("h-full", "antialiased", "font-sans", lato.variable)}
     >
       <body className="flex min-h-full flex-col">
-        {children}
+        <AppShell>{children}</AppShell>
         <Analytics />
         <SpeedInsights />
       </body>

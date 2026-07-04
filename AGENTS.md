@@ -29,7 +29,6 @@ This document provides instructions, context, and strict guardrails for any AI a
 Ensure all generated files are placed in the correct directories according to this architecture:
 * `[src/app]:` [Page routes and application entry points]
 * `[src/components/ui]:` [Reusable UI components]
-* `[src/components/views]:` [Page views and components (sections)]
 * `[src/hooks]:` [Custom React hooks]
 * `[src/lib]:` [Utility functions and shared logic]
 * `[src/styles]:` [Page specific css and responsive styles]
