@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { Sidebar as HomeMenu } from "@/components/layout/sidebar";
-import { SubMenu } from "@/components/layout/sub-menu";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -56,7 +55,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 transition={{ duration: 0.3 }}
                 className="flex h-full w-full flex-col justify-center"
               >
-                <SubMenu />
+                <div id="sidebar-root" className="h-full w-full" />
               </motion.div>
             )}
           </AnimatePresence>

@@ -40,6 +40,7 @@ Ensure all generated files are placed in the correct directories according to th
   * Files: `[kebab-case]`
 * **Linting:** Code must strictly adhere to the project's `[.eslint.config.mjs]` configuration.
 * **Comments:** Explain *why* a complex block of code exists, not *what* the syntax does. Use standard docstrings for public methods.
+* **Styling:** All coloring must use the variables defined in `[src/app/globals.css]`. Avoid hardcoding colors.
 
 ---
 

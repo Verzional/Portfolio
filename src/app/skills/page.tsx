@@ -1,7 +1,37 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { SubMenu } from "@/components/layout/sub-menu";
+import { SidebarPortal } from "@/components/layout/sidebar-portal";
+import { useMenu } from "@/hooks/use-menu";
+
 export default function Skills() {
+  const router = useRouter();
+
+  useMenu({
+    itemCount: 1,
+    onSelect: () => router.push("/"),
+  });
+
+  const sidebarContent = (
+    <SubMenu 
+      title="Skills" 
+      isBackActive={true}
+      onBackClick={() => router.push("/")}
+    >
+      <div className="flex h-full items-center justify-center text-muted-foreground font-edo-sz text-2xl">
+        Skill Tree UI Pending
+      </div>
+    </SubMenu>
+  );
+
   return (
     <>
-      <p className="text-white">Skills Section</p>
+      <SidebarPortal>
+        {sidebarContent}
+      </SidebarPortal>
+        
+      <div className="text-white font-edo-sz text-4xl">Skills Section</div>
     </>
   );
 }
