@@ -12,7 +12,7 @@ This document provides instructions, context, and strict guardrails for any AI a
 * **Description:** [Portfolio website for Verzional, showcasing projects, skills, experience, and socials]
 * **Aesthetic:** [Yakuza inspired, video game aesthetic with neon colors]
 * **Primary Languages:** [TypeScript (TSX)]
-* **Frameworks/Libraries:** [Next.js 16 (App Router), Tailwind CSS, Framer Motion, Magic UI, Aceternity UI]
+* **Frameworks/Libraries:** [Next.js 16 (App Router), Tailwind CSS, Framer Motion]
 * **Build/Package Tools:** [pnpm]
 
 ---
@@ -27,15 +27,19 @@ This document provides instructions, context, and strict guardrails for any AI a
 
 ### 2. Architecture & File Structure
 Ensure all generated files are placed in the correct directories according to this architecture:
+* `[src/app]:` [Page routes and application entry points]
 * `[src/components/ui]:` [Reusable UI components]
 * `[src/components/views]:` [Page views and components (sections)]
-* `[src/app]:` [Page routes and application entry points]
+* `[src/hooks]:` [Custom React hooks]
+* `[src/lib]:` [Utility functions and shared logic]
+* `[src/styles]:` [Page specific css and responsive styles]
 
 ### 3. Formatting & Style Guide
-* **Naming Conventions:** * Variables/Functions: `[camelCase/snake_case]`
+* **Naming Conventions:** 
+  * Variables/Functions: `[camelCase]`
   * Classes/Types/Interfaces: `[PascalCase]`
-  * Files/Directories: `[kebab-case/snake_case]`
-* **Linting:** Code must strictly adhere to the project's `[.eslintrc.json / pyproject.toml / rustfmt.toml]` configuration.
+  * Files: `[kebab-case]`
+* **Linting:** Code must strictly adhere to the project's `[.eslint.config.mjs]` configuration.
 * **Comments:** Explain *why* a complex block of code exists, not *what* the syntax does. Use standard docstrings for public methods.
 
 ---
