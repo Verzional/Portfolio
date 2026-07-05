@@ -3,14 +3,10 @@
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { useMenu } from "@/hooks/use-menu";
+import { menuItems } from "@/lib/data/navigation";
 
-const navItems = ["Projects", "Skills", "Experience", "Socials"];
-const projectDescriptions = [
-  "Inventory of completed applications and repositories",
-  "Tree of mastered frameworks and unlocked technologies.",
-  "Quest log of professional roles and key contributions.",
-  "Waypoints for digital profiles and networking channels.",
-];
+const navItems = menuItems.map((item) => item.label);
+const projectDescriptions = menuItems.map((item) => item.desc);
 
 export function Sidebar() {
   const router = useRouter();
