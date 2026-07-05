@@ -12,8 +12,8 @@ This document provides instructions, context, and strict guardrails for any AI a
 * **Description:** [Portfolio website for Verzional, showcasing projects, skills, experience, and socials]
 * **Aesthetic:** [Yakuza inspired, video game aesthetic with neon colors]
 * **Primary Languages:** [TypeScript (TSX)]
-* **Frameworks/Libraries:** [Next.js 16 (App Router), Tailwind CSS, Framer Motion]
-* **Build/Package Tools:** [pnpm]
+* **Frameworks/Libraries:** Next.js 16 (App Router), Tailwind CSS v4, Framer Motion, lucide-react
+* **Build/Package Tools:** pnpm
 
 ---
 
@@ -22,25 +22,32 @@ This document provides instructions, context, and strict guardrails for any AI a
 ### 1. Code Generation Constraints
 * **Do no harm:** Never blindly delete code without understanding its dependencies.
 * **No placeholder code:** Do not output `// ... existing code ...` or `TODO: implement` unless explicitly asked to provide a high-level skeleton. Provide complete, functional snippets.
-* **Keep it DRY:** Before writing new utility functions, search the existing `[utils/helpers directory]` to see if an equivalent already exists.
+* **Keep it DRY:** Before writing new utility functions, search the existing `src/lib` or `src/hooks` directories to see if an equivalent already exists.
 * **Implement best practices:** Follow the latest best practices for React, TypeScript, and Next.js. Avoid deprecated patterns.
 
 ### 2. Architecture & File Structure
 Ensure all generated files are placed in the correct directories according to this architecture:
-* `[src/app]:` [Page routes and application entry points]
-* `[src/components/ui]:` [Reusable UI components]
-* `[src/hooks]:` [Custom React hooks]
-* `[src/lib]:` [Utility functions and shared logic]
-* `[src/styles]:` [Page specific css and responsive styles]
+* `src/app`: Page routes and application entry points. Subpages manage their own sidebar UI by portaling `<SubMenu>` via `<SidebarPortal>` into the `#sidebar-root`.
+* `src/components/ui`: Reusable UI components.
+* `src/components/layout`: Core structural components (`app-shell`, `sidebar-portal`, `sub-menu`, etc).
+* `src/hooks`: Custom React hooks (e.g., `use-menu` for WASD navigation).
+* `src/lib`: Utility functions and shared logic.
 
 ### 3. Formatting & Style Guide
 * **Naming Conventions:** 
-  * Variables/Functions: `[camelCase]`
-  * Classes/Types/Interfaces: `[PascalCase]`
-  * Files: `[kebab-case]`
-* **Linting:** Code must strictly adhere to the project's `[.eslint.config.mjs]` configuration.
+  * Variables/Functions: `camelCase`
+  * Classes/Types/Interfaces: `PascalCase`
+  * Files: `kebab-case`
+* **Icons:** Use `lucide-react` for all icons.
+* **Linting:** Code must strictly adhere to the project's `.eslint.config.mjs` configuration. Watch out for Next.js strict mode rules (e.g., avoid synchronous state updates in `useEffect`).
 * **Comments:** Explain *why* a complex block of code exists, not *what* the syntax does. Use standard docstrings for public methods.
-* **Styling:** All coloring must use the variables defined in `[src/app/globals.css]`. Avoid hardcoding colors.
+* **Styling (CSS Variables):** 
+  * All coloring must use the variables defined in `src/app/globals.css`. Avoid hardcoding colors.
+  * **CRITICAL:** Do NOT confuse `-foreground` with "text color". `--primary` is the raw color bucket used for `text-primary`, `bg-primary`, etc. The `--primary-foreground` bucket is STRICTLY the contrast color (e.g., white text) that sits *inside* a `bg-primary` element.
+
+### 4. Animation & Portals
+* **Layout Shifts:** Avoid using Framer Motion's `layout` prop for responsive width changes; it injects pixel boundaries that override and break Tailwind responsive classes. Use pure CSS `transition-[width]` classes instead.
+* **React Portals:** When injecting unique submenus into the sidebar, always use the `<SidebarPortal>` component. It safely handles hydration and `AnimatePresence mode="wait"` DOM delays using `requestAnimationFrame`.
 
 ---
 

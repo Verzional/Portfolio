@@ -7,7 +7,7 @@ export default function Home() {
       </h1>
 
       {/* Subtitle */}
-      <p className="mt-2 font-lato text-xl font-black tracking-[0.2em] text-primary-foreground uppercase md:mt-4 md:text-4xl md:tracking-[0.5em]">
+      <p className="mt-2 font-lato text-xl font-black tracking-[0.2em] text-primary uppercase md:mt-4 md:text-4xl md:tracking-[0.5em]">
         Full-Stack Engineer
       </p>
     </div>
