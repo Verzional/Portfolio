@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { Sidebar as HomeMenu } from "@/components/layout/sidebar";
@@ -10,11 +11,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative flex h-dvh w-full overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[50%] bg-cover bg-center bg-no-repeat opacity-3 md:bottom-0 md:h-auto md:opacity-2"
-        style={{ backgroundImage: `url('/images/BG-Dragon.webp')` }}
-      />
+      {/* Background Image Container */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[50%] md:bottom-0 md:h-full">
+        <Image
+          src="/images/BG-Dragon.webp"
+          alt="Dragon Background"
+          fill
+          priority
+          className="object-cover object-center opacity-3 md:opacity-2"
+        />
+      </div>
 
       {/* Background Glow */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[50%] bg-hero-glow-mobile md:bottom-0 md:h-auto md:bg-hero-glow" />
