@@ -65,8 +65,8 @@ export function ProjectsClient() {
                 }
               }}
             >
-              <div className="text-center text-sm md:text-xl">
-                {proj.categories.join(" / ")}
+              <div className="text-center text-xs px-1 md:text-sm">
+                {proj.title}
               </div>
             </InventorySlot>
           ))}

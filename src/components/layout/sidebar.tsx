@@ -1,29 +1,34 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { menuItems } from "@/lib/data/navigation";
-
-const navItems = menuItems.map((item) => item.label);
-const projectDescriptions = menuItems.map((item) => item.desc);
 
 export function Sidebar() {
   const router = useRouter();
   const handleSelect = useCallback(
     (index: number) => {
-      const route = `/${navItems[index].toLowerCase()}`;
+      const route = menuItems[index].href;
       router.push(route);
     },
     [router],
   );
 
   const { activeIndex, setActiveIndex } = useMenu({
-    itemCount: navItems.length,
+    itemCount: menuItems.length,
     onSelect: handleSelect,
   });
 
-  const activeItem = navItems[activeIndex];
+  useEffect(() => {
+    const route = menuItems[activeIndex]?.href;
+    if (route) {
+      router.prefetch(route);
+    }
+  }, [activeIndex, router]);
+
+  const activeItem = menuItems[activeIndex];
 
   return (
     <div className="flex h-full w-full flex-col justify-center">
@@ -38,30 +43,30 @@ export function Sidebar() {
 
         {/* Navigation Items */}
         <nav className="flex flex-col gap-4 font-edo-sz text-foreground md:gap-8">
-          {navItems.map((item, index) => {
+          {menuItems.map((item, index) => {
             const isActive = index === activeIndex;
 
             return (
-              <button
-                key={item}
+              <Link
+                key={item.id}
+                href={item.href}
                 onPointerMove={(e) => {
                   if (e.pointerType === "mouse" && activeIndex !== index) {
                     setActiveIndex(index);
                   }
                 }}
-                onClick={() => {
-                  if (activeIndex === index) {
-                    handleSelect(index);
-                  } else {
+                onClick={(e) => {
+                  if (activeIndex !== index) {
+                    e.preventDefault();
                     setActiveIndex(index);
                   }
                 }}
-                className={`w-[95%] pt-2 pb-4 pl-8 text-left text-4xl transition-colors md:pl-16 md:text-6xl ${
+                className={`block w-[95%] pt-2 pb-4 pl-8 text-left text-4xl transition-colors md:pl-16 md:text-6xl ${
                   isActive ? "relative bg-menu-select" : ""
                 }`}
               >
-                {item}
-              </button>
+                {item.label}
+              </Link>
             );
           })}
         </nav>
@@ -73,7 +78,7 @@ export function Sidebar() {
 
         {/* Description */}
         <p className="mb-8 w-full px-8 font-lato text-lg font-bold tracking-widest text-muted-foreground md:mb-0 md:px-16 md:text-2xl">
-          {projectDescriptions[navItems.indexOf(activeItem)]}{" "}
+          {activeItem?.desc}
         </p>
       </div>
     </div>

@@ -20,6 +20,7 @@ This document provides instructions, context, and strict guardrails for any AI a
 ## 🛑 Core Directives & Rules of Engagement
 
 ### 1. Code Generation Constraints
+* **No Unauthorized Autonomy:** NEVER proactively write, modify, or refactor code without explicit user instruction. If the user asks you to "inspect", "review", or "analyze", do exactly that and wait for the next command. Do not assume the next logical step.
 * **Do no harm:** Never blindly delete code without understanding its dependencies.
 * **No placeholder code:** Do not output `// ... existing code ...` or `TODO: implement` unless explicitly asked to provide a high-level skeleton. Provide complete, functional snippets.
 * **Keep it DRY:** Before writing new utility functions, search the existing `src/lib` or `src/hooks` directories to see if an equivalent already exists.
