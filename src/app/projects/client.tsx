@@ -31,7 +31,6 @@ export function ProjectsClient() {
     setActiveIndex(0);
   }, [activeCategory, setActiveIndex]);
 
-  // RPG-Style Category Cycling (Q / E)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === "q") {
@@ -62,7 +61,7 @@ export function ProjectsClient() {
     >
       <div className="flex h-full w-full flex-col">
         <div className="flex w-full items-center justify-between pb-4 pt-2">
-          <div className="hidden pl-2 font-edo-sz text-xl text-muted-foreground md:block opacity-50">
+          <div className="hidden pl-2 font-edo-sz text-xl text-muted-foreground xl:block opacity-50">
             [Q]
           </div>
           <div className="flex flex-1 justify-around">
@@ -76,7 +75,7 @@ export function ProjectsClient() {
               />
             ))}
           </div>
-          <div className="hidden pr-2 font-edo-sz text-xl text-muted-foreground md:block opacity-50">
+          <div className="hidden pr-2 font-edo-sz text-xl text-muted-foreground xl:block opacity-50">
             [E]
           </div>
         </div>
@@ -86,10 +85,8 @@ export function ProjectsClient() {
             <InventorySlot
               key={proj.id}
               isActive={idx === activeIndex}
-              onPointerMove={(e) => {
-                if (e.pointerType === "mouse" && activeIndex !== idx) {
-                  setActiveIndex(idx);
-                }
+              onClick={() => {
+                setActiveIndex(idx);
               }}
             >
               <div className="text-center text-xs px-1 md:text-sm">
