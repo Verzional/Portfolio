@@ -19,8 +19,8 @@ export function InventorySlot({
       onPointerMove={onPointerMove}
       className={`aspect-square w-full rounded border transition-all ${
         isActive
-          ? "scale-105 border-primary bg-primary/20 shadow-[0_0_15px_rgba(255,0,0,0.4)]"
-          : "scale-100 border-border/20 bg-black/40 hover:bg-black/60"
+          ? "border-primary bg-primary/20 shadow-[0_0_15px_rgba(255,0,0,0.4)]"
+          : "border-border/20 bg-black/40 hover:bg-black/60"
       }`}
     >
       <div

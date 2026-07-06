@@ -18,7 +18,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           alt="Dragon Background"
           fill
           priority
-          className="object-cover object-center opacity-3 md:opacity-2"
+          className="object-cover object-center opacity-6 md:opacity-4"
         />
       </div>
 

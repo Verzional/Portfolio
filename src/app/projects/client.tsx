@@ -31,6 +31,25 @@ export function ProjectsClient() {
     setActiveIndex(0);
   }, [activeCategory, setActiveIndex]);
 
+  // RPG-Style Category Cycling (Q / E)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === "q") {
+        setActiveCategory((prev) => {
+          const idx = projectCategories.findIndex((c) => c.id === prev);
+          return projectCategories[idx > 0 ? idx - 1 : projectCategories.length - 1].id;
+        });
+      } else if (e.key.toLowerCase() === "e") {
+        setActiveCategory((prev) => {
+          const idx = projectCategories.findIndex((c) => c.id === prev);
+          return projectCategories[idx < projectCategories.length - 1 ? idx + 1 : 0].id;
+        });
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const activeProject = activeIndex < filteredProjects.length ? filteredProjects[activeIndex] : null;
   const isBackActive = activeIndex === filteredProjects.length;
 
@@ -42,16 +61,24 @@ export function ProjectsClient() {
       onBackMove={() => setActiveIndex(filteredProjects.length)}
     >
       <div className="flex h-full w-full flex-col">
-        <div className="flex w-full justify-around pb-4 pt-2">
-          {projectCategories.map((cat) => (
-            <CategoryTab
-              key={cat.id}
-              isActive={activeCategory === cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              icon={cat.icon}
-              label={cat.label}
-            />
-          ))}
+        <div className="flex w-full items-center justify-between pb-4 pt-2">
+          <div className="hidden pl-2 font-edo-sz text-xl text-muted-foreground md:block opacity-50">
+            [Q]
+          </div>
+          <div className="flex flex-1 justify-around">
+            {projectCategories.map((cat) => (
+              <CategoryTab
+                key={cat.id}
+                isActive={activeCategory === cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                icon={cat.icon}
+                label={cat.label}
+              />
+            ))}
+          </div>
+          <div className="hidden pr-2 font-edo-sz text-xl text-muted-foreground md:block opacity-50">
+            [E]
+          </div>
         </div>
 
         <div className="mt-2 grid grid-cols-2 gap-4 overflow-y-auto px-2 pb-4">
