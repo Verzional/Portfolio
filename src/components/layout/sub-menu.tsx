@@ -18,21 +18,21 @@ export function SubMenu({
 
   return (
     <div className="flex h-full flex-col justify-between text-foreground">
-      <div>
-        <h2 className="truncate pl-4 font-edo-sz text-3xl tracking-widest text-muted-foreground uppercase md:pl-8 md:text-4xl">
+      <div className="flex flex-col flex-1 min-h-0">
+        <h2 className="shrink-0 truncate pl-4 font-edo-sz text-3xl tracking-widest text-muted-foreground uppercase md:pl-8 md:text-4xl">
           {title}
         </h2>
-        <div className="my-6 h-0.5 w-[90%] bg-divider" />
+        <div className="shrink-0 my-6 h-0.5 w-[90%] bg-divider" />
 
         <div
           id="sidebar-slot"
-          className="flex w-full flex-1 flex-col items-center justify-center py-4 pl-4 md:pl-8"
+          className="flex min-h-0 w-full flex-1 flex-col items-center justify-center py-4 pl-4 md:pl-8"
         >
           {children}
         </div>
       </div>
 
-      <div>
+      <div className="shrink-0">
         <div className="my-6 h-0.5 w-[90%] bg-divider" />
         <button
           onPointerMove={onBackMove}
