@@ -70,11 +70,11 @@ export function ProjectsClient() {
       controls={[
         { key: "W / S", action: "Navigate" },
         { key: "Q / E", action: "Category" },
-        { key: "ENTER", action: "Select" }
+        { key: "ENTER", action: "Select" },
       ]}
     >
       <div className="bg-dots flex h-full min-h-0 w-full flex-col">
-        <div className="flex w-full shrink-0 flex-nowrap items-center justify-center gap-4 md:gap-6 overflow-x-auto pt-4 pb-6 px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-center gap-4 overflow-x-auto px-2 pt-4 pb-6 [-ms-overflow-style:none] md:gap-6 [&::-webkit-scrollbar]:hidden">
           {projectCategories.map((cat) => (
             <PersonaCategoryTab
               key={cat.id}

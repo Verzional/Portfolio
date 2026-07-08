@@ -12,13 +12,16 @@ export function ControlLegend({ controls }: { controls: ControlItem[] }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    const raf = requestAnimationFrame(() => {
+      setMounted(true);
+    });
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   if (!controls || controls.length === 0 || !mounted) return null;
 
   const content = (
-    <div className="pointer-events-none fixed top-6 left-6 z-[100] hidden animate-in flex-wrap items-center gap-4 font-edo-sz text-sm text-muted-foreground opacity-50 duration-500 fade-in md:text-base xl:flex">
+    <div className="pointer-events-none fixed top-6 left-6 z-100 hidden animate-in flex-wrap items-center gap-4 font-edo-sz text-sm text-muted-foreground opacity-50 duration-500 fade-in md:text-base xl:flex">
       {controls.map((c) => (
         <div key={c.key} className="flex items-center gap-2">
           <span className="tracking-widest text-foreground">[{c.key}]</span>
