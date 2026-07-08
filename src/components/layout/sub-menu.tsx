@@ -1,5 +1,7 @@
 "use client";
 
+import { ControlLegend } from "@/components/ui/control-legend";
+
 interface SubMenuProps {
   title: string;
   children?: React.ReactNode;
@@ -8,8 +10,6 @@ interface SubMenuProps {
   onBackMove?: () => void;
   controls?: { key: string; action: string }[];
 }
-
-import { ControlLegend } from "@/components/ui/control-legend";
 
 export function SubMenu({
   title,
@@ -34,7 +34,7 @@ export function SubMenu({
         {/* Children */}
         <div
           id="sidebar-slot"
-          className="flex min-h-0 w-full flex-1 flex-col items-center justify-center pl-4 md:pl-8"
+          className="flex min-h-0 w-full flex-1 flex-col items-center justify-center"
         >
           {children}
         </div>

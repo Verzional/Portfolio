@@ -1,17 +1,19 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useMemo, useEffect } from "react";
 import { useMenu } from "@/hooks/use-menu";
+import { useCategories } from "@/hooks/use-categories";
 import { projectsData, projectCategories } from "@/lib/data/projects";
 import { SubMenu } from "@/components/layout/sub-menu";
 import { SidebarPortal } from "@/components/layout/sidebar-portal";
 import { PersonaCategoryTab } from "@/components/ui/persona-category-tab";
 import { PersonaProjectSlot } from "@/components/ui/persona-project-slot";
+import { ProjectDetails } from "./_components/project-details";
 
 export function ProjectsClient() {
   const router = useRouter();
-  const [activeCategory, setActiveCategory] = useState("ALL");
+  const { activeCategory, setActiveCategory } = useCategories(projectCategories);
 
   const filteredProjects = useMemo(() => {
     return projectsData.filter(
@@ -34,26 +36,8 @@ export function ProjectsClient() {
   }, [activeCategory, setActiveIndex]);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key.toLowerCase() === "q") {
-        setActiveCategory((prev) => {
-          const idx = projectCategories.findIndex((c) => c.id === prev);
-          return projectCategories[
-            idx > 0 ? idx - 1 : projectCategories.length - 1
-          ].id;
-        });
-      } else if (e.key.toLowerCase() === "e") {
-        setActiveCategory((prev) => {
-          const idx = projectCategories.findIndex((c) => c.id === prev);
-          return projectCategories[
-            idx < projectCategories.length - 1 ? idx + 1 : 0
-          ].id;
-        });
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+    setActiveIndex(0);
+  }, [activeCategory, setActiveIndex]);
 
   const activeProject =
     activeIndex < filteredProjects.length
@@ -106,23 +90,7 @@ export function ProjectsClient() {
   return (
     <>
       <SidebarPortal>{sidebarContent}</SidebarPortal>
-
-      <div className="flex h-full w-full flex-col items-center justify-center p-8 text-foreground">
-        {activeProject ? (
-          <div className="animate-in text-center duration-300 fade-in">
-            <h1 className="font-optima-nova text-4xl tracking-widest text-primary md:text-6xl">
-              {activeProject.title}
-            </h1>
-            <p className="mt-4 font-lato text-lg text-muted-foreground">
-              {activeProject.desc}
-            </p>
-          </div>
-        ) : (
-          <div className="font-optima-nova text-3xl text-muted-foreground">
-            Select a Project
-          </div>
-        )}
-      </div>
+      <ProjectDetails project={activeProject} />
     </>
   );
 }
