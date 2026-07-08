@@ -61,7 +61,7 @@ export function ProjectsClient() {
     >
       <div className="flex h-full w-full flex-col min-h-0">
         <div className="shrink-0 flex w-full items-center justify-between pb-4 pt-2">
-          <div className="hidden pl-2 font-edo-sz text-xl text-muted-foreground md:block opacity-50">
+          <div className="hidden pl-2 font-edo-sz text-xl text-muted-foreground xl:block opacity-50">
             [Q]
           </div>
           <div className="flex flex-1 justify-around">
@@ -75,12 +75,12 @@ export function ProjectsClient() {
               />
             ))}
           </div>
-          <div className="hidden pr-2 font-edo-sz text-xl text-muted-foreground md:block opacity-50">
+          <div className="hidden pr-2 font-edo-sz text-xl text-muted-foreground xl:block opacity-50">
             [E]
           </div>
         </div>
 
-        <div className="mt-2 flex-1 min-h-0 grid grid-cols-2 gap-4 overflow-y-auto px-2 pb-4">
+        <div className="mt-2 flex-1 min-h-0 grid content-start grid-cols-2 gap-4 overflow-y-auto px-2 pb-4">
           {filteredProjects.map((proj, idx) => (
             <InventorySlot
               key={proj.id}
