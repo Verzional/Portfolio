@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { menuItems } from "@/lib/data/navigation";
+import { ControlLegend } from "@/components/ui/control-legend";
 
 export function Sidebar() {
   const router = useRouter();
@@ -33,6 +34,13 @@ export function Sidebar() {
   return (
     <div className="flex h-full w-full flex-col justify-center">
       <div>
+        <ControlLegend 
+          controls={[
+            { key: "W / S", action: "Navigate" },
+            { key: "ENTER", action: "Select" }
+          ]} 
+        />
+        
         {/* Top Header / Title */}
         <h2 className="pl-6 font-edo-sz text-3xl tracking-widest text-muted-foreground uppercase md:pl-8 md:text-5xl">
           Menu
@@ -77,7 +85,7 @@ export function Sidebar() {
         <div className="my-6 h-0.5 w-[90%] bg-divider" />
 
         {/* Description */}
-        <p className="mb-8 w-full px-8 font-lato text-lg font-bold tracking-widest text-muted-foreground md:mb-0 md:px-16 md:text-2xl">
+        <p className="mb-8 w-full px-8 font-lato text-lg font-bold tracking-widest text-muted-foreground md:mb-4 md:px-16 md:text-2xl">
           {activeItem?.desc}
         </p>
       </div>

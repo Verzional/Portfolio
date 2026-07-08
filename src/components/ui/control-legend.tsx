@@ -16,14 +16,12 @@ export function ControlLegend({ controls }: { controls: ControlItem[] }) {
   }, []);
 
   if (!controls || controls.length === 0 || !mounted) return null;
-  
+
   const content = (
-    <div className="fixed top-6 left-6 z-[100] hidden xl:flex flex-wrap items-center gap-4 font-edo-sz text-sm md:text-base text-muted-foreground opacity-50 pointer-events-none animate-in fade-in duration-500">
-      {controls.map(c => (
+    <div className="pointer-events-none fixed top-6 left-6 z-[100] hidden animate-in flex-wrap items-center gap-4 font-edo-sz text-sm text-muted-foreground opacity-50 duration-500 fade-in md:text-base xl:flex">
+      {controls.map((c) => (
         <div key={c.key} className="flex items-center gap-2">
-          <span className="text-foreground tracking-widest">
-            [{c.key}]
-          </span>
+          <span className="tracking-widest text-foreground">[{c.key}]</span>
           <span className="tracking-widest uppercase">{c.action}</span>
         </div>
       ))}

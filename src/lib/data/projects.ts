@@ -1,17 +1,65 @@
-import { Layers, Monitor, Smartphone, Gamepad2 } from "lucide-react";
+import { Layers, Globe, Smartphone, Gamepad2 } from "lucide-react";
 
 export const projectCategories = [
   { id: "ALL", label: "ALL", icon: Layers },
-  { id: "WEB", label: "WEB", icon: Monitor },
+  { id: "WEB", label: "WEB", icon: Globe },
   { id: "MOBILE", label: "MOBILE", icon: Smartphone },
   { id: "GAMES", label: "GAMES", icon: Gamepad2 },
 ];
 
 export const projectsData = [
-  { id: "1", title: "C-Think Competition Platform", categories: ["WEB"], desc: "Template Description" },
-  { id: "2", title: "13th NPLC Competitive Programming Platform", categories: ["WEB"], desc: "Template Description" },
-  { id: "3", title: "IMT SU Official Website", categories: ["WEB"], desc: "Template Description" },
-  { id: "4", title: "Vexel", categories: ["WEB"], desc: "Template Description" },
-  { id: "5", title: "Astrocat", categories: ["MOBILE", "GAMES"], desc: "Template Description" },
-  { id: "6", title: "Singaplan", categories: ["MOBILE"], desc: "Template Description" },
+  {
+    id: "1",
+    title: "C-Think",
+    categories: ["WEB"],
+    desc: "A high-performance competition platform built to handle thousands of concurrent users.",
+    techStack: ["Next.js", "TypeScript", "Tailwind", "PostgreSQL"],
+    liveUrl: "#",
+    githubUrl: "#",
+  },
+  {
+    id: "2",
+    title: "13th NPLC CP",
+    categories: ["WEB"],
+    desc: "A real-time competitive programming environment with automated judging.",
+    techStack: ["React", "Node.js", "Docker", "Redis"],
+    liveUrl: "#",
+    githubUrl: "#",
+  },
+  {
+    id: "3",
+    title: "Astrocat",
+    categories: ["MOBILE", "GAMES"],
+    desc: "An action-packed mobile arcade game featuring a cat in space.",
+    techStack: ["Unity", "C#", "Mobile UI"],
+    liveUrl: "#",
+    githubUrl: "#",
+  },
+  {
+    id: "4",
+    title: "IMT SU",
+    categories: ["WEB"],
+    desc: "The official Student Union hub featuring event tracking and announcements.",
+    techStack: ["Next.js", "Framer Motion", "Supabase"],
+    liveUrl: "#",
+    githubUrl: "#",
+  },
+  {
+    id: "5",
+    title: "Vexel",
+    categories: ["WEB"],
+    desc: "A modern web application focusing on extreme UI/UX design.",
+    techStack: ["Vue", "Nuxt", "Tailwind"],
+    liveUrl: "#",
+    githubUrl: "#",
+  },
+  {
+    id: "6",
+    title: "Singaplan",
+    categories: ["MOBILE"],
+    desc: "A comprehensive travel planner and itinerary manager for Singapore.",
+    techStack: ["React Native", "Expo", "Firebase"],
+    liveUrl: "#",
+    githubUrl: "#",
+  },
 ];

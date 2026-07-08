@@ -3,23 +3,25 @@
 import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useMenu } from "@/hooks/use-menu";
+import { projectsData, projectCategories } from "@/lib/data/projects";
 import { SubMenu } from "@/components/layout/sub-menu";
 import { SidebarPortal } from "@/components/layout/sidebar-portal";
-import { InventorySlot } from "@/components/ui/inventory-slot";
-import { CategoryTab } from "@/components/ui/category-tab";
-import { projectCategories, projectsData } from "@/lib/data/projects";
+import { PersonaCategoryTab } from "@/components/ui/persona-category-tab";
+import { PersonaProjectSlot } from "@/components/ui/persona-project-slot";
 
 export function ProjectsClient() {
   const router = useRouter();
   const [activeCategory, setActiveCategory] = useState("ALL");
 
   const filteredProjects = useMemo(() => {
-    return projectsData.filter((p) => activeCategory === "ALL" || p.categories.includes(activeCategory));
+    return projectsData.filter(
+      (p) => activeCategory === "ALL" || p.categories.includes(activeCategory),
+    );
   }, [activeCategory]);
 
   const { activeIndex, setActiveIndex } = useMenu({
     itemCount: filteredProjects.length + 1,
-    columns: 2,
+    columns: 1,
     onSelect: (index) => {
       if (index === filteredProjects.length) {
         router.push("/");
@@ -36,12 +38,16 @@ export function ProjectsClient() {
       if (e.key.toLowerCase() === "q") {
         setActiveCategory((prev) => {
           const idx = projectCategories.findIndex((c) => c.id === prev);
-          return projectCategories[idx > 0 ? idx - 1 : projectCategories.length - 1].id;
+          return projectCategories[
+            idx > 0 ? idx - 1 : projectCategories.length - 1
+          ].id;
         });
       } else if (e.key.toLowerCase() === "e") {
         setActiveCategory((prev) => {
           const idx = projectCategories.findIndex((c) => c.id === prev);
-          return projectCategories[idx < projectCategories.length - 1 ? idx + 1 : 0].id;
+          return projectCategories[
+            idx < projectCategories.length - 1 ? idx + 1 : 0
+          ].id;
         });
       }
     };
@@ -49,50 +55,48 @@ export function ProjectsClient() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const activeProject = activeIndex < filteredProjects.length ? filteredProjects[activeIndex] : null;
+  const activeProject =
+    activeIndex < filteredProjects.length
+      ? filteredProjects[activeIndex]
+      : null;
   const isBackActive = activeIndex === filteredProjects.length;
 
   const sidebarContent = (
-    <SubMenu 
-      title="Projects" 
+    <SubMenu
+      title="Projects"
       isBackActive={isBackActive}
       onBackClick={() => router.push("/")}
       onBackMove={() => setActiveIndex(filteredProjects.length)}
+      controls={[
+        { key: "W / S", action: "Navigate" },
+        { key: "Q / E", action: "Category" },
+        { key: "ENTER", action: "Select" }
+      ]}
     >
-      <div className="flex h-full w-full flex-col min-h-0">
-        <div className="shrink-0 flex w-full items-center justify-between pb-4 pt-2">
-          <div className="hidden pl-2 font-edo-sz text-xl text-muted-foreground xl:block opacity-50">
-            [Q]
-          </div>
-          <div className="flex flex-1 justify-around">
-            {projectCategories.map((cat) => (
-              <CategoryTab
-                key={cat.id}
-                isActive={activeCategory === cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                icon={cat.icon}
-                label={cat.label}
-              />
-            ))}
-          </div>
-          <div className="hidden pr-2 font-edo-sz text-xl text-muted-foreground xl:block opacity-50">
-            [E]
-          </div>
+      <div className="bg-dots flex h-full min-h-0 w-full flex-col">
+        <div className="flex w-full shrink-0 flex-nowrap items-center justify-center gap-4 md:gap-6 overflow-x-auto pt-4 pb-6 px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          {projectCategories.map((cat) => (
+            <PersonaCategoryTab
+              key={cat.id}
+              isActive={activeCategory === cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              label={cat.label}
+              icon={cat.icon}
+            />
+          ))}
         </div>
 
-        <div className="mt-2 flex-1 min-h-0 grid content-start grid-cols-2 gap-4 overflow-y-auto px-2 pb-4">
+        <div className="mt-4 flex min-h-0 flex-1 flex-col overflow-y-auto px-8 pr-12 pb-8">
           {filteredProjects.map((proj, idx) => (
-            <InventorySlot
+            <PersonaProjectSlot
               key={proj.id}
+              index={idx}
               isActive={idx === activeIndex}
+              title={proj.title}
               onClick={() => {
                 setActiveIndex(idx);
               }}
-            >
-              <div className="text-center text-xs px-1 md:text-sm">
-                {proj.title}
-              </div>
-            </InventorySlot>
+            />
           ))}
         </div>
       </div>
@@ -101,18 +105,22 @@ export function ProjectsClient() {
 
   return (
     <>
-      <SidebarPortal>
-        {sidebarContent}
-      </SidebarPortal>
-        
+      <SidebarPortal>{sidebarContent}</SidebarPortal>
+
       <div className="flex h-full w-full flex-col items-center justify-center p-8 text-foreground">
         {activeProject ? (
-          <div className="text-center">
-            <h1 className="font-edo-sz text-5xl tracking-widest text-primary md:text-7xl">{activeProject.title}</h1>
-            <p className="mt-4 font-lato text-xl text-muted-foreground">{activeProject.desc}</p>
+          <div className="animate-in text-center duration-300 fade-in">
+            <h1 className="font-optima-nova text-4xl tracking-widest text-primary md:text-6xl">
+              {activeProject.title}
+            </h1>
+            <p className="mt-4 font-lato text-lg text-muted-foreground">
+              {activeProject.desc}
+            </p>
           </div>
         ) : (
-          <div className="font-edo-sz text-4xl text-muted-foreground">Select a Project</div>
+          <div className="font-optima-nova text-3xl text-muted-foreground">
+            Select a Project
+          </div>
         )}
       </div>
     </>

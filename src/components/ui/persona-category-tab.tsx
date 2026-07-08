@@ -1,26 +1,39 @@
 "use client";
 
+import { LucideIcon } from "lucide-react";
+
 interface PersonaCategoryTabProps {
   isActive: boolean;
   onClick: () => void;
   label: string;
+  icon: LucideIcon;
 }
 
-export function PersonaCategoryTab({ isActive, onClick, label }: PersonaCategoryTabProps) {
+export function PersonaCategoryTab({
+  isActive,
+  onClick,
+  label,
+  icon: Icon,
+}: PersonaCategoryTabProps) {
   return (
     <button
       onClick={onClick}
-      className={`relative px-4 py-2 transition-all duration-200 ${
-        isActive ? "scale-110 -rotate-3 z-10" : "scale-100 rotate-2 opacity-60 hover:opacity-100"
+      title={label}
+      className={`relative h-10 w-14 shrink-0 transition-all duration-200 md:w-12 ${
+        isActive
+          ? "z-10 scale-110 -rotate-3"
+          : "scale-100 rotate-2 opacity-60 hover:opacity-100"
       }`}
     >
-      <div 
-        className={`absolute inset-0 ${isActive ? "bg-primary" : "bg-black"} border-2 ${isActive ? "border-white" : "border-primary"}`}
-        style={{ clipPath: "polygon(10% 0, 100% 0, 90% 100%, 0% 100%)" }}
+      <div
+        className={`absolute inset-0 ${isActive ? "bg-primary" : "bg-black"} border-2 transition-colors ${isActive ? "border-white shadow-[4px_4px_0_rgba(0,0,0,0.8)]" : "border-primary"}`}
+        style={{ clipPath: "polygon(15% 0, 100% 0, 85% 100%, 0% 100%)" }}
       />
-      <span className={`relative z-10 font-optima-nova tracking-widest text-sm md:text-base ${isActive ? "text-white" : "text-primary"}`}>
-        {label}
-      </span>
+      <div
+        className={`relative z-10 flex h-full w-full items-center justify-center ${isActive ? "text-white" : "text-primary"}`}
+      >
+        <Icon className="h-6 w-6 md:w-7 md:h-7" strokeWidth={2.5} />
+      </div>
     </button>
   );
 }
