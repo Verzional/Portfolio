@@ -141,6 +141,7 @@
 /* Custom Theme Variables */
 @theme {
   --font-edo-sz: "Edo SZ", sans-serif;
+  --font-optima-nova: "Optima Nova", sans-serif;
   --font-lato: "Lato", sans-serif;
 
   --background-image-menu-select: linear-gradient(
@@ -207,6 +208,14 @@
 @font-face {
   font-family: "Edo SZ";
   src: url("/fonts/edosz.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Optima Nova";
+  src: url("/fonts/optima-nova-lt-black.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
