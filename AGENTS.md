@@ -47,6 +47,7 @@ Ensure all generated files are placed in the correct directories according to th
   * **CRITICAL:** Do NOT confuse `-foreground` with "text color". `--primary` is the raw color bucket used for `text-primary`, `bg-primary`, etc. The `--primary-foreground` bucket is STRICTLY the contrast color (e.g., white text) that sits *inside* a `bg-primary` element.
 
 ### 4. Animation & Portals
+* **Motion Library:** You must import `motion` from `"motion/react"` (v12 style), not `"framer-motion"`.
 * **Layout Shifts:** Avoid using Framer Motion's `layout` prop for responsive width changes; it injects pixel boundaries that override and break Tailwind responsive classes. Use pure CSS `transition-[width]` classes instead.
 * **React Portals:** When injecting unique submenus into the sidebar, always use the `<SidebarPortal>` component. It safely handles hydration and `AnimatePresence mode="wait"` DOM delays using `requestAnimationFrame`.
 
