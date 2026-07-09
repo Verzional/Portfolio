@@ -13,7 +13,8 @@ import { ProjectDetails } from "./_components/project-details";
 
 export function ProjectsClient() {
   const router = useRouter();
-  const { activeCategory, setActiveCategory } = useCategories(projectCategories);
+  const { activeCategory, setActiveCategory } =
+    useCategories(projectCategories);
 
   const filteredProjects = useMemo(() => {
     return projectsData.filter(
@@ -35,10 +36,6 @@ export function ProjectsClient() {
     setActiveIndex(0);
   }, [activeCategory, setActiveIndex]);
 
-  useEffect(() => {
-    setActiveIndex(0);
-  }, [activeCategory, setActiveIndex]);
-
   const activeProject =
     activeIndex < filteredProjects.length
       ? filteredProjects[activeIndex]
@@ -54,6 +51,7 @@ export function ProjectsClient() {
       controls={[
         { key: "W / S", action: "Navigate" },
         { key: "Q / E", action: "Category" },
+        { key: "A / D", action: "Carousel" },
         { key: "ENTER", action: "Select" },
       ]}
     >
