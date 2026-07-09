@@ -52,7 +52,7 @@ export function ProjectsClient() {
         { key: "W / S", action: "Navigate" },
         { key: "Q / E", action: "Category" },
         { key: "A / D", action: "Carousel" },
-        { key: "ENTER", action: "Select" },
+        { key: "ENTER / SPACE", action: "Select" },
       ]}
     >
       <div className="bg-dots flex h-full min-h-0 w-full flex-col">
