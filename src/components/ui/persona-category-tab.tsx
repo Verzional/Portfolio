@@ -26,13 +26,13 @@ export function PersonaCategoryTab({
       }`}
     >
       <div
-        className={`absolute inset-0 ${isActive ? "bg-primary" : "bg-black"} border-2 transition-colors ${isActive ? "border-white shadow-[4px_4px_0_rgba(0,0,0,0.8)]" : "border-primary"}`}
+        className={`absolute inset-0 ${isActive ? "bg-primary" : "bg-black"} border-2 transition-colors ${isActive ? "border-foreground shadow-[4px_4px_0_rgba(0,0,0,0.8)]" : "border-primary"}`}
         style={{ clipPath: "polygon(15% 0, 100% 0, 85% 100%, 0% 100%)" }}
       />
       <div
-        className={`relative z-10 flex h-full w-full items-center justify-center ${isActive ? "text-white" : "text-primary"}`}
+        className={`relative z-10 flex h-full w-full items-center justify-center ${isActive ? "text-foreground" : "text-primary"}`}
       >
-        <Icon className="h-6 w-6 md:w-7 md:h-7" strokeWidth={2.5} />
+        <Icon className="h-6 w-6 md:h-7 md:w-7" strokeWidth={2.5} />
       </div>
     </button>
   );

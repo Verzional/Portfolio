@@ -6,16 +6,16 @@ interface PersonaSkillTagProps {
 
 export function PersonaSkillTag({ label }: PersonaSkillTagProps) {
   return (
-    <motion.div 
+    <motion.div
       variants={{
         hidden: { opacity: 0, scale: 1.5 },
-        visible: { 
-          opacity: 1, 
+        visible: {
+          opacity: 1,
           scale: 1,
-          transition: { type: "tween", duration: 0.1, ease: "easeOut" } 
-        }
+          transition: { type: "tween", duration: 0.1, ease: "easeOut" },
+        },
       }}
-      className="font-optima-nova font-bold text-xs md:text-sm tracking-widest bg-white text-black px-4 py-1.5 -skew-x-12 shadow-[3px_3px_0_#d4030d] transition-transform hover:-translate-y-1 cursor-default"
+      className="-skew-x-12 cursor-default bg-foreground px-4 py-1.5 font-optima-nova text-xs font-bold tracking-widest text-black shadow-[3px_3px_0_#d4030d] transition-transform hover:-translate-y-1 md:text-sm"
     >
       <span className="block skew-x-12">{label}</span>
     </motion.div>
