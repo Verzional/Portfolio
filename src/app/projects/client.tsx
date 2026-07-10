@@ -55,7 +55,7 @@ export function ProjectsClient() {
         { key: "ENTER / SPACE", action: "Select" },
       ]}
     >
-      <div className="bg-dots flex h-full min-h-0 w-full flex-col">
+      <div className="flex h-full min-h-0 w-full flex-col">
         <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-start gap-4 overflow-x-auto px-4 pt-2 pb-4 [-ms-overflow-style:none] md:justify-center md:gap-3 [&::-webkit-scrollbar]:hidden">
           {projectCategories.map((cat) => (
             <PersonaCategoryTab

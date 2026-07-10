@@ -16,6 +16,16 @@ export function ProjectDetails({ project }: { project: Project | null }) {
     setImageIndex(0);
   }
 
+  const handleNextImage = () => {
+    if (!project?.images) return;
+    setImageIndex((prev) => (prev < project.images.length - 1 ? prev + 1 : 0));
+  };
+
+  const handlePrevImage = () => {
+    if (!project?.images) return;
+    setImageIndex((prev) => (prev > 0 ? prev - 1 : project.images.length - 1));
+  };
+
   useEffect(() => {
     if (!project || !project.images || project.images.length <= 1) return;
 
@@ -90,9 +100,25 @@ export function ProjectDetails({ project }: { project: Project | null }) {
         }}
         className={`group relative shrink-0 ${imageContainerSize}`}
       >
-        <div
-          className="absolute inset-0 bg-primary shadow-[8px_8px_0_rgba(255,255,255,1)] transition-transform duration-500 group-hover:scale-[1.02]"
-          style={{ clipPath: imageClipPath }}
+        <motion.div
+          className="image-carousel-container absolute inset-0 cursor-pointer bg-primary shadow-[8px_8px_0_rgba(255,255,255,1)] transition-transform duration-500 group-hover:scale-[1.02]"
+          style={{ clipPath: imageClipPath, touchAction: "pan-y" }}
+          onPanEnd={(e, info) => {
+            if (info.offset.x < -30) handleNextImage();
+            if (info.offset.x > 30) handlePrevImage();
+          }}
+          onTap={(e, info) => {
+            const target = e.target as HTMLElement;
+            const container =
+              target.closest(".image-carousel-container") || target;
+            const rect = container.getBoundingClientRect();
+            const x = info.point.x - rect.left;
+            if (x > rect.width / 2) {
+              handleNextImage();
+            } else {
+              handlePrevImage();
+            }
+          }}
         >
           <AnimatePresence mode="wait">
             {project.images && project.images.length > 0 && (
@@ -126,7 +152,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
               ))}
             </div>
           )}
-        </div>
+        </motion.div>
 
         {/* Decorative Text */}
         <div className="pointer-events-none absolute -right-4 -bottom-6 rotate-[-5deg] font-optima-nova text-4xl text-foreground opacity-10 select-none md:text-6xl">

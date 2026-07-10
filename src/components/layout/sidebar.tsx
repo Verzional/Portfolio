@@ -82,7 +82,7 @@ export function Sidebar() {
           </nav>
         </div>
 
-        <div className="mt-8 md:mt-0">
+        <div>
           {/* Divider */}
           <div className="my-3 h-0.5 w-[90%] bg-divider md:my-6" />
 
