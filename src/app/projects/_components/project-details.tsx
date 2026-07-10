@@ -41,6 +41,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [project]);
 
+  /* Empty State */
   if (!project) {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center p-8 text-foreground">
@@ -56,8 +57,8 @@ export function ProjectDetails({ project }: { project: Project | null }) {
   const containerLayout = isMobileApp ? "flex-col xl:flex-row" : "flex-col";
 
   const imageContainerSize = isMobileApp
-    ? "w-full xl:w-1/3 h-64 xl:h-full"
-    : "w-full h-48 md:h-72 xl:h-96";
+    ? "w-full xl:w-1/3 h-48 md:h-64 xl:h-full"
+    : "w-full h-32 md:h-72 xl:h-96";
 
   const imageClipPath = isMobileApp
     ? "polygon(10% 0, 100% 0, 90% 100%, 0% 100%)"
@@ -74,7 +75,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
       }}
-      className={`flex h-full w-full ${containerLayout} justify-center gap-8 overflow-hidden p-8 xl:gap-12`}
+      className={`flex h-full w-full ${containerLayout} scrollbar-none justify-start gap-4 overflow-x-hidden overflow-y-auto p-4 md:justify-center md:gap-8 md:p-8 xl:gap-12`}
     >
       {/* Image Panel */}
       <motion.div
@@ -113,10 +114,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
             )}
           </AnimatePresence>
 
-          {/* Halftone texture overlay */}
-          <div className="pointer-events-none absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay"></div>
-
-          {/* Carousel Indicators (Dots) */}
+          {/* Carousel Indicators */}
           {project.images && project.images.length > 1 && (
             <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
               {project.images.map((_, i) => (
@@ -131,7 +129,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
         </div>
 
         {/* Decorative Text */}
-        <div className="pointer-events-none absolute -right-4 -bottom-6 rotate-[-5deg] font-optima-nova text-6xl text-foreground opacity-10 select-none">
+        <div className="pointer-events-none absolute -right-4 -bottom-6 rotate-[-5deg] font-optima-nova text-4xl text-foreground opacity-10 select-none md:text-6xl">
           PROJECT_0{project.id}
         </div>
       </motion.div>
@@ -151,7 +149,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
               transition: { type: "spring", stiffness: 400, damping: 15 },
             },
           }}
-          className="relative z-20 origin-left font-optima-nova text-5xl leading-tight text-foreground uppercase drop-shadow-[4px_4px_0_#d4030d] md:text-7xl"
+          className="relative z-20 origin-left font-optima-nova text-3xl leading-tight text-foreground uppercase drop-shadow-[2px_2px_0_#d4030d] md:text-4xl md:drop-shadow-[3px_3px_0_#d4030d] xl:text-7xl xl:drop-shadow-[4px_4px_0_#d4030d]"
         >
           {project.title}
         </motion.h1>
@@ -166,9 +164,9 @@ export function ProjectDetails({ project }: { project: Project | null }) {
               transition: { type: "spring", stiffness: 300, damping: 20 },
             },
           }}
-          className="relative z-10 mt-6 -rotate-1 border-l-4 border-primary bg-black p-6 text-foreground shadow-[6px_6px_0_rgba(255,255,255,0.2)]"
+          className="relative z-10 mt-4 -rotate-1 border-l-4 border-primary bg-black p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)] md:mt-5 md:p-5 md:shadow-[5px_5px_0_rgba(255,255,255,0.2)] xl:mt-6 xl:p-6 xl:shadow-[6px_6px_0_rgba(255,255,255,0.2)]"
         >
-          <p className="font-optima-nova text-lg leading-relaxed tracking-wider">
+          <p className="font-optima-nova text-sm leading-relaxed tracking-wider md:text-base xl:text-lg">
             {project.desc}
           </p>
         </motion.div>
@@ -196,7 +194,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
               transition: { type: "spring", stiffness: 300, damping: 20 },
             },
           }}
-          className="mt-12 flex flex-wrap gap-6"
+          className="mt-6 flex flex-wrap gap-4 pb-12 md:mt-12 md:gap-6 md:pb-0"
         >
           {project.liveUrl && project.liveUrl !== "#" && (
             <PersonaActionButton

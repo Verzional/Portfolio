@@ -56,7 +56,7 @@ export function ProjectsClient() {
       ]}
     >
       <div className="bg-dots flex h-full min-h-0 w-full flex-col">
-        <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-center gap-4 overflow-x-auto px-2 pt-4 pb-6 [-ms-overflow-style:none] md:gap-6 [&::-webkit-scrollbar]:hidden">
+        <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-start gap-4 overflow-x-auto px-4 pt-2 pb-4 [-ms-overflow-style:none] md:justify-center md:gap-3 [&::-webkit-scrollbar]:hidden">
           {projectCategories.map((cat) => (
             <PersonaCategoryTab
               key={cat.id}
@@ -68,7 +68,7 @@ export function ProjectsClient() {
           ))}
         </div>
 
-        <div className="mt-4 flex min-h-0 flex-1 flex-col overflow-y-auto px-8 pr-12 pb-8">
+        <div className="mt-4 flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto px-4 pr-6 pb-8 md:px-8 md:pr-12">
           {filteredProjects.map((proj, idx) => (
             <PersonaProjectSlot
               key={proj.id}

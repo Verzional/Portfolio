@@ -30,7 +30,7 @@ This document provides instructions, context, and strict guardrails for any AI a
 Ensure all generated files are placed in the correct directories according to this architecture:
 * `src/app`: Page routes and application entry points. Subpages manage their own sidebar UI by portaling `<SubMenu>` via `<SidebarPortal>` into the `#sidebar-root`.
 * `src/components/ui`: Reusable UI components.
-* `src/components/layout`: Core structural components (`app-shell`, `sidebar-portal`, `sub-menu`, etc).
+* `src/components/layout`: Core structural components (`app-shell`, `sidebar-portal`, `sub-menu`, etc). The `app-shell` handles global background crossfades using a dual-map system (`homeHoverBgMap` for home screen previewing and `pageBgMap` for active routes) driven by a `preview-route` window CustomEvent.
 * `src/hooks`: Custom React hooks (e.g., `use-menu` for WASD navigation).
 * `src/lib`: Utility functions and shared logic.
 
@@ -40,7 +40,7 @@ Ensure all generated files are placed in the correct directories according to th
   * Classes/Types/Interfaces: `PascalCase`
   * Files: `kebab-case`
 * **Icons:** Use `lucide-react` for all icons.
-* **Linting:** Code must strictly adhere to the project's `.eslint.config.mjs` configuration. Watch out for Next.js strict mode rules (e.g., avoid synchronous state updates in `useEffect`).
+* **Linting & Purity:** Code must strictly adhere to the project's `.eslint.config.mjs` configuration. Watch out for Next.js strict mode rules (e.g., avoid synchronous state updates in `useEffect`). NEVER use impure functions like `Math.random()` inside the render body of a component; generate random static data outside the component or within stable hooks to avoid hydration mismatches.
 * **Comments:** Explain *why* a complex block of code exists, not *what* the syntax does. Use standard docstrings for public methods.
 * **Styling (CSS Variables):** 
   * All coloring must use the variables defined in `src/app/globals.css`. Avoid hardcoding colors.
@@ -50,6 +50,10 @@ Ensure all generated files are placed in the correct directories according to th
 * **Motion Library:** You must import `motion` from `"motion/react"` (v12 style), not `"framer-motion"`.
 * **Layout Shifts:** Avoid using Framer Motion's `layout` prop for responsive width changes; it injects pixel boundaries that override and break Tailwind responsive classes. Use pure CSS `transition-[width]` classes instead.
 * **React Portals:** When injecting unique submenus into the sidebar, always use the `<SidebarPortal>` component. It safely handles hydration and `AnimatePresence mode="wait"` DOM delays using `requestAnimationFrame`.
+* **Video Game UI Transitions:** Avoid generic, flat `easeOut` crossfades. Use punchy, weighted transitions (e.g. `ease: [0.33, 1, 0.68, 1]`) combined with subtle scale shifts (e.g., entering at `scale: 1.03`, exiting at `scale: 0.98`) to mimic the heavy, responsive feel of menus in Persona 5 and Yakuza.
+
+### 5. Responsive Design
+* **Mobile Background Anchoring:** When rendering full-screen backgrounds (especially landscape illustrations) on mobile devices (`object-cover`), DO NOT use generic anchors like `object-right` or `object-center` if the subject matter is off-center. Always use Tailwind arbitrary percentage values (e.g., `object-[75%_center] md:object-center`) so the exact framing of the character can be fine-tuned per device.
 
 ---
 

@@ -88,7 +88,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {/* Sidebar Bleed */}
       <div
         className={`pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[70%] w-full bg-sidebar-bleed-mobile transition-sidebar md:inset-y-0 md:right-auto md:left-0 md:h-full md:bg-sidebar-bleed ${
-          isHome ? "md:w-[45%]" : "md:w-[25%]"
+          isHome ? "md:w-[55%] lg:w-[45%]" : "md:w-[40%] lg:w-[25%]"
         }`}
       />
 
@@ -97,7 +97,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         {/* Animated Sidebar Container */}
         <aside
           className={`order-2 flex h-[45%] w-full flex-col justify-center overflow-x-hidden bg-transparent py-4 transition-sidebar md:order-1 md:h-full md:py-24 ${
-            isHome ? "md:w-[40%]" : "md:w-[20%]"
+            isHome ? "md:w-[50%] lg:w-[40%]" : "md:w-[35%] lg:w-[20%]"
           }`}
         >
           <AnimatePresence mode="wait">

@@ -19,7 +19,7 @@ export function PersonaCategoryTab({
     <button
       onClick={onClick}
       title={label}
-      className={`relative h-10 w-14 shrink-0 transition-all duration-200 md:w-12 ${
+      className={`relative h-8 w-12 shrink-0 transition-all duration-200 md:h-8 md:w-10 xl:h-10 xl:w-14 ${
         isActive
           ? "z-10 scale-110 -rotate-3"
           : "scale-100 rotate-2 opacity-60 hover:opacity-100"
@@ -32,7 +32,7 @@ export function PersonaCategoryTab({
       <div
         className={`relative z-10 flex h-full w-full items-center justify-center ${isActive ? "text-foreground" : "text-primary"}`}
       >
-        <Icon className="h-6 w-6 md:h-7 md:w-7" strokeWidth={2.5} />
+        <Icon className="h-6 w-6 xl:h-7 xl:w-7" strokeWidth={2.5} />
       </div>
     </button>
   );
