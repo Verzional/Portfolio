@@ -2,24 +2,84 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Sidebar as HomeMenu } from "@/components/layout/sidebar";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const [previewRoute, setPreviewRoute] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handlePreview = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      setPreviewRoute(customEvent.detail);
+    };
+
+    window.addEventListener("preview-route", handlePreview);
+    return () => window.removeEventListener("preview-route", handlePreview);
+  }, []);
+
+  // Home Page Backgrounds
+  const homeHoverBgMap: Record<string, string> = {
+    "/projects": "/images/backgrounds/BG-Kiryu.webp",
+    "/skills": "/images/backgrounds/BG-Majima.webp",
+    "/experience": "/images/backgrounds/BG-Saejima.webp", 
+    "/socials": "/images/backgrounds/BG-Ichiban.webp", 
+  };
+
+  // Non-Home Page Backgrounds
+  const pageBgMap: Record<string, string> = {
+    "/projects": "/images/BG-Persona.webp",
+  };
+
+  // Background Opacity Mapping
+  const bgOpacityMap: Record<string, string> = {
+    "/images/backgrounds/BG-Kiryu.webp": "opacity-30 md:opacity-3",
+    "/images/backgrounds/BG-Majima.webp": "opacity-15 md:opacity-10",
+    "/images/backgrounds/BG-Saejima.webp": "opacity-20 md:opacity-3",
+    "/images/backgrounds/BG-Ichiban.webp": "opacity-25 md:opacity-3",
+    "/images/backgrounds/BG-Persona.webp": "opacity-10 md:opacity-10",
+  };
+
+  // Home Page Background Logic
+  let activeBg = "/images/backgrounds/BG-Kiryu.webp"; 
+  if (isHome) {
+    if (previewRoute && homeHoverBgMap[previewRoute]) {
+      activeBg = homeHoverBgMap[previewRoute];
+    }
+  } else {
+    if (pageBgMap[pathname]) {
+      activeBg = pageBgMap[pathname];
+    }
+  }
+
+  // Get target opacity (fallback to 10%)
+  const activeOpacity = bgOpacityMap[activeBg] || "opacity-10 md:opacity-10";
 
   return (
-    <div className="relative flex h-dvh w-full overflow-hidden">
-      {/* Background Image Container */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[50%] md:bottom-0 md:h-full">
-        <Image
-          src="/images/BG-Dragon.webp"
-          alt="Dragon Background"
-          fill
-          priority
-          className="object-cover object-center opacity-6 md:opacity-4"
-        />
+    <div className="relative flex h-dvh w-full overflow-hidden bg-background">
+      {/* Background Image Container with Crossfade */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[50%] overflow-hidden md:bottom-0 md:h-full">
+        <AnimatePresence>
+          <motion.div
+            key={activeBg}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="absolute inset-0 h-full w-full"
+          >
+            <Image
+              src={activeBg}
+              alt="Theme Background"
+              fill
+              priority
+              className={`object-cover object-center ${activeOpacity}`}
+            />
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Background Glow */}

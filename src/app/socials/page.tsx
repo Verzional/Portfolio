@@ -20,7 +20,7 @@ export default function Socials() {
       onBackClick={() => router.push("/")}
     >
       <div className="flex h-full items-center justify-center text-muted-foreground font-edo-sz text-2xl text-center px-4">
-        Waypoints UI Pending
+        Social Waypoint UI Pending
       </div>
     </SubMenu>
   );

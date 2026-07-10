@@ -26,6 +26,7 @@ export function Sidebar() {
     const route = menuItems[activeIndex]?.href;
     if (route) {
       router.prefetch(route);
+      window.dispatchEvent(new CustomEvent("preview-route", { detail: route }));
     }
   }, [activeIndex, router]);
 

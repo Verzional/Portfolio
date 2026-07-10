@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useMenu } from "@/hooks/use-menu";
 import { SubMenu } from "@/components/layout/sub-menu";
 import { SidebarPortal } from "@/components/layout/sidebar-portal";
-import { useMenu } from "@/hooks/use-menu";
 
 export default function Skills() {
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function Skills() {
       isBackActive={true}
       onBackClick={() => router.push("/")}
     >
-      <div className="flex h-full items-center justify-center text-muted-foreground font-edo-sz text-2xl">
+      <div className="flex h-full items-center justify-center text-muted-foreground font-edo-sz text-2xl text-center px-4">
         Skill Tree UI Pending
       </div>
     </SubMenu>

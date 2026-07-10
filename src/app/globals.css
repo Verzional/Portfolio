@@ -5,8 +5,8 @@
   --foreground: oklch(1 0 0);
   --primary: oklch(0.5474 0.2229 28.27);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(1 0 0);
+  --secondary: #8c1c13;
+  --secondary-foreground: #ffffff;
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.8452 0 0);
 }
@@ -24,6 +24,7 @@
   --color-muted-foreground: var(--muted-foreground);
 }
 
+/* Base Styles */
 @layer base {
   body {
     @apply bg-background text-foreground;
@@ -33,6 +34,7 @@
   }
 }
 
+/* Custom Utility Classes */
 @utility transition-sidebar {
   transition-property: width;
   transition-duration: 500ms;
