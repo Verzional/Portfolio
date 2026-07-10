@@ -25,13 +25,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const homeHoverBgMap: Record<string, string> = {
     "/projects": "/images/backgrounds/BG-Kiryu.webp",
     "/skills": "/images/backgrounds/BG-Majima.webp",
-    "/experience": "/images/backgrounds/BG-Saejima.webp", 
-    "/socials": "/images/backgrounds/BG-Ichiban.webp", 
+    "/experience": "/images/backgrounds/BG-Saejima.webp",
+    "/socials": "/images/backgrounds/BG-Ichiban.webp",
   };
 
   // Non-Home Page Backgrounds
   const pageBgMap: Record<string, string> = {
-    "/projects": "/images/BG-Persona.webp",
+    "/projects": "/images/backgrounds/BG-Persona.webp",
   };
 
   // Background Opacity Mapping
@@ -44,7 +44,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   };
 
   // Home Page Background Logic
-  let activeBg = "/images/backgrounds/BG-Kiryu.webp"; 
+  let activeBg = "/images/backgrounds/BG-Kiryu.webp";
   if (isHome) {
     if (previewRoute && homeHoverBgMap[previewRoute]) {
       activeBg = homeHoverBgMap[previewRoute];
@@ -83,7 +83,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Background Glow */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[50%] bg-hero-glow-mobile md:bottom-0 md:h-auto md:bg-hero-glow" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[60%] bg-hero-glow-mobile md:bottom-0 md:h-auto md:bg-hero-glow" />
 
       {/* Sidebar Bleed */}
       <div
@@ -96,7 +96,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="relative z-20 flex h-full w-full flex-col bg-transparent md:flex-row">
         {/* Animated Sidebar Container */}
         <aside
-          className={`order-2 flex h-[60%] w-full flex-col justify-center bg-transparent py-4 transition-sidebar md:order-1 md:h-full md:py-24 ${
+          className={`order-2 flex h-[45%] w-full flex-col justify-center overflow-x-hidden bg-transparent py-4 transition-sidebar md:order-1 md:h-full md:py-24 ${
             isHome ? "md:w-[40%]" : "md:w-[20%]"
           }`}
         >
@@ -128,7 +128,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </aside>
 
         {/* Main Content Area */}
-        <main className="relative order-1 flex h-[40%] w-full flex-1 flex-col items-center justify-center md:order-2 md:h-full">
+        <main className="relative order-1 flex h-[55%] w-full flex-1 flex-col items-center justify-center md:order-2 md:h-full">
           {children}
         </main>
       </div>

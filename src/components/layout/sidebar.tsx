@@ -33,62 +33,64 @@ export function Sidebar() {
   const activeItem = menuItems[activeIndex];
 
   return (
-    <div className="flex h-full w-full flex-col justify-center">
-      <div>
-        <ControlLegend 
-          controls={[
-            { key: "W / S", action: "Navigate" },
-            { key: "ENTER / SPACE", action: "Select" }
-          ]} 
-        />
-        
-        {/* Top Header / Title */}
-        <h2 className="pl-6 font-edo-sz text-3xl tracking-widest text-muted-foreground uppercase md:pl-8 md:text-5xl">
-          Menu
-        </h2>
+    <div className="flex h-full w-full flex-col overflow-y-auto overflow-x-hidden scrollbar-none pt-4 md:pt-0">
+      <div className="my-auto flex w-full flex-col">
+        <div>
+          <ControlLegend
+            controls={[
+              { key: "W / S", action: "Navigate" },
+              { key: "ENTER / SPACE", action: "Select" },
+            ]}
+          />
 
-        {/* Divider */}
-        <div className="my-6 h-0.5 w-[90%] bg-divider" />
+          {/* Top Header / Title */}
+          <h2 className="pl-6 font-edo-sz text-2xl tracking-widest text-muted-foreground uppercase md:pl-8 md:text-5xl">
+            Menu
+          </h2>
 
-        {/* Navigation Items */}
-        <nav className="flex flex-col gap-4 font-edo-sz text-foreground md:gap-8">
-          {menuItems.map((item, index) => {
-            const isActive = index === activeIndex;
+          {/* Divider */}
+          <div className="my-3 h-0.5 w-[90%] bg-divider md:my-6" />
 
-            return (
-              <Link
-                key={item.id}
-                href={item.href}
-                onPointerMove={(e) => {
-                  if (e.pointerType === "mouse" && activeIndex !== index) {
-                    setActiveIndex(index);
-                  }
-                }}
-                onClick={(e) => {
-                  if (activeIndex !== index) {
-                    e.preventDefault();
-                    setActiveIndex(index);
-                  }
-                }}
-                className={`block w-[95%] pt-2 pb-4 pl-8 text-left text-4xl transition-colors md:pl-16 md:text-6xl ${
-                  isActive ? "relative bg-menu-select" : ""
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-      </div>
+          {/* Navigation Items */}
+          <nav className="flex flex-col gap-2 font-edo-sz text-foreground md:gap-8">
+            {menuItems.map((item, index) => {
+              const isActive = index === activeIndex;
 
-      <div>
-        {/* Divider */}
-        <div className="my-6 h-0.5 w-[90%] bg-divider" />
+              return (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  onPointerMove={(e) => {
+                    if (e.pointerType === "mouse" && activeIndex !== index) {
+                      setActiveIndex(index);
+                    }
+                  }}
+                  onClick={(e) => {
+                    if (activeIndex !== index) {
+                      e.preventDefault();
+                      setActiveIndex(index);
+                    }
+                  }}
+                  className={`block w-[95%] py-2 pl-8 text-left text-3xl transition-colors md:pt-2 md:pb-4 md:pl-16 md:text-6xl ${
+                    isActive ? "relative bg-menu-select" : ""
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
 
-        {/* Description */}
-        <p className="mb-8 w-full px-8 font-lato text-lg font-bold tracking-widest text-muted-foreground md:mb-4 md:px-16 md:text-2xl">
-          {activeItem?.desc}
-        </p>
+        <div className="mt-8 md:mt-0">
+          {/* Divider */}
+          <div className="my-3 h-0.5 w-[90%] bg-divider md:my-6" />
+
+          {/* Description */}
+          <p className="text-md mb-4 w-full px-8 font-lato font-bold tracking-widest text-muted-foreground md:mb-4 md:px-16 md:text-2xl">
+            {activeItem?.desc}
+          </p>
+        </div>
       </div>
     </div>
   );

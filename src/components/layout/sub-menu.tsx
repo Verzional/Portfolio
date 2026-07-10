@@ -26,10 +26,10 @@ export function SubMenu({
         {controls && <ControlLegend controls={controls} />}
 
         {/* Title */}
-        <h2 className="shrink-0 truncate pl-4 font-edo-sz text-3xl tracking-widest text-muted-foreground uppercase md:pl-8 md:text-4xl">
+        <h2 className="shrink-0 truncate pl-6 font-edo-sz text-2xl tracking-widest text-muted-foreground uppercase md:pl-8 md:text-5xl">
           {title}
         </h2>
-        <div className="my-6 h-0.5 w-[90%] bg-divider" />
+        <div className="my-3 md:my-6 h-0.5 w-[90%] bg-divider" />
 
         {/* Children */}
         <div
@@ -42,11 +42,11 @@ export function SubMenu({
 
       {/* Back Button */}
       <div className="shrink-0">
-        <div className="my-6 h-0.5 w-[90%] bg-divider" />
+        <div className="my-3 md:my-6 h-0.5 w-[90%] bg-divider" />
         <button
           onPointerMove={onBackMove}
           onClick={onBackClick}
-          className={`w-[95%] pt-2 pb-4 pl-4 text-left font-edo-sz text-3xl tracking-widest uppercase transition-colors md:pl-8 ${
+          className={`block w-[95%] py-2 pl-8 text-left font-edo-sz text-2xl tracking-widest uppercase transition-colors md:pt-2 md:pb-4 md:pl-16 md:text-6xl ${
             isBackActive
               ? "relative bg-menu-select text-foreground"
               : "text-muted-foreground hover:text-foreground"
