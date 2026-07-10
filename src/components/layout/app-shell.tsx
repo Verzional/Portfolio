@@ -36,10 +36,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   // Background Opacity Mapping
   const bgOpacityMap: Record<string, string> = {
-    "/images/backgrounds/BG-Kiryu.webp": "opacity-30 md:opacity-3",
-    "/images/backgrounds/BG-Majima.webp": "opacity-15 md:opacity-10",
-    "/images/backgrounds/BG-Saejima.webp": "opacity-20 md:opacity-3",
-    "/images/backgrounds/BG-Ichiban.webp": "opacity-25 md:opacity-3",
+    "/images/backgrounds/BG-Kiryu.webp": "opacity-10 md:opacity-3",
+    "/images/backgrounds/BG-Majima.webp": "opacity-20 md:opacity-10",
+    "/images/backgrounds/BG-Saejima.webp": "opacity-10 md:opacity-3",
+    "/images/backgrounds/BG-Ichiban.webp": "opacity-10 md:opacity-3",
     "/images/backgrounds/BG-Persona.webp": "opacity-10 md:opacity-10",
   };
 
@@ -76,7 +76,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               alt="Theme Background"
               fill
               priority
-              className={`object-cover object-center ${activeOpacity}`}
+              className={`object-cover object-[90%_center] md:object-center ${activeOpacity}`}
             />
           </motion.div>
         </AnimatePresence>
