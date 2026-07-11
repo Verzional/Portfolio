@@ -15,7 +15,7 @@ export default function Experience() {
 
   const sidebarContent = (
     <SubMenu 
-      title="Experience" 
+      title="EXP" 
       isBackActive={true}
       onBackClick={() => router.push("/")}
     >

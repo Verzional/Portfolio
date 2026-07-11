@@ -60,7 +60,7 @@ export function TaxiMap({ activeIndex }: { activeIndex: number }) {
           })}
         </svg>
 
-        {/* District Labels and Icons */}
+        {/* District Container */}
         <div className="pointer-events-none absolute inset-0 z-20">
           {socialsMap.map((district, idx) => {
             const isActive = idx === activeIndex;
@@ -75,38 +75,38 @@ export function TaxiMap({ activeIndex }: { activeIndex: number }) {
                   top: `${district.centerY}%`,
                 }}
               >
-                {social ? (
-                  <>
-                    <div
-                      className={`relative mb-3 transition-all duration-500 ${
-                        isActive
-                          ? "h-16 w-16 scale-110 opacity-100 drop-shadow-[0_0_15px_var(--color-primary)] md:h-20 md:w-20"
-                          : "h-12 w-12 scale-100 opacity-40 grayscale md:h-16 md:w-16"
-                      }`}
-                    >
-                      <Image
-                        src={social.icon}
-                        alt={social.name}
-                        fill
-                        sizes="(max-width: 768px) 64px, 80px"
-                        className="object-contain"
-                      />
-                    </div>
-                    <span
-                      className={`font-edo-sz text-2xl tracking-widest whitespace-nowrap transition-all duration-500 md:text-2xl ${
-                        isActive
-                          ? "text-foreground drop-shadow-[2px_2px_0_var(--color-primary)]"
-                          : "text-muted"
-                      }`}
-                    >
-                      {social.districtName}
+                {/* Social Icon with Glow Effect */}
+                <div
+                  className={`relative mb-3 transition-all duration-500 ${
+                    isActive
+                      ? "h-8 w-8 scale-110 opacity-100 drop-shadow-[0_0_15px_var(--color-primary)] md:h-20 md:w-20"
+                      : "h-6 w-6 scale-100 opacity-40 grayscale md:h-16 md:w-16"
+                  }`}
+                >
+                  <Image
+                    src={social.icon}
+                    alt={social.name}
+                    fill
+                    sizes="(max-width: 768px) 64px, 80px"
+                    className="object-contain"
+                  />
+                </div>
+
+                {/* District Name */}
+                <span
+                  className={`text-center font-edo-sz text-sm leading-tight tracking-widest transition-all duration-500 md:text-2xl ${
+                    isActive
+                      ? "text-foreground drop-shadow-[2px_2px_0_var(--color-primary)]"
+                      : "text-muted"
+                  }`}
+                >
+                  {social.districtName.split(" ").map((word, i, arr) => (
+                    <span key={i}>
+                      {word}
+                      {i < arr.length - 1 && <br />}
                     </span>
-                  </>
-                ) : (
-                  <span className="font-edo-sz text-xl tracking-widest text-muted opacity-30 md:text-3xl">
-                    {district.name}
-                  </span>
-                )}
+                  ))}
+                </span>
               </div>
             );
           })}

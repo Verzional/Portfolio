@@ -32,7 +32,7 @@ function SocialSlot({ isActive, onClick, icon, name }: SocialSlotProps) {
     <div
       ref={containerRef}
       onClick={onClick}
-      className={`flex cursor-pointer items-center gap-4 px-6 py-4 transition-all duration-200 ${
+      className={`flex cursor-pointer w-[95%] items-center gap-4 py-4 pl-8 md:pl-12 transition-all duration-200 ${
         isActive
           ? "bg-menu-select text-foreground"
           : "text-muted hover:text-foreground"
@@ -86,7 +86,7 @@ export function SocialsClient() {
         { key: "ENTER", action: "CONNECT" },
       ]}
     >
-      <div className="flex min-h-0 w-full flex-1 flex-col gap-2 overflow-x-hidden overflow-y-auto px-4 pr-6 pb-4 md:px-8 md:pr-12">
+      <div className="flex min-h-0 w-full flex-1 flex-col gap-2 overflow-x-hidden overflow-y-auto scrollbar-none pb-4 pt-2">
         {/* Social Links */}
         {socialsData.map((social, idx) => (
           <SocialSlot

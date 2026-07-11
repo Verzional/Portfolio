@@ -1,5 +1,13 @@
 export const socialsData = [
   {
+    id: "email",
+    name: "Email",
+    icon: "/icons/email.webp",
+    url: "mailto:valentinomg7@gmail.com",
+    handle: "valentinom7@gmail.com",
+    districtName: "POSTAL OFFICE",
+  },
+  {
     id: "github",
     name: "GitHub",
     icon: "/icons/github.webp",
@@ -8,21 +16,13 @@ export const socialsData = [
     districtName: "TECH DISTRICT",
   },
   {
-    id: "linkedin",
-    name: "LinkedIn",
-    icon: "/icons/linkedin.webp",
-    url: "https://linkedin.com/in/valentinomg",
-    handle: "Verzional",
-    districtName: "CORPORATE PLAZA",
-  },
-  {
-    id: "email",
-    name: "Email",
-    icon: "/icons/email.webp",
-    url: "mailto:valentinomg7@gmail.com",
-    handle: "valentinom7@gmail.com",
-    districtName: "POSTAL OFFICE",
-  },
+      id: "linkedin",
+      name: "LinkedIn",
+      icon: "/icons/linkedin.webp",
+      url: "https://linkedin.com/in/valentinomg",
+      handle: "Verzional",
+      districtName: "ENTERPRISE PLAZA",
+    },
   {
     id: "youtube",
     name: "YouTube",
