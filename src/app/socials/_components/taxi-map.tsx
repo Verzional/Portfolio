@@ -1,0 +1,117 @@
+"use client";
+
+import Image from "next/image";
+import { socialsData, socialsMap } from "@/data/socials";
+
+export function TaxiMap({ activeIndex }: { activeIndex: number }) {
+  return (
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden p-4 md:p-12">
+      {/* Main Map Container */}
+      <div className="relative z-10 flex h-full w-full max-w-6xl items-center justify-center">
+        {/* Render Map in SVG */}
+        <svg
+          className="absolute inset-0 h-full w-full overflow-visible"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          {socialsMap.map((district, idx) => {
+            const isActive = idx === activeIndex;
+
+            return (
+              <g key={district.id}>
+                {/* Glow Effect */}
+                {isActive && (
+                  <>
+                    <polygon
+                      points={district.points}
+                      fill="none"
+                      stroke="var(--color-primary)"
+                      strokeWidth="16"
+                      strokeOpacity="0.15"
+                      vectorEffect="non-scaling-stroke"
+                    />
+                    <polygon
+                      points={district.points}
+                      fill="none"
+                      stroke="var(--color-primary)"
+                      strokeWidth="6"
+                      strokeOpacity="0.3"
+                      vectorEffect="non-scaling-stroke"
+                    />
+                  </>
+                )}
+
+                {/* Core Shape */}
+                <polygon
+                  points={district.points}
+                  fill={
+                    isActive ? "var(--color-primary)" : "var(--color-muted)"
+                  }
+                  fillOpacity={isActive ? 0.15 : 0.05}
+                  stroke={
+                    isActive ? "var(--color-primary)" : "var(--color-muted)"
+                  }
+                  strokeWidth="2"
+                  vectorEffect="non-scaling-stroke"
+                  className="transition-all duration-500 ease-out"
+                />
+              </g>
+            );
+          })}
+        </svg>
+
+        {/* District Labels and Icons */}
+        <div className="pointer-events-none absolute inset-0 z-20">
+          {socialsMap.map((district, idx) => {
+            const isActive = idx === activeIndex;
+            const social = socialsData[idx];
+
+            return (
+              <div
+                key={district.id}
+                className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center transition-all duration-500"
+                style={{
+                  left: `${district.centerX}%`,
+                  top: `${district.centerY}%`,
+                }}
+              >
+                {social ? (
+                  <>
+                    <div
+                      className={`relative mb-3 transition-all duration-500 ${
+                        isActive
+                          ? "h-16 w-16 scale-110 opacity-100 drop-shadow-[0_0_15px_var(--color-primary)] md:h-20 md:w-20"
+                          : "h-12 w-12 scale-100 opacity-40 grayscale md:h-16 md:w-16"
+                      }`}
+                    >
+                      <Image
+                        src={social.icon}
+                        alt={social.name}
+                        fill
+                        sizes="(max-width: 768px) 64px, 80px"
+                        className="object-contain"
+                      />
+                    </div>
+                    <span
+                      className={`font-edo-sz text-2xl tracking-widest whitespace-nowrap transition-all duration-500 md:text-2xl ${
+                        isActive
+                          ? "text-foreground drop-shadow-[2px_2px_0_var(--color-primary)]"
+                          : "text-muted"
+                      }`}
+                    >
+                      {social.districtName}
+                    </span>
+                  </>
+                ) : (
+                  <span className="font-edo-sz text-xl tracking-widest text-muted opacity-30 md:text-3xl">
+                    {district.name}
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}

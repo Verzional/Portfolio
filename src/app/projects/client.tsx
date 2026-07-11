@@ -42,11 +42,12 @@ export function ProjectsClient() {
     activeIndex < filteredProjects.length
       ? filteredProjects[activeIndex]
       : null;
+
+  // Check if the Back Button is the Active Item
   const isBackActive = activeIndex === filteredProjects.length;
 
   // Sidebar Content
   const sidebarContent = (
-    // Title and Control Legend
     <SubMenu
       title="Projects"
       isBackActive={isBackActive}

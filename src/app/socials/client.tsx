@@ -6,6 +6,7 @@ import { useMenu } from "@/hooks/use-menu";
 import { socialsData } from "@/data/socials";
 import { SubMenu } from "@/components/sub-menu";
 import { SidebarPortal } from "@/components/sidebar-portal";
+import { TaxiMap } from "./_components/taxi-map";
 
 export function SocialsClient() {
   const router = useRouter();
@@ -77,7 +78,7 @@ export function SocialsClient() {
   return (
     <>
       <SidebarPortal>{sidebarContent}</SidebarPortal>
-      <div className="h-full w-full"></div>
+      <TaxiMap activeIndex={activeIndex} />
     </>
   );
 }
