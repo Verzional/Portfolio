@@ -4,13 +4,14 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Sidebar as HomeMenu } from "@/components/layout/sidebar";
+import { Sidebar as HomeMenu } from "@/components/sidebar";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [previewRoute, setPreviewRoute] = useState<string | null>(null);
 
+  // Handle Preview Route Events
   useEffect(() => {
     const handlePreview = (e: Event) => {
       const customEvent = e as CustomEvent<string>;
@@ -55,12 +56,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     }
   }
 
-  // Get target opacity (fallback to 10%)
+  // Get Target Opacity for Active Background
   const activeOpacity = bgOpacityMap[activeBg] || "opacity-10 md:opacity-10";
 
   return (
     <div className="relative flex h-dvh w-full overflow-hidden bg-background">
-      {/* Background Image Container with Crossfade */}
+      {/* Background Image Container */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[50%] overflow-hidden md:bottom-0 md:h-full">
         <AnimatePresence>
           <motion.div
@@ -74,8 +75,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <Image
               src={activeBg}
               alt="Theme Background"
-              fill
-              priority
+              fill={true}
+              priority={true}
               className={`object-cover object-[90%_center] md:object-center ${activeOpacity}`}
             />
           </motion.div>
@@ -94,7 +95,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
       {/* Interactive Layer */}
       <div className="relative z-20 flex h-full w-full flex-col bg-transparent md:flex-row">
-        {/* Animated Sidebar Container */}
+        {/* Sidebar Container */}
         <aside
           className={`order-2 flex h-[45%] w-full flex-col justify-center overflow-x-hidden bg-transparent py-4 transition-sidebar md:order-1 md:h-full md:py-24 ${
             isHome ? "md:w-[50%] lg:w-[40%]" : "md:w-[35%] lg:w-[20%]"
@@ -102,6 +103,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         >
           <AnimatePresence mode="wait">
             {isHome ? (
+              // Home Menu
               <motion.div
                 key="home-menu"
                 initial={{ opacity: 0, x: -20 }}
@@ -113,6 +115,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <HomeMenu />
               </motion.div>
             ) : (
+              // Sub Menu
               <motion.div
                 key="sub-menu"
                 initial={{ opacity: 0, x: 20 }}

@@ -4,11 +4,11 @@ import { useRouter } from "next/navigation";
 import { useMemo, useEffect } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { useCategories } from "@/hooks/use-categories";
-import { projectsData, projectCategories } from "@/lib/data/projects";
-import { SubMenu } from "@/components/layout/sub-menu";
-import { SidebarPortal } from "@/components/layout/sidebar-portal";
-import { PersonaCategoryTab } from "@/components/ui/persona-category-tab";
-import { PersonaProjectSlot } from "@/components/ui/persona-project-slot";
+import { projectsData, projectCategories } from "@/data/projects";
+import { SubMenu } from "@/components/sub-menu";
+import { SidebarPortal } from "@/components/sidebar-portal";
+import { PersonaCategoryTab } from "./_components/persona-category-tab";
+import { PersonaProjectSlot } from "./_components/persona-project-slot";
 import { ProjectDetails } from "./_components/project-details";
 
 export function ProjectsClient() {

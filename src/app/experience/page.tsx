@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useMenu } from "@/hooks/use-menu";
-import { SubMenu } from "@/components/layout/sub-menu";
-import { SidebarPortal } from "@/components/layout/sidebar-portal";
+import { SubMenu } from "@/components/sub-menu";
+import { SidebarPortal } from "@/components/sidebar-portal";
 
 export default function Experience() {
   const router = useRouter();

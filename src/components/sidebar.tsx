@@ -4,11 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { useMenu } from "@/hooks/use-menu";
-import { menuItems } from "@/lib/data/navigation";
-import { ControlLegend } from "@/components/ui/control-legend";
+import { menuItems } from "@/data/navigation";
+import { ControlLegend } from "@/components/control-legend";
 
 export function Sidebar() {
   const router = useRouter();
+
+  // Handle Menu Item Selection
   const handleSelect = useCallback(
     (index: number) => {
       const route = menuItems[index].href;
@@ -17,11 +19,13 @@ export function Sidebar() {
     [router],
   );
 
+  // Handle Menu Navigation
   const { activeIndex, setActiveIndex } = useMenu({
     itemCount: menuItems.length,
     onSelect: handleSelect,
   });
 
+  // Prefetch Active Menu Item Route and Dispatch Custom Event for Preview
   useEffect(() => {
     const route = menuItems[activeIndex]?.href;
     if (route) {
@@ -34,9 +38,10 @@ export function Sidebar() {
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden pt-4 md:pt-0">
-      <div className="my-auto flex w-full max-h-full min-h-0 flex-col">
+      <div className="my-auto flex max-h-full min-h-0 w-full flex-col">
         {/* Header */}
         <div className="shrink-0">
+          {/* Control Legend */}
           <ControlLegend
             controls={[
               { key: "W / S", action: "Navigate" },
@@ -54,7 +59,7 @@ export function Sidebar() {
         </div>
 
         {/* Navigation Items */}
-        <nav className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto overflow-x-hidden scrollbar-none font-edo-sz text-foreground md:gap-8">
+        <nav className="flex min-h-0 flex-1 scrollbar-none flex-col gap-2 overflow-x-hidden overflow-y-auto font-edo-sz text-foreground md:gap-8">
           {menuItems.map((item, index) => {
             const isActive = index === activeIndex;
 

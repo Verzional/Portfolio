@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { projectsData } from "@/lib/data/projects";
-import { PersonaSkillTag } from "@/components/ui/persona-skill-tag";
-import { PersonaActionButton } from "@/components/ui/persona-action-button";
+import { projectsData } from "@/data/projects";
+import { PersonaSkillTag } from "./persona-skill-tag";
+import { PersonaActionButton } from "./persona-action-button";
 
 type Project = (typeof projectsData)[0];
 

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
+import { Lato } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Lato } from "next/font/google";
+import { AppShell } from "@/components/app-shell";
 import { cn } from "@/lib/utils";
-import { AppShell } from "@/components/layout/app-shell";
 import "./globals.css";
 
 const lato = Lato({
-  weight: ["100", "300", "400", "700", "900"],
+  weight: ["700"],
   subsets: ["latin"],
   variable: "--font-lato",
   display: "swap",

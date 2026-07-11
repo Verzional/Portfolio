@@ -1,6 +1,6 @@
 "use client";
 
-import { ControlLegend } from "@/components/ui/control-legend";
+import { ControlLegend } from "@/components/control-legend";
 
 interface SubMenuProps {
   title: string;
@@ -21,6 +21,7 @@ export function SubMenu({
 }: SubMenuProps) {
   return (
     <div className="flex h-full flex-col justify-between text-foreground">
+      {/* Header */}
       <div className="flex min-h-0 flex-1 flex-col">
         {/* Control Legend */}
         {controls && <ControlLegend controls={controls} />}
@@ -29,6 +30,8 @@ export function SubMenu({
         <h2 className="shrink-0 truncate pl-6 font-edo-sz text-2xl tracking-widest text-muted-foreground uppercase md:pl-8 md:text-4xl xl:text-5xl">
           {title}
         </h2>
+
+        {/* Divider */}
         <div className="my-3 h-0.5 w-[90%] bg-divider md:my-4 xl:my-6" />
 
         {/* Children */}
@@ -40,9 +43,12 @@ export function SubMenu({
         </div>
       </div>
 
-      {/* Back Button */}
+      {/* Footer */}
       <div className="shrink-0">
+        {/* Divider */}
         <div className="my-3 h-0.5 w-[90%] bg-divider md:my-4 xl:my-6" />
+
+        {/* Back Button */}
         <button
           onPointerMove={onBackMove}
           onClick={onBackClick}
