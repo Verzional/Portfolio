@@ -2,7 +2,7 @@ export const menuItems = [
   {
     id: "projects",
     label: "Projects",
-    desc: "Inventory of completed applications and repositories.",
+    desc: "Compendium of completed applications and repositories.",
     href: "/projects",
   },
   {

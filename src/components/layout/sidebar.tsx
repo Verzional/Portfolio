@@ -33,9 +33,10 @@ export function Sidebar() {
   const activeItem = menuItems[activeIndex];
 
   return (
-    <div className="flex h-full w-full flex-col overflow-y-auto overflow-x-hidden scrollbar-none pt-4 md:pt-0">
-      <div className="my-auto flex w-full flex-col">
-        <div>
+    <div className="flex h-full w-full flex-col overflow-hidden pt-4 md:pt-0">
+      <div className="my-auto flex w-full max-h-full min-h-0 flex-col">
+        {/* Header */}
+        <div className="shrink-0">
           <ControlLegend
             controls={[
               { key: "W / S", action: "Navigate" },
@@ -50,39 +51,40 @@ export function Sidebar() {
 
           {/* Divider */}
           <div className="my-3 h-0.5 w-[90%] bg-divider md:my-6" />
-
-          {/* Navigation Items */}
-          <nav className="flex flex-col gap-2 font-edo-sz text-foreground md:gap-8">
-            {menuItems.map((item, index) => {
-              const isActive = index === activeIndex;
-
-              return (
-                <Link
-                  key={item.id}
-                  href={item.href}
-                  onPointerMove={(e) => {
-                    if (e.pointerType === "mouse" && activeIndex !== index) {
-                      setActiveIndex(index);
-                    }
-                  }}
-                  onClick={(e) => {
-                    if (activeIndex !== index) {
-                      e.preventDefault();
-                      setActiveIndex(index);
-                    }
-                  }}
-                  className={`block w-[95%] py-2 pl-8 text-left text-3xl transition-colors md:pt-2 md:pb-4 md:pl-16 md:text-6xl ${
-                    isActive ? "relative bg-menu-select" : ""
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
         </div>
 
-        <div>
+        {/* Navigation Items */}
+        <nav className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto overflow-x-hidden scrollbar-none font-edo-sz text-foreground md:gap-8">
+          {menuItems.map((item, index) => {
+            const isActive = index === activeIndex;
+
+            return (
+              <Link
+                key={item.id}
+                href={item.href}
+                onPointerMove={(e) => {
+                  if (e.pointerType === "mouse" && activeIndex !== index) {
+                    setActiveIndex(index);
+                  }
+                }}
+                onClick={(e) => {
+                  if (activeIndex !== index) {
+                    e.preventDefault();
+                    setActiveIndex(index);
+                  }
+                }}
+                className={`block w-[95%] shrink-0 py-2 pl-8 text-left text-3xl transition-colors md:pt-2 md:pb-4 md:pl-16 md:text-6xl ${
+                  isActive ? "relative bg-menu-select" : ""
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Footer */}
+        <div className="shrink-0">
           {/* Divider */}
           <div className="my-3 h-0.5 w-[90%] bg-divider md:my-6" />
 

@@ -24,7 +24,6 @@ export function ProjectsClient() {
 
   const { activeIndex, setActiveIndex } = useMenu({
     itemCount: filteredProjects.length + 1,
-    columns: 1,
     onSelect: (index) => {
       if (index === filteredProjects.length) {
         router.push("/");
