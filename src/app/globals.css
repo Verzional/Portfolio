@@ -11,9 +11,13 @@
   --muted-foreground: oklch(0.8452 0 0);
 }
 
+/* Color and Font Variables */
 @theme inline {
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-edo-sz: var(--font-edo-sz);
+  --font-optima-nova: var(--font-optima-nova);
+  --font-lato: var(--font-lato);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -43,10 +47,6 @@
 
 /* Custom Theme Variables */
 @theme inline {
-  --font-edo-sz: "Edo SZ", sans-serif;
-  --font-optima-nova: "Optima Nova", sans-serif;
-  --font-lato: "Lato", sans-serif;
-
   --background-image-menu-select: linear-gradient(
     to right,
     #d4030d 0%,
@@ -105,21 +105,4 @@
       rgba(37, 5, 5, 0.1) 70%,
       transparent 100%
     );
-}
-
-/* Custom Fonts */
-@font-face {
-  font-family: "Edo SZ";
-  src: url("/fonts/edosz.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Optima Nova";
-  src: url("/fonts/optima-nova-lt-black.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }

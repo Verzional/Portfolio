@@ -1,10 +1,23 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { Lato } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AppShell } from "@/components/app-shell";
 import { cn } from "@/lib/utils";
 import "./globals.css";
+
+const edoSz = localFont({
+  src: "../../public/fonts/edosz.woff2",
+  variable: "--font-edo-sz",
+  display: "swap",
+});
+
+const optimaNova = localFont({
+  src: "../../public/fonts/optima-nova-lt-black.woff2",
+  variable: "--font-optima-nova",
+  display: "swap",
+});
 
 const lato = Lato({
   weight: ["700"],
@@ -85,7 +98,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", "font-sans", lato.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        "font-sans",
+        edoSz.variable,
+        optimaNova.variable,
+        lato.variable,
+      )}
     >
       <body className="flex min-h-full flex-col">
         <AppShell>{children}</AppShell>
