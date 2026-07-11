@@ -107,7 +107,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="relative z-20 flex h-full w-full flex-col bg-transparent md:flex-row">
         {/* Sidebar Container */}
         <aside
-          className={`order-2 flex h-[45%] w-full flex-col justify-center overflow-x-hidden bg-transparent py-4 transition-sidebar md:order-1 md:h-full md:py-24 ${
+          className={`order-2 flex h-[50%] w-full flex-col justify-center overflow-x-hidden bg-transparent py-4 transition-sidebar md:order-1 md:h-full md:py-24 ${
             isHome ? "md:w-[50%] lg:w-[40%]" : "md:w-[35%] lg:w-[20%]"
           }`}
         >
@@ -141,7 +141,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </aside>
 
         {/* Main Content Area */}
-        <main className="relative order-1 flex h-[55%] w-full flex-1 flex-col items-center justify-center md:order-2 md:h-full">
+        <main className="relative order-1 flex h-[50%] w-full flex-1 flex-col items-center justify-center md:order-2 md:h-full">
           {children}
         </main>
       </div>

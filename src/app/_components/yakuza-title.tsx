@@ -4,8 +4,8 @@ import { motion } from "motion/react";
 // import { Hexagon } from "lucide-react";
 
 export function YakuzaTitle() {
-  const subtitleDelay = 0;
-  const slamDelay = 0.25;
+  const subtitleDelay = 0.1;
+  const slamDelay = 0.3;
   const impactTime = slamDelay + 0.15;
 
   return (
