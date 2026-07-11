@@ -44,7 +44,7 @@ export function Sidebar() {
           {/* Control Legend */}
           <ControlLegend
             controls={[
-              { key: "W / S", action: "Navigate" },
+              { key: "W / S & ▼ / ▲", action: "Navigate" },
               { key: "ENTER / SPACE", action: "Select" },
             ]}
           />

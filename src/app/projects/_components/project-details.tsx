@@ -11,11 +11,13 @@ export function ProjectDetails({ project }: { project: Project | null }) {
   const [imageIndex, setImageIndex] = useState(0);
   const [prevProjectId, setPrevProjectId] = useState(project?.id);
 
+  // Reset Image Index When Project Changes
   if (project?.id !== prevProjectId) {
     setPrevProjectId(project?.id);
     setImageIndex(0);
   }
 
+  // Handle Image Carousel Navigation
   const handleNextImage = () => {
     if (!project?.images) return;
     setImageIndex((prev) => (prev < project.images.length - 1 ? prev + 1 : 0));
@@ -26,6 +28,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
     setImageIndex((prev) => (prev > 0 ? prev - 1 : project.images.length - 1));
   };
 
+  // Keyboard Navigation for Image Carousel
   useEffect(() => {
     if (!project || !project.images || project.images.length <= 1) return;
 
@@ -62,6 +65,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
     );
   }
 
+  // Mobile App Layout Adjustments
   const isMobileApp = project.categories.includes("MOBILE");
 
   const containerLayout = isMobileApp ? "flex-col xl:flex-row" : "flex-col";
@@ -100,13 +104,10 @@ export function ProjectDetails({ project }: { project: Project | null }) {
         }}
         className={`group relative shrink-0 ${imageContainerSize}`}
       >
+        {/* Image Carousel */}
         <motion.div
           className="image-carousel-container absolute inset-0 cursor-pointer bg-primary shadow-[8px_8px_0_rgba(255,255,255,1)] transition-transform duration-500 group-hover:scale-[1.02]"
-          style={{ clipPath: imageClipPath, touchAction: "pan-y" }}
-          onPanEnd={(e, info) => {
-            if (info.offset.x < -30) handleNextImage();
-            if (info.offset.x > 30) handlePrevImage();
-          }}
+          style={{ clipPath: imageClipPath }}
           onTap={(e, info) => {
             const target = e.target as HTMLElement;
             const container =
@@ -120,6 +121,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
             }
           }}
         >
+          {/* Image Carousel Animation */}
           <AnimatePresence mode="wait">
             {project.images && project.images.length > 0 && (
               <motion.div
