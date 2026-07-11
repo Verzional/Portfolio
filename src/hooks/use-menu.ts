@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 
 interface UseMenuOptions {
   itemCount: number;
+  initialIndex?: number;
   onSelect?: (index: number) => void;
 }
 
-export function useMenu({ itemCount, onSelect }: UseMenuOptions) {
-  const [activeIndex, setActiveIndex] = useState(0);
+export function useMenu({ itemCount, initialIndex = 0, onSelect }: UseMenuOptions) {
+  const [activeIndex, setActiveIndex] = useState(initialIndex);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

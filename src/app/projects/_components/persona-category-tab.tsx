@@ -24,7 +24,7 @@ export function PersonaCategoryTab({
       }`}
     >
       <div
-        className={`absolute inset-0 ${isActive ? "bg-primary" : "bg-black"} border-2 transition-colors ${isActive ? "border-foreground shadow-[4px_4px_0_rgba(0,0,0,0.8)]" : "border-primary"}`}
+        className={`absolute inset-0 ${isActive ? "bg-primary" : "bg-background"} border-2 transition-colors ${isActive ? "border-foreground shadow-[4px_4px_0_rgba(0,0,0,0.8)]" : "border-primary"}`}
         style={{ clipPath: "polygon(15% 0, 100% 0, 85% 100%, 0% 100%)" }}
       />
       <div

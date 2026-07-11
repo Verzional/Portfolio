@@ -18,7 +18,7 @@ export function PersonaActionButton({
   const primaryClasses =
     "bg-primary text-foreground shadow-[4px_4px_0_rgba(255,255,255,1)]";
   const secondaryClasses =
-    "bg-black border-2 border-primary text-primary shadow-[4px_4px_0_#d4030d]";
+    "bg-background border-2 border-primary text-primary shadow-[4px_4px_0_#d4030d]";
 
   const Component = href ? "a" : "button";
 

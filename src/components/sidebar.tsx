@@ -7,22 +7,27 @@ import { useMenu } from "@/hooks/use-menu";
 import { menuItems } from "@/data/navigation";
 import { ControlLegend } from "@/components/control-legend";
 
-export function Sidebar() {
+export function Sidebar({ previousPath }: { previousPath?: string | null }) {
   const router = useRouter();
 
-  // Handle Menu Item Selection
-  const handleSelect = useCallback(
-    (index: number) => {
-      const route = menuItems[index].href;
-      router.push(route);
-    },
-    [router],
-  );
+  // Find Menu Index Based on Previous Path
+  const getInitialIndex = () => {
+    if (!previousPath) return 0;
+    const index = menuItems.findIndex((item) => previousPath.startsWith(item.href));
+    return index !== -1 ? index : 0;
+  };
 
   // Handle Menu Navigation
   const { activeIndex, setActiveIndex } = useMenu({
     itemCount: menuItems.length,
-    onSelect: handleSelect,
+    initialIndex: getInitialIndex(),
+    onSelect: useCallback(
+      (index: number) => {
+        const route = menuItems[index].href;
+        router.push(route);
+      },
+      [router],
+    ),
   });
 
   // Prefetch Active Menu Item Route and Dispatch Custom Event for Preview
@@ -50,7 +55,7 @@ export function Sidebar() {
           />
 
           {/* Top Header / Title */}
-          <h2 className="pl-6 font-edo-sz text-2xl tracking-widest text-muted-foreground uppercase md:pl-8 md:text-5xl">
+          <h2 className="pl-6 font-edo-sz text-2xl tracking-widest text-muted uppercase md:pl-8 md:text-5xl">
             Menu
           </h2>
 
@@ -94,7 +99,7 @@ export function Sidebar() {
           <div className="my-3 h-0.5 w-[90%] bg-divider md:my-6" />
 
           {/* Description */}
-          <p className="text-md mb-4 w-full px-8 font-lato font-bold tracking-widest text-muted-foreground md:mb-4 md:px-16 md:text-2xl">
+          <p className="text-md mb-4 w-full px-8 font-lato font-bold tracking-widest text-muted md:mb-4 md:px-16 md:text-2xl">
             {activeItem?.desc}
           </p>
         </div>

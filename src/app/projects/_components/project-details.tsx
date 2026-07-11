@@ -58,7 +58,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
   if (!project) {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center p-8 text-foreground">
-        <div className="font-optima-nova text-3xl text-muted-foreground">
+        <div className="font-optima-nova text-3xl text-muted">
           Select a Project
         </div>
       </div>
@@ -148,7 +148,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
               {project.images.map((_, i) => (
                 <div
                   key={i}
-                  className={`h-2 transition-all duration-300 ${i === imageIndex ? "w-8 bg-white" : "w-2 bg-white/30"}`}
+                  className={`h-2 transition-all duration-300 ${i === imageIndex ? "w-8 bg-foreground" : "w-2 bg-foreground/30"}`}
                   style={{ transform: "skewX(-12deg)" }}
                 />
               ))}
@@ -192,7 +192,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
               transition: { type: "spring", stiffness: 300, damping: 20 },
             },
           }}
-          className="relative z-10 mt-4 -rotate-1 border-l-4 border-primary bg-black p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)] md:mt-5 md:p-5 md:shadow-[5px_5px_0_rgba(255,255,255,0.2)] xl:mt-6 xl:p-6 xl:shadow-[6px_6px_0_rgba(255,255,255,0.2)]"
+          className="relative z-10 mt-4 -rotate-1 border-l-4 border-primary bg-background p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)] md:mt-5 md:p-5 md:shadow-[5px_5px_0_rgba(255,255,255,0.2)] xl:mt-6 xl:p-6 xl:shadow-[6px_6px_0_rgba(255,255,255,0.2)]"
         >
           <p className="font-optima-nova text-sm leading-relaxed tracking-wider md:text-base xl:text-lg">
             {project.desc}

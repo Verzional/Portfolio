@@ -19,7 +19,7 @@ export default function Skills() {
       isBackActive={true}
       onBackClick={() => router.push("/")}
     >
-      <div className="flex h-full items-center justify-center text-muted-foreground font-edo-sz text-2xl text-center px-4">
+      <div className="flex h-full items-center justify-center text-muted font-edo-sz text-2xl text-center px-4">
         Skill Tree UI Pending
       </div>
     </SubMenu>
@@ -31,7 +31,7 @@ export default function Skills() {
         {sidebarContent}
       </SidebarPortal>
         
-      <div className="text-white font-edo-sz text-4xl">Skills Section</div>
+      <div className="text-foreground font-edo-sz text-4xl">Skills Section</div>
     </>
   );
 }

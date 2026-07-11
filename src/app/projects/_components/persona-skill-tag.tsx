@@ -15,7 +15,7 @@ export function PersonaSkillTag({ label }: PersonaSkillTagProps) {
           transition: { type: "tween", duration: 0.1, ease: "easeOut" },
         },
       }}
-      className="-skew-x-12 cursor-default bg-foreground px-4 py-1.5 font-optima-nova text-xs font-bold tracking-widest text-black shadow-[3px_3px_0_#d4030d] transition-transform hover:-translate-y-1 md:text-sm"
+      className="-skew-x-12 cursor-default bg-foreground px-4 py-1.5 font-optima-nova text-xs font-bold tracking-widest text-background shadow-[3px_3px_0_#d4030d] transition-transform hover:-translate-y-1 md:text-sm"
     >
       <span className="block skew-x-12">{label}</span>
     </motion.div>

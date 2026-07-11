@@ -32,7 +32,7 @@ export function ControlLegend({ controls }: { controls: ControlItem[] }) {
       {controls.map((c) => (
         <div key={c.key} className="flex items-center gap-2">
           <span className="tracking-widest">[{c.key}]</span>
-          <span className="tracking-widest text-muted-foreground uppercase">
+          <span className="tracking-widest text-muted uppercase">
             {c.action}
           </span>
         </div>

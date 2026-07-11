@@ -39,7 +39,7 @@ export function PersonaProjectSlot({
         className={`absolute inset-0 -skew-x-12 border-4 transition-all duration-200 ${
           isActive
             ? "border-primary bg-foreground shadow-[6px_6px_0_#d4030d]"
-            : "border-foreground bg-black shadow-[4px_4px_0_rgba(0,0,0,0.8)] group-hover:border-primary group-hover:shadow-[6px_6px_0_#d4030d]"
+            : "border-foreground bg-background shadow-[4px_4px_0_rgba(0,0,0,0.8)] group-hover:border-primary group-hover:shadow-[6px_6px_0_#d4030d]"
         }`}
       />
 

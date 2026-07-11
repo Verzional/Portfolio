@@ -4,11 +4,8 @@
   --background: oklch(0 0 0);
   --foreground: oklch(1 0 0);
   --primary: oklch(0.5474 0.2229 28.27);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: #8c1c13;
-  --secondary-foreground: #ffffff;
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.8452 0 0);
+  --secondary:#8c1c13;
+  --muted: oklch(0.8452 0 0);
 }
 
 /* Color and Font Variables */
@@ -21,11 +18,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
 }
 
 /* Base Styles */

@@ -27,7 +27,7 @@ export function SubMenu({
         {controls && <ControlLegend controls={controls} />}
 
         {/* Title */}
-        <h2 className="shrink-0 truncate pl-6 font-edo-sz text-2xl tracking-widest text-muted-foreground uppercase md:pl-8 md:text-4xl xl:text-5xl">
+        <h2 className="shrink-0 truncate pl-6 font-edo-sz text-2xl tracking-widest text-muted uppercase md:pl-8 md:text-4xl xl:text-5xl">
           {title}
         </h2>
 
@@ -55,7 +55,7 @@ export function SubMenu({
           className={`block w-[95%] py-2 pl-6 text-left font-edo-sz text-2xl tracking-widest uppercase transition-colors md:py-3 md:pl-8 md:text-4xl xl:pt-2 xl:pb-4 xl:text-5xl ${
             isBackActive
               ? "relative bg-menu-select text-foreground"
-              : "text-muted-foreground hover:text-foreground"
+              : "text-muted hover:text-foreground"
           }`}
         >
           Back

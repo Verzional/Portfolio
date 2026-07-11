@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Sidebar as HomeMenu } from "@/components/sidebar";
 
@@ -10,6 +10,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [previewRoute, setPreviewRoute] = useState<string | null>(null);
+  const [previousPath, setPreviousPath] = useState<string | null>(null);
+  const currentPathRef = useRef(pathname);
+
+  // Track Previous Path
+  useEffect(() => {
+    if (currentPathRef.current !== pathname) {
+      setPreviousPath(currentPathRef.current);
+      currentPathRef.current = pathname;
+    }
+  }, [pathname]);
 
   // Handle Preview Route Events
   useEffect(() => {
@@ -112,7 +122,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 transition={{ duration: 0.3 }}
                 className="flex h-full w-full min-w-screen flex-col justify-center md:min-w-[40vw]"
               >
-                <HomeMenu />
+                <HomeMenu previousPath={previousPath} />
               </motion.div>
             ) : (
               // Sub Menu
