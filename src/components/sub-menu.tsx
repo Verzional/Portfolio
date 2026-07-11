@@ -20,46 +20,48 @@ export function SubMenu({
   controls,
 }: SubMenuProps) {
   return (
-    <div className="flex h-full flex-col justify-between text-foreground">
-      {/* Header */}
-      <div className="flex min-h-0 flex-1 flex-col">
-        {/* Control Legend */}
-        {controls && <ControlLegend controls={controls} />}
+    <div className="flex h-full w-full flex-col overflow-hidden text-foreground pt-4 md:pt-0">
+      <div className="my-auto flex max-h-full min-h-0 w-full flex-col">
+        {/* Header */}
+        <div className="shrink-0 flex flex-col">
+          {/* Control Legend */}
+          {controls && <ControlLegend controls={controls} />}
 
-        {/* Title */}
-        <h2 className="shrink-0 truncate pl-6 font-edo-sz text-2xl tracking-widest text-muted uppercase md:pl-8 md:text-4xl xl:text-5xl">
-          {title}
-        </h2>
+          {/* Title */}
+          <h2 className="shrink-0 truncate pl-6 font-edo-sz text-2xl tracking-widest text-muted uppercase md:pl-8 md:text-4xl xl:text-5xl">
+            {title}
+          </h2>
 
-        {/* Divider */}
-        <div className="my-3 h-0.5 w-[90%] bg-divider md:my-4 xl:my-6" />
+          {/* Divider */}
+          <div className="my-3 h-0.5 w-[90%] bg-divider md:my-4 xl:my-6" />
+        </div>
 
         {/* Children */}
         <div
           id="sidebar-slot"
-          className="flex min-h-0 w-full flex-1 flex-col items-center justify-center"
+          className="flex min-h-0 w-full flex-1 flex-col"
         >
           {children}
         </div>
-      </div>
 
-      {/* Footer */}
-      <div className="shrink-0">
-        {/* Divider */}
-        <div className="my-3 h-0.5 w-[90%] bg-divider md:my-4 xl:my-6" />
+        {/* Footer */}
+        <div className="shrink-0 flex flex-col">
+          {/* Divider */}
+          <div className="my-3 h-0.5 w-[90%] bg-divider md:my-4 xl:my-6" />
 
-        {/* Back Button */}
-        <button
-          onPointerMove={onBackMove}
-          onClick={onBackClick}
-          className={`block w-[95%] py-2 pl-6 text-left font-edo-sz text-2xl tracking-widest uppercase transition-colors md:py-3 md:pl-8 md:text-4xl xl:pt-2 xl:pb-4 xl:text-5xl ${
-            isBackActive
-              ? "relative bg-menu-select text-foreground"
-              : "text-muted hover:text-foreground"
-          }`}
-        >
-          Back
-        </button>
+          {/* Back Button */}
+          <button
+            onPointerMove={onBackMove}
+            onClick={onBackClick}
+            className={`block w-[95%] py-2 pl-6 text-left font-edo-sz text-2xl tracking-widest uppercase transition-colors md:py-3 md:pl-8 md:text-4xl xl:pt-2 xl:pb-4 xl:text-5xl ${
+              isBackActive
+                ? "relative bg-menu-select text-foreground"
+                : "text-muted hover:text-foreground"
+            }`}
+          >
+            Back
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -2,11 +2,59 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { socialsData } from "@/data/socials";
 import { SubMenu } from "@/components/sub-menu";
 import { SidebarPortal } from "@/components/sidebar-portal";
 import { TaxiMap } from "./_components/taxi-map";
+
+interface SocialSlotProps {
+  isActive: boolean;
+  onClick: () => void;
+  icon: string;
+  name: string;
+}
+
+function SocialSlot({ isActive, onClick, icon, name }: SocialSlotProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isActive && containerRef.current) {
+      containerRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [isActive]);
+
+  return (
+    <div
+      ref={containerRef}
+      onClick={onClick}
+      className={`flex cursor-pointer items-center gap-4 px-6 py-4 transition-all duration-200 ${
+        isActive
+          ? "bg-menu-select text-foreground"
+          : "text-muted hover:text-foreground"
+      }`}
+    >
+      <div
+        className={`relative h-6 w-6 shrink-0 transition-opacity duration-200 ${isActive ? "opacity-100" : "opacity-50 grayscale"}`}
+      >
+        <Image
+          src={icon}
+          alt={name}
+          fill
+          sizes="24px"
+          className="object-contain"
+        />
+      </div>
+      <span className="font-edo-sz text-2xl tracking-widest uppercase md:text-3xl">
+        {name}
+      </span>
+    </div>
+  );
+}
 
 export function SocialsClient() {
   const router = useRouter();
@@ -38,39 +86,17 @@ export function SocialsClient() {
         { key: "ENTER", action: "CONNECT" },
       ]}
     >
-      <div className="flex flex-col gap-2 p-4">
+      <div className="flex min-h-0 w-full flex-1 flex-col gap-2 overflow-x-hidden overflow-y-auto px-4 pr-6 pb-4 md:px-8 md:pr-12">
         {/* Social Links */}
-        {socialsData.map((social, idx) => {
-          const isActive = activeIndex === idx;
-          return (
-            <div
-              key={social.id}
-              onClick={() => setActiveIndex(idx)}
-              className={`flex cursor-pointer items-center gap-4 px-6 py-4 transition-all duration-200 ${
-                isActive
-                  ? "bg-menu-select text-foreground"
-                  : "text-muted hover:text-foreground"
-              }`}
-            >
-              <div
-                className={`relative h-6 w-6 shrink-0 transition-opacity duration-200 ${isActive ? "opacity-100" : "opacity-50 grayscale"}`}
-              >
-                {/* Social Icon */}
-                <Image
-                  src={social.icon}
-                  alt={social.name}
-                  fill
-                  sizes="24px"
-                  className="object-contain"
-                />
-              </div>
-              {/* Social Name */}
-              <span className="font-edo-sz text-2xl tracking-widest uppercase md:text-3xl">
-                {social.name}
-              </span>
-            </div>
-          );
-        })}
+        {socialsData.map((social, idx) => (
+          <SocialSlot
+            key={social.id}
+            isActive={activeIndex === idx}
+            onClick={() => setActiveIndex(idx)}
+            icon={social.icon}
+            name={social.name}
+          />
+        ))}
       </div>
     </SubMenu>
   );

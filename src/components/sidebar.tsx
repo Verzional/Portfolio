@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { menuItems } from "@/data/navigation";
 import { ControlLegend } from "@/components/control-legend";
@@ -39,6 +39,17 @@ export function Sidebar({ previousPath }: { previousPath?: string | null }) {
     }
   }, [activeIndex, router]);
 
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (navRef.current) {
+      const activeEl = navRef.current.querySelector('[data-active="true"]');
+      if (activeEl) {
+        activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  }, [activeIndex]);
+
   const activeItem = menuItems[activeIndex];
 
   return (
@@ -64,7 +75,7 @@ export function Sidebar({ previousPath }: { previousPath?: string | null }) {
         </div>
 
         {/* Navigation Items */}
-        <nav className="flex min-h-0 flex-1 scrollbar-none flex-col gap-2 overflow-x-hidden overflow-y-auto font-edo-sz text-foreground md:gap-8">
+        <nav ref={navRef} className="flex min-h-0 flex-1 scrollbar-none flex-col gap-2 overflow-x-hidden overflow-y-auto font-edo-sz text-foreground md:gap-8">
           {menuItems.map((item, index) => {
             const isActive = index === activeIndex;
 
@@ -72,6 +83,7 @@ export function Sidebar({ previousPath }: { previousPath?: string | null }) {
               <Link
                 key={item.id}
                 href={item.href}
+                data-active={isActive}
                 onPointerMove={(e) => {
                   if (e.pointerType === "mouse" && activeIndex !== index) {
                     setActiveIndex(index);
