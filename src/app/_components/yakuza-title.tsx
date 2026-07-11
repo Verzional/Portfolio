@@ -34,8 +34,8 @@ export function YakuzaTitle() {
 
       {/* Main Title Slam */}
       <motion.h1
-        initial={{ opacity: 0, scale: 8, filter: "blur(20px)" }}
-        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+        initial={{ opacity: 0, scale: 8 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{
           duration: 0.15,
           ease: "easeIn",
@@ -48,8 +48,8 @@ export function YakuzaTitle() {
 
       {/* Subtitle Slam */}
       <motion.p
-        initial={{ opacity: 0, scale: 5, filter: "blur(15px)" }}
-        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+        initial={{ opacity: 0, scale: 5 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{
           duration: 0.15,
           ease: "easeIn",
