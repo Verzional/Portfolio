@@ -58,7 +58,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
   if (!project) {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center p-8 text-foreground">
-        <div className="font-optima-nova text-3xl text-muted">
+        <div className="font-linux-biolinum [text-stroke:0.5px_currentColor] [-webkit-text-stroke:0.5px_currentColor] text-3xl text-muted">
           Select a Project
         </div>
       </div>
@@ -157,7 +157,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
         </motion.div>
 
         {/* Decorative Text */}
-        <div className="pointer-events-none absolute -right-4 -bottom-6 rotate-[-5deg] font-optima-nova text-4xl text-foreground opacity-10 select-none md:text-6xl">
+        <div className="pointer-events-none absolute -right-4 -bottom-6 rotate-[-5deg] font-linux-biolinum [text-stroke:0.5px_currentColor] [-webkit-text-stroke:0.5px_currentColor] text-4xl text-foreground opacity-10 select-none md:text-6xl">
           PROJECT_0{project.id}
         </div>
       </motion.div>
@@ -177,7 +177,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
               transition: { type: "spring", stiffness: 400, damping: 15 },
             },
           }}
-          className="relative z-20 origin-left font-optima-nova text-3xl leading-tight text-foreground uppercase drop-shadow-[2px_2px_0_#d4030d] md:text-4xl md:drop-shadow-[3px_3px_0_#d4030d] xl:text-7xl xl:drop-shadow-[4px_4px_0_#d4030d]"
+          className="relative z-20 [text-stroke:0.5px_currentColor] [-webkit-text-stroke:0.5px_currentColor] origin-left font-linux-biolinum text-3xl leading-tight text-foreground uppercase drop-shadow-[0.5px_0.5px_0_#d4030d] md:text-4xl md:drop-shadow-[3px_3px_0_#d4030d] xl:text-7xl xl:drop-shadow-[4px_4px_0_#d4030d]"
         >
           {project.title}
         </motion.h1>
@@ -194,7 +194,7 @@ export function ProjectDetails({ project }: { project: Project | null }) {
           }}
           className="relative z-10 mt-4 -rotate-1 border-l-4 border-primary bg-background p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)] md:mt-5 md:p-5 md:shadow-[5px_5px_0_rgba(255,255,255,0.2)] xl:mt-6 xl:p-6 xl:shadow-[6px_6px_0_rgba(255,255,255,0.2)]"
         >
-          <p className="font-optima-nova text-sm leading-relaxed tracking-wider md:text-base xl:text-lg">
+          <p className="font-linux-biolinum [text-stroke:0.5px_currentColor] [-webkit-text-stroke:0.5px_currentColor] text-sm leading-relaxed tracking-wider md:text-base xl:text-lg">
             {project.desc}
           </p>
         </motion.div>

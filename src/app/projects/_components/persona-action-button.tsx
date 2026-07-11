@@ -14,7 +14,7 @@ export function PersonaActionButton({
   const isPrimary = variant === "primary";
 
   const baseClasses =
-    "group relative font-optima-nova text-xs tracking-widest px-8 py-3 -skew-x-12 hover:translate-x-2 transition-all md:text-2xl";
+    "group relative font-linux-biolinum [text-stroke:0.5px_currentColor] [-webkit-text-stroke:0.5px_currentColor] text-xs tracking-widest px-8 py-3 -skew-x-12 hover:translate-x-2 transition-all md:text-2xl";
   const primaryClasses =
     "bg-primary text-foreground shadow-[4px_4px_0_rgba(255,255,255,1)]";
   const secondaryClasses =

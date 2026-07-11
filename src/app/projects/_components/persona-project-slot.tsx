@@ -44,7 +44,7 @@ export function PersonaProjectSlot({
       />
 
       <div
-        className={`relative z-10 px-5 py-3 font-optima-nova text-base tracking-widest transition-colors md:text-lg ${
+        className={`relative z-10 px-5 py-3 font-linux-biolinum [text-stroke:0.5px_currentColor] [-webkit-text-stroke:0.5px_currentColor] text-base tracking-widest transition-colors md:text-lg ${
           isActive
             ? "font-black text-primary"
             : "text-foreground group-hover:text-primary"

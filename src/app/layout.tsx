@@ -13,9 +13,9 @@ const edoSz = localFont({
   display: "swap",
 });
 
-const optimaNova = localFont({
-  src: "../../public/fonts/optima-nova-lt-black.woff2",
-  variable: "--font-optima-nova",
+const linuxBiolinum = localFont({
+  src: "../../public/fonts/linux-biolinum.woff2",
+  variable: "--font-linux-biolinum",
   display: "swap",
 });
 
@@ -103,7 +103,7 @@ export default function RootLayout({
         "antialiased",
         "font-sans",
         edoSz.variable,
-        optimaNova.variable,
+        linuxBiolinum.variable,
         lato.variable,
       )}
     >
