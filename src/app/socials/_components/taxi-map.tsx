@@ -28,57 +28,66 @@ export function TaxiMap({
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
         >
-          {socialsMap.map((district, idx) => {
-            const isActive = idx === activeIndex;
+          {[...socialsMap]
+            .sort((a, b) => {
+              const aIsActive = socialsMap.indexOf(a) === activeIndex;
+              const bIsActive = socialsMap.indexOf(b) === activeIndex;
+              if (aIsActive) return 1;
+              if (bIsActive) return -1;
+              return 0;
+            })
+            .map((district) => {
+              const idx = socialsMap.indexOf(district);
+              const isActive = idx === activeIndex;
 
-            return (
-              <g
-                key={district.id}
-                className="cursor-pointer"
-                onPointerMove={() => {
-                  if (activeIndex !== idx) onHoverAction(idx);
-                }}
-                onClick={() => onClickAction(idx)}
-              >
-                {/* Glow Effect */}
-                {isActive && (
-                  <>
-                    <polygon
-                      points={district.points}
-                      fill="none"
-                      stroke="var(--color-primary)"
-                      strokeWidth="16"
-                      strokeOpacity="0.15"
-                      vectorEffect="non-scaling-stroke"
-                    />
-                    <polygon
-                      points={district.points}
-                      fill="none"
-                      stroke="var(--color-primary)"
-                      strokeWidth="6"
-                      strokeOpacity="0.3"
-                      vectorEffect="non-scaling-stroke"
-                    />
-                  </>
-                )}
+              return (
+                <g
+                  key={district.id}
+                  className="cursor-pointer"
+                  onPointerMove={() => {
+                    if (activeIndex !== idx) onHoverAction(idx);
+                  }}
+                  onClick={() => onClickAction(idx)}
+                >
+                  {/* Glow Effect */}
+                  {isActive && (
+                    <>
+                      <polygon
+                        points={district.points}
+                        fill="none"
+                        stroke="var(--color-primary)"
+                        strokeWidth="16"
+                        strokeOpacity="0.15"
+                        vectorEffect="non-scaling-stroke"
+                      />
+                      <polygon
+                        points={district.points}
+                        fill="none"
+                        stroke="var(--color-primary)"
+                        strokeWidth="6"
+                        strokeOpacity="0.3"
+                        vectorEffect="non-scaling-stroke"
+                      />
+                    </>
+                  )}
 
-                {/* Core Shape */}
-                <polygon
-                  points={district.points}
-                  fill={
-                    isActive ? "var(--color-primary)" : "var(--color-muted)"
-                  }
-                  fillOpacity={isActive ? 0.15 : 0.05}
-                  stroke={
-                    isActive ? "var(--color-primary)" : "var(--color-muted)"
-                  }
-                  strokeWidth="2"
-                  vectorEffect="non-scaling-stroke"
-                  className="transition-all duration-500 ease-out"
-                />
-              </g>
-            );
-          })}
+                  {/* Core Shape */}
+                  <polygon
+                    points={district.points}
+                    fill={
+                      isActive ? "var(--color-primary)" : "var(--color-muted)"
+                    }
+                    fillOpacity={isActive ? 0.15 : 0.05}
+                    stroke={
+                      isActive ? "var(--color-primary)" : "var(--color-muted)"
+                    }
+                    strokeWidth="2"
+                    vectorEffect="non-scaling-stroke"
+                    className="transition-all duration-500 ease-out"
+                  />
+                </g>
+              );
+            })}
         </svg>
 
         {/* District Container */}
