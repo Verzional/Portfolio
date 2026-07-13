@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useMenu } from "@/hooks/use-menu";
@@ -11,12 +10,12 @@ import { TaxiMap } from "./_components/taxi-map";
 
 interface SocialSlotProps {
   isActive: boolean;
-  onClick: () => void;
-  icon: string;
+  onClickAction: () => void;
+  onHoverAction: () => void;
   name: string;
 }
 
-function SocialSlot({ isActive, onClick, icon, name }: SocialSlotProps) {
+function SocialSlot({ isActive, onClickAction, onHoverAction, name }: SocialSlotProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,24 +30,16 @@ function SocialSlot({ isActive, onClick, icon, name }: SocialSlotProps) {
   return (
     <div
       ref={containerRef}
-      onClick={onClick}
+      onClick={onClickAction}
+      onPointerMove={() => {
+        if (!isActive) onHoverAction();
+      }}
       className={`flex cursor-pointer w-[95%] items-center gap-4 py-4 pl-8 md:pl-12 transition-all duration-200 ${
         isActive
           ? "bg-menu-select text-foreground"
           : "text-muted hover:text-foreground"
       }`}
     >
-      <div
-        className={`relative h-6 w-6 shrink-0 transition-opacity duration-200 ${isActive ? "opacity-100" : "opacity-50 grayscale"}`}
-      >
-        <Image
-          src={icon}
-          alt={name}
-          fill
-          sizes="24px"
-          className="object-contain"
-        />
-      </div>
       <span className="font-edo-sz text-2xl tracking-widest uppercase md:text-3xl">
         {name}
       </span>
@@ -92,8 +83,14 @@ export function SocialsClient() {
           <SocialSlot
             key={social.id}
             isActive={activeIndex === idx}
-            onClick={() => setActiveIndex(idx)}
-            icon={social.icon}
+            onClickAction={() => {
+              if (activeIndex !== idx) {
+                setActiveIndex(idx);
+              } else {
+                window.open(social.url, "_blank");
+              }
+            }}
+            onHoverAction={() => setActiveIndex(idx)}
             name={social.name}
           />
         ))}
@@ -101,10 +98,19 @@ export function SocialsClient() {
     </SubMenu>
   );
 
+  const handleMapClick = (idx: number) => {
+    setActiveIndex(idx);
+    window.open(socialsData[idx].url, "_blank");
+  };
+
   return (
     <>
       <SidebarPortal>{sidebarContent}</SidebarPortal>
-      <TaxiMap activeIndex={activeIndex} />
+      <TaxiMap 
+        activeIndex={activeIndex} 
+        onHoverAction={setActiveIndex} 
+        onClickAction={handleMapClick} 
+      />
     </>
   );
 }
