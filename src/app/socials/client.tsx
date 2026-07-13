@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { useMenu } from "@/hooks/use-menu";
 import { socialsData } from "@/data/socials";
 import { SubMenu } from "@/components/sub-menu";
@@ -13,6 +14,7 @@ interface SocialSlotProps {
   onClickAction: () => void;
   onHoverAction: () => void;
   name: string;
+  handle: string;
 }
 
 function SocialSlot({
@@ -20,6 +22,7 @@ function SocialSlot({
   onClickAction,
   onHoverAction,
   name,
+  handle,
 }: SocialSlotProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -39,7 +42,7 @@ function SocialSlot({
       onPointerMove={() => {
         if (!isActive) onHoverAction();
       }}
-      className={`flex w-[95%] cursor-pointer items-center gap-4 py-4 pl-8 transition-all duration-200 md:pl-12 ${
+      className={`flex w-[95%] cursor-pointer flex-col gap-1 py-4 pl-8 transition-all duration-200 md:pl-12 ${
         isActive
           ? "bg-menu-select text-foreground"
           : "text-muted hover:text-foreground"
@@ -48,6 +51,21 @@ function SocialSlot({
       <span className="font-edo-sz text-2xl tracking-widest uppercase md:text-3xl">
         {name}
       </span>
+      {/* Neon Tag Dropdown */}
+      <AnimatePresence>
+        {isActive && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, y: -5 }}
+            animate={{ opacity: 1, height: "auto", y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -5 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center gap-2 overflow-hidden font-lato text-sm font-bold tracking-wider text-foreground drop-shadow-[0_0_5px_var(--color-primary)]"
+          >
+            <span className="text-muted drop-shadow-none">↳</span>
+            {handle}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -81,7 +99,8 @@ export function SocialsClient() {
     }
   }
 
-  const displayIndex = activeIndex < socialsData.length ? activeIndex : lastValidIndex;
+  const displayIndex =
+    activeIndex < socialsData.length ? activeIndex : lastValidIndex;
 
   // Sidebar Content
   const sidebarContent = (
@@ -109,6 +128,7 @@ export function SocialsClient() {
             }}
             onHoverAction={() => setActiveIndex(idx)}
             name={social.name}
+            handle={social.handle}
           />
         ))}
       </div>
