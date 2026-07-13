@@ -2,7 +2,7 @@ export const socialsData = [
   {
     id: "email",
     name: "Email",
-    icon: "/icons/email.webp",
+    icon: "/images/icons/email.webp",
     url: "mailto:valentinomg7@gmail.com",
     handle: "valentinomg7@gmail.com",
     districtName: "POSTAL OFFICE",
@@ -10,7 +10,7 @@ export const socialsData = [
   {
     id: "github",
     name: "GitHub",
-    icon: "/icons/github.webp",
+    icon: "/images/icons/github.webp",
     url: "https://github.com/verzional",
     handle: "@verzional",
     districtName: "TECH DISTRICT",
@@ -18,7 +18,7 @@ export const socialsData = [
   {
     id: "linkedin",
     name: "LinkedIn",
-    icon: "/icons/linkedin.webp",
+    icon: "/images/icons/linkedin.webp",
     url: "https://linkedin.com/in/valentinomg",
     handle: "in/valentinomg",
     districtName: "ENTERPRISE PLAZA",
@@ -26,7 +26,7 @@ export const socialsData = [
   {
     id: "youtube",
     name: "YouTube",
-    icon: "/icons/youtube.webp",
+    icon: "/images/icons/youtube.webp",
     url: "https://youtube.com/@verzional",
     handle: "@verzional",
     districtName: "BROADCAST STATION",
@@ -34,7 +34,7 @@ export const socialsData = [
   {
     id: "backloggd",
     name: "Backloggd",
-    icon: "/icons/backloggd.webp",
+    icon: "/images/icons/backloggd.webp",
     url: "https://backloggd.com/u/Verzional/",
     handle: "@verzional",
     districtName: "GAME SQUARE",
