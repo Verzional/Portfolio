@@ -4,7 +4,15 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { socialsData, socialsMap } from "@/data/socials";
 
-export function TaxiMap({ activeIndex }: { activeIndex: number }) {
+export function TaxiMap({ 
+  activeIndex, 
+  onHoverAction, 
+  onClickAction 
+}: { 
+  activeIndex: number;
+  onHoverAction: (idx: number) => void;
+  onClickAction: (idx: number) => void;
+}) {
   return (
     <motion.div 
       initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -24,7 +32,14 @@ export function TaxiMap({ activeIndex }: { activeIndex: number }) {
             const isActive = idx === activeIndex;
 
             return (
-              <g key={district.id}>
+              <g 
+                key={district.id}
+                className="cursor-pointer"
+                onPointerMove={() => {
+                  if (activeIndex !== idx) onHoverAction(idx);
+                }}
+                onClick={() => onClickAction(idx)}
+              >
                 {/* Glow Effect */}
                 {isActive && (
                   <>
