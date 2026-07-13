@@ -51,12 +51,11 @@ export function SubMenu({
 
           {/* Back Button */}
           <button
-            onPointerMove={onBackMove}
             onClick={onBackClick}
             className={`block w-[95%] py-2 pl-6 text-left font-edo-sz text-2xl tracking-widest uppercase transition-colors md:py-3 md:pl-8 md:text-4xl xl:pt-2 xl:pb-4 xl:text-5xl ${
               isBackActive
                 ? "relative bg-menu-select text-foreground"
-                : "text-muted hover:text-foreground"
+                : "text-muted hover:bg-menu-select hover:text-foreground"
             }`}
           >
             Back

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { socialsData } from "@/data/socials";
 import { SubMenu } from "@/components/sub-menu";
@@ -15,7 +15,12 @@ interface SocialSlotProps {
   name: string;
 }
 
-function SocialSlot({ isActive, onClickAction, onHoverAction, name }: SocialSlotProps) {
+function SocialSlot({
+  isActive,
+  onClickAction,
+  onHoverAction,
+  name,
+}: SocialSlotProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -34,7 +39,7 @@ function SocialSlot({ isActive, onClickAction, onHoverAction, name }: SocialSlot
       onPointerMove={() => {
         if (!isActive) onHoverAction();
       }}
-      className={`flex cursor-pointer w-[95%] items-center gap-4 py-4 pl-8 md:pl-12 transition-all duration-200 ${
+      className={`flex w-[95%] cursor-pointer items-center gap-4 py-4 pl-8 transition-all duration-200 md:pl-12 ${
         isActive
           ? "bg-menu-select text-foreground"
           : "text-muted hover:text-foreground"
@@ -62,8 +67,21 @@ export function SocialsClient() {
     },
   });
 
-  // Check if the Back Button is the Active Item
+  // Track if Back Button is Active
   const isBackActive = activeIndex === socialsData.length;
+
+  // Track Last Valid Index
+  const [prevActiveIndex, setPrevActiveIndex] = useState(activeIndex);
+  const [lastValidIndex, setLastValidIndex] = useState(0);
+
+  if (activeIndex !== prevActiveIndex) {
+    setPrevActiveIndex(activeIndex);
+    if (activeIndex < socialsData.length) {
+      setLastValidIndex(activeIndex);
+    }
+  }
+
+  const displayIndex = activeIndex < socialsData.length ? activeIndex : lastValidIndex;
 
   // Sidebar Content
   const sidebarContent = (
@@ -71,13 +89,12 @@ export function SocialsClient() {
       title="Socials"
       isBackActive={isBackActive}
       onBackClick={() => router.push("/")}
-      onBackMove={() => setActiveIndex(socialsData.length)}
       controls={[
         { key: "W/S", action: "NAVIGATE" },
         { key: "ENTER", action: "CONNECT" },
       ]}
     >
-      <div className="flex min-h-0 w-full flex-1 flex-col gap-2 overflow-x-hidden overflow-y-auto scrollbar-none pb-4 pt-2">
+      <div className="flex min-h-0 w-full flex-1 scrollbar-none flex-col gap-2 overflow-x-hidden overflow-y-auto pt-2 pb-4">
         {/* Social Links */}
         {socialsData.map((social, idx) => (
           <SocialSlot
@@ -106,10 +123,10 @@ export function SocialsClient() {
   return (
     <>
       <SidebarPortal>{sidebarContent}</SidebarPortal>
-      <TaxiMap 
-        activeIndex={activeIndex} 
-        onHoverAction={setActiveIndex} 
-        onClickAction={handleMapClick} 
+      <TaxiMap
+        activeIndex={displayIndex}
+        onHoverAction={setActiveIndex}
+        onClickAction={handleMapClick}
       />
     </>
   );

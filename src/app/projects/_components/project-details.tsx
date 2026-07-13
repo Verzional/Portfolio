@@ -135,7 +135,8 @@ export function ProjectDetails({ project }: { project: Project | null }) {
                 <Image
                   src={project.images[imageIndex]}
                   alt={`${project.title} screenshot ${imageIndex + 1}`}
-                  fill
+                  fill={true}
+                  priority={true}
                   className="object-cover transition-transform duration-500"
                 />
               </motion.div>

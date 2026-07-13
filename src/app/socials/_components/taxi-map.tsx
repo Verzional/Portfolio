@@ -4,17 +4,17 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { socialsData, socialsMap } from "@/data/socials";
 
-export function TaxiMap({ 
-  activeIndex, 
-  onHoverAction, 
-  onClickAction 
-}: { 
+export function TaxiMap({
+  activeIndex,
+  onHoverAction,
+  onClickAction,
+}: {
   activeIndex: number;
   onHoverAction: (idx: number) => void;
   onClickAction: (idx: number) => void;
 }) {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, scale: 0.9, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
@@ -32,7 +32,7 @@ export function TaxiMap({
             const isActive = idx === activeIndex;
 
             return (
-              <g 
+              <g
                 key={district.id}
                 className="cursor-pointer"
                 onPointerMove={() => {
@@ -107,7 +107,8 @@ export function TaxiMap({
                   <Image
                     src={social.icon}
                     alt={social.name}
-                    fill
+                    fill={true}
+                    priority={true}
                     sizes="(max-width: 768px) 64px, 80px"
                     className="object-contain"
                   />

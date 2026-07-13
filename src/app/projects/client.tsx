@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { useCategories } from "@/hooks/use-categories";
 import { projectsData, projectCategories } from "@/data/projects";
@@ -37,13 +37,22 @@ export function ProjectsClient() {
     setActiveIndex(0);
   }, [activeCategory, setActiveIndex]);
 
+  // Track Last Valid Index
+  const [prevActiveIndex, setPrevActiveIndex] = useState(activeIndex);
+  const [lastValidIndex, setLastValidIndex] = useState(0);
+
+  if (activeIndex !== prevActiveIndex) {
+    setPrevActiveIndex(activeIndex);
+    if (activeIndex < filteredProjects.length) {
+      setLastValidIndex(activeIndex);
+    }
+  }
+
   // Determine Active Project and Back Button State
   const activeProject =
-    activeIndex < filteredProjects.length
-      ? filteredProjects[activeIndex]
-      : null;
+    filteredProjects[activeIndex < filteredProjects.length ? activeIndex : lastValidIndex] || null;
 
-  // Check if the Back Button is the Active Item
+  // Track if Back Button is Active
   const isBackActive = activeIndex === filteredProjects.length;
 
   // Sidebar Content
@@ -52,7 +61,6 @@ export function ProjectsClient() {
       title="Projects"
       isBackActive={isBackActive}
       onBackClick={() => router.push("/")}
-      onBackMove={() => setActiveIndex(filteredProjects.length)}
       controls={[
         { key: "W / S & ▼ / ▲", action: "Navigate" },
         { key: "Q / E", action: "Category" },
