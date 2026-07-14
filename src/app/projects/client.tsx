@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useCallback } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { useValidIndex } from "@/hooks/use-valid-index";
 import { useCategories } from "@/hooks/use-categories";
@@ -38,6 +38,13 @@ export function ProjectsClient() {
     setActiveIndex(0);
   }, [activeCategory, setActiveIndex]);
 
+  const handleProjectClick = useCallback(
+    (idx: number) => {
+      setActiveIndex(idx);
+    },
+    [setActiveIndex],
+  );
+
   const displayIndex = useValidIndex(activeIndex, filteredProjects.length);
 
   // Determine Active Project and Back Button State
@@ -65,8 +72,9 @@ export function ProjectsClient() {
           {projectCategories.map((cat) => (
             <PersonaCategoryTab
               key={cat.id}
+              id={cat.id}
               isActive={activeCategory === cat.id}
-              onClick={() => setActiveCategory(cat.id)}
+              onClick={setActiveCategory}
               label={cat.label}
               icon={cat.icon}
             />
@@ -81,9 +89,7 @@ export function ProjectsClient() {
               index={idx}
               isActive={idx === activeIndex}
               title={proj.title}
-              onClick={() => {
-                setActiveIndex(idx);
-              }}
+              onClick={handleProjectClick}
             />
           ))}
         </div>

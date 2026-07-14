@@ -1,20 +1,24 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface SocialSlotProps {
   isActive: boolean;
-  onClickAction: () => void;
-  onHoverAction: () => void;
+  onClickAction: (index: number, url: string) => void;
+  onHoverAction: (index: number) => void;
   name: string;
   handle: string;
+  index: number;
+  url: string;
 }
 
-export function SocialSlot({
+export const SocialSlot = memo(function SocialSlot({
   isActive,
   onClickAction,
   onHoverAction,
   name,
   handle,
+  index,
+  url,
 }: SocialSlotProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -30,9 +34,9 @@ export function SocialSlot({
   return (
     <div
       ref={containerRef}
-      onClick={onClickAction}
+      onClick={() => onClickAction(index, url)}
       onPointerMove={() => {
-        if (!isActive) onHoverAction();
+        if (!isActive) onHoverAction(index);
       }}
       className={`flex w-[95%] cursor-pointer flex-col gap-1 py-4 pl-8 transition-all duration-200 md:pl-12 ${
         isActive
@@ -60,4 +64,4 @@ export function SocialSlot({
       </AnimatePresence>
     </div>
   );
-}
+});

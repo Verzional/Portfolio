@@ -1,21 +1,24 @@
+import { memo } from "react";
 import { LucideIcon } from "lucide-react";
 
 interface PersonaCategoryTabProps {
   isActive: boolean;
-  onClick: () => void;
+  onClick: (id: string) => void;
   label: string;
+  id: string;
   icon: LucideIcon;
 }
 
-export function PersonaCategoryTab({
+export const PersonaCategoryTab = memo(function PersonaCategoryTab({
   isActive,
   onClick,
   label,
+  id,
   icon: Icon,
 }: PersonaCategoryTabProps) {
   return (
     <button
-      onClick={onClick}
+      onClick={() => onClick(id)}
       title={label}
       className={`relative h-8 w-12 shrink-0 transition-all duration-200 md:h-8 md:w-10 xl:h-10 xl:w-14 ${
         isActive
@@ -34,4 +37,4 @@ export function PersonaCategoryTab({
       </div>
     </button>
   );
-}
+});

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useCallback, useRef, useEffect } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { useValidIndex } from "@/hooks/use-valid-index";
 import { socialsData } from "@/data/socials";
@@ -29,6 +30,29 @@ export function SocialsClient() {
 
   const displayIndex = useValidIndex(activeIndex, socialsData.length);
 
+  const activeIndexRef = useRef(activeIndex);
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
+
+  const handleSlotClick = useCallback(
+    (idx: number, url: string) => {
+      if (activeIndexRef.current !== idx) {
+        setActiveIndex(idx);
+      } else {
+        window.open(url, "_blank");
+      }
+    },
+    [setActiveIndex],
+  );
+
+  const handleSlotHover = useCallback(
+    (idx: number) => {
+      setActiveIndex(idx);
+    },
+    [setActiveIndex],
+  );
+
   // Sidebar Content
   const sidebarContent = (
     <SubMenu
@@ -45,15 +69,11 @@ export function SocialsClient() {
         {socialsData.map((social, idx) => (
           <SocialSlot
             key={social.id}
+            index={idx}
+            url={social.url}
             isActive={activeIndex === idx}
-            onClickAction={() => {
-              if (activeIndex !== idx) {
-                setActiveIndex(idx);
-              } else {
-                window.open(social.url, "_blank");
-              }
-            }}
-            onHoverAction={() => setActiveIndex(idx)}
+            onClickAction={handleSlotClick}
+            onHoverAction={handleSlotHover}
             name={social.name}
             handle={social.handle}
           />

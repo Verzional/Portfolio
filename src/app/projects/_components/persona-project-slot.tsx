@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, memo } from "react";
 
 interface PersonaProjectSlotProps {
   isActive: boolean;
   title: string;
-  onClick: () => void;
+  onClick: (index: number) => void;
   index: number;
 }
 
-export function PersonaProjectSlot({
+export const PersonaProjectSlot = memo(function PersonaProjectSlot({
   isActive,
   title,
   onClick,
@@ -30,7 +30,7 @@ export function PersonaProjectSlot({
   return (
     <button
       ref={buttonRef}
-      onClick={onClick}
+      onClick={() => onClick(index)}
       className={`group relative mb-3 w-full text-left transition-all duration-200 ${tiltClass} ${
         isActive ? "z-10 translate-x-4 scale-[1.03]" : "hover:translate-x-2"
       }`}
@@ -54,4 +54,4 @@ export function PersonaProjectSlot({
       </div>
     </button>
   );
-}
+});
