@@ -1,8 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useMemo, useEffect, useState } from "react";
+import { useMemo, useEffect } from "react";
 import { useMenu } from "@/hooks/use-menu";
+import { useValidIndex } from "@/hooks/use-valid-index";
 import { useCategories } from "@/hooks/use-categories";
 import { projectsData, projectCategories } from "@/data/projects";
 import { SubMenu } from "@/components/sub-menu";
@@ -37,20 +38,10 @@ export function ProjectsClient() {
     setActiveIndex(0);
   }, [activeCategory, setActiveIndex]);
 
-  // Track Last Valid Index
-  const [prevActiveIndex, setPrevActiveIndex] = useState(activeIndex);
-  const [lastValidIndex, setLastValidIndex] = useState(0);
-
-  if (activeIndex !== prevActiveIndex) {
-    setPrevActiveIndex(activeIndex);
-    if (activeIndex < filteredProjects.length) {
-      setLastValidIndex(activeIndex);
-    }
-  }
+  const displayIndex = useValidIndex(activeIndex, filteredProjects.length);
 
   // Determine Active Project and Back Button State
-  const activeProject =
-    filteredProjects[activeIndex < filteredProjects.length ? activeIndex : lastValidIndex] || null;
+  const activeProject = filteredProjects[displayIndex] || null;
 
   // Track if Back Button is Active
   const isBackActive = activeIndex === filteredProjects.length;
