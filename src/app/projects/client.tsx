@@ -59,6 +59,7 @@ export function ProjectsClient() {
       title="Projects"
       isBackActive={isBackActive}
       onBackClick={() => router.push("/")}
+      onBackMove={() => setActiveIndex(filteredProjects.length)}
       controls={[
         { key: "W / S & ▼ / ▲", action: "Navigate" },
         { key: "Q / E", action: "Category" },

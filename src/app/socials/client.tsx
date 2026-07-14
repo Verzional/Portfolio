@@ -59,6 +59,7 @@ export function SocialsClient() {
       title="Socials"
       isBackActive={isBackActive}
       onBackClick={() => router.push("/")}
+      onBackMove={() => setActiveIndex(socialsData.length)}
       controls={[
         { key: "W/S", action: "NAVIGATE" },
         { key: "ENTER", action: "CONNECT" },
