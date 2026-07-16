@@ -1,37 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useMenu } from "@/hooks/use-menu";
-import { SubMenu } from "@/components/sub-menu";
-import { SidebarPortal } from "@/components/sidebar-portal";
+import { SkillsClient } from "./client";
+import "@/styles/skills.css";
 
-export default function Skills() {
-  const router = useRouter();
-
-  useMenu({
-    itemCount: 1,
-    onSelect: () => router.push("/"),
-  });
-
-  const sidebarContent = (
-    <SubMenu 
-      title="Skills" 
-      isBackActive={true}
-      onBackClick={() => router.push("/")}
-    >
-      <div className="flex py-12 items-center justify-center text-muted font-edo-sz text-2xl text-center px-4">
-        Skill Tree UI Pending
-      </div>
-    </SubMenu>
-  );
-
-  return (
-    <>
-      <SidebarPortal>
-        {sidebarContent}
-      </SidebarPortal>
-        
-      <div className="text-foreground font-edo-sz text-4xl">Skills Section</div>
-    </>
-  );
+export default function SkillsPage() {
+  return <SkillsClient />;
 }

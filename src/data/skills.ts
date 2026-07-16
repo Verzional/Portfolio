@@ -1,5 +1,6 @@
 export type SkillCategory = "Frontend" | "Backend" | "Tools" | "Soft Skills";
 
+import { Code2, Server, Wrench, HeartHandshake, LucideIcon } from "lucide-react";
 
 export interface SkillNode {
   id: string;
@@ -23,6 +24,7 @@ export interface SkillStyle {
   title: SkillCategory;
   subtitle: string;
   themeColor: string;
+  icon: LucideIcon;
   skills: SkillNode[];
 }
 
@@ -100,6 +102,31 @@ export const skillsData: SkillStyle[] = [
     title: "Frontend",
     subtitle: "SHINOBI ARTS",
     themeColor: "var(--color-primary)",
+    icon: Code2,
     skills: generateFrontendSkills(),
   },
+  {
+    id: "backend",
+    title: "Backend",
+    subtitle: "PROSTHETIC ARTS",
+    themeColor: "var(--color-accent)",
+    icon: Server,
+    skills: [], // Empty for now
+  },
+  {
+    id: "tools",
+    title: "Tools",
+    subtitle: "ASHINA ARTS",
+    themeColor: "var(--color-warning)",
+    icon: Wrench,
+    skills: [], // Empty for now
+  },
+  {
+    id: "soft-skills",
+    title: "Soft Skills",
+    subtitle: "ZEN ARTS",
+    themeColor: "var(--color-info)",
+    icon: HeartHandshake,
+    skills: [], // Empty for now
+  }
 ];

@@ -1,0 +1,11 @@
+:root {
+  --sekiro-orange: #d95c14;
+  --sekiro-bg-dark: #161616;
+  --sekiro-border-dark: #3a3a3a;
+}
+
+@theme inline {
+  --color-sekiro-orange: var(--sekiro-orange);
+  --color-sekiro-bg-dark: var(--sekiro-bg-dark);
+  --color-sekiro-border-dark: var(--sekiro-border-dark);
+}
