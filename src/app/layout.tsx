@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s | Verzional",
   },
   description:
-    "Portfolio of Verzional, a Full-Stack Engineer specializing in high-fidelity web, mobile, and game applications with a core focus on deeply interactive, immersive, and playful user experiences.",
+    "Portfolio of Verzional, Full-Stack Engineer specializing in high-fidelity web, mobile, and game applications with a core focus on deeply interactive, immersive, and playful user experiences.",
   keywords: [
     "Full-Stack Engineer",
     "Web Developer",

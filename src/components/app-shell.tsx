@@ -43,7 +43,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   // Non-Home Page Backgrounds
   const pageBgMap: Record<string, string> = {
     "/projects": "/images/backgrounds/BG-Persona.webp",
-    "/skills": "/images/backgrounds/BG-Majima.webp",
+    "/skills": "/images/backgrounds/BG-Sekiro.webp",
     "/experience": "/images/backgrounds/BG-Saejima.webp",
     "/socials": "/images/backgrounds/BG-Ichiban.webp",
   };
@@ -56,6 +56,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     "/images/backgrounds/BG-Ichiban.webp": "opacity-5 md:opacity-3",
     "/images/backgrounds/BG-Persona.webp": "opacity-5 md:opacity-3",
     "/images/backgrounds/BG-Nishiki.webp": "opacity-5 md:opacity-3",
+    "/images/backgrounds/BG-Sekiro.webp": "opacity-5 md:opacity-3",
   };
 
   // Home Page Background Logic

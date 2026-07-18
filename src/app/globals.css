@@ -4,7 +4,7 @@
   --background: oklch(0 0 0);
   --foreground: oklch(1 0 0);
   --primary: oklch(0.5474 0.2229 28.27);
-  --secondary:#8c1c13;
+  --secondary: oklch(0.4187 0.1487 29.49);
   --muted: oklch(0.8452 0 0);
 }
 
