@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useCategories } from "@/hooks/use-categories";
 import { skillsData } from "@/data/skills";
 import { SidebarPortal } from "@/components/sidebar-portal";
@@ -12,11 +13,20 @@ export function SkillsClient() {
   const router = useRouter();
   const { activeCategory, setActiveCategory } = useCategories(skillsData);
 
+  // Track Active Skill Node
+  const [activeNodeId, setActiveNodeId] = useState<string | null>(null);
+
   // Determine Active Style Based on Selected Category
   const activeStyle =
     skillsData.find((s) => s.id === activeCategory) || skillsData[0];
 
-  // Sidebar Content
+  // Derive Active Skill Node
+  const activeNode =
+    activeStyle.skills?.find((n) => n.id === activeNodeId) ||
+    activeStyle.skills?.[0] ||
+    null;
+
+  // Render Sidebar Content
   const sidebarContent = (
     <SubMenu
       title="Skills"
@@ -24,39 +34,38 @@ export function SkillsClient() {
       onBackClick={() => router.push("/")}
       controls={[
         { key: "Q / E", action: "Category" },
-        { key: "W / S & ▼ / ▲", action: "Navigate" },
+        { key: "W / A / S / D & ▲ / ◀ / ▼ / ▶", action: "Navigate" },
       ]}
     >
       <div className="flex min-h-0 w-full flex-1 flex-col">
         {/* Category Tabs */}
-        <div className="flex w-full shrink-0 flex-nowrap items-center justify-start gap-3 overflow-x-auto px-4 pt-2 pb-6 md:justify-center">
-          {/* Icon Cluster */}
-          <div className="flex items-center gap-5">
-            {skillsData.map((cat) => (
-              <SekiroCategoryTab
-                key={cat.id}
-                id={cat.id}
-                isActive={activeCategory === cat.id}
-                onClick={setActiveCategory}
-                label={cat.title}
-                themeColor={cat.themeColor}
-                icon={cat.icon}
-              />
-            ))}
-          </div>
+        <div className="flex w-full shrink-0 flex-nowrap items-center justify-start gap-5 overflow-x-auto px-4 pt-4 pb-6 md:justify-center">
+          {skillsData.map((cat) => (
+            <SekiroCategoryTab
+              key={cat.id}
+              id={cat.id}
+              isActive={activeCategory === cat.id}
+              onClick={setActiveCategory}
+              label={cat.title}
+              themeColor={cat.themeColor}
+              icon={cat.icon}
+            />
+          ))}
         </div>
 
-        {/* Selected Category Details */}
-        <div className="mt-4 flex flex-col px-4 md:px-8">
-          <h3
-            className="font-edo-sz text-2xl tracking-widest uppercase md:text-3xl"
-            style={{
-              color: activeStyle.themeColor,
-              textShadow: `0 0 10px ${activeStyle.themeColor}`,
-            }}
-          >
-            {activeStyle.subtitle}
-          </h3>
+        {/* Active Skill Node Details */}
+        <div className="flex flex-col px-4 md:px-8">
+          {activeNode && (
+            <div className="flex flex-col gap-2">
+              <h4 className="font-edo-sz text-xl tracking-wider text-foreground md:text-2xl">
+                {activeNode.name}
+              </h4>
+              <div className="h-0.5 w-[30%] bg-divider" />
+              <p className="mt-2 font-lato text-sm text-muted md:text-base">
+                {activeNode.description}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </SubMenu>
@@ -66,7 +75,7 @@ export function SkillsClient() {
     <>
       <SidebarPortal>{sidebarContent}</SidebarPortal>
 
-      {/* SVG Ink Filter */}
+      {/* Global SVG Ink Filter */}
       <svg
         width="0"
         height="0"
@@ -98,8 +107,12 @@ export function SkillsClient() {
         </defs>
       </svg>
 
-      {/* Main Full-Screen Skill Tree Canvas */}
-      <SekiroSkillTree activeStyle={activeStyle} />
+      {/* Main Skill Tree Canvas */}
+      <SekiroSkillTree
+        activeStyle={activeStyle}
+        activeNodeId={activeNodeId}
+        onActiveNodeChange={setActiveNodeId}
+      />
     </>
   );
 }
