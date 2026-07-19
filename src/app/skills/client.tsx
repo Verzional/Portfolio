@@ -16,6 +16,7 @@ export function SkillsClient() {
   const activeStyle =
     skillsData.find((s) => s.id === activeCategory) || skillsData[0];
 
+  // Sidebar Content
   const sidebarContent = (
     <SubMenu
       title="Skills"

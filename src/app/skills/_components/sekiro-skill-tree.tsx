@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SkillStyle } from "@/data/skills";
 import { SekiroSkillNode } from "./sekiro-skill-node";
 
@@ -9,7 +9,53 @@ interface SekiroSkillTreeProps {
 }
 
 export function SekiroSkillTree({ activeStyle }: SekiroSkillTreeProps) {
-  const nodes = activeStyle.skills || [];
+  // Wrap Nodes in useMemo to Prevent Unnecessary Renders
+  const nodes = React.useMemo(() => activeStyle.skills || [], [activeStyle.skills]);
+
+  const [activeNodeId, setActiveNodeId] = useState<string | null>(null);
+
+  // Derive Active Node (Bypasses useEffect)
+  const isNodeValid = nodes.some(n => n.id === activeNodeId);
+  const effectiveActiveNodeId = isNodeValid ? activeNodeId : (nodes[0]?.id || null);
+
+  // Handle WASD Graph Navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const key = e.key.toLowerCase();
+      const isNavKey = ["w", "a", "s", "d", "arrowup", "arrowdown", "arrowleft", "arrowright"].includes(key);
+      
+      if (!isNavKey) return;
+
+      // Prevent scrolling the page when using arrow keys or WASD in this view
+      e.preventDefault();
+
+      setActiveNodeId((currentId) => {
+        // Find the actual valid starting point in case currentId is outdated or null
+        const currentValid = nodes.some(n => n.id === currentId);
+        const startId = currentValid ? currentId : (nodes[0]?.id || null);
+
+        const activeNode = nodes.find((n) => n.id === startId);
+        if (!activeNode) return startId;
+
+        let nextNodeId = startId;
+
+        if (key === "w" || key === "arrowup") {
+          nextNodeId = activeNode.neighbors.up || startId;
+        } else if (key === "s" || key === "arrowdown") {
+          nextNodeId = activeNode.neighbors.down || startId;
+        } else if (key === "a" || key === "arrowleft") {
+          nextNodeId = activeNode.neighbors.left || startId;
+        } else if (key === "d" || key === "arrowright") {
+          nextNodeId = activeNode.neighbors.right || startId;
+        }
+
+        return nextNodeId;
+      });
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [nodes]);
 
   if (nodes.length === 0) {
     return (
@@ -19,12 +65,9 @@ export function SekiroSkillTree({ activeStyle }: SekiroSkillTreeProps) {
     );
   }
 
-  // Calculate grid bounds to determine scaling
   const maxX = Math.max(...nodes.map((n) => n.position.x));
   const maxY = Math.max(...nodes.map((n) => n.position.y));
 
-  // Determine relative position percentages based on grid coordinates
-  // Adding padding (+2) so nodes at the edges aren't pushed completely off-screen
   const getX = (x: number) => `${((x + 1) / (maxX + 2)) * 100}%`;
   const getY = (y: number) => `${((y + 1) / (maxY + 2)) * 100}%`;
 
@@ -35,7 +78,6 @@ export function SekiroSkillTree({ activeStyle }: SekiroSkillTreeProps) {
         {nodes.flatMap((node) => {
           const lines = [];
 
-          // Draw lines for 'right' and 'down' to prevent duplicate bi-directional lines
           if (node.neighbors.right) {
             const target = nodes.find((n) => n.id === node.neighbors.right);
             if (target) {
@@ -87,9 +129,15 @@ export function SekiroSkillTree({ activeStyle }: SekiroSkillTreeProps) {
             left: getX(node.position.x),
             top: getY(node.position.y),
             transform: "translate(-50%, -50%)",
+            zIndex: effectiveActiveNodeId === node.id ? 10 : 1, // Bring active node to top
           }}
         >
-          <SekiroSkillNode node={node} isActive={false} />
+          <SekiroSkillNode 
+            node={node} 
+            isActive={effectiveActiveNodeId === node.id}
+            onClick={() => setActiveNodeId(node.id)}
+            onHover={() => setActiveNodeId(node.id)}
+          />
         </div>
       ))}
     </div>
