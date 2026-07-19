@@ -65,6 +65,7 @@ export function ProjectsClient() {
         { key: "Q / E", action: "Category" },
         { key: "A / D & ◄ / ►", action: "Carousel" },
         { key: "ENTER / SPACE", action: "Select" },
+        { key: "ESC", action: "Back" },
       ]}
     >
       <div className="flex min-h-0 w-full flex-1 flex-col">

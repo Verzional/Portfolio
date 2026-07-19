@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { ControlLegend } from "@/components/control-legend";
 
 interface SubMenuProps {
@@ -19,6 +20,17 @@ export function SubMenu({
   onBackMove,
   controls,
 }: SubMenuProps) {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && onBackClick) {
+        onBackClick();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onBackClick]);
+
   return (
     <div className="flex h-full w-full flex-col overflow-hidden text-foreground pt-4 md:pt-0">
       <div className="my-auto flex max-h-full min-h-0 w-full flex-col">

@@ -63,6 +63,7 @@ export function SocialsClient() {
       controls={[
         { key: "W/S", action: "NAVIGATE" },
         { key: "ENTER", action: "CONNECT" },
+        { key: "ESC", action: "BACK" },
       ]}
     >
       <div className="flex min-h-0 w-full flex-1 scrollbar-none flex-col gap-2 overflow-x-hidden overflow-y-auto pt-2 pb-4">

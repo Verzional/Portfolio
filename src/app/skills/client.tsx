@@ -35,6 +35,7 @@ export function SkillsClient() {
       controls={[
         { key: "Q / E", action: "Category" },
         { key: "W / A / S / D & ▲ / ◀ / ▼ / ▶", action: "Navigate" },
+        { key: "ESC", action: "Back" },
       ]}
     >
       <div className="flex min-h-0 w-full flex-1 flex-col">
