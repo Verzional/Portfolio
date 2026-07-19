@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s | Verzional",
   },
   description:
-    "Portfolio of Verzional, Full-Stack Engineer specializing in high-fidelity web, mobile, and game applications with a core focus on deeply interactive, immersive, and playful user experiences.",
+    "Verzional's Portfolio - Full-Stack Engineer specializing in high-fidelity web, mobile, and game applications with a core focus on deeply interactive, immersive, and playful user experiences.",
   keywords: [
     "Full-Stack Engineer",
     "Web Developer",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     url: "/",
     title: "Verzional | Full-Stack Engineer",
     description:
-      "Portfolio of Verzional, a Full-Stack Engineer specializing in high-fidelity web, mobile, and game applications with a core focus on deeply interactive, immersive, and playful user experiences.",
+      "Verzional's Portfolio - Full-Stack Engineer specializing in high-fidelity web, mobile, and game applications with a core focus on deeply interactive, immersive, and playful user experiences.",
     siteName: "Verzional Portfolio",
     images: [
       {
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Verzional | Full-Stack Engineer",
     description:
-      "Portfolio of Verzional, a Full-Stack Engineer specializing in high-fidelity web, mobile, and game applications with a core focus on deeply interactive, immersive, and playful user experiences.",
+      "Verzional's Portfolio - Full-Stack Engineer specializing in high-fidelity web, mobile, and game applications with a core focus on deeply interactive, immersive, and playful user experiences.",
     creator: "@verzional",
     images: ["/og-image.jpg"],
   },
