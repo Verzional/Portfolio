@@ -21,7 +21,7 @@ export const SekiroCategoryTab = memo(function SekiroCategoryTab({
     <button
       onClick={() => onClick(id)}
       title={label}
-      className={`relative flex h-13.5 w-11.5 shrink-0 cursor-pointer items-center justify-center rounded-sm transition-all duration-200 ${
+      className={`relative flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-sm transition-all duration-200 md:h-12 md:w-12 xl:h-14 xl:w-14 ${
         isActive ? "border-[3px]" : "border-2 hover:bg-foreground/10"
       }`}
       style={{
@@ -38,7 +38,7 @@ export const SekiroCategoryTab = memo(function SekiroCategoryTab({
       }}
     >
       <Icon
-        className={`h-7 w-7 transition-colors duration-200 ${isActive ? "text-foreground" : "text-foreground/70"}`}
+        className={`h-5 w-5 md:h-6 md:w-6 xl:h-7 xl:w-7 transition-colors duration-200 ${isActive ? "text-foreground" : "text-foreground/70"}`}
         strokeWidth={2.5}
       />
     </button>

@@ -39,7 +39,7 @@ export function SkillsClient() {
     >
       <div className="flex min-h-0 w-full flex-1 flex-col">
         {/* Category Tabs */}
-        <div className="flex w-full shrink-0 flex-nowrap items-center justify-start gap-5 overflow-x-auto px-4 pt-4 pb-6 md:justify-center">
+        <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-start gap-4 overflow-x-auto px-4 pt-4 pb-6 [-ms-overflow-style:none] md:justify-center md:gap-5 [&::-webkit-scrollbar]:hidden">
           {skillsData.map((cat) => (
             <SekiroCategoryTab
               key={cat.id}
@@ -54,13 +54,12 @@ export function SkillsClient() {
         </div>
 
         {/* Active Skill Node Details */}
-        <div className="flex flex-col px-4 md:px-8">
+        <div className="flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto px-4 pb-8 md:px-8">
           {activeNode && (
             <div className="flex flex-col gap-2">
               <h4 className="font-edo-sz text-xl tracking-wider text-foreground md:text-2xl">
                 {activeNode.name}
               </h4>
-              <div className="h-0.5 w-[30%] bg-divider" />
               <p className="mt-2 font-lato text-sm text-muted md:text-base">
                 {activeNode.description}
               </p>
