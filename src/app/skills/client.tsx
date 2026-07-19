@@ -6,6 +6,7 @@ import { skillsData } from "@/data/skills";
 import { SidebarPortal } from "@/components/sidebar-portal";
 import { SubMenu } from "@/components/sub-menu";
 import { SekiroCategoryTab } from "./_components/sekiro-category-tab";
+import { SekiroSkillTree } from "./_components/sekiro-skill-tree";
 
 export function SkillsClient() {
   const router = useRouter();
@@ -55,9 +56,6 @@ export function SkillsClient() {
           >
             {activeStyle.subtitle}
           </h3>
-          <p className="mt-2 font-lato text-muted">
-            The tree is currently empty.
-          </p>
         </div>
       </div>
     </SubMenu>
@@ -98,6 +96,9 @@ export function SkillsClient() {
           </filter>
         </defs>
       </svg>
+
+      {/* Main Full-Screen Skill Tree Canvas */}
+      <SekiroSkillTree activeStyle={activeStyle} />
     </>
   );
 }
