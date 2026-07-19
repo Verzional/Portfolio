@@ -46,8 +46,8 @@ Ensure all generated files are placed in the correct directories according to th
   - Classes/Types/Interfaces: `PascalCase`
   - Files: `kebab-case`
 - **Icons:** Use `lucide-react` for all icons.
-- **Linting & Purity:** Code must strictly adhere to the project's `.eslint.config.mjs` configuration. Watch out for Next.js strict mode rules (e.g., avoid synchronous state updates in `useEffect`). NEVER use impure functions like `Math.random()` inside the render body of a component; generate random static data outside the component or within stable hooks to avoid hydration mismatches.
-- **Comments:** Explain _why_ a complex block of code exists, not _what_ the syntax does. Use standard docstrings for public methods.
+- **Linting & Purity:** Code must strictly adhere to the project's `.eslint.config.mjs` configuration. Always run `pnpm lint && pnpm tsc --noEmit` to verify build safety before concluding tasks. Watch out for Next.js strict mode rules (e.g., avoid synchronous state updates in `useEffect`). NEVER use impure functions like `Math.random()` inside the render body of a component; generate random static data outside the component or within stable hooks to avoid hydration mismatches.
+- **Comments:** Inline comments dividing logic blocks must use strict Title Case headers without punctuation or excessive description (e.g., `// Track Active Skill Node`, `// Render Inner Parchment`). Avoid conversational or lowercase filler descriptions. Explain _why_ a complex block of code exists, not _what_ the syntax does.
 - **Styling (CSS Variables):**
   - All coloring must use the variables defined in `src/app/globals.css`. Avoid hardcoding colors.
 
@@ -61,6 +61,16 @@ Ensure all generated files are placed in the correct directories according to th
 ### 5. Responsive Design
 
 - **Mobile Background Anchoring:** When rendering full-screen backgrounds (especially landscape illustrations) on mobile devices (`object-cover`), DO NOT use generic anchors like `object-right` or `object-center` if the subject matter is off-center. Always use Tailwind arbitrary percentage values (e.g., `object-[75%_center] md:object-center`) so the exact framing of the character can be fine-tuned per device.
+
+---
+
+### 6. Git & Commits
+
+- **Conventional Commits:** Commit messages must strictly follow the Conventional Commits specification.
+- **Commit Types:** 
+  - Use `feat` for new functionality, layout additions, and major responsive CSS changes.
+  - Use `fix` for resolving layout bugs or broken responsiveness.
+  - **CRITICAL:** The `style` commit type is *strictly* reserved for code formatting (e.g., whitespace, missing semicolons, indentation) that does not affect the compiled output. Do **not** use `style` for CSS, UI, or structural visual changes.
 
 ---
 

@@ -88,79 +88,82 @@ export function SekiroSkillTree({
   const maxX = Math.max(...nodes.map((n) => n.position.x));
   const maxY = Math.max(...nodes.map((n) => n.position.y));
 
-  // Convert Grid Coordinates to Percentages
-  const getX = (x: number) => `${((x + 1) / (maxX + 2)) * 100}%`;
-  const getY = (y: number) => `${((y + 1) / (maxY + 2)) * 100}%`;
+  // Convert Grid Coordinates to Pure Percentages
+  const getX = (x: number) => (maxX === 0 ? "50%" : `${(x / maxX) * 100}%`);
+  const getY = (y: number) => (maxY === 0 ? "50%" : `${(y / maxY) * 100}%`);
 
   return (
     <div className="absolute inset-0 overflow-hidden bg-transparent">
-      {/* SVG Lines Layer */}
-      <svg className="pointer-events-none absolute inset-0 h-full w-full">
-        {nodes.flatMap((node) => {
-          const lines = [];
+      {/* Inner Padding Container */}
+      <div className="absolute inset-x-12.5 inset-y-15 md:inset-x-20 md:inset-y-15 xl:inset-x-40 xl:inset-y-50">
+        {/* SVG Lines Layer */}
+        <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible">
+          {nodes.flatMap((node) => {
+            const lines = [];
 
-          if (node.neighbors.right) {
-            const target = nodes.find((n) => n.id === node.neighbors.right);
-            if (target) {
-              lines.push(
-                <line
-                  key={`${node.id}-right`}
-                  x1={getX(node.position.x)}
-                  y1={getY(node.position.y)}
-                  x2={getX(target.position.x)}
-                  y2={getY(target.position.y)}
-                  stroke="#C5B39A"
-                  strokeWidth={3}
-                  strokeOpacity={0.6}
-                  strokeLinecap="round"
-                />,
-              );
+            if (node.neighbors.right) {
+              const target = nodes.find((n) => n.id === node.neighbors.right);
+              if (target) {
+                lines.push(
+                  <line
+                    key={`${node.id}-right`}
+                    x1={getX(node.position.x)}
+                    y1={getY(node.position.y)}
+                    x2={getX(target.position.x)}
+                    y2={getY(target.position.y)}
+                    stroke="#C5B39A"
+                    strokeWidth={3}
+                    strokeOpacity={0.6}
+                    strokeLinecap="round"
+                  />,
+                );
+              }
             }
-          }
 
-          if (node.neighbors.down) {
-            const target = nodes.find((n) => n.id === node.neighbors.down);
-            if (target) {
-              lines.push(
-                <line
-                  key={`${node.id}-down`}
-                  x1={getX(node.position.x)}
-                  y1={getY(node.position.y)}
-                  x2={getX(target.position.x)}
-                  y2={getY(target.position.y)}
-                  stroke="#C5B39A"
-                  strokeWidth={3}
-                  strokeOpacity={0.6}
-                  strokeLinecap="round"
-                />,
-              );
+            if (node.neighbors.down) {
+              const target = nodes.find((n) => n.id === node.neighbors.down);
+              if (target) {
+                lines.push(
+                  <line
+                    key={`${node.id}-down`}
+                    x1={getX(node.position.x)}
+                    y1={getY(node.position.y)}
+                    x2={getX(target.position.x)}
+                    y2={getY(target.position.y)}
+                    stroke="#C5B39A"
+                    strokeWidth={3}
+                    strokeOpacity={0.6}
+                    strokeLinecap="round"
+                  />,
+                );
+              }
             }
-          }
 
-          return lines;
-        })}
-      </svg>
+            return lines;
+          })}
+        </svg>
 
-      {/* Nodes Layer */}
-      {nodes.map((node) => (
-        <div
-          key={node.id}
-          className="absolute"
-          style={{
-            left: getX(node.position.x),
-            top: getY(node.position.y),
-            transform: "translate(-50%, -50%)",
-            zIndex: effectiveActiveNodeId === node.id ? 10 : 1,
-          }}
-        >
-          <SekiroSkillNode
-            node={node}
-            isActive={effectiveActiveNodeId === node.id}
-            onClick={() => onActiveNodeChange(node.id)}
-            onHover={() => onActiveNodeChange(node.id)}
-          />
-        </div>
-      ))}
+        {/* Nodes Layer */}
+        {nodes.map((node) => (
+          <div
+            key={node.id}
+            className="absolute"
+            style={{
+              left: getX(node.position.x),
+              top: getY(node.position.y),
+              transform: "translate(-50%, -50%)",
+              zIndex: effectiveActiveNodeId === node.id ? 10 : 1,
+            }}
+          >
+            <SekiroSkillNode
+              node={node}
+              isActive={effectiveActiveNodeId === node.id}
+              onClick={() => onActiveNodeChange(node.id)}
+              onHover={() => onActiveNodeChange(node.id)}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
