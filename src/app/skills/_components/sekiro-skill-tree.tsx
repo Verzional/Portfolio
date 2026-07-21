@@ -58,13 +58,41 @@ export function SekiroSkillTree({
       let nextNodeId = startId;
 
       if (key === "w" || key === "arrowup") {
-        nextNodeId = activeNode.neighbors.up || startId;
+        nextNodeId =
+          activeNode.neighbors.up ||
+          nodes.find((n) => n.neighbors.down === startId)?.id ||
+          activeNode.neighbors.upLeft ||
+          activeNode.neighbors.upRight ||
+          nodes.find((n) => n.neighbors.downRight === startId)?.id ||
+          nodes.find((n) => n.neighbors.downLeft === startId)?.id ||
+          startId;
       } else if (key === "s" || key === "arrowdown") {
-        nextNodeId = activeNode.neighbors.down || startId;
+        nextNodeId =
+          activeNode.neighbors.down ||
+          nodes.find((n) => n.neighbors.up === startId)?.id ||
+          activeNode.neighbors.downLeft ||
+          activeNode.neighbors.downRight ||
+          nodes.find((n) => n.neighbors.upRight === startId)?.id ||
+          nodes.find((n) => n.neighbors.upLeft === startId)?.id ||
+          startId;
       } else if (key === "a" || key === "arrowleft") {
-        nextNodeId = activeNode.neighbors.left || startId;
+        nextNodeId =
+          activeNode.neighbors.left ||
+          nodes.find((n) => n.neighbors.right === startId)?.id ||
+          activeNode.neighbors.downLeft ||
+          activeNode.neighbors.upLeft ||
+          nodes.find((n) => n.neighbors.downRight === startId)?.id ||
+          nodes.find((n) => n.neighbors.upRight === startId)?.id ||
+          startId;
       } else if (key === "d" || key === "arrowright") {
-        nextNodeId = activeNode.neighbors.right || startId;
+        nextNodeId =
+          activeNode.neighbors.right ||
+          nodes.find((n) => n.neighbors.left === startId)?.id ||
+          activeNode.neighbors.downRight ||
+          activeNode.neighbors.upRight ||
+          nodes.find((n) => n.neighbors.downLeft === startId)?.id ||
+          nodes.find((n) => n.neighbors.upLeft === startId)?.id ||
+          startId;
       }
 
       if (nextNodeId && nextNodeId !== activeNodeId) {
@@ -112,14 +140,7 @@ export function SekiroSkillTree({
     },
   };
 
-  const lineVariants: Variants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: {
-      pathLength: 1,
-      opacity: 0.6,
-      transition: { duration: 0.8, ease: "easeInOut" },
-    },
-  };
+
 
   const nodeVariants: Variants = {
     hidden: { scale: 0.85, opacity: 0 },
@@ -172,53 +193,103 @@ export function SekiroSkillTree({
               >
                 <circle cx="8" cy="8" r="6" fill="#C5B39A" />
               </marker>
+
+              {/* Active Mobile Marker */}
+              <marker
+                id="skill-dot-mobile-active"
+                viewBox="0 0 16 16"
+                refX="44"
+                refY="8"
+                markerWidth="16"
+                markerHeight="16"
+                markerUnits="userSpaceOnUse"
+                orient="auto"
+              >
+                <circle cx="8" cy="8" r="6" fill={activeStyle.themeColor} />
+              </marker>
+
+              {/* Active Desktop Marker */}
+              <marker
+                id="skill-dot-desktop-active"
+                viewBox="0 0 16 16"
+                refX="54"
+                refY="8"
+                markerWidth="16"
+                markerHeight="16"
+                markerUnits="userSpaceOnUse"
+                orient="auto"
+              >
+                <circle cx="8" cy="8" r="6" fill={activeStyle.themeColor} />
+              </marker>
             </defs>
 
-            {nodes.flatMap((node) => {
-              const lines = [];
+            {(() => {
+              const drawnLines = new Set<string>();
+              return nodes.flatMap((node) => {
+                const lines: React.ReactNode[] = [];
+                const directions = [
+                  "up",
+                  "down",
+                  "left",
+                  "right",
+                  "upLeft",
+                  "upRight",
+                  "downLeft",
+                  "downRight",
+                ] as const;
 
-              if (node.neighbors.right) {
-                const target = nodes.find((n) => n.id === node.neighbors.right);
-                if (target) {
-                  lines.push(
-                    <motion.line
-                      key={`${node.id}-right`}
-                      variants={lineVariants}
-                      x1={getX(node.position.x)}
-                      y1={getY(node.position.y)}
-                      x2={getX(target.position.x)}
-                      y2={getY(target.position.y)}
-                      stroke="#C5B39A"
-                      strokeWidth={3}
-                      strokeLinecap="round"
-                      className="[marker-end:url(#skill-dot-mobile)] md:[marker-end:url(#skill-dot-desktop)]"
-                    />,
-                  );
-                }
-              }
+                directions.forEach((dir) => {
+                  const targetId = node.neighbors[dir];
+                  if (targetId) {
+                    const target = nodes.find((n) => n.id === targetId);
+                    if (target) {
+                      // Generate Directionless Edge Key
+                      const lineKey = [node.id, target.id].sort().join("-");
+                      
+                      if (!drawnLines.has(lineKey)) {
+                        drawnLines.add(lineKey);
+                        
+                        const isSourceActive = node.id === effectiveActiveNodeId;
+                        const isTargetActive = target.id === effectiveActiveNodeId;
+                        const isLineActive = isSourceActive || isTargetActive;
 
-              if (node.neighbors.down) {
-                const target = nodes.find((n) => n.id === node.neighbors.down);
-                if (target) {
-                  lines.push(
-                    <motion.line
-                      key={`${node.id}-down`}
-                      variants={lineVariants}
-                      x1={getX(node.position.x)}
-                      y1={getY(node.position.y)}
-                      x2={getX(target.position.x)}
-                      y2={getY(target.position.y)}
-                      stroke="#C5B39A"
-                      strokeWidth={3}
-                      strokeLinecap="round"
-                      className="[marker-end:url(#skill-dot-mobile)] md:[marker-end:url(#skill-dot-desktop)]"
-                    />,
-                  );
-                }
-              }
+                        let lineOpacity = 0.25;
+                        if (isSourceActive) lineOpacity = 1;
+                        else if (isTargetActive) lineOpacity = 0.6;
 
-              return lines;
-            })}
+                        lines.push(
+                          <motion.line
+                            key={lineKey}
+                            variants={{
+                              hidden: { pathLength: 0, opacity: 0 },
+                              visible: {
+                                pathLength: 1,
+                                opacity: lineOpacity,
+                                strokeWidth: isLineActive ? 4 : 2,
+                                stroke: isLineActive ? activeStyle.themeColor : "#C5B39A",
+                                filter: isLineActive ? `drop-shadow(0 0 8px ${activeStyle.themeColor})` : "drop-shadow(0 0 0px transparent)",
+                                transition: { duration: 0.4, ease: "easeInOut" },
+                              }
+                            }}
+                            x1={getX(node.position.x)}
+                            y1={getY(node.position.y)}
+                            x2={getX(target.position.x)}
+                            y2={getY(target.position.y)}
+                            strokeLinecap="round"
+                            className={
+                              isLineActive
+                                ? "[marker-end:url(#skill-dot-mobile-active)] md:[marker-end:url(#skill-dot-desktop-active)]"
+                                : "[marker-end:url(#skill-dot-mobile)] md:[marker-end:url(#skill-dot-desktop)]"
+                            }
+                          />
+                        );
+                      }
+                    }
+                  }
+                });
+                return lines;
+              });
+            })()}
           </svg>
 
           {/* Nodes Layer */}
