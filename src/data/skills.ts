@@ -1,8 +1,8 @@
 import {
-  Code2,
+  Code,
+  Database,
   Server,
-  Wrench,
-  HeartHandshake,
+  Terminal,
   LucideIcon,
 } from "lucide-react";
 
@@ -334,7 +334,7 @@ export const skillsData: SkillStyle[] = [
     title: "Core",
     subtitle: "SHINOBI ARTS",
     themeColor: "var(--color-primary)",
-    icon: Code2,
+    icon: Code,
     skills: coreSkills(),
   },
   {
@@ -342,7 +342,7 @@ export const skillsData: SkillStyle[] = [
     title: "Data & ORM",
     subtitle: "PROSTHETIC ARTS",
     themeColor: "var(--color-primary)",
-    icon: Server,
+    icon: Database,
     skills: dataSkills(),
   },
   {
@@ -350,7 +350,7 @@ export const skillsData: SkillStyle[] = [
     title: "Infrastructure & DevOps",
     subtitle: "ASHINA ARTS",
     themeColor: "var(--color-primary)",
-    icon: Wrench,
+    icon: Server,
     skills: devOpsSkills(),
   },
   {
@@ -358,7 +358,7 @@ export const skillsData: SkillStyle[] = [
     title: "Secondary",
     subtitle: "TEMPLE ARTS",
     themeColor: "var(--color-primary)",
-    icon: HeartHandshake,
+    icon: Terminal,
     skills: secondarySkills(),
   },
 ];
