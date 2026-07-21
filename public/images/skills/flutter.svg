@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 96 96" id="Flutter--Streamline-Svg-Logos" height="24" width="24">
+  <desc>
+    Flutter Streamline Icon: https://streamlinehq.com
+  </desc>
+  <path fill="#47c5fb" d="M56.9162 1 10.1064 47.8097 24.595 62.2983 85.8935 1H56.9162Z"></path>
+  <path fill="#47c5fb" d="M56.5896 44.1671 31.5264 69.2304l14.543 14.7602 14.4617-14.4617 25.3621-25.3618H56.5896Z"></path>
+  <path fill="#00569e" d="m46.0693 83.9908 11.0093 11.0093h28.8143l-25.3621-25.471-14.4615 14.4617Z"></path>
+  <path fill="#00b5f8" d="m31.3638 69.3933 14.4888-14.4889L60.5313 69.529 46.0699 83.9907 31.3638 69.3933Z"></path>
+  <path fill="url(#a)" fill-opacity=".8" d="m46.0693 83.9907 12.0421-3.9959 1.1961-9.2426-13.2382 13.2385Z"></path>
+  <defs>
+    <linearGradient id="a" x1="98.383" x2="1050.81" y1="428.1" y2="771.31" gradientUnits="userSpaceOnUse">
+      <stop></stop>
+      <stop offset="1" stop-opacity="0"></stop>
+    </linearGradient>
+  </defs>
+</svg>
