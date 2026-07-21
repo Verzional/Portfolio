@@ -30,7 +30,7 @@ export function SekiroSkillNode({
 
   return (
     <div
-      className={`relative flex h-15 w-15 cursor-pointer items-center justify-center transition-all duration-300 md:h-20 md:w-20 ${
+      className={`relative flex h-12 w-12 cursor-pointer items-center justify-center transition-all duration-300 md:h-20 md:w-20 ${
         isActive
           ? "z-50 scale-110 drop-shadow-[0_0_20px_rgba(255,200,100,0.8)]"
           : "hover:scale-105"
@@ -83,7 +83,7 @@ export function SekiroSkillNode({
             alt={node.name}
             width={40}
             height={40}
-            className={`relative z-10 h-9 w-9 object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] transition-opacity duration-300 md:h-10 md:w-10 ${
+            className={`relative z-10 h-7 w-7 object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] transition-opacity duration-300 md:h-10 md:w-10 ${
               isActive ? "opacity-100" : "opacity-90"
             }`}
           />

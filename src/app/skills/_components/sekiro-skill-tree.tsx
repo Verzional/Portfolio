@@ -186,7 +186,7 @@ export function SekiroSkillTree({
               <marker
                 id="skill-dot-mobile"
                 viewBox="0 0 16 16"
-                refX="44"
+                refX="38"
                 refY="8"
                 markerWidth="16"
                 markerHeight="16"
@@ -214,7 +214,7 @@ export function SekiroSkillTree({
               <marker
                 id="skill-dot-mobile-active"
                 viewBox="0 0 16 16"
-                refX="44"
+                refX="38"
                 refY="8"
                 markerWidth="16"
                 markerHeight="16"
