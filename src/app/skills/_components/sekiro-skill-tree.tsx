@@ -280,7 +280,12 @@ export function SekiroSkillTree({
                           <motion.line
                             key={`${lineKey}-base`}
                             variants={{
-                              hidden: { pathLength: 0, opacity: 0 },
+                              hidden: {
+                                pathLength: 0,
+                                opacity: 0,
+                                strokeWidth: 2,
+                                stroke: "#C5B39A",
+                              },
                               visible: {
                                 pathLength: 1,
                                 opacity: 0.3,
@@ -306,7 +311,13 @@ export function SekiroSkillTree({
                           <motion.line
                             key={`${lineKey}-energy`}
                             variants={{
-                              hidden: { pathLength: 0, opacity: 0 },
+                              hidden: {
+                                pathLength: 0,
+                                opacity: 0,
+                                strokeWidth: 4,
+                                stroke: activeStyle.themeColor,
+                                filter: "drop-shadow(0 0 0px transparent)",
+                              },
                               visible: {
                                 pathLength: 1,
                                 opacity: isLineActive ? lineOpacity : 0,
