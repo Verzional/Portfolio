@@ -36,7 +36,9 @@ export function SekiroSkillNode({
           : "hover:scale-105"
       }`}
       onClick={onClick}
-      onMouseEnter={onHover}
+      onPointerMove={() => {
+        if (!isActive) onHover?.();
+      }}
     >
       {/* Render Outer Ink Ring Mask */}
       {!isActive && (

@@ -1,10 +1,4 @@
-import {
-  Code,
-  Database,
-  Server,
-  Terminal,
-  LucideIcon,
-} from "lucide-react";
+import { Code, Database, Server, Terminal, LucideIcon } from "lucide-react";
 
 export type SkillCategory =
   "Core" | "Data & ORM" | "Infrastructure & DevOps" | "Secondary";
