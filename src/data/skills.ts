@@ -55,7 +55,12 @@ const coreSkills = (): SkillNode[] => {
       description: "Strictly typed JavaScript for robust applications.",
       icon: "/images/skills/typescript.svg",
       position: { x: 1, y: 0 },
-      neighbors: { right: "core-express", down: "core-next", downLeft: "core-react", downRight: "core-node" },
+      neighbors: {
+        right: "core-express",
+        down: "core-next",
+        downLeft: "core-react",
+        downRight: "core-node",
+      },
     },
     {
       id: "core-express",

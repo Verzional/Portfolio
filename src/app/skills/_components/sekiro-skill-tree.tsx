@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence, Variants } from "motion/react";
 import { SkillStyle } from "@/data/skills";
 import { SekiroSkillNode } from "./sekiro-skill-node";
@@ -24,6 +24,24 @@ export function SekiroSkillTree({
   const effectiveActiveNodeId = isNodeValid
     ? activeNodeId
     : nodes[0]?.id || null;
+
+  // Track Initial Load State
+  const [currentStyleId, setCurrentStyleId] = useState(activeStyle.id);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  // Reset Initial Load Flag
+  if (activeStyle.id !== currentStyleId) {
+    setCurrentStyleId(activeStyle.id);
+    setIsInitialLoad(true);
+  }
+
+  useEffect(() => {
+    if (!isInitialLoad) return;
+    const timer = setTimeout(() => {
+      setIsInitialLoad(false);
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, [isInitialLoad, activeStyle.id]);
 
   // Sync Active Node State
   useEffect(() => {
@@ -140,8 +158,6 @@ export function SekiroSkillTree({
     },
   };
 
-
-
   const nodeVariants: Variants = {
     hidden: { scale: 0.85, opacity: 0 },
     visible: {
@@ -245,31 +261,75 @@ export function SekiroSkillTree({
                     if (target) {
                       // Generate Directionless Edge Key
                       const lineKey = [node.id, target.id].sort().join("-");
-                      
+
                       if (!drawnLines.has(lineKey)) {
                         drawnLines.add(lineKey);
-                        
-                        const isSourceActive = node.id === effectiveActiveNodeId;
-                        const isTargetActive = target.id === effectiveActiveNodeId;
+
+                        const isSourceActive =
+                          node.id === effectiveActiveNodeId;
+                        const isTargetActive =
+                          target.id === effectiveActiveNodeId;
                         const isLineActive = isSourceActive || isTargetActive;
 
                         let lineOpacity = 0.25;
                         if (isSourceActive) lineOpacity = 1;
                         else if (isTargetActive) lineOpacity = 0.6;
 
+                        // Render Base Grid Line
                         lines.push(
                           <motion.line
-                            key={lineKey}
+                            key={`${lineKey}-base`}
                             variants={{
                               hidden: { pathLength: 0, opacity: 0 },
                               visible: {
                                 pathLength: 1,
-                                opacity: lineOpacity,
-                                strokeWidth: isLineActive ? 4 : 2,
-                                stroke: isLineActive ? activeStyle.themeColor : "#C5B39A",
-                                filter: isLineActive ? `drop-shadow(0 0 8px ${activeStyle.themeColor})` : "drop-shadow(0 0 0px transparent)",
-                                transition: { duration: 0.4, ease: "easeInOut" },
-                              }
+                                opacity: 0.3,
+                                strokeWidth: 2,
+                                stroke: "#C5B39A",
+                                transition: {
+                                  duration: 0.4,
+                                  ease: "easeInOut",
+                                },
+                              },
+                            }}
+                            x1={getX(node.position.x)}
+                            y1={getY(node.position.y)}
+                            x2={getX(target.position.x)}
+                            y2={getY(target.position.y)}
+                            strokeLinecap="round"
+                            className="[marker-end:url(#skill-dot-mobile)] md:[marker-end:url(#skill-dot-desktop)]"
+                          />,
+                        );
+
+                        // Render Active Energy Line
+                        lines.push(
+                          <motion.line
+                            key={`${lineKey}-energy`}
+                            variants={{
+                              hidden: { pathLength: 0, opacity: 0 },
+                              visible: {
+                                pathLength: 1,
+                                opacity: isLineActive ? lineOpacity : 0,
+                                strokeWidth: 4,
+                                stroke: activeStyle.themeColor,
+                                filter: isLineActive
+                                  ? `drop-shadow(0 0 8px ${activeStyle.themeColor})`
+                                  : "drop-shadow(0 0 0px transparent)",
+                                transition: {
+                                  duration: 0.4,
+                                  ease: "easeInOut",
+                                  opacity: {
+                                    delay:
+                                      isLineActive && isInitialLoad ? 1.8 : 0,
+                                    duration: 0.4,
+                                  },
+                                  filter: {
+                                    delay:
+                                      isLineActive && isInitialLoad ? 1.8 : 0,
+                                    duration: 0.4,
+                                  },
+                                },
+                              },
                             }}
                             x1={getX(node.position.x)}
                             y1={getY(node.position.y)}
@@ -279,9 +339,9 @@ export function SekiroSkillTree({
                             className={
                               isLineActive
                                 ? "[marker-end:url(#skill-dot-mobile-active)] md:[marker-end:url(#skill-dot-desktop-active)]"
-                                : "[marker-end:url(#skill-dot-mobile)] md:[marker-end:url(#skill-dot-desktop)]"
+                                : ""
                             }
-                          />
+                          />,
                         );
                       }
                     }
