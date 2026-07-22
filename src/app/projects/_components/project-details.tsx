@@ -7,7 +7,13 @@ import { PersonaActionButton } from "./persona-action-button";
 
 type Project = (typeof projectsData)[0];
 
-export function ProjectDetails({ project }: { project: Project | null }) {
+export function ProjectDetails({
+  project,
+  isBackActive = false,
+}: {
+  project: Project | null;
+  isBackActive?: boolean;
+}) {
   const [imageIndex, setImageIndex] = useState(0);
   const [prevProjectId, setPrevProjectId] = useState(project?.id);
 
@@ -53,6 +59,32 @@ export function ProjectDetails({ project }: { project: Project | null }) {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [project]);
+
+  // Keyboard Navigation for Project Actions
+  useEffect(() => {
+    if (!project || isBackActive) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement
+      )
+        return;
+
+      if (e.key.toLowerCase() === "c") {
+        e.preventDefault();
+        window.open(project.githubUrl, "_blank", "noopener,noreferrer");
+      } else if (e.key.toLowerCase() === "v") {
+        e.preventDefault();
+        if (project.liveUrl && project.liveUrl !== "#") {
+          window.open(project.liveUrl, "_blank", "noopener,noreferrer");
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [project, isBackActive]);
 
   /* Empty State */
   if (!project) {

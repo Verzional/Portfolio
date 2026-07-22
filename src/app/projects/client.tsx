@@ -64,6 +64,7 @@ export function ProjectsClient() {
         { key: "W / S & ▼ / ▲", action: "Navigate" },
         { key: "Q / E", action: "Category" },
         { key: "A / D & ◄ / ►", action: "Carousel" },
+        { key: "C / V", action: "Code / Live" },
         { key: "ENTER / SPACE", action: "Select" },
         { key: "ESC", action: "Back" },
       ]}
@@ -102,7 +103,7 @@ export function ProjectsClient() {
   return (
     <>
       <SidebarPortal>{sidebarContent}</SidebarPortal>
-      <ProjectDetails project={activeProject} />
+      <ProjectDetails project={activeProject} isBackActive={isBackActive} />
     </>
   );
 }
