@@ -100,3 +100,31 @@
       transparent 100%
     );
 }
+
+/* Custom Animations */
+@theme inline {
+  --animate-bg-enter: bg-enter 0.8s cubic-bezier(0.33, 1, 0.68, 1) both;
+  --animate-map-enter: map-enter 0.4s ease-out 0.1s both;
+}
+
+@keyframes bg-enter {
+  0% {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes map-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

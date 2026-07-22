@@ -33,8 +33,8 @@ export function SkillsClient() {
       isBackActive={false}
       onBackClick={() => router.push("/")}
       controls={[
-        { key: "Q / E", action: "Category" },
         { key: "W / A / S / D & ▲ / ◀ / ▼ / ▶", action: "Navigate" },
+        { key: "Q / E", action: "Category" },
         { key: "ESC", action: "Back" },
       ]}
     >

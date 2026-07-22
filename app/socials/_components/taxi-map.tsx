@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "motion/react";
+
 import { socialsData, socialsMap } from "@/data/socials";
 
 export function TaxiMap({
@@ -14,12 +14,7 @@ export function TaxiMap({
   onClickAction: (idx: number) => void;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
-      className="relative flex h-full w-full items-center justify-center overflow-hidden p-4 md:p-12"
-    >
+    <div className="relative flex h-full w-full animate-map-enter items-center justify-center overflow-hidden p-4 md:p-12">
       {/* Main Map Container */}
       <div className="relative z-10 flex h-full w-full max-w-6xl items-center justify-center">
         {/* Render Map in SVG */}
@@ -117,7 +112,6 @@ export function TaxiMap({
                     src={social.icon}
                     alt={social.name}
                     fill={true}
-                    priority={true}
                     sizes="(max-width: 768px) 64px, 80px"
                     className="object-contain"
                   />
@@ -143,6 +137,6 @@ export function TaxiMap({
           })}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
