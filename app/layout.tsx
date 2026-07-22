@@ -8,13 +8,13 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 
 const edoSz = localFont({
-  src: "../../public/fonts/edosz.woff2",
+  src: "../public/fonts/edosz.woff2",
   variable: "--font-edo-sz",
   display: "swap",
 });
 
 const linuxBiolinum = localFont({
-  src: "../../public/fonts/linux-biolinum.woff2",
+  src: "../public/fonts/linux-biolinum.woff2",
   variable: "--font-linux-biolinum",
   display: "swap",
 });
