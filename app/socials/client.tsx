@@ -20,7 +20,7 @@ export function SocialsClient() {
       if (index === socialsData.length) {
         router.push("/");
       } else {
-        window.open(socialsData[index].url, "_blank");
+        window.open(socialsData[index].url, "_blank", "noopener,noreferrer");
       }
     },
   });
@@ -39,7 +39,7 @@ export function SocialsClient() {
     if (activeIndexRef.current !== idx) {
       setActiveIndex(idx);
     } else {
-      window.open(url, "_blank");
+      window.open(url, "_blank", "noopener,noreferrer");
     }
   };
 
@@ -80,7 +80,7 @@ export function SocialsClient() {
 
   const handleMapClick = (idx: number) => {
     setActiveIndex(idx);
-    window.open(socialsData[idx].url, "_blank");
+    window.open(socialsData[idx].url, "_blank", "noopener,noreferrer");
   };
 
   return (
