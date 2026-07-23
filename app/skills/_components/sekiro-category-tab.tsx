@@ -26,13 +26,13 @@ export const SekiroCategoryTab = memo(function SekiroCategoryTab({
       }`}
       style={{
         backgroundColor: isActive
-          ? "color-mix(in srgb, var(--sekiro-orange) 15%, transparent)"
-          : "var(--sekiro-bg-dark)",
+          ? "color-mix(in srgb, #d95c14 15%, transparent)"
+          : "#161616",
         borderColor: isActive
-          ? "var(--sekiro-orange)"
-          : "var(--sekiro-border-dark)",
+          ? "#d95c14"
+          : "#3a3a3a",
         boxShadow: isActive
-          ? `0 0 12px color-mix(in srgb, var(--sekiro-orange) 80%, transparent), inset 0 0 15px color-mix(in srgb, var(--sekiro-orange) 50%, transparent)`
+          ? `0 0 12px color-mix(in srgb, #d95c14 80%, transparent), inset 0 0 15px color-mix(in srgb, #d95c14 50%, transparent)`
           : undefined,
         filter: "url('#sekiro-ink-bleed')",
       }}

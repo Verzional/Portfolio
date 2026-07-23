@@ -17,9 +17,9 @@ export function SidebarPortal({ children }: { children: React.ReactNode }) {
         raf = requestAnimationFrame(checkTarget);
       }
     };
-    
+
     checkTarget();
-    
+
     return () => {
       if (raf) cancelAnimationFrame(raf);
     };

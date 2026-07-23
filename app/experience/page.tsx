@@ -14,8 +14,8 @@ export default function Experience() {
   });
 
   const sidebarContent = (
-    <SubMenu 
-      title="EXP" 
+    <SubMenu
+      title="EXP"
       isBackActive={true}
       onBackClick={() => router.push("/")}
     >
@@ -30,7 +30,7 @@ export default function Experience() {
       <SidebarPortal>
         {sidebarContent}
       </SidebarPortal>
-        
+
       <div className="text-foreground font-edo-sz text-4xl">Experience Section</div>
     </>
   );
