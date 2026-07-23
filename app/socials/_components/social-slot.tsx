@@ -1,4 +1,4 @@
-import { useEffect, useRef, memo } from "react";
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface SocialSlotProps {
@@ -11,7 +11,7 @@ interface SocialSlotProps {
   url: string;
 }
 
-export const SocialSlot = memo(function SocialSlot({
+export function SocialSlot({
   isActive,
   onClickAction,
   onHoverAction,
@@ -64,4 +64,4 @@ export const SocialSlot = memo(function SocialSlot({
       </AnimatePresence>
     </div>
   );
-});
+}

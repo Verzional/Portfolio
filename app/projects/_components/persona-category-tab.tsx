@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { LucideIcon } from "lucide-react";
 
 interface PersonaCategoryTabProps {
@@ -9,7 +8,7 @@ interface PersonaCategoryTabProps {
   icon: LucideIcon;
 }
 
-export const PersonaCategoryTab = memo(function PersonaCategoryTab({
+export function PersonaCategoryTab({
   isActive,
   onClick,
   label,
@@ -37,4 +36,4 @@ export const PersonaCategoryTab = memo(function PersonaCategoryTab({
       </div>
     </button>
   );
-});
+}

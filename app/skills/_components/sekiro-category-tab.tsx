@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { LucideIcon } from "lucide-react";
 
 interface SekiroCategoryTabProps {
@@ -10,7 +9,7 @@ interface SekiroCategoryTabProps {
   icon: LucideIcon;
 }
 
-export const SekiroCategoryTab = memo(function SekiroCategoryTab({
+export function SekiroCategoryTab({
   isActive,
   onClick,
   label,
@@ -43,4 +42,4 @@ export const SekiroCategoryTab = memo(function SekiroCategoryTab({
       />
     </button>
   );
-});
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { useValidIndex } from "@/hooks/use-valid-index";
 import { socialsData } from "@/data/socials";
@@ -35,23 +35,17 @@ export function SocialsClient() {
     activeIndexRef.current = activeIndex;
   }, [activeIndex]);
 
-  const handleSlotClick = useCallback(
-    (idx: number, url: string) => {
-      if (activeIndexRef.current !== idx) {
-        setActiveIndex(idx);
-      } else {
-        window.open(url, "_blank");
-      }
-    },
-    [setActiveIndex],
-  );
-
-  const handleSlotHover = useCallback(
-    (idx: number) => {
+  const handleSlotClick = (idx: number, url: string) => {
+    if (activeIndexRef.current !== idx) {
       setActiveIndex(idx);
-    },
-    [setActiveIndex],
-  );
+    } else {
+      window.open(url, "_blank");
+    }
+  };
+
+  const handleSlotHover = (idx: number) => {
+    setActiveIndex(idx);
+  };
 
   // Sidebar Content
   const sidebarContent = (

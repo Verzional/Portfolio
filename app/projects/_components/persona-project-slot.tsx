@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, memo } from "react";
+import { useEffect, useRef } from "react";
 
 interface PersonaProjectSlotProps {
   isActive: boolean;
@@ -9,7 +9,7 @@ interface PersonaProjectSlotProps {
   index: number;
 }
 
-export const PersonaProjectSlot = memo(function PersonaProjectSlot({
+export function PersonaProjectSlot({
   isActive,
   title,
   onClick,
@@ -54,4 +54,4 @@ export const PersonaProjectSlot = memo(function PersonaProjectSlot({
       </div>
     </button>
   );
-});
+}

@@ -16,7 +16,6 @@ export function SekiroSkillTree({
   activeNodeId,
   onActiveNodeChange,
 }: SekiroSkillTreeProps) {
-  // Memoize Nodes To Prevent Unnecessary Renders
   const nodes = useMemo(() => activeStyle.skills || [], [activeStyle.skills]);
 
   // Derive Active Node

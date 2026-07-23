@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { menuItems } from "@/data/navigation";
 import { ControlLegend } from "@/components/control-legend";
@@ -21,13 +21,10 @@ export function Sidebar({ previousPath }: { previousPath?: string | null }) {
   const { activeIndex, setActiveIndex } = useMenu({
     itemCount: menuItems.length,
     initialIndex: getInitialIndex(),
-    onSelect: useCallback(
-      (index: number) => {
-        const route = menuItems[index].href;
-        router.push(route);
-      },
-      [router],
-    ),
+    onSelect: (index: number) => {
+      const route = menuItems[index].href;
+      router.push(route);
+    },
   });
 
   // Prefetch Active Menu Item Route and Dispatch Custom Event for Preview

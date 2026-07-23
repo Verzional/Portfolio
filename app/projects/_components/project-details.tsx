@@ -169,6 +169,7 @@ export function ProjectDetails({
                   alt={`${project.title} screenshot ${imageIndex + 1}`}
                   fill={true}
                   priority={true}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-500"
                 />
               </motion.div>

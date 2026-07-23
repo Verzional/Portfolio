@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useMemo, useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { useValidIndex } from "@/hooks/use-valid-index";
 import { useCategories } from "@/hooks/use-categories";
@@ -18,11 +18,9 @@ export function ProjectsClient() {
     useCategories(projectCategories);
 
   // Filter Projects Based on Active Category
-  const filteredProjects = useMemo(() => {
-    return projectsData.filter(
-      (p) => activeCategory === "ALL" || p.categories.includes(activeCategory),
-    );
-  }, [activeCategory]);
+  const filteredProjects = projectsData.filter(
+    (p) => activeCategory === "ALL" || p.categories.includes(activeCategory),
+  );
 
   // Handle Menu Navigation and Selection
   const { activeIndex, setActiveIndex } = useMenu({
@@ -38,12 +36,9 @@ export function ProjectsClient() {
     setActiveIndex(0);
   }, [activeCategory, setActiveIndex]);
 
-  const handleProjectClick = useCallback(
-    (idx: number) => {
-      setActiveIndex(idx);
-    },
-    [setActiveIndex],
-  );
+  const handleProjectClick = (idx: number) => {
+    setActiveIndex(idx);
+  };
 
   const displayIndex = useValidIndex(activeIndex, filteredProjects.length);
 
