@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
+import { preload } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { Sidebar as HomeMenu } from "@/components/sidebar";
 
@@ -39,6 +40,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     "/experience": "/images/backgrounds/BG-Saejima.webp",
     "/socials": "/images/backgrounds/BG-Ichiban.webp",
   };
+
+  // Aggressively Preload Home Page Backgrounds
+  if (isHome) {
+    Object.values(homeHoverBgMap).forEach((bg) => {
+      preload(bg, { as: "image" });
+    });
+  }
 
   // Non-Home Page Backgrounds
   const pageBgMap: Record<string, string> = {
@@ -92,6 +100,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               alt="Theme Background"
               fill={true}
               priority={true}
+              sizes="100vw"
+              quality={90}
               className={`object-cover object-[90%_center] md:object-center ${activeOpacity}`}
             />
           </motion.div>
