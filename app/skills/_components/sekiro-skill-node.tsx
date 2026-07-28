@@ -14,16 +14,16 @@ interface SekiroSkillNodeProps {
 export function SekiroSkillNode({
   node,
   isActive,
-  inkColor = "blue",
+  // inkColor = "blue",
   onClick,
   onHover,
 }: SekiroSkillNodeProps) {
-  const inkPalettes = {
-    blue: { dark: "#2B3A52", mid: "#4A607A", light: "#768CA3" },
-    red: { dark: "#4A2018", mid: "#7A352A", light: "#A35C52" },
-    brown: { dark: "#403020", mid: "#705A45", light: "#9A8068" },
-  };
-  const palette = inkPalettes[inkColor];
+  // const inkPalettes = {
+  //   blue: { dark: "#2B3A52", mid: "#4A607A", light: "#768CA3" },
+  //   red: { dark: "#4A2018", mid: "#7A352A", light: "#A35C52" },
+  //   brown: { dark: "#403020", mid: "#705A45", light: "#9A8068" },
+  // };
+  // const palette = inkPalettes[inkColor];
 
   const octagonPoints =
     "29% 0%, 71% 0%, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0% 71%, 0% 29%";
@@ -41,7 +41,7 @@ export function SekiroSkillNode({
       }}
     >
       {/* Render Outer Ink Ring Mask */}
-      {!isActive && (
+      {/*{!isActive && (
         <div
           className="pointer-events-none absolute -inset-6 opacity-90 mix-blend-multiply"
           style={{
@@ -57,7 +57,7 @@ export function SekiroSkillNode({
             WebkitMaskRepeat: "no-repeat",
           }}
         />
-      )}
+      )}*/}
 
       {/* Render Inner Parchment Octagon */}
       <div

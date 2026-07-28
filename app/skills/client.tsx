@@ -58,9 +58,9 @@ export function SkillsClient() {
         <div className="flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto px-4 pb-8 md:px-8">
           {activeNode && (
             <div className="flex flex-col gap-2">
-              <h4 className="font-edo-sz text-xl tracking-wider text-foreground md:text-2xl">
+              <p className="font-edo-sz text-xl tracking-wider text-foreground md:text-2xl">
                 {activeNode.name}
-              </h4>
+              </p>
               <p className="mt-2 font-lato text-sm text-muted md:text-base">
                 {activeNode.description}
               </p>

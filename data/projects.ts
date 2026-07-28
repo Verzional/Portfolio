@@ -57,8 +57,8 @@ export const projectsData = [
     title: "Count Downcula",
     categories: ["GAMES"],
     images: [
-      "images/projects/count-downcula-1.jpg",
-      "images/projects/count-downcula-2.jpg",
+      "/images/projects/count-downcula-1.jpg",
+      "/images/projects/count-downcula-2.jpg",
     ],
     desc: "A fast-paced 1v1 rogue-lite arena fighter featuring procedural challenge, precision parries, and high-stakes duels.",
     techStack: ["Unity"],
