@@ -66,7 +66,7 @@ export function ProjectsClient() {
     >
       <div className="flex min-h-0 w-full flex-1 flex-col">
         {/* Category Tabs */}
-        <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-start gap-4 overflow-x-auto px-4 pt-2 pb-4 [-ms-overflow-style:none] md:justify-center md:gap-3 [&::-webkit-scrollbar]:hidden">
+        <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-start gap-3 overflow-x-auto px-4 pt-2 pb-4 [-ms-overflow-style:none] md:ml-3 [&::-webkit-scrollbar]:hidden">
           {projectCategories.map((cat) => (
             <PersonaCategoryTab
               key={cat.id}
