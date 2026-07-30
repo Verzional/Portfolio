@@ -1,4 +1,4 @@
-import { Code, Database, Server, Terminal, LucideIcon } from "lucide-react";
+import { Code, Database, Server, CodeXml, LucideIcon } from "lucide-react";
 
 export type SkillCategory =
   "Core" | "Data & ORM" | "Infrastructure & DevOps" | "Secondary";
@@ -360,7 +360,7 @@ export const skillsData: SkillStyle[] = [
     title: "Core",
     subtitle: "SHINOBI ARTS",
     themeColor: "var(--color-primary)",
-    icon: Code,
+    icon: CodeXml,
     skills: coreSkills(),
   },
   {
@@ -384,7 +384,7 @@ export const skillsData: SkillStyle[] = [
     title: "Secondary",
     subtitle: "TEMPLE ARTS",
     themeColor: "var(--color-primary)",
-    icon: Terminal,
+    icon: Code,
     skills: secondarySkills(),
   },
 ];
