@@ -21,6 +21,13 @@ export function ExperienceClient() {
     (exp) => activeCategory === "ALL" || exp.type === activeCategory,
   );
 
+  const hasActiveTales = filteredExperience.some(
+    (exp) => exp.status === "IN PROGRESS",
+  );
+  const hasCompletedTales = filteredExperience.some(
+    (exp) => exp.status === "CLEARED",
+  );
+
   // Handle Menu Navigation and Selection
   const { activeIndex, setActiveIndex } = useMenu({
     itemCount: filteredExperience.length + 1,
@@ -63,7 +70,7 @@ export function ExperienceClient() {
     >
       <div className="flex min-h-0 w-full flex-1 scrollbar-none flex-col overflow-x-hidden overflow-y-auto pb-6">
         {/* Category Tabs */}
-        <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-start gap-4 overflow-x-auto px-4 pt-3 pb-5 [-ms-overflow-style:none] md:ml-3 md:gap-8 [&::-webkit-scrollbar]:hidden">
+        <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-start gap-4 overflow-x-auto px-4 pt-3 pb-8 [-ms-overflow-style:none] md:ml-3 md:gap-8 [&::-webkit-scrollbar]:hidden">
           {experienceCategories.map((cat) => (
             <TsushimaCategoryTab
               key={cat.id}
@@ -77,46 +84,54 @@ export function ExperienceClient() {
         </div>
 
         {/* Active Tales Section */}
-        <div className="mb-2 pl-6 font-lato text-xs tracking-widest text-muted md:text-sm">
-          ACTIVE TALES
-        </div>
-        <div className="mb-6 flex flex-col gap-1 px-2">
-          {filteredExperience.map((exp, idx) => {
-            if (exp.status !== "IN PROGRESS") return null;
-            return (
-              <TsushimaTaleSlot
-                key={exp.id}
-                index={idx}
-                isActive={activeIndex === idx}
-                company={exp.company}
-                role={exp.role}
-                status={exp.status}
-                onClick={handleSlotClick}
-              />
-            );
-          })}
-        </div>
+        {hasActiveTales && (
+          <>
+            <div className="mb-2 pl-6 font-lato text-xs tracking-widest text-muted md:text-sm">
+              ACTIVE TALES
+            </div>
+            <div className="mb-6 flex flex-col gap-1 px-2">
+              {filteredExperience.map((exp, idx) => {
+                if (exp.status !== "IN PROGRESS") return null;
+                return (
+                  <TsushimaTaleSlot
+                    key={exp.id}
+                    index={idx}
+                    isActive={activeIndex === idx}
+                    company={exp.company}
+                    role={exp.role}
+                    status={exp.status}
+                    onClick={handleSlotClick}
+                  />
+                );
+              })}
+            </div>
+          </>
+        )}
 
         {/* Completed Tales Section */}
-        <div className="mb-2 pl-6 font-lato text-xs tracking-widest text-muted md:text-sm">
-          COMPLETED TALES
-        </div>
-        <div className="flex flex-col gap-1 px-2">
-          {filteredExperience.map((exp, idx) => {
-            if (exp.status !== "CLEARED") return null;
-            return (
-              <TsushimaTaleSlot
-                key={exp.id}
-                index={idx}
-                isActive={activeIndex === idx}
-                company={exp.company}
-                role={exp.role}
-                status={exp.status}
-                onClick={handleSlotClick}
-              />
-            );
-          })}
-        </div>
+        {hasCompletedTales && (
+          <>
+            <div className="mb-2 pl-6 font-lato text-xs tracking-widest text-muted md:text-sm">
+              COMPLETED TALES
+            </div>
+            <div className="flex flex-col gap-1 px-2">
+              {filteredExperience.map((exp, idx) => {
+                if (exp.status !== "CLEARED") return null;
+                return (
+                  <TsushimaTaleSlot
+                    key={exp.id}
+                    index={idx}
+                    isActive={activeIndex === idx}
+                    company={exp.company}
+                    role={exp.role}
+                    status={exp.status}
+                    onClick={handleSlotClick}
+                  />
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
     </SubMenu>
   );
