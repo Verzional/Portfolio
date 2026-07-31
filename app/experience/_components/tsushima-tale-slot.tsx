@@ -51,18 +51,16 @@ export function TsushimaTaleSlot({
       <div className="flex min-w-0 flex-col">
         <span
           className={cn(
-            "truncate font-lato text-sm tracking-widest uppercase md:text-base md:font-medium",
-            isActive ? "text-white" : "text-gray-300 group-hover:text-white",
+            "font-lato text-sm tracking-widest uppercase md:text-base md:font-medium",
+            isActive ? "text-white" : "text-gray-300 group-hover:text-white"
           )}
         >
           {company}
         </span>
         <span
           className={cn(
-            "truncate font-lato text-xs tracking-wider md:text-sm",
-            isActive
-              ? "text-white/80"
-              : "text-gray-500 group-hover:text-gray-400",
+            "mt-0.5 font-lato text-xs tracking-wider md:text-sm",
+            isActive ? "text-white/80" : "text-gray-500 group-hover:text-gray-400"
           )}
         >
           {role}

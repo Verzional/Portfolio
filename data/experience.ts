@@ -1,3 +1,5 @@
+import { BookOpen, Flag, Scroll } from "lucide-react";
+
 export type ExperienceType = "MAIN QUEST" | "SUB-STORY";
 export type ExperienceStatus = "CLEARED" | "IN PROGRESS";
 
@@ -11,6 +13,12 @@ export interface ExperienceData {
   objectives: string[];
   rewards: string[];
 }
+
+export const experienceCategories = [
+  { id: "ALL", label: "ALL TALES", icon: BookOpen },
+  { id: "MAIN QUEST", label: "MAIN QUESTS", icon: Flag },
+  { id: "SUB-STORY", label: "SUB-STORIES", icon: Scroll },
+];
 
 export const experienceData: ExperienceData[] = [
   {
