@@ -99,7 +99,6 @@ export function ExperienceClient() {
                     isActive={activeIndex === idx}
                     company={exp.company}
                     role={exp.role}
-                    status={exp.status}
                     onClick={handleSlotClick}
                   />
                 );
@@ -124,7 +123,6 @@ export function ExperienceClient() {
                     isActive={activeIndex === idx}
                     company={exp.company}
                     role={exp.role}
-                    status={exp.status}
                     onClick={handleSlotClick}
                   />
                 );

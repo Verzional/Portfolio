@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface TsushimaTaleSlotProps {
@@ -6,7 +7,6 @@ interface TsushimaTaleSlotProps {
   isActive: boolean;
   company: string;
   role: string;
-  status: string;
   onClick: (index: number) => void;
 }
 
@@ -15,11 +15,22 @@ export function TsushimaTaleSlot({
   isActive,
   company,
   role,
-  status,
   onClick,
 }: TsushimaTaleSlotProps) {
+  const ref = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (isActive && ref.current) {
+      ref.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [isActive]);
+
   return (
     <motion.button
+      ref={ref}
       onClick={() => onClick(index)}
       className={cn(
         "group relative flex w-full items-center py-3 pr-4 pl-2 text-left transition-colors md:py-4 md:pl-4",
@@ -52,7 +63,7 @@ export function TsushimaTaleSlot({
         <span
           className={cn(
             "font-lato text-sm tracking-widest uppercase md:text-base md:font-medium",
-            isActive ? "text-white" : "text-gray-300 group-hover:text-white"
+            isActive ? "text-white" : "text-gray-300 group-hover:text-white",
           )}
         >
           {company}
@@ -60,7 +71,9 @@ export function TsushimaTaleSlot({
         <span
           className={cn(
             "mt-0.5 font-lato text-xs tracking-wider md:text-sm",
-            isActive ? "text-white/80" : "text-gray-500 group-hover:text-gray-400"
+            isActive
+              ? "text-white/80"
+              : "text-gray-500 group-hover:text-gray-400",
           )}
         >
           {role}

@@ -80,7 +80,7 @@ export const projectsData = [
   },
   {
     id: "5",
-    title: "IMT SU Official Website",
+    title: "IMT SU Hub",
     categories: ["WEB"],
     images: ["/images/projects/imt-su-1.jpg", "/images/projects/imt-su-2.jpg"],
     desc: "The official central web platform for IMT's Student Union, managing the major's achievements, event schedules, and social activities.",
