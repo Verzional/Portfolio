@@ -27,7 +27,12 @@ This document provides instructions, context, and strict guardrails for any AI a
 - **Do no harm:** Never blindly delete code without understanding its dependencies.
 - **No placeholder code:** Do not output `// ... existing code ...` or `TODO: implement` unless explicitly asked to provide a high-level skeleton. Provide complete, functional snippets.
 - **Keep it DRY:** Before writing new utility functions, search the existing `lib` or `hooks` directories to see if an equivalent already exists.
-- **Implement best practices:** Follow the latest best practices for React, TypeScript, and Next.js. Avoid deprecated patterns.
+- **Implement best practices:** Follow the latest best practices for React, TypeScript, and Next.js.
+  - **React 19 Compiler:** The project uses `reactCompiler: true`. Do NOT write manual `React.memo`, `useMemo`, or `useCallback` unless strictly required to satisfy an ESLint dependency warning.
+  - **React Hooks:** Do NOT use `useEffect` to sync state or props to `useRef` just to bypass dependency arrays. Pass dependencies properly.
+  - **SEO Metadata:** Always explicitly export `metadata` with a `title` on Server Component `page.tsx` sub-routes to leverage the layout's `title.template`.
+  - **Next/Image:** Any `<Image fill={true} />` inside a responsive container MUST have a `sizes` attribute (e.g., `sizes="(max-width: 768px) 100vw, 50vw"`).
+  - **Security:** Always append `"noopener,noreferrer"` when using `window.open(..., "_blank")`.
 
 ### 2. Architecture & File Structure
 
@@ -46,7 +51,7 @@ Ensure all generated files are placed in the correct directories according to th
   - Classes/Types/Interfaces: `PascalCase`
   - Files: `kebab-case`
 - **Icons:** Use `lucide-react` for all icons.
-- **Linting & Purity:** Code must strictly adhere to the project's `.eslint.config.mjs` configuration. Always run `pnpm lint && pnpm tsc --noEmit` to verify build safety before concluding tasks. Watch out for Next.js strict mode rules (e.g., avoid synchronous state updates in `useEffect`). NEVER use impure functions like `Math.random()` inside the render body of a component; generate random static data outside the component or within stable hooks to avoid hydration mismatches.
+- **Linting & Purity:** Code must strictly adhere to the project's `.eslint.config.mjs` configuration. Always run `pnpm lint && pnpm tsc --noEmit` to verify build safety before concluding tasks. **NEVER use `// eslint-disable` comments.** You must natively satisfy the linter. Watch out for Next.js strict mode rules. NEVER use impure functions like `Math.random()` inside the render body of a component.
 - **Comments:** Inline comments dividing logic blocks must use strict Title Case headers without punctuation or excessive description (e.g., `// Track Active Skill Node`, `// Render Inner Parchment`). Avoid conversational or lowercase filler descriptions. Explain _why_ a complex block of code exists, not _what_ the syntax does.
 - **Styling (CSS Variables):**
   - All coloring must use the variables defined in `app/globals.css`. Avoid hardcoding colors.

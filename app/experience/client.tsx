@@ -48,17 +48,47 @@ export function ExperienceClient() {
       ]}
     >
       <div className="flex min-h-0 w-full flex-1 scrollbar-none flex-col overflow-x-hidden overflow-y-auto px-2 pt-4 pb-6">
-        {experienceData.map((exp, idx) => (
-          <TsushimaTaleSlot
-            key={exp.id}
-            index={idx}
-            isActive={activeIndex === idx}
-            company={exp.company}
-            role={exp.role}
-            status={exp.status}
-            onClick={handleSlotClick}
-          />
-        ))}
+        {/* Active Tales Section */}
+        <div className="mb-2 pl-4 font-lato text-xs tracking-widest text-muted md:text-sm">
+          ACTIVE TALES
+        </div>
+        <div className="mb-6 flex flex-col gap-1">
+          {experienceData.map((exp, idx) => {
+            if (exp.status !== "IN PROGRESS") return null;
+            return (
+              <TsushimaTaleSlot
+                key={exp.id}
+                index={idx}
+                isActive={activeIndex === idx}
+                company={exp.company}
+                role={exp.role}
+                status={exp.status}
+                onClick={handleSlotClick}
+              />
+            );
+          })}
+        </div>
+
+        {/* Completed Tales Section */}
+        <div className="mb-2 pl-4 font-lato text-xs tracking-widest text-muted md:text-sm">
+          COMPLETED TALES
+        </div>
+        <div className="flex flex-col gap-1">
+          {experienceData.map((exp, idx) => {
+            if (exp.status !== "CLEARED") return null;
+            return (
+              <TsushimaTaleSlot
+                key={exp.id}
+                index={idx}
+                isActive={activeIndex === idx}
+                company={exp.company}
+                role={exp.role}
+                status={exp.status}
+                onClick={handleSlotClick}
+              />
+            );
+          })}
+        </div>
       </div>
     </SubMenu>
   );
