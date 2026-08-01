@@ -109,7 +109,7 @@ export function TaxiMap({
                 <div
                   className={`relative mb-3 transition-all duration-500 ${
                     isActive
-                      ? "h-8 w-8 scale-110 opacity-100 drop-shadow-[0_0_15px_var(--color-primary)] md:h-20 md:w-20"
+                      ? "h-6 w-6 scale-130 opacity-100 drop-shadow-[0_0_15px_var(--color-primary)] md:h-20 md:w-20"
                       : "h-6 w-6 scale-100 opacity-40 grayscale md:h-16 md:w-16"
                   }`}
                 >
@@ -125,7 +125,7 @@ export function TaxiMap({
 
                 {/* District Name */}
                 <span
-                  className={`text-center font-edo-sz text-sm leading-tight tracking-widest transition-all duration-500 md:text-2xl ${
+                  className={`text-center font-edo-sz text-xs leading-tight tracking-widest transition-all duration-500 md:text-2xl ${
                     isActive
                       ? "text-foreground drop-shadow-[2px_2px_0_var(--color-primary)]"
                       : "text-muted"
