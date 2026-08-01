@@ -70,7 +70,7 @@ export function ExperienceClient() {
       ]}
     >
       <div className="flex min-h-0 w-full flex-1 scrollbar-none flex-col overflow-x-hidden overflow-y-auto pb-6">
-        {/* Category Tabs */}
+        {/* Filter By Category */}
         <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-start gap-4 overflow-x-auto px-4 pt-3 pb-8 [-ms-overflow-style:none] md:ml-3 md:gap-8 [&::-webkit-scrollbar]:hidden">
           {experienceCategories.map((cat) => (
             <TsushimaCategoryTab
@@ -84,7 +84,7 @@ export function ExperienceClient() {
           ))}
         </div>
 
-        {/* Active Tales Section */}
+        {/* Group Active Progress */}
         {hasActiveTales && (
           <div className="mb-8 flex flex-col pl-4 md:pl-6">
             <div className="mb-2 pl-1 font-lato text-xs font-bold tracking-[0.15em] text-white/70 md:text-sm">
@@ -108,7 +108,7 @@ export function ExperienceClient() {
           </div>
         )}
 
-        {/* Completed Tales Section */}
+        {/* Group Completed Progress */}
         {hasCompletedTales && (
           <div className="mb-8 flex flex-col pl-4 md:pl-6">
             <div className="mb-2 pl-1 font-lato text-xs font-bold tracking-[0.15em] text-white/70 md:text-sm">
@@ -139,7 +139,7 @@ export function ExperienceClient() {
     <>
       <SidebarPortal>{sidebarContent}</SidebarPortal>
 
-      {/* Main View Area Placeholder */}
+      {/* Render Selected Detail */}
       <div className="relative z-10 flex h-full w-full items-center justify-start md:bg-transparent">
         {activeExperience ? (
           <TaleDetails experience={activeExperience} />

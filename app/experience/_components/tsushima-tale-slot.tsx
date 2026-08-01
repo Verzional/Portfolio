@@ -41,10 +41,10 @@ export function TsushimaTaleSlot({
       whileHover={!isActive ? { x: 3 } : {}}
       whileTap={{ scale: 0.98 }}
     >
-      {/* Absolute Expanding Background for Active State */}
+      {/* Indicate Active Selection */}
       {isActive && (
         <motion.div
-          className="absolute -bottom-[5px] -left-[3px] -right-8 -top-[5px] -z-10 bg-[#c1272d] shadow-lg md:-right-12"
+          className="absolute -bottom-1.25 -left-0.75 -right-8 -top-1.25 -z-10 bg-[#c1272d] shadow-lg md:-right-12"
           initial={{ scaleX: 1.05, scaleY: 1.1, opacity: 0 }}
           animate={{ scaleX: 1, scaleY: 1, opacity: 1 }}
           transition={{
@@ -55,7 +55,7 @@ export function TsushimaTaleSlot({
           }}
         />
       )}
-      {/* Diamond Icon */}
+      {/* Render Visual Bullet */}
       <div className="flex shrink-0 items-center justify-center pr-5 md:pr-6">
         <div
           className={cn(
@@ -72,7 +72,7 @@ export function TsushimaTaleSlot({
         </div>
       </div>
 
-      {/* Tale Info */}
+      {/* Display Tale Metadata */}
       <div className="flex min-w-0 flex-col pr-2">
         <span
           className={cn(

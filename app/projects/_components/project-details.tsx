@@ -100,7 +100,13 @@ export function ProjectDetails({
   // Mobile App Layout Adjustments
   const isMobileApp = project.categories.includes("MOBILE");
 
-  const containerLayout = isMobileApp ? "flex-col xl:flex-row" : "flex-col";
+  const containerLayout = isMobileApp
+    ? "flex-col xl:flex-row"
+    : "flex-col items-center";
+
+  const containerGap = isMobileApp
+    ? "gap-4 md:gap-8 xl:gap-12"
+    : "gap-2 md:gap-3 xl:gap-4";
 
   const imageContainerSize = isMobileApp
     ? "w-full xl:w-1/3 aspect-[9/16] xl:aspect-auto xl:h-full"
@@ -121,7 +127,7 @@ export function ProjectDetails({
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
       }}
-      className={`flex h-full w-full ${containerLayout} scrollbar-none justify-start gap-4 overflow-x-hidden overflow-y-auto p-4 md:justify-center md:gap-8 md:p-8 xl:gap-12`}
+      className={`flex h-full w-full ${containerLayout} ${containerGap} scrollbar-none justify-start overflow-x-hidden overflow-y-auto p-4 md:justify-center md:p-8`}
     >
       {/* Image Panel */}
       <motion.div
@@ -176,6 +182,9 @@ export function ProjectDetails({
             )}
           </AnimatePresence>
 
+          {/* Dark Gradient Overlay for the bottom of the image */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-linear-to-t from-background to-transparent" />
+
           {/* Carousel Indicators */}
           {project.images && project.images.length > 1 && (
             <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
@@ -188,6 +197,55 @@ export function ProjectDetails({
               ))}
             </div>
           )}
+
+          {/* Overlay Content (Title & Description) - Desktop Only */}
+          <div className="absolute right-4 bottom-6 left-4 z-30 hidden max-w-4xl flex-col items-start gap-2 md:right-8 md:bottom-10 md:left-8 md:flex xl:right-12 xl:bottom-12 xl:left-12">
+            {/* Title */}
+            <motion.h1
+              variants={{
+                hidden: { opacity: 0, scale: 1.5, rotate: -15 },
+                visible: {
+                  opacity: 1,
+                  scale: 1,
+                  rotate: -2,
+                  transition: { type: "spring", stiffness: 400, damping: 15 },
+                },
+              }}
+              className="z-10 origin-left font-linux-biolinum text-3xl leading-none text-foreground uppercase drop-shadow-[0.5px_0.5px_0_#d4030d] [-webkit-text-stroke:0.5px_currentColor] [text-shadow:0_4px_30px_rgba(0,0,0,1)] [text-stroke:0.5px_currentColor] md:text-4xl md:drop-shadow-[3px_3px_0_#d4030d] xl:mb-2 xl:text-7xl xl:drop-shadow-[4px_4px_0_#d4030d]"
+            >
+              {project.title}
+            </motion.h1>
+
+            {/* Description Block */}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, x: -50 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { type: "spring", stiffness: 300, damping: 20 },
+                },
+              }}
+              className="relative -rotate-1 border-l-4 border-primary bg-background/95 p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)] backdrop-blur-sm md:p-5 md:shadow-[5px_5px_0_rgba(255,255,255,0.2)] xl:p-6 xl:shadow-[6px_6px_0_rgba(255,255,255,0.2)]"
+            >
+              <p className="font-linux-biolinum text-sm leading-relaxed tracking-wider [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-base xl:text-lg">
+                {project.desc}
+              </p>
+            </motion.div>
+
+            {/* Tech Stack */}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
+              }}
+              className="mt-1 flex flex-wrap gap-2 md:mt-4"
+            >
+              {project.techStack.map((tech) => (
+                <PersonaSkillTag key={tech} label={tech} />
+              ))}
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* Decorative Text */}
@@ -198,53 +256,56 @@ export function ProjectDetails({
 
       {/* Details Panel */}
       <div
-        className={`relative ${detailsContainerSize} z-10 flex flex-col justify-center pt-4 xl:pt-0`}
+        className={`relative ${detailsContainerSize} z-10 flex flex-col justify-start`}
       >
-        {/* Title */}
-        <motion.h1
-          variants={{
-            hidden: { opacity: 0, scale: 1.5, rotate: -15 },
-            visible: {
-              opacity: 1,
-              scale: 1,
-              rotate: -2,
-              transition: { type: "spring", stiffness: 400, damping: 15 },
-            },
-          }}
-          className="relative z-20 origin-left font-linux-biolinum text-3xl leading-tight text-foreground uppercase drop-shadow-[0.5px_0.5px_0_#d4030d] [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-4xl md:drop-shadow-[3px_3px_0_#d4030d] xl:text-7xl xl:drop-shadow-[4px_4px_0_#d4030d]"
-        >
-          {project.title}
-        </motion.h1>
+        {/* Mobile Normal Layout (Title, Description, Tech Stack) */}
+        <div className="mb-6 flex flex-col items-start md:hidden">
+          {/* Title */}
+          <motion.h1
+            variants={{
+              hidden: { opacity: 0, scale: 1.5, rotate: -15 },
+              visible: {
+                opacity: 1,
+                scale: 1,
+                rotate: -2,
+                transition: { type: "spring", stiffness: 400, damping: 15 },
+              },
+            }}
+            className="relative z-20 origin-left font-linux-biolinum text-3xl leading-tight text-foreground uppercase drop-shadow-[0.5px_0.5px_0_#d4030d] [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor]"
+          >
+            {project.title}
+          </motion.h1>
 
-        {/* Description Block */}
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, x: -50 },
-            visible: {
-              opacity: 1,
-              x: 0,
-              transition: { type: "spring", stiffness: 300, damping: 20 },
-            },
-          }}
-          className="relative z-10 mt-4 -rotate-1 border-l-4 border-primary bg-background p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)] md:mt-5 md:p-5 md:shadow-[5px_5px_0_rgba(255,255,255,0.2)] xl:mt-6 xl:p-6 xl:shadow-[6px_6px_0_rgba(255,255,255,0.2)]"
-        >
-          <p className="font-linux-biolinum text-sm leading-relaxed tracking-wider [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-base xl:text-lg">
-            {project.desc}
-          </p>
-        </motion.div>
+          {/* Description Block */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, x: -50 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: { type: "spring", stiffness: 300, damping: 20 },
+              },
+            }}
+            className="relative z-10 mt-4 -rotate-1 border-l-4 border-primary bg-background p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)]"
+          >
+            <p className="font-linux-biolinum text-sm leading-relaxed tracking-wider [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor]">
+              {project.desc}
+            </p>
+          </motion.div>
 
-        {/* Tech Stack */}
-        <motion.div
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
-          }}
-          className="mt-8 flex flex-wrap gap-3"
-        >
-          {project.techStack.map((tech) => (
-            <PersonaSkillTag key={tech} label={tech} />
-          ))}
-        </motion.div>
+          {/* Tech Stack */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
+            }}
+            className="mt-6 flex flex-wrap gap-3"
+          >
+            {project.techStack.map((tech) => (
+              <PersonaSkillTag key={tech} label={tech} />
+            ))}
+          </motion.div>
+        </div>
 
         {/* Action Buttons */}
         <motion.div
@@ -256,7 +317,7 @@ export function ProjectDetails({
               transition: { type: "spring", stiffness: 300, damping: 20 },
             },
           }}
-          className="mt-6 flex flex-wrap gap-4 pb-12 md:mt-12 md:gap-6 md:pb-0"
+          className="mt-0 flex flex-wrap gap-4 pb-12 md:gap-6 md:pb-0"
         >
           {project.liveUrl && project.liveUrl !== "#" && (
             <PersonaActionButton
