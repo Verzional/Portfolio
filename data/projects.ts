@@ -10,12 +10,36 @@ export const projectCategories = [
 export const projectsData = [
   {
     id: "1",
+    title: "13th NPLC CP",
+    categories: ["WEB"],
+    images: [
+      "/images/projects/nplc-cp/editor.webp",
+      "/images/projects/nplc-cp/problems.webp",
+      "/images/projects/nplc-cp/leaderboard.webp",
+    ],
+    desc: "A real-time competitive programming platform featuring automated code evaluation for UC Surabaya's 13th NPLC.",
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Prisma",
+      "TailwindCSS",
+      "Pusher",
+      "Soketi",
+      "Judge0",
+      "Docker",
+    ],
+    liveUrl: "https://cp.nplc.ciputra.ac.id/",
+    githubUrl: "https://github.com/IMT-SU-25-26/13th-NPLC-CP",
+  },
+  {
+    id: "2",
     title: "C-Think",
     categories: ["WEB"],
     images: [
-      "/images/projects/c-think-1.jpg",
-      "/images/projects/c-think-2.jpg",
-      "/images/projects/c-think-3.jpg",
+      "/images/projects/c-think/mobile.webp",
+      "/images/projects/c-think/scan.webp",
+      "/images/projects/c-think/contest.webp",
     ],
     desc: "A real-time competition platform featuring live updates, event management, and automated scoring for UC Surabaya's C-Think event.",
     techStack: [
@@ -33,26 +57,6 @@ export const projectsData = [
     githubUrl: "https://github.com/Verzional/C-Think",
   },
   {
-    id: "2",
-    title: "13th NPLC CP",
-    categories: ["WEB"],
-    images: ["/images/projects/nplc-1.webp", "/images/projects/nplc-2.jpg"],
-    desc: "A real-time competitive programming platform featuring automated code evaluation for UC Surabaya's 13th NPLC.",
-    techStack: [
-      "Next.js",
-      "TypeScript",
-      "PostgreSQL",
-      "Prisma",
-      "TailwindCSS",
-      "Pusher",
-      "Soketi",
-      "Judge0",
-      "Docker",
-    ],
-    liveUrl: "https://cp.nplc.ciputra.ac.id/",
-    githubUrl: "https://github.com/IMT-SU-25-26/13th-NPLC-CP",
-  },
-  {
     id: "3",
     title: "Count Downcula",
     categories: ["GAMES"],
@@ -62,7 +66,7 @@ export const projectsData = [
       "/images/projects/count-downcula/menu.webp",
     ],
     desc: "A fast-paced 1v1 rogue-lite arena fighter featuring procedural challenge, precision parries, and high-stakes duels.",
-    techStack: ["Unity"],
+    techStack: ["Unity 6", "C# 9.0", "2D Universal Render Pipeline (URP)", "Finite State Machine (FSM)", "Unity 6 Input System", "Unity Test Framework"],
     liveUrl: "https://verzional.itch.io/count-downcula",
   },
   {
@@ -83,7 +87,11 @@ export const projectsData = [
     id: "5",
     title: "IMT SU Hub",
     categories: ["WEB"],
-    images: ["/images/projects/imt-su-1.jpg", "/images/projects/imt-su-2.jpg"],
+    images: [
+      "/images/projects/imt-su/home.webp",
+      "/images/projects/imt-su/about.webp",
+      "/images/projects/imt-su/achievements.webp",
+    ],
     desc: "The official central web platform for IMT's Student Union, managing the major's achievements, event schedules, and social activities.",
     techStack: [
       "Next.js",
@@ -101,7 +109,11 @@ export const projectsData = [
     id: "6",
     title: "Vexel",
     categories: ["WEB"],
-    images: ["/images/projects/vexel-1.jpg", "/images/projects/vexel-2.jpg"],
+    images: [
+      "/images/projects/vexel/home.webp",
+      "/images/projects/vexel/dashboard.webp",
+      "/images/projects/vexel/rubric.webp",
+    ],
     desc: "An AI-powered evaluation platform that leverages the Gemini API to automatically grade student submissions and deliver detailed, rubric-aligned feedback and score.",
     techStack: [
       "Laravel",
