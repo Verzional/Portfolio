@@ -32,10 +32,10 @@ export function SubMenu({
   }, [onBackClick]);
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden text-foreground pt-4 md:pt-0">
+    <div className="flex h-full w-full flex-col overflow-hidden pt-4 text-foreground md:pt-0">
       <div className="my-auto flex max-h-full min-h-0 w-full flex-col">
         {/* Header */}
-        <div className="shrink-0 flex flex-col">
+        <div className="flex shrink-0 flex-col">
           {/* Control Legend */}
           {controls && <ControlLegend controls={controls} />}
 
@@ -49,15 +49,12 @@ export function SubMenu({
         </div>
 
         {/* Children */}
-        <div
-          id="sidebar-slot"
-          className="flex min-h-0 w-full flex-1 flex-col"
-        >
+        <div id="sidebar-slot" className="flex min-h-0 w-full flex-1 flex-col">
           {children}
         </div>
 
         {/* Footer */}
-        <div className="shrink-0 flex flex-col">
+        <div className="flex shrink-0 flex-col">
           {/* Divider */}
           <div className="my-3 h-0.5 w-[90%] bg-divider md:my-4 xl:my-6" />
 

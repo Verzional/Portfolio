@@ -31,7 +31,7 @@ This document provides instructions, context, and strict guardrails for any AI a
   - **React 19 Compiler:** The project uses `reactCompiler: true`. Do NOT write manual `React.memo`, `useMemo`, or `useCallback` unless strictly required to satisfy an ESLint dependency warning.
   - **React Hooks:** Do NOT use `useEffect` to sync state or props to `useRef` just to bypass dependency arrays. Pass dependencies properly.
   - **SEO Metadata:** Always explicitly export `metadata` with a `title` on Server Component `page.tsx` sub-routes to leverage the layout's `title.template`.
-  - **Next/Image:** Any `<Image fill={true} />` inside a responsive container MUST have a `sizes` attribute (e.g., `sizes="(max-width: 768px) 100vw, 50vw"`).
+  - **Next/Image:** The project uses Static Export (`output: "export"`) with `unoptimized: true`. Do NOT add `sizes` or `quality` attributes to `<Image />` components, as they are ignored. Rely on Cloudflare Pages for edge optimization.
   - **Security:** Always append `"noopener,noreferrer"` when using `window.open(..., "_blank")`.
 
 ### 2. Architecture & File Structure

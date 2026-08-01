@@ -2,24 +2,49 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Sidebar as HomeMenu } from "@/components/sidebar";
+
+// Home Page Backgrounds
+const homeHoverBgMap: Record<string, string> = {
+  "/projects": "/images/backgrounds/BG-Kiryu.webp",
+  "/skills": "/images/backgrounds/BG-Majima.webp",
+  "/experience": "/images/backgrounds/BG-Saejima.webp",
+  "/socials": "/images/backgrounds/BG-Nishiki.webp",
+};
+
+// Non-Home Page Backgrounds
+const pageBgMap: Record<string, string> = {
+  "/projects": "/images/backgrounds/BG-Persona.webp",
+  "/skills": "/images/backgrounds/BG-Sekiro.webp",
+  "/experience": "/images/backgrounds/BG-Saejima.webp",
+  "/socials": "/images/backgrounds/BG-Ichiban.webp",
+};
+
+// Background Opacity Mapping
+const bgOpacityMap: Record<string, string> = {
+  "/images/backgrounds/BG-Kiryu.webp": "opacity-5 md:opacity-3",
+  "/images/backgrounds/BG-Majima.webp": "opacity-15 md:opacity-10",
+  "/images/backgrounds/BG-Saejima.webp": "opacity-5 md:opacity-3",
+  "/images/backgrounds/BG-Ichiban.webp": "opacity-5 md:opacity-3",
+  "/images/backgrounds/BG-Persona.webp": "opacity-5 md:opacity-3",
+  "/images/backgrounds/BG-Nishiki.webp": "opacity-5 md:opacity-3",
+  "/images/backgrounds/BG-Sekiro.webp": "opacity-5 md:opacity-3",
+};
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [previewRoute, setPreviewRoute] = useState<string | null>(null);
   const [previousPath, setPreviousPath] = useState<string | null>(null);
-  const currentPathRef = useRef(pathname);
+  const [currentPath, setCurrentPath] = useState(pathname);
 
   // Track Previous Path
-  useEffect(() => {
-    if (currentPathRef.current !== pathname) {
-      setPreviousPath(currentPathRef.current);
-      currentPathRef.current = pathname;
-    }
-  }, [pathname]);
+  if (pathname !== currentPath) {
+    setPreviousPath(currentPath);
+    setCurrentPath(pathname);
+  }
 
   // Handle Preview Route Events
   useEffect(() => {
@@ -31,33 +56,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     window.addEventListener("preview-route", handlePreview);
     return () => window.removeEventListener("preview-route", handlePreview);
   }, []);
-
-  // Home Page Backgrounds
-  const homeHoverBgMap: Record<string, string> = {
-    "/projects": "/images/backgrounds/BG-Kiryu.webp",
-    "/skills": "/images/backgrounds/BG-Majima.webp",
-    "/experience": "/images/backgrounds/BG-Saejima.webp",
-    "/socials": "/images/backgrounds/BG-Nishiki.webp",
-  };
-
-  // Non-Home Page Backgrounds
-  const pageBgMap: Record<string, string> = {
-    "/projects": "/images/backgrounds/BG-Persona.webp",
-    "/skills": "/images/backgrounds/BG-Sekiro.webp",
-    "/experience": "/images/backgrounds/BG-Saejima.webp",
-    "/socials": "/images/backgrounds/BG-Ichiban.webp",
-  };
-
-  // Background Opacity Mapping
-  const bgOpacityMap: Record<string, string> = {
-    "/images/backgrounds/BG-Kiryu.webp": "opacity-5 md:opacity-3",
-    "/images/backgrounds/BG-Majima.webp": "opacity-15 md:opacity-10",
-    "/images/backgrounds/BG-Saejima.webp": "opacity-5 md:opacity-3",
-    "/images/backgrounds/BG-Ichiban.webp": "opacity-5 md:opacity-3",
-    "/images/backgrounds/BG-Persona.webp": "opacity-5 md:opacity-3",
-    "/images/backgrounds/BG-Nishiki.webp": "opacity-5 md:opacity-3",
-    "/images/backgrounds/BG-Sekiro.webp": "opacity-5 md:opacity-3",
-  };
 
   // Home Page Background Logic
   let activeBg = "/images/backgrounds/BG-Kiryu.webp";
@@ -73,7 +71,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   // Get Target Opacity and Position for Active Background
   const activeOpacity = bgOpacityMap[activeBg] || "opacity-10 md:opacity-10";
-  const activeMobilePosition = isHome ? "object-[90%_center]" : "object-[75%_center]";
+  const activeMobilePosition = isHome
+    ? "object-[90%_center]"
+    : "object-[75%_center]";
 
   return (
     <div className="relative flex h-dvh w-full overflow-hidden bg-background">
@@ -93,8 +93,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               alt="Theme Background"
               fill={true}
               priority={true}
-              sizes="100vw"
-              quality={90}
               className={`object-cover ${activeMobilePosition} md:object-center ${activeOpacity}`}
             />
           </motion.div>

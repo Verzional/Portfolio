@@ -66,7 +66,14 @@ export const projectsData = [
       "/images/projects/count-downcula/menu.webp",
     ],
     desc: "A fast-paced 1v1 rogue-lite arena fighter featuring procedural challenge, precision parries, and high-stakes duels.",
-    techStack: ["Unity 6", "C# 9.0", "2D Universal Render Pipeline (URP)", "Finite State Machine (FSM)", "Unity 6 Input System", "Unity Test Framework"],
+    techStack: [
+      "Unity 6",
+      "C# 9.0",
+      "2D Universal Render Pipeline (URP)",
+      "Finite State Machine (FSM)",
+      "Unity 6 Input System",
+      "Unity Test Framework",
+    ],
     liveUrl: "https://verzional.itch.io/count-downcula",
   },
   {

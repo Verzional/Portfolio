@@ -13,7 +13,9 @@ export function Sidebar({ previousPath }: { previousPath?: string | null }) {
   // Find Menu Index Based on Previous Path
   const getInitialIndex = () => {
     if (!previousPath) return 0;
-    const index = menuItems.findIndex((item) => previousPath.startsWith(item.href));
+    const index = menuItems.findIndex((item) =>
+      previousPath.startsWith(item.href),
+    );
     return index !== -1 ? index : 0;
   };
 
@@ -72,7 +74,10 @@ export function Sidebar({ previousPath }: { previousPath?: string | null }) {
         </div>
 
         {/* Navigation Items */}
-        <nav ref={navRef} className="flex min-h-0 flex-1 scrollbar-none flex-col gap-2 overflow-x-hidden overflow-y-auto font-edo-sz text-foreground md:gap-8">
+        <nav
+          ref={navRef}
+          className="flex min-h-0 flex-1 scrollbar-none flex-col gap-2 overflow-x-hidden overflow-y-auto font-edo-sz text-foreground md:gap-8"
+        >
           {menuItems.map((item, index) => {
             const isActive = index === activeIndex;
 

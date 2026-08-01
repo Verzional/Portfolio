@@ -118,7 +118,6 @@ export function TaxiMap({
                     alt={social.name}
                     fill={true}
                     priority={true}
-                    sizes="(max-width: 768px) 64px, 80px"
                     className="object-contain"
                   />
                 </div>
