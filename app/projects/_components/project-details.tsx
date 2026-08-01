@@ -1,9 +1,9 @@
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useEffect } from "react";
+import { motion } from "motion/react";
 import { projectsData } from "@/data/projects";
-import { PersonaSkillTag } from "./persona-skill-tag";
 import { PersonaActionButton } from "./persona-action-button";
+import { ProjectCarousel } from "./project-carousel";
+import { ProjectInfo } from "./project-info";
 
 type Project = (typeof projectsData)[0];
 
@@ -14,53 +14,7 @@ export function ProjectDetails({
   project: Project | null;
   isBackActive?: boolean;
 }) {
-  const [imageIndex, setImageIndex] = useState(0);
-  const [prevProjectId, setPrevProjectId] = useState(project?.id);
-
-  // Reset Image Index When Project Changes
-  if (project?.id !== prevProjectId) {
-    setPrevProjectId(project?.id);
-    setImageIndex(0);
-  }
-
-  // Handle Image Carousel Navigation
-  const handleNextImage = () => {
-    if (!project?.images) return;
-    setImageIndex((prev) => (prev < project.images.length - 1 ? prev + 1 : 0));
-  };
-
-  const handlePrevImage = () => {
-    if (!project?.images) return;
-    setImageIndex((prev) => (prev > 0 ? prev - 1 : project.images.length - 1));
-  };
-
-  // Keyboard Navigation for Image Carousel
-  useEffect(() => {
-    if (!project || !project.images || project.images.length <= 1) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (
-        e.target instanceof HTMLInputElement ||
-        e.target instanceof HTMLTextAreaElement
-      )
-        return;
-
-      if (e.key.toLowerCase() === "a" || e.key === "ArrowLeft") {
-        setImageIndex((prev) =>
-          prev > 0 ? prev - 1 : project.images.length - 1,
-        );
-      } else if (e.key.toLowerCase() === "d" || e.key === "ArrowRight") {
-        setImageIndex((prev) =>
-          prev < project.images.length - 1 ? prev + 1 : 0,
-        );
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [project]);
-
-  // Keyboard Navigation for Project Actions
+  // Bind Project Action Shortcuts
   useEffect(() => {
     if (!project || isBackActive) return;
 
@@ -86,7 +40,7 @@ export function ProjectDetails({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [project, isBackActive]);
 
-  /* Empty State */
+  // Handle Empty State
   if (!project) {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center p-8 text-foreground">
@@ -97,7 +51,7 @@ export function ProjectDetails({
     );
   }
 
-  // Mobile App Layout Adjustments
+  // Configure Layout Dimensions
   const isMobileApp = project.categories.includes("MOBILE");
 
   const containerLayout = isMobileApp
@@ -116,9 +70,7 @@ export function ProjectDetails({
     ? "polygon(10% 0, 100% 0, 90% 100%, 0% 100%)"
     : "polygon(2% 0, 100% 0, 98% 100%, 0% 100%)";
 
-  const detailsContainerSize = isMobileApp 
-    ? "w-full xl:w-2/3" 
-    : "w-full";
+  const detailsContainerSize = isMobileApp ? "w-full xl:w-2/3" : "w-full";
 
   const detailsContainerJustify = isMobileApp
     ? "justify-center pt-4 xl:pt-0"
@@ -135,7 +87,7 @@ export function ProjectDetails({
       }}
       className={`flex h-full w-full ${containerLayout} ${containerGap} scrollbar-none justify-start overflow-x-hidden overflow-y-auto p-4 md:justify-center md:p-8`}
     >
-      {/* Image Panel */}
+      {/* Render Image Container */}
       <motion.div
         variants={{
           hidden: { opacity: 0, x: 100, scale: 0.95 },
@@ -148,174 +100,37 @@ export function ProjectDetails({
         }}
         className={`group relative shrink-0 ${imageContainerSize}`}
       >
-        {/* Image Carousel */}
-        <motion.div
-          className="image-carousel-container absolute inset-0 cursor-pointer bg-background shadow-[8px_8px_0_rgba(255,255,255,1)] transition-transform duration-500 group-hover:scale-[1.02]"
-          style={{ clipPath: imageClipPath }}
-          onTap={(e, info) => {
-            const target = e.target as HTMLElement;
-            const container =
-              target.closest(".image-carousel-container") || target;
-            const rect = container.getBoundingClientRect();
-            const x = info.point.x - rect.left;
-            if (x > rect.width / 2) {
-              handleNextImage();
-            } else {
-              handlePrevImage();
-            }
-          }}
-        >
-          {/* Image Carousel Animation */}
-          <AnimatePresence>
-            {project.images && project.images.length > 0 && (
-              <motion.div
-                key={imageIndex}
-                initial={{ opacity: 0, x: 20, scale: 0.95 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: -20, scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={project.images[imageIndex]}
-                  alt={`${project.title} screenshot ${imageIndex + 1}`}
-                  fill={true}
-                  priority={true}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-500"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Dark Gradient Overlay for the bottom of the image */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-linear-to-t from-background to-transparent" />
-
-          {/* Carousel Indicators */}
-          {project.images && project.images.length > 1 && (
-            <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
-              {project.images.map((_, i) => (
-                <div
-                  key={i}
-                  className={`h-2 transition-all duration-300 ${i === imageIndex ? "w-8 bg-foreground" : "w-2 bg-foreground/30"}`}
-                  style={{ transform: "skewX(-12deg)" }}
-                />
-              ))}
-            </div>
-          )}
-
-          {/* Overlay Content (Title & Description) - Desktop Only */}
+        <ProjectCarousel project={project} imageClipPath={imageClipPath}>
+          {/* Render Desktop Overlay Details */}
           {!isMobileApp && (
-            <div className="absolute right-4 bottom-6 left-4 z-30 hidden max-w-4xl flex-col items-start gap-2 md:flex md:right-8 md:bottom-10 md:left-8 xl:right-12 xl:bottom-12 xl:left-12">
-            {/* Title */}
-            <motion.h1
-              variants={{
-                hidden: { opacity: 0, scale: 1.5, rotate: -15 },
-                visible: {
-                  opacity: 1,
-                  scale: 1,
-                  rotate: -2,
-                  transition: { type: "spring", stiffness: 400, damping: 15 },
-                },
-              }}
-              className="z-10 origin-left font-linux-biolinum text-3xl leading-none text-foreground uppercase drop-shadow-[0.5px_0.5px_0_#d4030d] [-webkit-text-stroke:0.5px_currentColor] [text-shadow:0_4px_30px_rgba(0,0,0,1)] [text-stroke:0.5px_currentColor] md:text-4xl md:drop-shadow-[3px_3px_0_#d4030d] xl:mb-2 xl:text-7xl xl:drop-shadow-[4px_4px_0_#d4030d]"
-            >
-              {project.title}
-            </motion.h1>
-
-            {/* Description Block */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, x: -50 },
-                visible: {
-                  opacity: 1,
-                  x: 0,
-                  transition: { type: "spring", stiffness: 300, damping: 20 },
-                },
-              }}
-              className="relative -rotate-1 border-l-4 border-primary bg-background/95 p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)] backdrop-blur-sm md:p-5 md:shadow-[5px_5px_0_rgba(255,255,255,0.2)] xl:p-6 xl:shadow-[6px_6px_0_rgba(255,255,255,0.2)]"
-            >
-              <p className="font-linux-biolinum text-sm leading-relaxed tracking-wider [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-base xl:text-lg">
-                {project.desc}
-              </p>
-            </motion.div>
-
-            {/* Tech Stack */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
-              }}
-              className="mt-1 flex flex-wrap gap-2 md:mt-4"
-            >
-              {project.techStack.map((tech) => (
-                <PersonaSkillTag key={tech} label={tech} />
-              ))}
-            </motion.div>
-          </div>
+            <ProjectInfo
+              project={project}
+              variant="overlay"
+              className="absolute right-4 bottom-6 left-4 z-30 hidden max-w-4xl flex-col items-start gap-2 md:right-8 md:bottom-10 md:left-8 md:flex xl:right-12 xl:bottom-12 xl:left-12"
+            />
           )}
-        </motion.div>
+        </ProjectCarousel>
 
-        {/* Decorative Text */}
+        {/* Render Background Serial */}
         <div className="pointer-events-none absolute -right-4 -bottom-6 rotate-[-5deg] font-linux-biolinum text-4xl text-foreground opacity-10 select-none [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-6xl">
           PROJECT_0{project.id}
         </div>
       </motion.div>
 
-      {/* Details Panel */}
+      {/* Render Details Container */}
       <div
         className={`relative ${detailsContainerSize} z-10 flex flex-col ${detailsContainerJustify}`}
       >
-        {/* Normal Layout (Title, Description, Tech Stack) */}
-        <div className={`mb-6 flex flex-col items-start ${!isMobileApp ? "md:hidden" : ""}`}>
-          {/* Title */}
-          <motion.h1
-            variants={{
-              hidden: { opacity: 0, scale: 1.5, rotate: -15 },
-              visible: {
-                opacity: 1,
-                scale: 1,
-                rotate: -2,
-                transition: { type: "spring", stiffness: 400, damping: 15 },
-              },
-            }}
-            className="relative z-20 origin-left font-linux-biolinum text-3xl leading-tight text-foreground uppercase drop-shadow-[0.5px_0.5px_0_#d4030d] [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-4xl md:drop-shadow-[3px_3px_0_#d4030d] xl:text-7xl xl:drop-shadow-[4px_4px_0_#d4030d]"
-          >
-            {project.title}
-          </motion.h1>
+        {/* Render Mobile Layout Details */}
+        <ProjectInfo
+          project={project}
+          variant="normal"
+          className={`mb-6 flex flex-col items-start ${
+            !isMobileApp ? "md:hidden" : ""
+          }`}
+        />
 
-          {/* Description Block */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, x: -50 },
-              visible: {
-                opacity: 1,
-                x: 0,
-                transition: { type: "spring", stiffness: 300, damping: 20 },
-              },
-            }}
-            className="relative z-10 mt-4 -rotate-1 border-l-4 border-primary bg-background p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)] md:mt-5 md:p-5 md:shadow-[5px_5px_0_rgba(255,255,255,0.2)] xl:mt-6 xl:p-6 xl:shadow-[6px_6px_0_rgba(255,255,255,0.2)]"
-          >
-            <p className="font-linux-biolinum text-sm leading-relaxed tracking-wider [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-base xl:text-lg">
-              {project.desc}
-            </p>
-          </motion.div>
-
-          {/* Tech Stack */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
-            }}
-            className="mt-8 flex flex-wrap gap-3"
-          >
-            {project.techStack.map((tech) => (
-              <PersonaSkillTag key={tech} label={tech} />
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Action Buttons */}
+        {/* Render Action Links */}
         <motion.div
           variants={{
             hidden: { opacity: 0, y: 50 },
