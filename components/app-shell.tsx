@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { preload } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { Sidebar as HomeMenu } from "@/components/sidebar";
 
@@ -38,20 +37,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     "/projects": "/images/backgrounds/BG-Kiryu.webp",
     "/skills": "/images/backgrounds/BG-Majima.webp",
     "/experience": "/images/backgrounds/BG-Saejima.webp",
-    "/socials": "/images/backgrounds/BG-Ichiban.webp",
+    "/socials": "/images/backgrounds/BG-Nishiki.webp",
   };
-
-  // Aggressively Preload Home Page Backgrounds
-  if (isHome) {
-    Object.values(homeHoverBgMap).forEach((bg) => {
-      preload(bg, { as: "image" });
-    });
-  }
 
   // Non-Home Page Backgrounds
   const pageBgMap: Record<string, string> = {
     "/projects": "/images/backgrounds/BG-Persona.webp",
-    "/skills": "/images/backgrounds/BG-Sekiro.webp",
+    "/skills": "/images/backgrounds/Bekiro.webp",
     "/experience": "/images/backgrounds/BG-Saejima.webp",
     "/socials": "/images/backgrounds/BG-Ichiban.webp",
   };
@@ -79,8 +71,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     }
   }
 
-  // Get Target Opacity for Active Background
+  // Get Target Opacity and Position for Active Background
   const activeOpacity = bgOpacityMap[activeBg] || "opacity-10 md:opacity-10";
+  const activeMobilePosition = isHome ? "object-[90%_center]" : "object-[75%_center]";
 
   return (
     <div className="relative flex h-dvh w-full overflow-hidden bg-background">
@@ -102,7 +95,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               priority={true}
               sizes="100vw"
               quality={90}
-              className={`object-cover object-[90%_center] md:object-center ${activeOpacity}`}
+              className={`object-cover ${activeMobilePosition} md:object-center ${activeOpacity}`}
             />
           </motion.div>
         </AnimatePresence>
