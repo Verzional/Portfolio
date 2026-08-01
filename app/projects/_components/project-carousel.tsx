@@ -17,6 +17,7 @@ export function ProjectCarousel({
   children,
 }: ProjectCarouselProps) {
   const [imageIndex, setImageIndex] = useState(0);
+  const isMobileApp = project?.categories.includes("MOBILE");
 
   // Handle Carousel Navigation
   const handleNextImage = () => {
@@ -95,7 +96,9 @@ export function ProjectCarousel({
       </AnimatePresence>
 
       {/* Render Bottom Gradient */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-linear-to-t from-background to-transparent" />
+      {!isMobileApp && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-linear-to-t from-background to-transparent" />
+      )}
 
       {/* Render Position Indicators */}
       {project.images && project.images.length > 1 && (
