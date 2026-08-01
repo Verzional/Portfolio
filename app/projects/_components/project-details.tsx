@@ -109,14 +109,20 @@ export function ProjectDetails({
     : "gap-2 md:gap-3 xl:gap-4";
 
   const imageContainerSize = isMobileApp
-    ? "w-full xl:w-1/3 aspect-[9/16] xl:aspect-auto xl:h-full"
+    ? "w-full xl:w-1/3 aspect-[9/16] xl:aspect-auto xl:h-[90%] my-auto"
     : "w-full aspect-[16/10]";
 
   const imageClipPath = isMobileApp
     ? "polygon(10% 0, 100% 0, 90% 100%, 0% 100%)"
     : "polygon(2% 0, 100% 0, 98% 100%, 0% 100%)";
 
-  const detailsContainerSize = isMobileApp ? "w-full xl:w-2/3" : "w-full";
+  const detailsContainerSize = isMobileApp 
+    ? "w-full xl:w-2/3" 
+    : "w-full";
+
+  const detailsContainerJustify = isMobileApp
+    ? "justify-center pt-4 xl:pt-0"
+    : "justify-start";
 
   return (
     <motion.div
@@ -144,7 +150,7 @@ export function ProjectDetails({
       >
         {/* Image Carousel */}
         <motion.div
-          className="image-carousel-container absolute inset-0 cursor-pointer bg-primary shadow-[8px_8px_0_rgba(255,255,255,1)] transition-transform duration-500 group-hover:scale-[1.02]"
+          className="image-carousel-container absolute inset-0 cursor-pointer bg-background shadow-[8px_8px_0_rgba(255,255,255,1)] transition-transform duration-500 group-hover:scale-[1.02]"
           style={{ clipPath: imageClipPath }}
           onTap={(e, info) => {
             const target = e.target as HTMLElement;
@@ -160,7 +166,7 @@ export function ProjectDetails({
           }}
         >
           {/* Image Carousel Animation */}
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {project.images && project.images.length > 0 && (
               <motion.div
                 key={imageIndex}
@@ -199,7 +205,8 @@ export function ProjectDetails({
           )}
 
           {/* Overlay Content (Title & Description) - Desktop Only */}
-          <div className="absolute right-4 bottom-6 left-4 z-30 hidden max-w-4xl flex-col items-start gap-2 md:right-8 md:bottom-10 md:left-8 md:flex xl:right-12 xl:bottom-12 xl:left-12">
+          {!isMobileApp && (
+            <div className="absolute right-4 bottom-6 left-4 z-30 hidden max-w-4xl flex-col items-start gap-2 md:flex md:right-8 md:bottom-10 md:left-8 xl:right-12 xl:bottom-12 xl:left-12">
             {/* Title */}
             <motion.h1
               variants={{
@@ -246,6 +253,7 @@ export function ProjectDetails({
               ))}
             </motion.div>
           </div>
+          )}
         </motion.div>
 
         {/* Decorative Text */}
@@ -256,10 +264,10 @@ export function ProjectDetails({
 
       {/* Details Panel */}
       <div
-        className={`relative ${detailsContainerSize} z-10 flex flex-col justify-start`}
+        className={`relative ${detailsContainerSize} z-10 flex flex-col ${detailsContainerJustify}`}
       >
-        {/* Mobile Normal Layout (Title, Description, Tech Stack) */}
-        <div className="mb-6 flex flex-col items-start md:hidden">
+        {/* Normal Layout (Title, Description, Tech Stack) */}
+        <div className={`mb-6 flex flex-col items-start ${!isMobileApp ? "md:hidden" : ""}`}>
           {/* Title */}
           <motion.h1
             variants={{
@@ -271,7 +279,7 @@ export function ProjectDetails({
                 transition: { type: "spring", stiffness: 400, damping: 15 },
               },
             }}
-            className="relative z-20 origin-left font-linux-biolinum text-3xl leading-tight text-foreground uppercase drop-shadow-[0.5px_0.5px_0_#d4030d] [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor]"
+            className="relative z-20 origin-left font-linux-biolinum text-3xl leading-tight text-foreground uppercase drop-shadow-[0.5px_0.5px_0_#d4030d] [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-4xl md:drop-shadow-[3px_3px_0_#d4030d] xl:text-7xl xl:drop-shadow-[4px_4px_0_#d4030d]"
           >
             {project.title}
           </motion.h1>
@@ -286,9 +294,9 @@ export function ProjectDetails({
                 transition: { type: "spring", stiffness: 300, damping: 20 },
               },
             }}
-            className="relative z-10 mt-4 -rotate-1 border-l-4 border-primary bg-background p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)]"
+            className="relative z-10 mt-4 -rotate-1 border-l-4 border-primary bg-background p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)] md:mt-5 md:p-5 md:shadow-[5px_5px_0_rgba(255,255,255,0.2)] xl:mt-6 xl:p-6 xl:shadow-[6px_6px_0_rgba(255,255,255,0.2)]"
           >
-            <p className="font-linux-biolinum text-sm leading-relaxed tracking-wider [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor]">
+            <p className="font-linux-biolinum text-sm leading-relaxed tracking-wider [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-base xl:text-lg">
               {project.desc}
             </p>
           </motion.div>
@@ -299,7 +307,7 @@ export function ProjectDetails({
               hidden: { opacity: 0 },
               visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
             }}
-            className="mt-6 flex flex-wrap gap-3"
+            className="mt-8 flex flex-wrap gap-3"
           >
             {project.techStack.map((tech) => (
               <PersonaSkillTag key={tech} label={tech} />
