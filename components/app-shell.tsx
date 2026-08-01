@@ -43,7 +43,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   // Non-Home Page Backgrounds
   const pageBgMap: Record<string, string> = {
     "/projects": "/images/backgrounds/BG-Persona.webp",
-    "/skills": "/images/backgrounds/Bekiro.webp",
+    "/skills": "/images/backgrounds/BG-Sekiro.webp",
     "/experience": "/images/backgrounds/BG-Saejima.webp",
     "/socials": "/images/backgrounds/BG-Ichiban.webp",
   };

@@ -103,8 +103,8 @@ export function ProjectDetails({
   const containerLayout = isMobileApp ? "flex-col xl:flex-row" : "flex-col";
 
   const imageContainerSize = isMobileApp
-    ? "w-full xl:w-1/3 h-48 md:h-64 xl:h-full"
-    : "w-full h-32 md:h-72 xl:h-96";
+    ? "w-full xl:w-1/3 aspect-[9/16] xl:aspect-auto xl:h-full"
+    : "w-full aspect-[16/10]";
 
   const imageClipPath = isMobileApp
     ? "polygon(10% 0, 100% 0, 90% 100%, 0% 100%)"

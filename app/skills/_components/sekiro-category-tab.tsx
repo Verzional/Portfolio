@@ -27,9 +27,7 @@ export function SekiroCategoryTab({
         backgroundColor: isActive
           ? "color-mix(in srgb, #d95c14 15%, transparent)"
           : "#161616",
-        borderColor: isActive
-          ? "#d95c14"
-          : "#3a3a3a",
+        borderColor: isActive ? "#d95c14" : "#3a3a3a",
         boxShadow: isActive
           ? `0 0 12px color-mix(in srgb, #d95c14 80%, transparent), inset 0 0 15px color-mix(in srgb, #d95c14 50%, transparent)`
           : undefined,
@@ -37,7 +35,7 @@ export function SekiroCategoryTab({
       }}
     >
       <Icon
-        className={`h-5 w-5 md:h-6 md:w-6 xl:h-7 xl:w-7 transition-colors duration-200 ${isActive ? "text-foreground" : "text-foreground/70"}`}
+        className={`h-5 w-5 transition-colors duration-200 md:h-6 md:w-6 xl:h-7 xl:w-7 ${isActive ? "text-foreground" : "text-foreground/70"}`}
         strokeWidth={2.5}
       />
     </button>
