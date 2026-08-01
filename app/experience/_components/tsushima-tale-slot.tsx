@@ -33,20 +33,34 @@ export function TsushimaTaleSlot({
       ref={ref}
       onClick={() => onClick(index)}
       className={cn(
-        "group relative flex w-full items-center py-3 pr-4 pl-2 text-left transition-colors md:py-4 md:pl-4",
+        "group relative flex w-full items-center py-3 pr-4 pl-4 text-left transition-colors md:py-4 md:pl-6",
         isActive
-          ? "bg-menu-select text-white"
-          : "text-gray-400 hover:bg-white/5",
+          ? "z-10 text-white"
+          : "bg-linear-to-r from-[#e8e8e8] to-[#d6d6d6] text-[#111] hover:brightness-105",
       )}
-      whileHover={!isActive ? { x: 5 } : {}}
+      whileHover={!isActive ? { x: 3 } : {}}
       whileTap={{ scale: 0.98 }}
     >
+      {/* Absolute Expanding Background for Active State */}
+      {isActive && (
+        <motion.div
+          className="absolute -bottom-[5px] -left-[3px] -right-8 -top-[5px] -z-10 bg-[#c1272d] shadow-lg md:-right-12"
+          initial={{ scaleX: 1.05, scaleY: 1.1, opacity: 0 }}
+          animate={{ scaleX: 1, scaleY: 1, opacity: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 1000,
+            damping: 30,
+            mass: 0.5,
+          }}
+        />
+      )}
       {/* Diamond Icon */}
-      <div className="flex shrink-0 items-center justify-center pr-4 pl-2 md:pr-6">
+      <div className="flex shrink-0 items-center justify-center pr-5 md:pr-6">
         <div
           className={cn(
-            "relative flex h-3 w-3 rotate-45 items-center justify-center border-[1.5px] md:h-4 md:w-4",
-            isActive ? "border-white" : "border-gray-500",
+            "relative flex h-3 w-3 rotate-45 items-center justify-center border-2 md:h-4 md:w-4",
+            isActive ? "border-white" : "border-black",
           )}
         >
           <div
@@ -59,21 +73,19 @@ export function TsushimaTaleSlot({
       </div>
 
       {/* Tale Info */}
-      <div className="flex min-w-0 flex-col">
+      <div className="flex min-w-0 flex-col pr-2">
         <span
           className={cn(
-            "font-lato text-sm tracking-widest uppercase md:text-base md:font-medium",
-            isActive ? "text-white" : "text-gray-300 group-hover:text-white",
+            "truncate font-lato text-sm font-bold tracking-widest uppercase md:text-base",
+            isActive ? "text-white" : "text-[#111]",
           )}
         >
           {company}
         </span>
         <span
           className={cn(
-            "mt-0.5 font-lato text-xs tracking-wider md:text-sm",
-            isActive
-              ? "text-white/80"
-              : "text-gray-500 group-hover:text-gray-400",
+            "mt-0.5 truncate font-lato text-xs font-semibold tracking-wider md:text-sm",
+            isActive ? "text-white/90" : "text-[#111]/70",
           )}
         >
           {role}

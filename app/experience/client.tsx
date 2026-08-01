@@ -10,6 +10,7 @@ import { SubMenu } from "@/components/sub-menu";
 import { SidebarPortal } from "@/components/sidebar-portal";
 import { TsushimaCategoryTab } from "./_components/tsushima-category-tab";
 import { TsushimaTaleSlot } from "./_components/tsushima-tale-slot";
+import { TaleDetails } from "./_components/tale-details";
 
 export function ExperienceClient() {
   const router = useRouter();
@@ -85,11 +86,11 @@ export function ExperienceClient() {
 
         {/* Active Tales Section */}
         {hasActiveTales && (
-          <>
-            <div className="mb-2 pl-6 font-lato text-xs tracking-widest text-muted md:text-sm">
+          <div className="mb-8 flex flex-col pl-4 md:pl-6">
+            <div className="mb-2 pl-1 font-lato text-xs font-bold tracking-[0.15em] text-white/70 md:text-sm">
               ACTIVE TALES
             </div>
-            <div className="mb-6 flex flex-col gap-1 px-2">
+            <div className="flex w-[85%] flex-col gap-1.5 border-3 border-[#222428] bg-[#222428] lg:w-[80%]">
               {filteredExperience.map((exp, idx) => {
                 if (exp.status !== "IN PROGRESS") return null;
                 return (
@@ -104,16 +105,16 @@ export function ExperienceClient() {
                 );
               })}
             </div>
-          </>
+          </div>
         )}
 
         {/* Completed Tales Section */}
         {hasCompletedTales && (
-          <>
-            <div className="mb-2 pl-6 font-lato text-xs tracking-widest text-muted md:text-sm">
+          <div className="mb-8 flex flex-col pl-4 md:pl-6">
+            <div className="mb-2 pl-1 font-lato text-xs font-bold tracking-[0.15em] text-white/70 md:text-sm">
               COMPLETED TALES
             </div>
-            <div className="flex flex-col gap-1 px-2">
+            <div className="flex w-[85%] flex-col gap-1.5 border-[3px] border-[#222428] bg-[#222428] lg:w-[80%]">
               {filteredExperience.map((exp, idx) => {
                 if (exp.status !== "CLEARED") return null;
                 return (
@@ -128,7 +129,7 @@ export function ExperienceClient() {
                 );
               })}
             </div>
-          </>
+          </div>
         )}
       </div>
     </SubMenu>
@@ -139,10 +140,16 @@ export function ExperienceClient() {
       <SidebarPortal>{sidebarContent}</SidebarPortal>
 
       {/* Main View Area Placeholder */}
-      <div className="relative z-10 flex h-full w-full items-center justify-center bg-black/90">
-        <div className="font-lato text-sm font-light tracking-[0.3em] text-white/30 uppercase">
-          Tale Details Pending
-        </div>
+      <div className="relative z-10 flex h-full w-full items-center justify-start md:bg-transparent">
+        {activeExperience ? (
+          <TaleDetails experience={activeExperience} />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center">
+            <div className="font-lato text-sm font-light tracking-[0.3em] text-white/30 uppercase">
+              Tale Details Pending
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
