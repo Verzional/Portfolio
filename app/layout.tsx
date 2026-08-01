@@ -1,8 +1,6 @@
 import "./globals.css";
 import localFont from "next/font/local";
 import { Lato } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AppShell } from "@/components/app-shell";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -109,8 +107,6 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         <AppShell>{children}</AppShell>
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
