@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import { SkillNode } from "@/data/skills";
 
 interface SekiroSkillNodeProps {
@@ -78,7 +78,7 @@ export function SekiroSkillNode({
         />
 
         {node.icon && (
-          <Image
+          <ExportedImage
             src={node.icon}
             alt={node.name}
             width={40}

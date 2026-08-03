@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
@@ -24,13 +24,13 @@ const pageBgMap: Record<string, string> = {
 
 // Background Opacity Mapping
 const bgOpacityMap: Record<string, string> = {
-  "/images/backgrounds/BG-Kiryu.webp": "opacity-5 md:opacity-3",
-  "/images/backgrounds/BG-Majima.webp": "opacity-15 md:opacity-10",
-  "/images/backgrounds/BG-Saejima.webp": "opacity-5 md:opacity-3",
-  "/images/backgrounds/BG-Ichiban.webp": "opacity-5 md:opacity-3",
-  "/images/backgrounds/BG-Persona.webp": "opacity-5 md:opacity-3",
-  "/images/backgrounds/BG-Nishiki.webp": "opacity-5 md:opacity-3",
-  "/images/backgrounds/BG-Sekiro.webp": "opacity-5 md:opacity-3",
+  "/images/backgrounds/BG-Kiryu.webp": "opacity-8 md:opacity-5",
+  "/images/backgrounds/BG-Majima.webp": "opacity-15 md:opacity-12",
+  "/images/backgrounds/BG-Saejima.webp": "opacity-7 md:opacity-4",
+  "/images/backgrounds/BG-Nishiki.webp": "opacity-7 md:opacity-4",
+  "/images/backgrounds/BG-Ichiban.webp": "opacity-7 md:opacity-4",
+  "/images/backgrounds/BG-Persona.webp": "opacity-8 md:opacity-5",
+  "/images/backgrounds/BG-Sekiro.webp": "opacity-8 md:opacity-5",
 };
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -88,11 +88,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
             className="absolute inset-0 h-full w-full"
           >
-            <Image
+            <ExportedImage
               src={activeBg}
               alt="Theme Background"
               fill={true}
               priority={true}
+              sizes="100vw"
               className={`object-cover ${activeMobilePosition} md:object-center ${activeOpacity}`}
             />
           </motion.div>

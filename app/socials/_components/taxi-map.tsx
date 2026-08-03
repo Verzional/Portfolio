@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import { motion } from "motion/react";
 import { socialsData, socialsMap } from "@/data/socials";
 
@@ -113,11 +113,12 @@ export function TaxiMap({
                       : "h-6 w-6 scale-100 opacity-40 grayscale md:h-16 md:w-16"
                   }`}
                 >
-                  <Image
+                  <ExportedImage
                     src={social.icon}
                     alt={social.name}
                     fill={true}
                     priority={true}
+                    sizes="(max-width: 768px) 64px, 80px"
                     className="object-contain"
                   />
                 </div>

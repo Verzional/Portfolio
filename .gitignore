@@ -47,3 +47,4 @@ next-env.d.ts
 .wrangler
 .dev.vars*
 !.dev.vars.example
+next-image-export-optimizer-hashes.json

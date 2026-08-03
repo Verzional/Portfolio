@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { projectsData } from "@/data/projects";
@@ -83,11 +83,12 @@ export function ProjectCarousel({
             transition={{ duration: 0.2 }}
             className="absolute inset-0"
           >
-            <Image
+            <ExportedImage
               src={project.images[imageIndex]}
               alt={`${project.title} screenshot ${imageIndex + 1}`}
               fill={true}
               priority={true}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover transition-transform duration-500"
             />
           </motion.div>
