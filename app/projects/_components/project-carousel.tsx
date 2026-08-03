@@ -87,7 +87,7 @@ export function ProjectCarousel({
               src={project.images[imageIndex]}
               alt={`${project.title} screenshot ${imageIndex + 1}`}
               fill={true}
-              priority={true}
+              preload={true}
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover transition-transform duration-500"
             />

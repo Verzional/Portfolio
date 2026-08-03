@@ -117,7 +117,7 @@ export function TaxiMap({
                     src={social.icon}
                     alt={social.name}
                     fill={true}
-                    priority={true}
+                    preload={true}
                     sizes="(max-width: 768px) 64px, 80px"
                     className="object-contain"
                   />

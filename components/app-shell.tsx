@@ -79,7 +79,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <div className="relative flex h-dvh w-full overflow-hidden bg-background">
       {/* Background Image Container */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[50%] overflow-hidden md:bottom-0 md:h-full">
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
           <motion.div
             key={activeBg}
             initial={{ opacity: 0, scale: 1.03 }}
@@ -92,7 +92,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               src={activeBg}
               alt="Theme Background"
               fill={true}
-              priority={true}
+              preload={true}
               sizes="100vw"
               className={`object-cover ${activeMobilePosition} md:object-center ${activeOpacity}`}
             />
