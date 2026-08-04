@@ -73,7 +73,7 @@ export function ProjectCarousel({
       }}
     >
       {/* Render Animated Carousel */}
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {project.images && project.images.length > 0 && (
           <motion.div
             key={imageIndex}
@@ -89,7 +89,7 @@ export function ProjectCarousel({
               fill={true}
               preload={true}
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover transition-transform duration-500"
+              className="object-cover"
             />
           </motion.div>
         )}
