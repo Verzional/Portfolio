@@ -55,9 +55,9 @@ export function SocialSlot({
             animate={{ opacity: 1, height: "auto", y: 0 }}
             exit={{ opacity: 0, height: 0, y: -5 }}
             transition={{ duration: 0.2 }}
-            className="flex items-center gap-2 overflow-hidden font-lato text-sm font-bold tracking-wider text-foreground drop-shadow-[0_0_5px_var(--color-primary)]"
+            className="flex items-center gap-2 overflow-hidden font-lato text-sm font-bold tracking-wider text-foreground [text-shadow:0_0_5px_var(--color-primary)]"
           >
-            <span className="text-muted drop-shadow-none">↳</span>
+            <span className="text-muted [text-shadow:none]">↳</span>
             {handle}
           </motion.div>
         )}

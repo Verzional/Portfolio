@@ -127,7 +127,7 @@ export function TaxiMap({
                 <span
                   className={`text-center font-edo-sz text-xs leading-tight tracking-widest transition-all duration-500 md:text-2xl ${
                     isActive
-                      ? "text-foreground drop-shadow-[2px_2px_0_var(--color-primary)]"
+                      ? "text-foreground [text-shadow:2px_2px_0_var(--color-primary)]"
                       : "text-muted"
                   }`}
                 >
