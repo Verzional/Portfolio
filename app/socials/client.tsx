@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { useValidIndex } from "@/hooks/use-valid-index";
 import { socialsData } from "@/data/socials";
@@ -30,13 +30,8 @@ export function SocialsClient() {
 
   const displayIndex = useValidIndex(activeIndex, socialsData.length);
 
-  const activeIndexRef = useRef(activeIndex);
-  useEffect(() => {
-    activeIndexRef.current = activeIndex;
-  }, [activeIndex]);
-
   const handleSlotClick = (idx: number, url: string) => {
-    if (activeIndexRef.current !== idx) {
+    if (activeIndex !== idx) {
       setActiveIndex(idx);
     } else {
       window.open(url, "_blank", "noopener,noreferrer");

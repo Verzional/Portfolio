@@ -110,7 +110,7 @@ export function SkillsClient() {
       {/* Main Skill Tree Canvas */}
       <SekiroSkillTree
         activeStyle={activeStyle}
-        activeNodeId={activeNodeId}
+        activeNodeId={activeNode?.id || null}
         onActiveNodeChange={setActiveNodeId}
       />
     </>

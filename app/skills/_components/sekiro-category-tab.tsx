@@ -20,7 +20,7 @@ export function SekiroCategoryTab({
     <button
       onClick={() => onClick(id)}
       title={label}
-      className={`relative flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-sm transition-all duration-200 md:h-12 md:w-12 xl:h-14 xl:w-14 ${
+      className={`relative flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-sm md:h-12 md:w-12 xl:h-14 xl:w-14 ${
         isActive ? "border-[3px]" : "border-2 hover:bg-foreground/10"
       }`}
       style={{

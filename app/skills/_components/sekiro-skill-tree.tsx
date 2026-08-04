@@ -18,11 +18,7 @@ export function SekiroSkillTree({
 }: SekiroSkillTreeProps) {
   const nodes = useMemo(() => activeStyle.skills || [], [activeStyle.skills]);
 
-  // Derive Active Node
-  const isNodeValid = nodes.some((n) => n.id === activeNodeId);
-  const effectiveActiveNodeId = isNodeValid
-    ? activeNodeId
-    : nodes[0]?.id || null;
+
 
   // Track Initial Load State
   const [currentStyleId, setCurrentStyleId] = useState(activeStyle.id);
@@ -42,12 +38,7 @@ export function SekiroSkillTree({
     return () => clearTimeout(timer);
   }, [isInitialLoad, activeStyle.id]);
 
-  // Sync Active Node State
-  useEffect(() => {
-    if (activeNodeId !== effectiveActiveNodeId) {
-      onActiveNodeChange(effectiveActiveNodeId);
-    }
-  }, [effectiveActiveNodeId, activeNodeId, onActiveNodeChange]);
+
 
   // Handle WASD Graph Navigation
   useEffect(() => {
@@ -68,7 +59,7 @@ export function SekiroSkillTree({
 
       e.preventDefault();
 
-      const startId = effectiveActiveNodeId;
+      const startId = activeNodeId;
       const activeNode = nodes.find((n) => n.id === startId);
       if (!activeNode) return;
 
@@ -119,7 +110,7 @@ export function SekiroSkillTree({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [nodes, effectiveActiveNodeId, activeNodeId, onActiveNodeChange]);
+  }, [nodes, activeNodeId, onActiveNodeChange]);
 
   // Render Empty State
   if (nodes.length === 0) {
@@ -265,9 +256,9 @@ export function SekiroSkillTree({
                         drawnLines.add(lineKey);
 
                         const isSourceActive =
-                          node.id === effectiveActiveNodeId;
+                          node.id === activeNodeId;
                         const isTargetActive =
-                          target.id === effectiveActiveNodeId;
+                          target.id === activeNodeId;
                         const isLineActive = isSourceActive || isTargetActive;
 
                         let lineOpacity = 0.25;
@@ -315,25 +306,18 @@ export function SekiroSkillTree({
                                 opacity: 0,
                                 strokeWidth: 4,
                                 stroke: activeStyle.themeColor,
-                                filter: "drop-shadow(0 0 0px transparent)",
+                                filter: `drop-shadow(0 0 8px ${activeStyle.themeColor})`,
                               },
                               visible: {
                                 pathLength: 1,
                                 opacity: isLineActive ? lineOpacity : 0,
                                 strokeWidth: 4,
                                 stroke: activeStyle.themeColor,
-                                filter: isLineActive
-                                  ? `drop-shadow(0 0 8px ${activeStyle.themeColor})`
-                                  : "drop-shadow(0 0 0px transparent)",
+                                filter: `drop-shadow(0 0 8px ${activeStyle.themeColor})`,
                                 transition: {
                                   duration: 0.4,
                                   ease: "easeInOut",
                                   opacity: {
-                                    delay:
-                                      isLineActive && isInitialLoad ? 1.8 : 0,
-                                    duration: 0.4,
-                                  },
-                                  filter: {
                                     delay:
                                       isLineActive && isInitialLoad ? 1.8 : 0,
                                     duration: 0.4,
@@ -373,12 +357,12 @@ export function SekiroSkillTree({
                 top: getY(node.position.y),
                 x: "-50%",
                 y: "-50%",
-                zIndex: effectiveActiveNodeId === node.id ? 10 : 1,
+                zIndex: activeNodeId === node.id ? 10 : 1,
               }}
             >
               <SekiroSkillNode
                 node={node}
-                isActive={effectiveActiveNodeId === node.id}
+                isActive={activeNodeId === node.id}
                 onClick={() => onActiveNodeChange(node.id)}
                 onHover={() => onActiveNodeChange(node.id)}
               />
