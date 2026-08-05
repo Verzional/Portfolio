@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build && next-image-export-optimizer",
     "start": "next start",
-    "lint": "eslint"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "validate": "pnpm typecheck && pnpm lint"
   },
   "dependencies": {
     "clsx": "^2.1.1",
