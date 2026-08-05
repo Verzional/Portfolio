@@ -313,7 +313,7 @@ const secondarySkills = (): SkillNode[] => {
     },
     {
       id: "sec-csharp",
-      name: "C#",
+      name: "C Sharp",
       description: "Modern, object-oriented language by Microsoft.",
       icon: "/images/skills/csharp.svg",
       position: { x: 2, y: 1 },

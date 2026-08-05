@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+
 import { useMenu } from "@/hooks/use-menu";
 import { useValidIndex } from "@/hooks/use-valid-index";
 import { socialsData } from "@/data/socials";

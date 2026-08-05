@@ -57,7 +57,7 @@ export function SocialSlot({
             transition={{ duration: 0.2 }}
             className="flex items-center gap-2 overflow-hidden font-lato text-sm font-bold tracking-wider text-foreground [text-shadow:0_0_5px_var(--color-primary)]"
           >
-            <span className="text-muted [text-shadow:none]">↳</span>
+            <span className="text-muted text-shadow-none">↳</span>
             {handle}
           </motion.div>
         )}

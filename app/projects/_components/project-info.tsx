@@ -30,10 +30,8 @@ export function ProjectInfo({
             transition: { type: "spring", stiffness: 400, damping: 15 },
           },
         }}
-        className={`relative z-20 origin-left font-linux-biolinum text-3xl text-foreground uppercase [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] [text-shadow:0.5px_0.5px_0_#d4030d] md:text-4xl md:[text-shadow:3px_3px_0_#d4030d] xl:text-7xl xl:[text-shadow:4px_4px_0_#d4030d] ${
-          isOverlay
-            ? "leading-none xl:mb-2"
-            : "leading-tight"
+        className={`relative z-20 origin-left font-linux-biolinum text-3xl text-foreground uppercase [-webkit-text-stroke:0.5px_currentColor] [text-shadow:0.5px_0.5px_0_#d4030d] [text-stroke:0.5px_currentColor] md:text-4xl md:[text-shadow:3px_3px_0_#d4030d] xl:text-7xl xl:[text-shadow:4px_4px_0_#d4030d] ${
+          isOverlay ? "leading-none xl:mb-2" : "leading-tight"
         }`}
       >
         {project.title}
@@ -50,9 +48,7 @@ export function ProjectInfo({
           },
         }}
         className={`relative z-10 -rotate-1 border-l-4 border-primary p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)] md:p-5 md:shadow-[5px_5px_0_rgba(255,255,255,0.2)] xl:p-6 xl:shadow-[6px_6px_0_rgba(255,255,255,0.2)] ${
-          isOverlay
-            ? "bg-background/95"
-            : "mt-4 bg-background md:mt-5 xl:mt-6"
+          isOverlay ? "bg-background/95" : "mt-4 bg-background md:mt-5 xl:mt-6"
         }`}
       >
         <p className="font-linux-biolinum text-sm leading-relaxed tracking-wider [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-base xl:text-lg">

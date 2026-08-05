@@ -18,8 +18,6 @@ export function SekiroSkillTree({
 }: SekiroSkillTreeProps) {
   const nodes = useMemo(() => activeStyle.skills || [], [activeStyle.skills]);
 
-
-
   // Track Initial Load State
   const [currentStyleId, setCurrentStyleId] = useState(activeStyle.id);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
@@ -37,8 +35,6 @@ export function SekiroSkillTree({
     }, 1200);
     return () => clearTimeout(timer);
   }, [isInitialLoad, activeStyle.id]);
-
-
 
   // Handle WASD Graph Navigation
   useEffect(() => {
@@ -255,10 +251,8 @@ export function SekiroSkillTree({
                       if (!drawnLines.has(lineKey)) {
                         drawnLines.add(lineKey);
 
-                        const isSourceActive =
-                          node.id === activeNodeId;
-                        const isTargetActive =
-                          target.id === activeNodeId;
+                        const isSourceActive = node.id === activeNodeId;
+                        const isTargetActive = target.id === activeNodeId;
                         const isLineActive = isSourceActive || isTargetActive;
 
                         let lineOpacity = 0.25;
