@@ -53,8 +53,9 @@ Ensure all generated files are placed in the correct directories according to th
 - **Icons:** Use `lucide-react` for all icons.
 - **Linting & Purity:** Code must strictly adhere to the project's `.eslint.config.mjs` configuration. Always run `pnpm lint && pnpm tsc --noEmit` to verify build safety before concluding tasks. **NEVER use `// eslint-disable` comments.** You must natively satisfy the linter. Watch out for Next.js strict mode rules. NEVER use impure functions like `Math.random()` inside the render body of a component.
 - **Comments:** Inline comments dividing logic blocks must use strict Title Case headers without punctuation or excessive description (e.g., `// Track Active Skill Node`, `// Render Inner Parchment`). Avoid conversational or lowercase filler descriptions. Explain _why_ a complex block of code exists, not _what_ the syntax does.
-- **Styling (CSS Variables):**
+- **Styling (CSS Variables & Tailwind):**
   - All coloring must use the variables defined in `app/globals.css`. Avoid hardcoding colors.
+  - **Strict Native Tailwind:** Prioritize native Tailwind classes (e.g., `h-13`, `text-sm`, `tracking-widest`) over arbitrary bracket values (e.g., `h-[52px]`, `text-[14px]`, `tracking-[0.1em]`). Only use arbitrary values for exact hex colors or ultra-specific percentages that don't exist in the framework.
 
 ### 4. Animation & Portals
 
@@ -72,6 +73,7 @@ Ensure all generated files are placed in the correct directories according to th
 ### 6. Git & Commits
 
 - **Conventional Commits:** Commit messages must strictly follow the Conventional Commits specification.
+- **Git Execution:** NEVER run `git commit` or `git push` commands yourself. The user explicitly reserves the right to execute all git commits. When a task is complete and a commit is requested (e.g., via "GDCM"), you must ONLY generate and provide the Conventional Commit message text for the user to copy.
 - **Commit Types:** 
   - Use `feat` for new functionality, layout additions, and major responsive CSS changes.
   - Use `fix` for resolving layout bugs or broken responsiveness.

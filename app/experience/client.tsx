@@ -1,155 +1,54 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
-import { useMenu } from "@/hooks/use-menu";
-import { useValidIndex } from "@/hooks/use-valid-index";
-import { useCategories } from "@/hooks/use-categories";
-import { experienceData, experienceCategories } from "@/data/experience";
-import { SubMenu } from "@/components/sub-menu";
 import { SidebarPortal } from "@/components/sidebar-portal";
-import { TsushimaCategoryTab } from "./_components/tsushima-category-tab";
-import { TsushimaTaleSlot } from "./_components/tsushima-tale-slot";
-import { TaleDetails } from "./_components/tale-details";
+import { SubMenu } from "@/components/sub-menu";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { TsushimaCard } from "./_components/tsushima-card";
 
 export function ExperienceClient() {
   const router = useRouter();
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const { activeCategory, setActiveCategory } =
-    useCategories(experienceCategories);
-
-  const filteredExperience = experienceData.filter(
-    (exp) => activeCategory === "ALL" || exp.type === activeCategory,
-  );
-
-  const hasActiveTales = filteredExperience.some(
-    (exp) => exp.status === "IN PROGRESS",
-  );
-  const hasCompletedTales = filteredExperience.some(
-    (exp) => exp.status === "CLEARED",
-  );
-
-  // Handle Menu Navigation and Selection
-  const { activeIndex, setActiveIndex } = useMenu({
-    itemCount: filteredExperience.length + 1,
-    onSelect: (index) => {
-      if (index === filteredExperience.length) {
-        router.push("/");
-      }
-    },
-  });
-
-  const displayIndex = useValidIndex(activeIndex, filteredExperience.length);
-  const activeExperience = filteredExperience[displayIndex] || null;
-  const isBackActive = activeIndex === filteredExperience.length;
-
-  useEffect(() => {
-    setActiveIndex(0);
-  }, [activeCategory, setActiveIndex]);
-
-  const activeIndexRef = useRef(activeIndex);
-  useEffect(() => {
-    activeIndexRef.current = activeIndex;
-  }, [activeIndex]);
-
-  const handleSlotClick = (idx: number) => {
-    setActiveIndex(idx);
-  };
-
-  const sidebarContent = (
-    <SubMenu
-      title="Tales"
-      isBackActive={isBackActive}
-      onBackClick={() => router.push("/")}
-      onBackMove={() => setActiveIndex(filteredExperience.length)}
-      controls={[
-        { key: "W / S & ▼ / ▲", action: "Navigate" },
-        { key: "Q / E", action: "Category" },
-        { key: "ENTER / SPACE", action: "Select" },
-        { key: "ESC", action: "Back" },
-      ]}
-    >
-      <div className="flex min-h-0 w-full flex-1 scrollbar-none flex-col overflow-x-hidden overflow-y-auto pb-6">
-        {/* Filter By Category */}
-        <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-start gap-4 overflow-x-auto px-4 pt-3 pb-8 [-ms-overflow-style:none] md:ml-3 md:gap-8 [&::-webkit-scrollbar]:hidden">
-          {experienceCategories.map((cat) => (
-            <TsushimaCategoryTab
-              key={cat.id}
-              id={cat.id}
-              isActive={activeCategory === cat.id}
-              onClick={setActiveCategory}
-              label={cat.label}
-              icon={cat.icon}
-            />
-          ))}
-        </div>
-
-        {/* Group Active Progress */}
-        {hasActiveTales && (
-          <div className="mb-8 flex flex-col pl-4 md:pl-6">
-            <div className="mb-2 pl-1 font-lato text-xs font-bold tracking-[0.15em] text-white/70 md:text-sm">
-              ACTIVE TALES
-            </div>
-            <div className="flex w-[85%] flex-col gap-1.5 border-3 border-[#222428] bg-[#222428] lg:w-[80%]">
-              {filteredExperience.map((exp, idx) => {
-                if (exp.status !== "IN PROGRESS") return null;
-                return (
-                  <TsushimaTaleSlot
-                    key={exp.id}
-                    index={idx}
-                    isActive={activeIndex === idx}
-                    company={exp.company}
-                    role={exp.role}
-                    onClick={handleSlotClick}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* Group Completed Progress */}
-        {hasCompletedTales && (
-          <div className="mb-8 flex flex-col pl-4 md:pl-6">
-            <div className="mb-2 pl-1 font-lato text-xs font-bold tracking-[0.15em] text-white/70 md:text-sm">
-              COMPLETED TALES
-            </div>
-            <div className="flex w-[85%] flex-col gap-1.5 border-[3px] border-[#222428] bg-[#222428] lg:w-[80%]">
-              {filteredExperience.map((exp, idx) => {
-                if (exp.status !== "CLEARED") return null;
-                return (
-                  <TsushimaTaleSlot
-                    key={exp.id}
-                    index={idx}
-                    isActive={activeIndex === idx}
-                    company={exp.company}
-                    role={exp.role}
-                    onClick={handleSlotClick}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </div>
-    </SubMenu>
-  );
+  const dummyTales = [
+    "HAMMER AND FORGE",
+    "THE TALE OF RYUZO",
+    "THE TALE OF LADY MASAKO"
+  ];
 
   return (
     <>
-      <SidebarPortal>{sidebarContent}</SidebarPortal>
+      <SidebarPortal>
+        <SubMenu
+          title="JOURNAL"
+          onBackClick={() => router.push("/")}
+        >
+          {/* A simple wrapper to preview the cards on a grey background */}
+          <div className="flex h-full w-full flex-col bg-[#1a1c23] p-8 gap-2">
+            
+            <h4 className="font-lato text-xs tracking-widest text-[#7c7d82] uppercase mb-2">
+              COMPLETED TALES
+            </h4>
 
-      {/* Render Selected Detail */}
-      <div className="relative z-10 flex h-full w-full items-center justify-start md:bg-transparent">
-        {activeExperience ? (
-          <TaleDetails experience={activeExperience} />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center">
-            <div className="font-lato text-sm font-light tracking-[0.3em] text-white/30 uppercase">
-              Tale Details Pending
+            <div className="flex flex-col gap-2">
+              {dummyTales.map((tale, idx) => (
+                <div key={idx} onClick={() => setActiveIndex(idx)} className="cursor-pointer">
+                  <TsushimaCard
+                    title={tale}
+                    isActive={activeIndex === idx}
+                  />
+                </div>
+              ))}
             </div>
+
           </div>
-        )}
+        </SubMenu>
+      </SidebarPortal>
+
+      <div className="relative z-10 flex h-full w-full items-center justify-center">
+        <p className="font-lato tracking-widest text-white/50 uppercase">
+          Standing by
+        </p>
       </div>
     </>
   );
