@@ -31,20 +31,23 @@ export function TsushimaCard({ title, isActive = false }: TsushimaCardProps) {
       {isActive ? (
         <div className="absolute inset-y-0 left-0 z-0 w-[105%] overflow-hidden">
           <div
-            className="absolute -top-4 right-2 -bottom-4 -left-4 bg-[#ce423b]"
+            className="absolute -bottom-4 -left-4 -top-4 right-2 bg-[#ce423b]"
             style={{
               filter: `url(#brush-edge-${filterId})`,
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E")`,
             }}
           />
         </div>
       ) : (
-        <div
-          className="absolute inset-0 z-0 bg-[#2d3036]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E")`,
-          }}
-        />
+        <div className="absolute inset-y-0 left-0 z-0 w-[105%] overflow-hidden">
+          <div
+            className="absolute -bottom-4 -left-4 -top-4 right-2 bg-[#2d3036]"
+            style={{
+              filter: `url(#brush-edge-${filterId})`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E")`,
+            }}
+          />
+        </div>
       )}
 
       <div className="relative z-10 flex items-center gap-4">
