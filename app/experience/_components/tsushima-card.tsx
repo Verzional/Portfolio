@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId, useRef, useEffect } from "react";
 
 interface TsushimaCardProps {
   title: string;
@@ -7,9 +7,19 @@ interface TsushimaCardProps {
 
 export function TsushimaCard({ title, isActive = false }: TsushimaCardProps) {
   const filterId = useId().replace(/:/g, "");
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isActive && containerRef.current) {
+      containerRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [isActive]);
 
   return (
-    <div className="relative flex h-13 w-full max-w-md items-center pl-5">
+    <div ref={containerRef} className="relative flex h-13 w-full max-w-md items-center pl-5">
       <svg className="absolute h-0 w-0">
         <filter id={`brush-edge-${filterId}`}>
           <feTurbulence

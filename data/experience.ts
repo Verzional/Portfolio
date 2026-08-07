@@ -16,8 +16,8 @@ export interface ExperienceData {
 
 export const experienceCategories = [
   { id: "ALL", label: "ALL TALES", icon: BookOpen },
-  { id: "MAIN QUEST", label: "MAIN QUESTS", icon: Flag },
-  { id: "SUB-STORY", label: "SUB-STORIES", icon: Scroll },
+  { id: "MAIN QUEST", label: "MAIN QUEST", icon: Flag },
+  { id: "SUB-STORY", label: "TALE OF TSUSHIMA", icon: Scroll },
 ];
 
 export const experienceData: ExperienceData[] = [
