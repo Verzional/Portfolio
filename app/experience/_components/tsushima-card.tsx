@@ -19,19 +19,22 @@ export function TsushimaCard({ title, isActive = false }: TsushimaCardProps) {
   }, [isActive]);
 
   return (
-    <div ref={containerRef} className="relative flex h-13 w-full max-w-md items-center pl-5">
+    <div
+      ref={containerRef}
+      className="relative flex min-h-13 w-full max-w-md items-center py-3 pl-6 pr-6 md:pl-8 md:pr-8"
+    >
       <svg className="absolute h-0 w-0">
         <filter id={`brush-edge-${filterId}`}>
           <feTurbulence
             type="fractalNoise"
-            baseFrequency="0.8 0.1"
+            baseFrequency="0.12 0.6"
             numOctaves="3"
             result="noise"
           />
           <feDisplacementMap
             in="SourceGraphic"
             in2="noise"
-            scale="8"
+            scale="20"
             xChannelSelector="R"
             yChannelSelector="G"
           />
@@ -39,9 +42,9 @@ export function TsushimaCard({ title, isActive = false }: TsushimaCardProps) {
       </svg>
 
       {isActive ? (
-        <div className="absolute inset-y-0 left-0 z-0 w-[105%] overflow-hidden">
+        <div className="absolute inset-y-0 -right-8 -left-4 z-0 overflow-hidden md:-right-12 md:-left-6">
           <div
-            className="absolute -bottom-4 -left-4 -top-4 right-2 bg-[#ce423b]"
+            className="absolute -top-4 right-4 -bottom-4 -left-8 bg-[#ce423b] md:right-6"
             style={{
               filter: `url(#brush-edge-${filterId})`,
               backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E")`,
@@ -49,9 +52,9 @@ export function TsushimaCard({ title, isActive = false }: TsushimaCardProps) {
           />
         </div>
       ) : (
-        <div className="absolute inset-y-0 left-0 z-0 w-[105%] overflow-hidden">
+        <div className="absolute inset-y-0 -right-4 left-2 z-0 overflow-hidden md:-right-6 md:left-4">
           <div
-            className="absolute -bottom-4 -left-4 -top-4 right-2 bg-[#2d3036]"
+            className="absolute -top-4 right-6 -bottom-4 -left-8 bg-[#2d3036] md:right-10"
             style={{
               filter: `url(#brush-edge-${filterId})`,
               backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E")`,
