@@ -29,7 +29,7 @@ export const projectsData = [
       "Judge0",
       "Docker",
     ],
-    liveUrl: "https://cp.nplc.ciputra.ac.id/",
+    liveUrl: "#",
     githubUrl: "https://github.com/IMT-SU-25-26/13th-NPLC-CP",
   },
   {
@@ -53,7 +53,7 @@ export const projectsData = [
       "Soketi",
       "Cloudinary",
     ],
-    liveUrl: "https://ctc.bebras.uc.ac.id/",
+    liveUrl: "#",
     githubUrl: "https://github.com/Verzional/C-Think",
   },
   {
@@ -109,7 +109,7 @@ export const projectsData = [
       "Cloudinary",
       "OAuth 2.0",
     ],
-    liveUrl: "https://simawa-imtuc.com",
+    liveUrl: "#",
     githubUrl: "https://github.com/IMT-SU-25-26/Web-Main",
   },
   {
