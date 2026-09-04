@@ -149,12 +149,11 @@ export const projectsData = [
   },
   {
     id: "8",
-    title: "12th NPLC Rally VN",
-    categories: ["GAMES", "WEB"],
+    title: "12th NPLC VN",
+    categories: ["GAMES"],
     images: [
-      "/images/projects/12th-nplc-vn/template-1.webp",
-      "/images/projects/12th-nplc-vn/template-2.webp",
-      "/images/projects/12th-nplc-vn/template-3.webp",
+      "/images/projects/12th-nplc-vn/dialogue.webp",
+      "/images/projects/12th-nplc-vn/login.webp",
     ],
     desc: "A visual novel game developed for UC Surabaya's 12th NPLC Category 2, featuring interactive story progression and branching narrative routes dictated by team rally game performance.",
     techStack: ["Unity WebGL", "Laravel"],
@@ -162,12 +161,12 @@ export const projectsData = [
   },
   {
     id: "9",
-    title: "PolyFuse",
+    title: "Polyfuse",
     categories: ["GAMES", "MOBILE"],
     images: [
-      "/images/projects/polyfuse/template-1.webp",
-      "/images/projects/polyfuse/template-2.webp",
-      "/images/projects/polyfuse/template-3.webp",
+      "/images/projects/polyfuse/gameplay.webp",
+      "/images/projects/polyfuse/game-over.webp",
+      "/images/projects/polyfuse/menu.webp",
     ],
     desc: "An endless spatial strategy puzzle where players fit geometric polyforms into a 3-axis isometric canvas to trigger cascading line clears. Driven by escalating combo momentum and hyper-tactile sensory feedback, it transforms turn-based spatial planning into an addictive, high-stakes arcade loop.",
     techStack: ["Unity"],
@@ -175,4 +174,3 @@ export const projectsData = [
     githubUrl: "https://github.com/Verzional/Polyfuse",
   },
 ];
-
