@@ -40,7 +40,7 @@ export function SubMenu({
           {controls && <ControlLegend controls={controls} />}
 
           {/* Title */}
-          <h2 className="shrink-0 truncate pl-6 font-edo-sz text-2xl tracking-widest text-muted uppercase md:pl-8 md:text-4xl xl:text-5xl">
+          <h2 className="shrink-0 truncate pl-6 font-edo-sz text-2xl tracking-wider text-muted uppercase md:pl-8 md:text-3xl xl:text-4xl 2xl:text-5xl">
             {title}
           </h2>
 

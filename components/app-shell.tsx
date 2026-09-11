@@ -57,11 +57,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("preview-route", handlePreview);
   }, []);
 
-  // Detect Standalone Pages
-  const isStandalone =
+  // Standalone Document Routes (Privacy Policy)
+  const isPrivacy =
     pathname === "/privacy" || pathname?.startsWith("/privacy");
-
-  if (isStandalone) {
+  if (isPrivacy) {
     return (
       <div className="min-h-screen w-full overflow-y-auto bg-[#0A0D14]">
         {children}
@@ -69,7 +68,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     );
   }
 
-  // Home Page Background Logic
+  // Background Image Resolution
   let activeBg = "/images/backgrounds/BG-Kiryu.webp";
   if (isHome) {
     if (previewRoute && homeHoverBgMap[previewRoute]) {
@@ -78,6 +77,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   } else {
     if (pageBgMap[pathname]) {
       activeBg = pageBgMap[pathname];
+    } else if (previewRoute && homeHoverBgMap[previewRoute]) {
+      activeBg = homeHoverBgMap[previewRoute];
     }
   }
 
