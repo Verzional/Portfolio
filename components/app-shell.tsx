@@ -57,6 +57,18 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("preview-route", handlePreview);
   }, []);
 
+  // Detect Standalone Pages
+  const isStandalone =
+    pathname === "/privacy" || pathname?.startsWith("/privacy");
+
+  if (isStandalone) {
+    return (
+      <div className="min-h-screen w-full overflow-y-auto bg-[#0A0D14]">
+        {children}
+      </div>
+    );
+  }
+
   // Home Page Background Logic
   let activeBg = "/images/backgrounds/BG-Kiryu.webp";
   if (isHome) {
