@@ -5,6 +5,10 @@ import { ControlLegend } from "@/components/control-legend";
 
 interface SubMenuProps {
   title: string;
+  titleClassName?: string;
+  backClassName?: string;
+  backActiveClassName?: string;
+  dividerClassName?: string;
   children?: React.ReactNode;
   isBackActive?: boolean;
   onBackClick?: () => void;
@@ -14,6 +18,10 @@ interface SubMenuProps {
 
 export function SubMenu({
   title,
+  titleClassName,
+  backClassName,
+  backActiveClassName,
+  dividerClassName,
   children,
   isBackActive = false,
   onBackClick,
@@ -31,6 +39,9 @@ export function SubMenu({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onBackClick]);
 
+  const defaultDivider = "my-3 h-0.5 w-[90%] bg-divider md:my-4 xl:my-6";
+  const divider = dividerClassName ?? defaultDivider;
+
   return (
     <div className="flex h-full w-full flex-col overflow-hidden pt-4 text-foreground md:pt-0">
       <div className="my-auto flex max-h-full min-h-0 w-full flex-col">
@@ -40,12 +51,17 @@ export function SubMenu({
           {controls && <ControlLegend controls={controls} />}
 
           {/* Title */}
-          <h2 className="shrink-0 truncate pl-6 font-edo-sz text-2xl tracking-wider text-muted uppercase md:pl-8 md:text-3xl xl:text-4xl 2xl:text-5xl">
+          <h2
+            className={
+              titleClassName ??
+              "shrink-0 truncate pl-6 font-edo-sz text-2xl tracking-wider text-muted uppercase md:pl-8 md:text-3xl xl:text-4xl 2xl:text-5xl"
+            }
+          >
             {title}
           </h2>
 
           {/* Divider */}
-          <div className="my-3 h-0.5 w-[90%] bg-divider md:my-4 xl:my-6" />
+          <div className={divider} />
         </div>
 
         {/* Children */}
@@ -56,7 +72,7 @@ export function SubMenu({
         {/* Footer */}
         <div className="flex shrink-0 flex-col">
           {/* Divider */}
-          <div className="my-3 h-0.5 w-[90%] bg-divider md:my-4 xl:my-6" />
+          <div className={divider} />
 
           {/* Back Button */}
           <button
@@ -66,11 +82,19 @@ export function SubMenu({
                 onBackMove?.();
               }
             }}
-            className={`block w-[95%] py-2 pl-6 text-left font-edo-sz text-2xl tracking-widest uppercase transition-colors md:py-3 md:pl-8 md:text-4xl xl:pt-2 xl:pb-4 xl:text-5xl ${
-              isBackActive
-                ? "relative bg-menu-select text-foreground"
-                : "text-muted hover:bg-menu-select hover:text-foreground"
-            }`}
+            className={
+              backClassName
+                ? `${backClassName} ${
+                    isBackActive
+                      ? (backActiveClassName ?? "relative bg-menu-select text-foreground")
+                      : "text-muted hover:bg-menu-select hover:text-foreground"
+                  }`
+                : `block w-[95%] py-2 pl-6 text-left font-edo-sz text-2xl tracking-widest uppercase transition-colors md:py-3 md:pl-8 md:text-4xl xl:pt-2 xl:pb-4 xl:text-5xl ${
+                    isBackActive
+                      ? "relative bg-menu-select text-foreground"
+                      : "text-muted hover:bg-menu-select hover:text-foreground"
+                  }`
+            }
           >
             Back
           </button>
