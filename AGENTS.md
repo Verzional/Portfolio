@@ -73,7 +73,7 @@ Ensure all generated files are placed in the correct directories according to th
 ### 6. Git & Commits
 
 - **Conventional Commits:** Commit messages must strictly follow the Conventional Commits specification.
-- **Git Execution:** NEVER run `git commit` or `git push` commands yourself. The user explicitly reserves the right to execute all git commits. When a task is complete and a commit is requested (e.g., via "GDCM"), you must ONLY generate and provide the Conventional Commit message text for the user to copy.
+- **Git Execution:** Only run `git add` and `git commit` when explicitly instructed or given permission by the user. When instructed to commit, always separate changes into distinct, atomic commits following the Conventional Commits specification—never make a single monolithic commit. NEVER execute `git push` unless explicitly instructed.
 - **Commit Types:** 
   - Use `feat` for new functionality, layout additions, and major responsive CSS changes.
   - Use `fix` for resolving layout bugs or broken responsiveness.
