@@ -10,7 +10,7 @@ import { Sidebar as HomeMenu } from "@/components/sidebar";
 const homeHoverBgMap: Record<string, string> = {
   "/projects": "/images/backgrounds/BG-Kiryu.webp",
   "/skills": "/images/backgrounds/BG-Majima.webp",
-  "/experience": "/images/backgrounds/BG-Saejima.webp",
+  "/experience": "/images/backgrounds/BG-Persona.webp",
   "/socials": "/images/backgrounds/BG-Nishiki.webp",
 };
 
@@ -18,7 +18,7 @@ const homeHoverBgMap: Record<string, string> = {
 const pageBgMap: Record<string, string> = {
   "/projects": "/images/backgrounds/BG-Persona.webp",
   "/skills": "/images/backgrounds/BG-Sekiro.webp",
-  "/experience": "/images/backgrounds/BG-Saejima.webp",
+  "/experience": "/images/backgrounds/BG-Persona.webp",
   "/socials": "/images/backgrounds/BG-Ichiban.webp",
 };
 
@@ -36,6 +36,7 @@ const bgOpacityMap: Record<string, string> = {
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const isExperience = pathname === "/experience" || pathname?.startsWith("/experience");
   const [previewRoute, setPreviewRoute] = useState<string | null>(null);
   const [previousPath, setPreviousPath] = useState<string | null>(null);
   const [currentPath, setCurrentPath] = useState(pathname);
@@ -119,7 +120,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {/* Sidebar Bleed */}
       <div
         className={`pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[70%] w-full bg-sidebar-bleed-mobile transition-sidebar md:inset-y-0 md:right-auto md:left-0 md:h-full md:bg-sidebar-bleed ${
-          isHome ? "md:w-[55%] lg:w-[45%]" : "md:w-[40%] lg:w-[25%]"
+          isHome
+            ? "md:w-[55%] lg:w-[45%]"
+            : isExperience
+              ? "md:w-[48%] lg:w-[34%]"
+              : "md:w-[40%] lg:w-[25%]"
         }`}
       />
 
@@ -128,7 +133,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         {/* Sidebar Container */}
         <aside
           className={`order-2 flex h-[50%] w-full flex-col justify-center overflow-x-hidden bg-transparent py-4 transition-sidebar md:order-1 md:h-full md:py-24 ${
-            isHome ? "md:w-[50%] lg:w-[40%]" : "md:w-[35%] lg:w-[20%]"
+            isHome
+              ? "md:w-[50%] lg:w-[40%]"
+              : isExperience
+                ? "md:w-[42%] lg:w-[28%]"
+                : "md:w-[35%] lg:w-[20%]"
           }`}
         >
           <AnimatePresence mode="wait">
