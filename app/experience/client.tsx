@@ -84,7 +84,7 @@ export function ExperienceClient() {
         </div>
 
         {/* Experience Slots */}
-        <div className="mt-2 flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto px-4 pr-6 pb-8 md:px-8 md:pr-12">
+        <div className="mt-2 flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto px-4 pr-6 pb-8 outline-none focus:outline-none focus-visible:outline-none md:px-8 md:pr-12">
           {filteredExperiences.map((exp, idx) => (
             <PersonaExperienceSlot
               key={exp.id}
@@ -92,9 +92,8 @@ export function ExperienceClient() {
               isActive={idx === activeIndex}
               role={exp.role}
               company={exp.company}
-              arcana={exp.arcana}
-              arcanaNumber={exp.arcanaNumber}
-              rankTitle={exp.rankTitle}
+              romanNumeral={exp.romanNumeral}
+              durationMonths={exp.durationMonths}
               status={exp.status}
               onClick={handleExperienceClick}
               onHover={handleExperienceHover}

@@ -3,18 +3,16 @@ import { Layers, Terminal, GraduationCap, Users, type LucideIcon } from "lucide-
 export type ExperienceCategory = "DEV" | "ACAD" | "LEAD";
 export type ExperienceStatus = "ACTIVE" | "CLEARED";
 
-export interface ConfidantAbility {
-  level: string;
-  name: string;
+export interface ExperienceDeliverable {
+  tag: string;
+  title: string;
   desc: string;
 }
 
 export interface ExperienceData {
   id: string;
+  romanNumeral: string;
   categories: ExperienceCategory[];
-  arcana: string;
-  arcanaNumber: string;
-  frenchArcana: string;
   role: string;
   company: string;
   employmentType: string;
@@ -23,11 +21,8 @@ export interface ExperienceData {
   durationMonths: string;
   location: string;
   status: ExperienceStatus;
-  rankLevel: number;
-  maxRank: number;
-  rankTitle: string;
   description: string;
-  abilities: ConfidantAbility[];
+  deliverables: ExperienceDeliverable[];
   skills: string[];
 }
 
@@ -47,10 +42,8 @@ export const experienceCategories: ExperienceCategoryItem[] = [
 export const experienceData: ExperienceData[] = [
   {
     id: "1",
+    romanNumeral: "I",
     categories: ["DEV"],
-    arcana: "THE MAGICIAN",
-    arcanaNumber: "I",
-    frenchArcana: "LE BATELEUR",
     role: "iOS Developer",
     company: "Apple Developer Academy @ UC Surabaya",
     employmentType: "Apprenticeship",
@@ -59,36 +52,31 @@ export const experienceData: ExperienceData[] = [
     durationMonths: "7 mos",
     location: "Surabaya, East Java, Indonesia",
     status: "ACTIVE",
-    rankLevel: 10,
-    maxRank: 10,
-    rankTitle: "RANK MAX",
     description:
-      "Intensive apprenticeship program centered on architecting native iOS software and tackling complex societal challenges through Apple's Challenge-Based Learning framework.",
-    abilities: [
+      "Intensive engineering apprenticeship centered on architecting native iOS software and tackling complex societal challenges through Apple's Challenge-Based Learning framework.",
+    deliverables: [
       {
-        level: "LV. 1",
-        name: "Challenge Initiation",
-        desc: "Utilizing Challenge-Based Learning (CBL) to investigate real-world problems and prototype validated solutions.",
+        tag: "METHODOLOGY",
+        title: "Challenge-Based Learning & Prototyping",
+        desc: "Utilizing Challenge-Based Learning (CBL) to investigate real-world user problems, design validated prototypes, and iterate on production software.",
       },
       {
-        level: "LV. 5",
-        name: "Swift Synthesis",
-        desc: "Architecting high-performance native iOS applications with Swift, SwiftUI, Combine, and Apple HIG patterns.",
+        tag: "ARCHITECTURE",
+        title: "Swift & SwiftUI Native Engineering",
+        desc: "Architecting native iOS applications with Swift, SwiftUI, Combine, and Apple Human Interface Guidelines for responsive performance.",
       },
       {
-        level: "MAX",
-        name: "Squad Synchronization",
-        desc: "Coordinating in multidisciplinary agile squads across design, user research, and technical implementation.",
+        tag: "COLLABORATION",
+        title: "Cross-Functional Agile Delivery",
+        desc: "Collaborating in multidisciplinary agile squads alongside product designers, domain researchers, and technical peers to deliver shippable software.",
       },
     ],
-    skills: ["Swift (Programming Language)", "SwiftUI", "iOS Architecture", "CoreML"],
+    skills: ["Swift", "SwiftUI", "iOS Architecture", "CoreML", "Combine"],
   },
   {
     id: "2",
+    romanNumeral: "II",
     categories: ["ACAD"],
-    arcana: "JUSTICE",
-    arcanaNumber: "VIII",
-    frenchArcana: "LA JUSTICE",
     role: "Teaching Assistant - Software Engineering",
     company: "Universitas Ciputra Surabaya",
     employmentType: "Contract",
@@ -97,36 +85,31 @@ export const experienceData: ExperienceData[] = [
     durationMonths: "5 mos",
     location: "Surabaya, East Java, Indonesia",
     status: "CLEARED",
-    rankLevel: 8,
-    maxRank: 10,
-    rankTitle: "RANK 08",
     description:
-      "Mentored undergraduate cohorts in software engineering rigor, structural UML modeling, agile sprint cycles, and institutional code review standards.",
-    abilities: [
+      "Mentored undergraduate software engineering cohorts in system modeling rigor, agile sprint execution, and industry-standard pull request reviews.",
+    deliverables: [
       {
-        level: "LV. 2",
-        name: "UML & System Modeling",
-        desc: "Coached students through structural modeling (class, component diagrams) and behavioral modeling (use-case, sequence diagrams).",
+        tag: "SYSTEM DESIGN",
+        title: "UML Structural & Behavioral Modeling",
+        desc: "Coached student teams through class diagrams, component architectures, sequence diagrams, and use-case specifications.",
       },
       {
-        level: "LV. 5",
-        name: "Code Review Discipline",
-        desc: "Conducted peer code reviews and enforced Git branching standards and pull request workflows.",
+        tag: "CODE REVIEW",
+        title: "Engineering Rigor & Pull Requests",
+        desc: "Conducted systematic peer code reviews, establishing Git flow branching discipline and test-driven code hygiene standards.",
       },
       {
-        level: "LV. 8",
-        name: "Agile Ritual Coaching",
-        desc: "Mentored teams through sprint planning, backlog grooming, and milestone delivery reviews.",
+        tag: "AGILE COACHING",
+        title: "Sprint Ceremonies & Backlog Grooming",
+        desc: "Facilitated agile ceremonies, guiding student project squads through backlog refinement, velocity tracking, and milestone delivery.",
       },
     ],
-    skills: ["Teaching", "Unified Modeling Language (UML)", "Software Engineering", "Agile Methodologies"],
+    skills: ["Teaching", "UML", "Software Engineering", "Agile Methodologies", "Git Flow"],
   },
   {
     id: "3",
+    romanNumeral: "III",
     categories: ["ACAD"],
-    arcana: "THE HIGH PRIESTESS",
-    arcanaNumber: "II",
-    frenchArcana: "LA PAPESSE",
     role: "Teaching Assistant - Database",
     company: "Universitas Ciputra Surabaya",
     employmentType: "Contract",
@@ -135,74 +118,31 @@ export const experienceData: ExperienceData[] = [
     durationMonths: "5 mos",
     location: "Surabaya, East Java, Indonesia",
     status: "CLEARED",
-    rankLevel: 7,
-    maxRank: 10,
-    rankTitle: "RANK 07",
     description:
-      "Guided students in relational schema modeling, 3NF normalization, index optimization, and high-performance SQL query tuning.",
-    abilities: [
+      "Instructed cohorts in relational schema design, 3NF normalization, query execution plans, and transaction isolation benchmarks.",
+    deliverables: [
       {
-        level: "LV. 1",
-        name: "Relational Modeling",
-        desc: "Instructed students on entity-relationship diagrams, foreign key integrity, and normalization standards.",
+        tag: "DATA MODELING",
+        title: "Relational Schema Design & 3NF",
+        desc: "Instructed students on entity-relationship modeling, referential integrity constraints, and third normal form normalization.",
       },
       {
-        level: "LV. 4",
-        name: "Query Optimization",
-        desc: "Demonstrated execution plans, index tuning, and latency reduction in relational queries.",
+        tag: "OPTIMIZATION",
+        title: "Query Tuning & Execution Plans",
+        desc: "Analyzed relational query execution plans, teaching index optimization strategies, foreign key indexes, and latency reduction in PostgreSQL.",
       },
       {
-        level: "LV. 7",
-        name: "Lab Supervision",
-        desc: "Supervised hands-on laboratory exercises and evaluated transactional isolation benchmarks.",
+        tag: "LAB BENCHMARKS",
+        title: "Transaction Isolation & Benchmarking",
+        desc: "Supervised hands-on laboratory experiments evaluating ACID compliance, concurrency anomalies, and transactional benchmarks.",
       },
     ],
-    skills: ["Teaching", "Database", "SQL", "Relational Database", "PostgreSQL"],
+    skills: ["Teaching", "Database Design", "SQL", "Relational Databases", "PostgreSQL"],
   },
   {
     id: "4",
-    categories: ["LEAD", "DEV"],
-    arcana: "THE EMPEROR",
-    arcanaNumber: "IV",
-    frenchArcana: "L'EMPEREUR",
-    role: "Technical Lead",
-    company: "IMT Student Union",
-    employmentType: "Contract",
-    workplaceType: "Hybrid",
-    duration: "Apr 2025 - Jun 2026",
-    durationMonths: "1 yr 3 mos",
-    location: "Surabaya, East Java, Indonesia",
-    status: "CLEARED",
-    rankLevel: 9,
-    maxRank: 10,
-    rankTitle: "RANK 09",
-    description:
-      "Spearheaded the student union's technology operations, managing departmental infrastructure, mentoring division peers, and coordinating high-traffic web portals.",
-    abilities: [
-      {
-        level: "LV. 3",
-        name: "Pipeline Automation",
-        desc: "Implemented CI/CD pipelines to automate automated testing and server deployments.",
-      },
-      {
-        level: "LV. 6",
-        name: "Infrastructure Reliability",
-        desc: "Maintained uptime and cloud environments for official competition portals and student applications.",
-      },
-      {
-        level: "LV. 9",
-        name: "Technical Direction",
-        desc: "Mentored division members, delegated project epics, and established division coding guidelines.",
-      },
-    ],
-    skills: ["Software Project Management", "DevOps", "CI/CD", "Leadership", "Docker"],
-  },
-  {
-    id: "5",
+    romanNumeral: "IV",
     categories: ["ACAD"],
-    arcana: "THE HIEROPHANT",
-    arcanaNumber: "V",
-    frenchArcana: "LE PAPE",
     role: "Teaching Assistant - Web Development",
     company: "Universitas Ciputra Surabaya",
     employmentType: "Contract",
@@ -211,36 +151,64 @@ export const experienceData: ExperienceData[] = [
     durationMonths: "6 mos",
     location: "Surabaya, East Java, Indonesia",
     status: "CLEARED",
-    rankLevel: 7,
-    maxRank: 10,
-    rankTitle: "RANK 07",
     description:
-      "Taught foundational and intermediate web technologies, emphasizing responsive interface structures, server-side scripting, and API communication.",
-    abilities: [
+      "Taught foundational and intermediate full-stack web development, emphasizing semantic layouts, client-server communication, and REST APIs.",
+    deliverables: [
       {
-        level: "LV. 1",
-        name: "Web Pedagogy",
-        desc: "Delivered interactive lab tutorials covering responsive layouts, modern CSS, and DOM manipulation.",
+        tag: "WEB PEDAGOGY",
+        title: "Interactive Full-Stack Instruction",
+        desc: "Delivered interactive lab tutorials covering responsive layouts, modern CSS specifications, and asynchronous DOM manipulation.",
       },
       {
-        level: "LV. 4",
-        name: "Full-Stack Integration",
-        desc: "Assisted students in connecting front-end interfaces to server-side endpoints and REST APIs.",
+        tag: "INTEGRATION",
+        title: "Client-Server Architecture & APIs",
+        desc: "Guided students through structuring RESTful API endpoints, server-side data validation, and front-end state synchronization.",
       },
       {
-        level: "LV. 7",
-        name: "Defect Triage",
-        desc: "Trained students in browser devtools debugging, network tracing, and error resolution.",
+        tag: "TRIAGE",
+        title: "Browser DevTools & Defect Triage",
+        desc: "Trained students in network tracing, payload inspection, and browser devtools debugging to diagnose production defects.",
       },
     ],
-    skills: ["Teaching", "PHP", "JavaScript", "Web Architecture", "HTML/CSS"],
+    skills: ["Teaching", "PHP", "JavaScript", "Web Architecture", "REST APIs", "HTML/CSS"],
+  },
+  {
+    id: "5",
+    romanNumeral: "V",
+    categories: ["LEAD", "DEV"],
+    role: "Technical Lead",
+    company: "IMT Student Union",
+    employmentType: "Contract",
+    workplaceType: "Hybrid",
+    duration: "Apr 2025 - Jun 2026",
+    durationMonths: "1 yr 3 mos",
+    location: "Surabaya, East Java, Indonesia",
+    status: "CLEARED",
+    description:
+      "Led technology operations for the student union, overseeing department infrastructure, mentoring engineers, and deploying competition platforms.",
+    deliverables: [
+      {
+        tag: "DEVOPS & CI/CD",
+        title: "Automated Deployment Pipelines",
+        desc: "Architected CI/CD pipelines with Docker and automated testing routines, drastically reducing deployment cycle times and human error.",
+      },
+      {
+        tag: "INFRASTRUCTURE",
+        title: "High-Availability Competition Portals",
+        desc: "Maintained cloud environments and uptime for campus-wide competition web applications serving hundreds of concurrent participants.",
+      },
+      {
+        tag: "LEADERSHIP",
+        title: "Technical Governance & Mentorship",
+        desc: "Established division coding standards, conducted architecture reviews, and mentored junior developers across project epics.",
+      },
+    ],
+    skills: ["Software Project Management", "DevOps", "CI/CD", "Technical Leadership", "Docker", "Linux"],
   },
   {
     id: "6",
+    romanNumeral: "VI",
     categories: ["ACAD"],
-    arcana: "THE HERMIT",
-    arcanaNumber: "IX",
-    frenchArcana: "L'ERMITE",
     role: "Teaching Assistant - Object-Oriented Programming",
     company: "Universitas Ciputra Surabaya",
     employmentType: "Contract",
@@ -249,36 +217,31 @@ export const experienceData: ExperienceData[] = [
     durationMonths: "6 mos",
     location: "Surabaya, East Java, Indonesia",
     status: "CLEARED",
-    rankLevel: 6,
-    maxRank: 10,
-    rankTitle: "RANK 06",
     description:
-      "Facilitated hands-on laboratory exercises focusing on Object-Oriented Programming paradigm essentials, design patterns, and robust error handling.",
-    abilities: [
+      "Facilitated laboratory exercises centered on Object-Oriented Programming fundamentals, software design patterns, and idiomatic Java.",
+    deliverables: [
       {
-        level: "LV. 2",
-        name: "Encapsulation Deep-Dive",
-        desc: "Mentored students on core principles: encapsulation, polymorphism, inheritance, and abstraction.",
+        tag: "OOP PARADIGM",
+        title: "Object-Oriented Design Principles",
+        desc: "Mentored students on encapsulation, polymorphism, inheritance, and interface abstraction in robust system architectures.",
       },
       {
-        level: "LV. 4",
-        name: "Pattern Instruction",
-        desc: "Demonstrated real-world implementations of factory, singleton, and observer design patterns.",
+        tag: "DESIGN PATTERNS",
+        title: "Gang of Four Pattern Implementations",
+        desc: "Demonstrated production implementations of creational and behavioral design patterns, including Factory, Singleton, and Observer.",
       },
       {
-        level: "LV. 6",
-        name: "Code Correctness Audits",
-        desc: "Audited lab assignments for algorithmic efficiency, clean variable naming, and idiomatic Java.",
+        tag: "CODE QUALITY",
+        title: "Algorithmic Efficiency & Clean Code",
+        desc: "Audited lab submissions for time complexity, memory allocation efficiency, clean naming conventions, and idiomatic structure.",
       },
     ],
-    skills: ["Teaching", "Object-Oriented Programming (OOP)", "Java", "Design Patterns"],
+    skills: ["Teaching", "Object-Oriented Programming", "Java", "Design Patterns", "Clean Code"],
   },
   {
     id: "7",
+    romanNumeral: "VII",
     categories: ["DEV"],
-    arcana: "THE CHARIOT",
-    arcanaNumber: "VII",
-    frenchArcana: "LE CHARIOT",
     role: "Full Stack Engineer",
     company: "IMT Student Union",
     employmentType: "Contract",
@@ -287,36 +250,31 @@ export const experienceData: ExperienceData[] = [
     durationMonths: "9 mos",
     location: "Surabaya, East Java, Indonesia",
     status: "CLEARED",
-    rankLevel: 8,
-    maxRank: 10,
-    rankTitle: "RANK 08",
     description:
-      "Collaborated on software development and web platform maintenance for university events, ensuring stability and timely deployment.",
-    abilities: [
+      "Engineered core modules and web platforms for major student union events, maintaining uptime and delivering rapid hotfixes.",
+    deliverables: [
       {
-        level: "LV. 2",
-        name: "Feature Implementation",
-        desc: "Built modules for event registration, scoring engines, and participant management portals using Laravel.",
+        tag: "FEATURE DELIVERY",
+        title: "Event Registration & Scoring Portals",
+        desc: "Engineered scalable registration portals, scoring engines, and participant dashboards using Laravel and MySQL.",
       },
       {
-        level: "LV. 4",
-        name: "Cross-Functional Sync",
-        desc: "Coordinated with event marketing and operations divisions to translate requirements into web features.",
+        tag: "CROSS-FUNCTIONAL",
+        title: "Requirements Translation",
+        desc: "Partnered with marketing and operations committees to translate operational event requirements into production web features.",
       },
       {
-        level: "LV. 6",
-        name: "Rapid Deployment",
-        desc: "Delivered urgent hotfixes and supported live competition platforms with zero downtime.",
+        tag: "OPERATIONS",
+        title: "Zero-Downtime Live Event Support",
+        desc: "Monitored production servers during high-traffic competition events, deploying hotfixes with zero platform downtime.",
       },
     ],
-    skills: ["Software Project Management", "Laravel", "PHP", "Full Stack Development", "Linux"],
+    skills: ["Laravel", "PHP", "Full Stack Development", "MySQL", "Linux", "REST APIs"],
   },
   {
     id: "8",
+    romanNumeral: "VIII",
     categories: ["ACAD"],
-    arcana: "WHEEL OF FORTUNE",
-    arcanaNumber: "X",
-    frenchArcana: "LA ROUE DE FORTUNE",
     role: "Teaching Assistant - Entrepreneurship Essentials",
     company: "Universitas Ciputra Surabaya",
     employmentType: "Contract",
@@ -325,28 +283,25 @@ export const experienceData: ExperienceData[] = [
     durationMonths: "6 mos",
     location: "Surabaya, East Java, Indonesia",
     status: "CLEARED",
-    rankLevel: 6,
-    maxRank: 10,
-    rankTitle: "RANK 06",
     description:
-      "Assisted instructional teams in cultivating student business acumen, validating value propositions, and structuring lean business models.",
-    abilities: [
+      "Guided undergraduate venture teams in business model formulation, customer discovery validation, and executive pitch delivery.",
+    deliverables: [
       {
-        level: "LV. 1",
-        name: "Lean Canvas Analysis",
-        desc: "Guided student venture teams through business model canvas formulation and market analysis.",
+        tag: "LEAN VALIDATION",
+        title: "Business Model Canvas Formulation",
+        desc: "Coached student teams through value proposition design, cost structure modeling, and market viability assessments.",
       },
       {
-        level: "LV. 3",
-        name: "Problem-Solution Fit",
-        desc: "Facilitated customer discovery interviews and hypothesis validation testing.",
+        tag: "USER RESEARCH",
+        title: "Hypothesis Testing & Discovery",
+        desc: "Facilitated customer discovery interviews and rapid validation experiments to test product-market hypotheses.",
       },
       {
-        level: "LV. 5",
-        name: "Pitch Coaching",
-        desc: "Coached teams on executive pitching, presentation clarity, and prototype demonstration.",
+        tag: "PITCH COACHING",
+        title: "Executive Presentations & Demo Days",
+        desc: "Trained venture teams on storytelling clarity, financial forecasting defense, and prototype live demonstrations.",
       },
     ],
-    skills: ["Teaching", "Entrepreneurship", "Business Modeling", "Public Speaking"],
+    skills: ["Teaching", "Entrepreneurship", "Business Modeling", "User Research", "Public Speaking"],
   },
 ];
