@@ -30,6 +30,10 @@
   html {
     @apply font-sans;
   }
+  :focus,
+  :focus-visible {
+    outline: none;
+  }
 }
 
 /* Custom Utility Classes */

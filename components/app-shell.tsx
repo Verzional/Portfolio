@@ -36,7 +36,6 @@ const bgOpacityMap: Record<string, string> = {
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const isExperience = pathname === "/experience" || pathname?.startsWith("/experience");
   const [previewRoute, setPreviewRoute] = useState<string | null>(null);
   const [previousPath, setPreviousPath] = useState<string | null>(null);
   const [currentPath, setCurrentPath] = useState(pathname);
@@ -120,11 +119,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {/* Sidebar Bleed */}
       <div
         className={`pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[70%] w-full bg-sidebar-bleed-mobile transition-sidebar md:inset-y-0 md:right-auto md:left-0 md:h-full md:bg-sidebar-bleed ${
-          isHome
-            ? "md:w-[55%] lg:w-[45%]"
-            : isExperience
-              ? "md:w-[48%] lg:w-[34%]"
-              : "md:w-[40%] lg:w-[25%]"
+          isHome ? "md:w-[55%] lg:w-[45%]" : "md:w-[40%] lg:w-[25%]"
         }`}
       />
 
@@ -132,12 +127,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="relative z-20 flex h-full w-full flex-col bg-transparent md:flex-row">
         {/* Sidebar Container */}
         <aside
-          className={`order-2 flex h-[50%] w-full flex-col justify-center overflow-x-hidden bg-transparent py-4 transition-sidebar md:order-1 md:h-full md:py-24 ${
-            isHome
-              ? "md:w-[50%] lg:w-[40%]"
-              : isExperience
-                ? "md:w-[42%] lg:w-[28%]"
-                : "md:w-[35%] lg:w-[20%]"
+          className={`order-2 flex h-[50%] w-full flex-col justify-center overflow-x-hidden bg-transparent py-4 outline-none focus:outline-none focus-visible:outline-none transition-sidebar md:order-1 md:h-full md:py-24 ${
+            isHome ? "md:w-[50%] lg:w-[40%]" : "md:w-[35%] lg:w-[20%]"
           }`}
         >
           <AnimatePresence mode="wait">
@@ -163,14 +154,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 transition={{ duration: 0.3 }}
                 className="flex h-full w-full flex-col justify-center"
               >
-                <div id="sidebar-root" className="h-full w-full" />
+                <div id="sidebar-root" className="h-full w-full outline-none focus:outline-none focus-visible:outline-none" />
               </motion.div>
             )}
           </AnimatePresence>
         </aside>
 
         {/* Main Content Area */}
-        <main className="relative order-1 flex h-[50%] w-full flex-1 flex-col items-center justify-center md:order-2 md:h-full">
+        <main className="relative order-1 flex h-[50%] w-full flex-1 flex-col items-center justify-center outline-none focus:outline-none focus-visible:outline-none md:order-2 md:h-full">
           {children}
         </main>
       </div>
