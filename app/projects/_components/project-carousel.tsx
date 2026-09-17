@@ -58,7 +58,7 @@ export function ProjectCarousel({
 
   return (
     <motion.div
-      className="image-carousel-container absolute inset-0 cursor-pointer bg-background shadow-[8px_8px_0_rgba(255,255,255,1)] transition-transform duration-500 group-hover:scale-[1.02]"
+      className="image-carousel-container absolute inset-0 cursor-pointer bg-background drop-shadow-[8px_8px_0_rgba(255,255,255,0.9)] transition-transform duration-300 group-hover:scale-[1.01]"
       style={{ clipPath: imageClipPath }}
       onTap={(e, info) => {
         const target = e.target as HTMLElement;
@@ -77,10 +77,10 @@ export function ProjectCarousel({
         {project.images && project.images.length > 0 && (
           <motion.div
             key={imageIndex}
-            initial={{ opacity: 0, x: 20, scale: 0.95 }}
+            initial={{ opacity: 0, x: 20, scale: 0.98 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: -20, scale: 1.05 }}
-            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0, x: -20, scale: 1.02 }}
+            transition={{ duration: 0.22, ease: [0.33, 1, 0.68, 1] }}
             className="absolute inset-0"
           >
             <ExportedImage
@@ -88,7 +88,6 @@ export function ProjectCarousel({
               alt={`${project.title} screenshot ${imageIndex + 1}`}
               fill={true}
               preload={true}
-              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
           </motion.div>

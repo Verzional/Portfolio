@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import { motion } from "motion/react";
 import { projectsData } from "@/data/projects";
@@ -81,11 +83,12 @@ export function ProjectDetails({
       key={project.id}
       initial="hidden"
       animate="visible"
+      tabIndex={-1}
       variants={{
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
       }}
-      className={`flex h-full w-full ${containerLayout} ${containerGap} scrollbar-none justify-start overflow-x-hidden overflow-y-auto p-4 md:justify-center md:p-8`}
+      className={`flex h-full w-full ${containerLayout} ${containerGap} scrollbar-none justify-start overflow-x-hidden overflow-y-auto p-4 outline-none focus:outline-none focus-visible:outline-none md:justify-center md:p-8`}
     >
       {/* Render Image Container */}
       <motion.div

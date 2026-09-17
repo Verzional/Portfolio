@@ -17,8 +17,15 @@ export function PersonaProjectSlot({
 }: PersonaProjectSlotProps) {
   const tiltClass = index % 2 === 0 ? "rotate-[1deg]" : "rotate-[-1deg]";
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const isInitialMount = useRef(true);
 
+  // Auto Scroll to Center on User Selection
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
     if (isActive && buttonRef.current) {
       buttonRef.current.scrollIntoView({
         behavior: "smooth",
@@ -31,7 +38,7 @@ export function PersonaProjectSlot({
     <button
       ref={buttonRef}
       onClick={() => onClick(index)}
-      className={`group relative mb-3 w-full text-left transition-all duration-200 ${tiltClass} ${
+      className={`group relative mb-3 w-full cursor-pointer text-left outline-none focus:outline-none focus-visible:outline-none transition-all duration-200 ${tiltClass} ${
         isActive ? "z-10 translate-x-4 scale-[1.03]" : "hover:translate-x-2"
       }`}
     >
