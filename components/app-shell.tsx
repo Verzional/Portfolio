@@ -10,7 +10,7 @@ import { Sidebar as HomeMenu } from "@/components/sidebar";
 const homeHoverBgMap: Record<string, string> = {
   "/projects": "/images/backgrounds/BG-Kiryu.webp",
   "/skills": "/images/backgrounds/BG-Majima.webp",
-  "/experience": "/images/backgrounds/BG-Persona.webp",
+  "/experience": "/images/backgrounds/BG-Saejima.webp",
   "/socials": "/images/backgrounds/BG-Nishiki.webp",
 };
 
@@ -18,7 +18,7 @@ const homeHoverBgMap: Record<string, string> = {
 const pageBgMap: Record<string, string> = {
   "/projects": "/images/backgrounds/BG-Persona.webp",
   "/skills": "/images/backgrounds/BG-Sekiro.webp",
-  "/experience": "/images/backgrounds/BG-Persona.webp",
+  "/experience": "/images/backgrounds/BG-Saejima.webp",
   "/socials": "/images/backgrounds/BG-Ichiban.webp",
 };
 
