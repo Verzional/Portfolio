@@ -1,0 +1,5 @@
+{
+  "PreToolUse": {
+    "command": ".agents/scripts/safety-gate.mjs"
+  }
+}

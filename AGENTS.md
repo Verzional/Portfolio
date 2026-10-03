@@ -93,12 +93,37 @@ When asked to implement a feature or fix a bug, follow these steps sequentially:
 
 ---
 
+---
+
+## 🏛️ Modular Rules & Superpower Skills
+
+Detailed domain invariants and runbooks are partitioned under `.agents/`:
+- **Rules (`.agents/rules/`)**:
+  - `00-general-engineering.md`: Safety, conventional commits, strict typing, pure core.
+  - `01-verification-loop.md`: Autonomous verification gatekeeper protocol (`pnpm verify`).
+  - `02-web-architecture.md`: Next.js 16 App Router, React 19, Motion, and Static Export standards.
+  - `03-multi-agent-orchestration.md`: Subagent delegation (researcher, critic, refactorer).
+  - `04-ui-ux-design-standards.md`: Spacing constitution, dark mode contrast, video game HUD aesthetics.
+  - `05-learned-patterns.md`: Dynamic empirical learning ledger for repo-specific post-mortems.
+- **Skills (`.agents/skills/`)**:
+  - `code-review`: Adversarial diff review runbook.
+  - `generate-changelog`: Keep a Changelog generator (`pnpm changelog`).
+  - `perf-audit`: Lighthouse, bundle size, and image optimization audit.
+  - `security-audit`: Dependency and link hardening audit.
+  - `ui-audit`: WCAG contrast and responsive layout sanity audit.
+  - `verify-suite`: Autonomous static typecheck, linting, and build verification.
+  - `scaffold-module`: Contract-first module and component scaffolding.
+
+---
+
 ## 📝 Common Commands
 
-- **To run locally:** `[pnpm dev]`
-- **To build:** `[pnpm build]`
-- **To test:** `[pnpm test]`
-- **To lint:** `[pnpm lint]`
+- **To run locally:** `pnpm dev`
+- **To build & export images:** `pnpm build`
+- **To verify (typecheck + lint):** `pnpm verify`
+- **To generate changelog:** `pnpm changelog [version]`
+- **To record learned pattern:** `pnpm learn-pattern --title "<title>" --heuristic "<context>"`
+- **To lint:** `pnpm lint`
 
 ---
 
