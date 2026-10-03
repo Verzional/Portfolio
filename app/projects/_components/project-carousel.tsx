@@ -88,6 +88,7 @@ export function ProjectCarousel({
               alt={`${project.title} screenshot ${imageIndex + 1}`}
               fill={true}
               preload={true}
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 60vw, 50vw"
               className="object-cover"
             />
           </motion.div>
