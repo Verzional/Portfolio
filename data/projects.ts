@@ -1,9 +1,10 @@
-import { Layers, Globe, Smartphone, Gamepad2 } from "lucide-react";
+import { Layers, Globe, Smartphone, Monitor, Gamepad2 } from "lucide-react";
 
 export const projectCategories = [
   { id: "ALL", label: "ALL", icon: Layers },
   { id: "WEB", label: "WEB", icon: Globe },
   { id: "MOBILE", label: "MOBILE", icon: Smartphone },
+  { id: "DESKTOP", label: "DESKTOP", icon: Monitor },
   { id: "GAMES", label: "GAMES", icon: Gamepad2 },
 ];
 
@@ -172,5 +173,22 @@ export const projectsData = [
     techStack: ["Unity"],
     liveUrl: "#",
     githubUrl: "https://github.com/Verzional/Polyfuse",
+  },
+  {
+    id: "10",
+    title: "CryptoNotch",
+    categories: ["DESKTOP"],
+    images: ["/images/projects/cryptonotch/demo.webp"],
+    desc: "A native macOS Dynamic Island utility delivering real-time cryptocurrency market intelligence directly to MacBook camera notches.",
+    techStack: [
+      "Swift",
+      "SwiftUI",
+      "AppKit",
+      "NSPanel",
+      "WebSockets",
+      "Sparkle",
+    ],
+    liveUrl: "https://github.com/Verzional/CryptoNotch/releases",
+    githubUrl: "https://github.com/Verzional/CryptoNotch",
   },
 ];
