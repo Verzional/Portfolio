@@ -6,16 +6,16 @@ export const menuItems = [
     href: "/projects",
   },
   {
-    id: "skills",
-    label: "Skills",
-    desc: "Tree of mastered frameworks and unlocked technologies.",
-    href: "/skills",
-  },
-  {
     id: "experience",
     label: "Experience",
     desc: "Quest log of professional roles and key contributions.",
     href: "/experience",
+  },
+  {
+    id: "skills",
+    label: "Skills",
+    desc: "Tree of mastered frameworks and unlocked technologies.",
+    href: "/skills",
   },
   {
     id: "socials",
