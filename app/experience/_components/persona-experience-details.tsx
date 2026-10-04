@@ -4,73 +4,288 @@ import { motion } from "motion/react";
 import { Calendar, MapPin } from "lucide-react";
 import { ExperienceData } from "@/data/experience";
 
-// Category Tactical Insignia
-function MissionEmblem({ category }: { category: string }) {
+// Arcana Thematic Titles
+const arcanaMap: Record<string, string> = {
+  DEV: "THE TECHNOLOGIST",
+  ACAD: "THE SCHOLAR",
+  LEAD: "THE EMPEROR",
+};
+
+// Full-Frame High-Contrast Persona 5 Major Arcana Engravings
+function ArcanaEmblem({ category }: { category: string }) {
   switch (category) {
     case "DEV":
       return (
-        <svg viewBox="0 0 100 100" className="h-28 w-28 text-foreground" fill="currentColor">
-          {/* Terminal Hexagon Enclosure */}
-          <polygon
-            points="50,8 86,28 86,72 50,92 14,72 14,28"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3.5"
-          />
-          {/* Terminal Prompt Brackets */}
+        <svg viewBox="0 0 200 280" className="h-full w-full" fill="none">
+          {/* Background Circuit Grid & Halo */}
+          <g stroke="currentColor" strokeWidth="1" opacity="0.12">
+            <line x1="100" y1="10" x2="100" y2="270" strokeDasharray="3 3" />
+            <line x1="10" y1="140" x2="190" y2="140" strokeDasharray="3 3" />
+            <circle cx="100" cy="140" r="95" strokeDasharray="4 4" />
+            <circle cx="100" cy="140" r="65" strokeDasharray="2 2" />
+          </g>
+
+          {/* Left Data Pillar */}
+          <rect x="14" y="35" width="12" height="210" className="fill-background" stroke="currentColor" strokeWidth="2" />
+          <line x1="20" y1="42" x2="20" y2="238" stroke="var(--color-primary)" strokeWidth="1.5" strokeDasharray="6 3" />
+          <rect x="12" y="30" width="16" height="6" className="fill-primary" />
+          <rect x="12" y="244" width="16" height="6" className="fill-current" />
+
+          {/* Right Data Pillar */}
+          <rect x="174" y="35" width="12" height="210" className="fill-background" stroke="currentColor" strokeWidth="2" />
+          <line x1="180" y1="42" x2="180" y2="238" stroke="var(--color-primary)" strokeWidth="1.5" strokeDasharray="6 3" />
+          <rect x="172" y="30" width="16" height="6" className="fill-primary" />
+          <rect x="172" y="244" width="16" height="6" className="fill-current" />
+
+          {/* Top Floating Infinity Symbol */}
           <path
-            d="M30 38 L44 50 L30 62"
-            fill="none"
+            d="M84,32 C74,22 62,32 72,42 C82,52 94,22 104,32 C114,42 126,32 116,22 C106,12 94,42 84,32 Z"
             stroke="var(--color-primary)"
-            strokeWidth="5"
+            strokeWidth="3.5"
+            fill="none"
+            strokeLinecap="round"
+          />
+
+          {/* Radiating Bus Lines from Top to Core */}
+          <line x1="100" y1="48" x2="100" y2="76" stroke="currentColor" strokeWidth="2" />
+          <circle cx="100" cy="76" r="3.5" className="fill-primary" />
+
+          {/* Outer Cybernetic Hex Shield */}
+          <polygon
+            points="100,68 156,100 156,180 100,212 44,180 44,100"
+            className="fill-background"
+            stroke="currentColor"
+            strokeWidth="3"
+          />
+          <polygon
+            points="100,76 148,104 148,176 100,204 52,176 52,104"
+            className="fill-foreground/[0.03]"
+            stroke="var(--color-primary)"
+            strokeWidth="1.5"
+            strokeDasharray="4 2"
+          />
+
+          {/* Hex Shield Corner Nodes */}
+          <rect x="96" y="64" width="8" height="8" className="fill-primary" />
+          <rect x="152" y="96" width="8" height="8" className="fill-current" />
+          <rect x="152" y="176" width="8" height="8" className="fill-current" />
+          <rect x="96" y="208" width="8" height="8" className="fill-primary" />
+          <rect x="40" y="176" width="8" height="8" className="fill-current" />
+          <rect x="40" y="96" width="8" height="8" className="fill-current" />
+
+          {/* Horizontal Bus Bridges to Pillars */}
+          <path d="M26,140 L44,140" stroke="currentColor" strokeWidth="2" />
+          <circle cx="35" cy="140" r="2.5" className="fill-primary" />
+          <path d="M156,140 L174,140" stroke="currentColor" strokeWidth="2" />
+          <circle cx="165" cy="140" r="2.5" className="fill-primary" />
+
+          {/* Central Processor Unit */}
+          <rect
+            x="66"
+            y="106"
+            width="68"
+            height="68"
+            rx="5"
+            className="fill-background"
+            stroke="currentColor"
+            strokeWidth="2.5"
+          />
+          <rect
+            x="72"
+            y="112"
+            width="56"
+            height="56"
+            rx="3"
+            className="fill-foreground/[0.04]"
+            stroke="var(--color-primary)"
+            strokeWidth="1.5"
+          />
+
+          {/* Bold Code Brackets < / > */}
+          <path
+            d="M84,124 L75,140 L84,156"
+            stroke="currentColor"
+            strokeWidth="4"
             strokeLinecap="round"
             strokeLinejoin="round"
+            fill="none"
           />
-          <rect x="52" y="58" width="18" height="5" className="text-primary fill-current" />
-          {/* Center Circuit Core */}
-          <circle cx="50" cy="50" r="5" className="text-primary fill-current" />
-          <circle cx="50" cy="24" r="3" className="text-foreground fill-current" />
-          <circle cx="50" cy="76" r="3" className="text-foreground fill-current" />
+          <line
+            x1="105"
+            y1="123"
+            x2="95"
+            y2="157"
+            stroke="var(--color-primary)"
+            strokeWidth="4"
+            strokeLinecap="round"
+          />
+          <path
+            d="M116,124 L125,140 L116,156"
+            stroke="currentColor"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+
+          {/* Base Dais Circuit Tracks */}
+          <path d="M72,212 L72,236 L40,236" stroke="currentColor" strokeWidth="2" fill="none" />
+          <path d="M128,212 L128,236 L160,236" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="40" cy="236" r="3" className="fill-primary" />
+          <circle cx="160" cy="236" r="3" className="fill-primary" />
+          <rect x="50" y="244" width="100" height="8" className="fill-background" stroke="currentColor" strokeWidth="2" />
+          <rect x="70" y="246" width="60" height="4" className="fill-primary" />
         </svg>
       );
     case "ACAD":
       return (
-        <svg viewBox="0 0 100 100" className="h-28 w-28 text-foreground" fill="currentColor">
-          {/* Academic Laurel Crest & Mortarboard */}
-          <polygon points="50,16 86,34 50,52 14,34" className="text-primary fill-current" />
-          <polygon points="50,22 76,34 50,46 24,34" className="text-background fill-current" />
-          <path d="M28 44 L28 62 C28 74 72 74 72 62 L72 44" fill="none" stroke="currentColor" strokeWidth="4" />
-          <path d="M82 34 L88 56 L85 74" fill="none" stroke="var(--color-primary)" strokeWidth="3" />
-          <circle cx="85" cy="76" r="3.5" className="text-primary fill-current" />
+        <svg viewBox="0 0 200 280" className="h-full w-full" fill="none">
+          {/* Background Radiant Geometry */}
+          <g stroke="currentColor" strokeWidth="1" opacity="0.12">
+            <line x1="100" y1="15" x2="100" y2="265" strokeDasharray="3 3" />
+            <circle cx="100" cy="135" r="95" strokeDasharray="4 4" />
+            <circle cx="100" cy="135" r="65" strokeDasharray="2 2" />
+          </g>
+
+          {/* Left Classical Temple Pillar */}
+          <rect x="14" y="35" width="12" height="210" className="fill-background" stroke="currentColor" strokeWidth="2" />
+          <line x1="20" y1="42" x2="20" y2="238" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+          <rect x="10" y="30" width="20" height="6" className="fill-primary" />
+          <rect x="10" y="244" width="20" height="6" className="fill-current" />
+
+          {/* Right Classical Temple Pillar */}
+          <rect x="174" y="35" width="12" height="210" className="fill-background" stroke="currentColor" strokeWidth="2" />
+          <line x1="180" y1="42" x2="180" y2="238" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+          <rect x="170" y="30" width="20" height="6" className="fill-primary" />
+          <rect x="170" y="244" width="20" height="6" className="fill-current" />
+
+          {/* Grand Laurel Wreaths Climbing Both Sides */}
+          <path d="M42,210 C26,170 26,90 54,48" stroke="currentColor" strokeWidth="2" fill="none" />
+          <path d="M28,180 C20,174 26,164 36,170" className="fill-primary stroke-primary" strokeWidth="1" />
+          <path d="M24,148 C16,142 22,132 32,138" className="fill-current stroke-current" strokeWidth="1" />
+          <path d="M26,116 C18,110 24,100 34,106" className="fill-primary stroke-primary" strokeWidth="1" />
+          <path d="M34,84 C26,78 32,68 42,74" className="fill-current stroke-current" strokeWidth="1" />
+          <path d="M46,56 C38,50 44,40 54,46" className="fill-primary stroke-primary" strokeWidth="1" />
+
+          <path d="M158,210 C174,170 174,90 146,48" stroke="currentColor" strokeWidth="2" fill="none" />
+          <path d="M172,180 C180,174 174,164 164,170" className="fill-primary stroke-primary" strokeWidth="1" />
+          <path d="M176,148 C184,142 178,132 168,138" className="fill-current stroke-current" strokeWidth="1" />
+          <path d="M174,116 C182,110 176,100 166,106" className="fill-primary stroke-primary" strokeWidth="1" />
+          <path d="M166,84 C174,78 168,68 158,74" className="fill-current stroke-current" strokeWidth="1" />
+          <path d="M154,56 C162,50 156,40 146,46" className="fill-primary stroke-primary" strokeWidth="1" />
+
+          {/* Mortarboard / Academic Cap Crown */}
+          <polygon points="100,26 156,48 100,70 44,48" className="fill-primary" stroke="currentColor" strokeWidth="2.5" />
+          <polygon points="100,34 142,48 100,62 58,48" className="fill-background" />
+          <path d="M68,60 L68,78 C68,92 132,92 132,78 L132,60" fill="none" stroke="currentColor" strokeWidth="2.5" />
+          {/* Tassel */}
+          <path d="M146,48 L154,76 L150,96" stroke="var(--color-primary)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+          <circle cx="150" cy="100" r="4" className="fill-primary" />
+
+          {/* Glowing Arcane Star of Knowledge */}
+          <polygon points="100,94 103,103 112,103 105,109 108,118 100,112 92,118 95,109 88,103 97,103" className="fill-primary stroke-foreground" strokeWidth="1" />
+
+          {/* Grand Open Grimoire of Knowledge */}
           <path
-            d="M18 78 C24 86 40 88 50 88 C60 88 76 86 82 78"
-            fill="none"
+            d="M48,138 C68,132 88,136 100,146 C112,136 132,132 152,138 L152,196 C132,190 112,194 100,204 C88,194 68,190 48,196 Z"
+            className="fill-background"
             stroke="currentColor"
             strokeWidth="3"
           />
+          <line x1="100" y1="146" x2="100" y2="204" stroke="var(--color-primary)" strokeWidth="3" />
+          <path d="M100,204 L100,224 L104,220 L108,224 L108,202" className="fill-primary" />
+
+          {/* Text Page Etchings */}
+          <line x1="56" y1="152" x2="88" y2="152" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+          <line x1="56" y1="162" x2="86" y2="162" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+          <line x1="56" y1="172" x2="88" y2="172" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+          <line x1="56" y1="182" x2="82" y2="182" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+
+          <line x1="112" y1="152" x2="144" y2="152" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+          <line x1="114" y1="162" x2="144" y2="162" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+          <line x1="112" y1="172" x2="144" y2="172" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+          <line x1="118" y1="182" x2="144" y2="182" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+
+          {/* Pedestal Base */}
+          <rect x="40" y="238" width="120" height="12" className="fill-background" stroke="currentColor" strokeWidth="2.5" />
+          <rect x="60" y="242" width="80" height="4" className="fill-primary" />
         </svg>
       );
     case "LEAD":
     default:
       return (
-        <svg viewBox="0 0 100 100" className="h-28 w-28 text-foreground" fill="currentColor">
-          {/* Spiked Command Shield & Star */}
+        <svg viewBox="0 0 200 280" className="h-full w-full" fill="none">
+          {/* Background Radiant Lines */}
+          <g stroke="currentColor" strokeWidth="1" opacity="0.12">
+            <line x1="100" y1="15" x2="100" y2="265" strokeDasharray="3 3" />
+            <circle cx="100" cy="135" r="95" strokeDasharray="4 4" />
+            <circle cx="100" cy="135" r="65" strokeDasharray="2 2" />
+          </g>
+
+          {/* Left Imperial Fluted Column */}
+          <rect x="14" y="35" width="12" height="210" className="fill-background" stroke="currentColor" strokeWidth="2" />
+          <line x1="20" y1="42" x2="20" y2="238" stroke="var(--color-primary)" strokeWidth="1.5" strokeDasharray="4 2" />
+          <rect x="10" y="30" width="20" height="6" className="fill-primary" />
+          <rect x="10" y="244" width="20" height="6" className="fill-current" />
+
+          {/* Right Imperial Fluted Column */}
+          <rect x="174" y="35" width="12" height="210" className="fill-background" stroke="currentColor" strokeWidth="2" />
+          <line x1="180" y1="42" x2="180" y2="238" stroke="var(--color-primary)" strokeWidth="1.5" strokeDasharray="4 2" />
+          <rect x="170" y="30" width="20" height="6" className="fill-primary" />
+          <rect x="170" y="244" width="20" height="6" className="fill-current" />
+
+          {/* Dual Crossed Command Swords Behind Shield */}
+          <line x1="32" y1="40" x2="168" y2="228" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+          <line x1="25" y1="31" x2="43" y2="51" stroke="var(--color-primary)" strokeWidth="3" />
+          <circle cx="23" cy="29" r="4.5" className="fill-primary" />
+
+          <line x1="168" y1="40" x2="32" y2="228" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+          <line x1="175" y1="31" x2="157" y2="51" stroke="var(--color-primary)" strokeWidth="3" />
+          <circle cx="177" cy="29" r="4.5" className="fill-primary" />
+
+          {/* Imperial Sovereign Coronet */}
+          <path
+            d="M62,60 L70,36 L84,48 L100,28 L116,48 L130,36 L138,60 Z"
+            className="fill-primary stroke-foreground"
+            strokeWidth="2.5"
+          />
+          <circle cx="70" cy="34" r="3" className="fill-foreground" />
+          <circle cx="100" cy="25" r="3.5" className="fill-foreground" />
+          <circle cx="130" cy="34" r="3" className="fill-foreground" />
+
+          {/* Grand Imperial Command Shield */}
           <polygon
-            points="50,12 84,26 84,60 50,90 16,60 16,26"
-            fill="none"
+            points="100,64 158,84 158,154 100,210 42,154 42,84"
+            className="fill-background"
             stroke="currentColor"
             strokeWidth="3.5"
           />
           <polygon
-            points="50,22 74,34 74,56 50,78 26,56 26,34"
-            className="text-primary fill-current"
-            opacity="0.35"
+            points="100,76 146,92 146,148 100,196 54,148 54,92"
+            className="fill-foreground/[0.03]"
+            stroke="var(--color-primary)"
+            strokeWidth="2"
+          />
+
+          {/* Radiant 8-Pointed Command Star */}
+          <polygon
+            points="100,92 106,114 128,120 106,126 100,148 94,126 72,120 94,114"
+            className="fill-primary stroke-foreground"
+            strokeWidth="2.5"
           />
           <polygon
-            points="50,32 54,44 67,44 57,52 61,64 50,56 39,64 43,52 33,44 46,44"
-            className="text-primary fill-current"
+            points="100,102 104,116 118,120 104,124 100,138 96,124 82,120 96,116"
+            className="fill-foreground"
           />
-          <circle cx="50" cy="50" r="3" className="text-foreground fill-current" />
+          <circle cx="100" cy="120" r="5" className="fill-primary" />
+
+          {/* Flanking Laurels of Sovereignty */}
+          <path d="M48,110 C36,125 36,155 48,175" stroke="currentColor" strokeWidth="2" fill="none" />
+          <path d="M152,110 C164,125 164,155 152,175" stroke="currentColor" strokeWidth="2" fill="none" />
+
+          {/* Bottom Imperial Dais */}
+          <rect x="45" y="238" width="110" height="12" className="fill-background" stroke="currentColor" strokeWidth="2.5" />
+          <rect x="65" y="242" width="70" height="4" className="fill-primary" />
         </svg>
       );
   }
@@ -86,7 +301,7 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
     return (
       <div className="flex h-full w-full flex-col items-center justify-center p-8 text-foreground">
         <div className="font-linux-biolinum text-2xl text-muted [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-3xl">
-          Select an Experience Record
+          Select a Confidant
         </div>
       </div>
     );
@@ -94,6 +309,7 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
 
   const isActiveRole = experience.status === "ACTIVE";
   const primaryCategory = experience.categories[0] || "DEV";
+  const arcanaTitle = arcanaMap[primaryCategory] || `${primaryCategory} ARCANA`;
 
   return (
     <motion.div
@@ -105,238 +321,203 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
         hidden: { opacity: 0 },
         visible: {
           opacity: 1,
-          transition: { staggerChildren: 0.04 },
+          transition: { staggerChildren: 0.05 },
         },
       }}
-      className="relative flex h-full w-full flex-col justify-start overflow-x-hidden max-md:overflow-y-auto md:overflow-hidden px-4 py-4 scrollbar-none outline-none focus:outline-none focus-visible:outline-none md:justify-center md:px-8 md:py-6 lg:px-12"
+      className="relative flex h-full w-full flex-col justify-start overflow-x-hidden max-md:overflow-y-auto md:overflow-hidden px-4 py-3 scrollbar-none outline-none focus:outline-none focus-visible:outline-none md:justify-center md:px-6 lg:px-8 xl:px-12"
     >
-      {/* Subtle Background Watermark Roman Numeral */}
-      <div className="pointer-events-none absolute -right-6 -bottom-6 -rotate-6 font-linux-biolinum text-7xl font-black tracking-widest text-foreground opacity-5 select-none [-webkit-text-stroke:1px_currentColor] md:text-9xl">
-        {experience.romanNumeral}
-      </div>
-
-      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-10">
-        {/* ───────────────────────────────────────────────────────────── */}
-        {/* LEFT COLUMN: TACTICAL MISSION PASS CARD                       */}
-        {/* Fixed Authentic Proportion (Never Stretches Vertically)      */}
-        {/* ───────────────────────────────────────────────────────────── */}
-        <div className="relative shrink-0 -rotate-2">
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 14, scale: 0.97 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                transition: { duration: 0.28, ease: [0.33, 1, 0.68, 1] },
-              },
-            }}
-            className="group relative flex h-[460px] w-[270px] flex-col items-center justify-between border-4 border-foreground bg-background p-4 shadow-[8px_8px_0_#d4030d]"
-          >
-            {/* Card Inner Ornate Borders */}
-            <div className="pointer-events-none absolute inset-1.5 border-2 border-foreground/30" />
-            <div className="pointer-events-none absolute inset-2.5 border border-foreground/15" />
-
-            {/* Corner Red Diamond Cutouts */}
-            <div className="absolute top-1 left-1 h-3 w-3 bg-primary" />
-            <div className="absolute top-1 right-1 h-3 w-3 bg-primary" />
-            <div className="absolute bottom-1 left-1 h-3 w-3 bg-primary" />
-            <div className="absolute bottom-1 right-1 h-3 w-3 bg-primary" />
-
-            {/* Top Mission Banner */}
-            <div className="relative z-10 flex w-full items-center justify-between px-2 pt-1">
-              <div className="flex items-center gap-1.5 font-linux-biolinum text-xs font-black tracking-[0.25em] text-primary uppercase">
-                <span>◆</span>
-                <span>MISSION</span>
-              </div>
-              <span className="font-linux-biolinum text-2xl font-black tracking-widest text-foreground [-webkit-text-stroke:0.5px_currentColor]">
-                {experience.romanNumeral}
-              </span>
-            </div>
-
-            {/* Center Insignia Artwork with Sunburst */}
-            <div className="relative my-auto flex flex-col items-center justify-center py-2">
-              {/* Persona Halftone / Sunburst Radial Background */}
-              <div className="relative flex h-44 w-44 items-center justify-center overflow-hidden rounded-full border-2 border-foreground/30 bg-foreground/[0.03]">
-                {/* Geometric Sunburst Rays */}
-                <svg viewBox="0 0 100 100" className="pointer-events-none absolute inset-0 h-full w-full opacity-25" fill="currentColor">
-                  <polygon points="50,50 40,0 60,0" className="text-primary" />
-                  <polygon points="50,50 100,40 100,60" className="text-primary" />
-                  <polygon points="50,50 60,100 40,100" className="text-primary" />
-                  <polygon points="50,50 0,60 0,40" className="text-primary" />
-                  <polygon points="50,50 78,12 88,22" className="text-foreground" />
-                  <polygon points="50,50 88,78 78,88" className="text-foreground" />
-                  <polygon points="50,50 22,88 12,78" className="text-foreground" />
-                  <polygon points="50,50 12,22 22,12" className="text-foreground" />
-                </svg>
-
-                {/* Category Insignia */}
-                <MissionEmblem category={primaryCategory} />
-              </div>
-
-              {/* Inked Rubber Stamp Slanted Across Artwork */}
-              <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-14 z-20">
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0, scale: 1.35 },
-                    visible: {
-                      opacity: 1,
-                      scale: 1,
-                      transition: { duration: 0.22, delay: 0.08, ease: [0.33, 1, 0.68, 1] },
-                    },
-                  }}
-                  className={`border-4 px-3.5 py-1 font-linux-biolinum text-xs font-black tracking-[0.22em] uppercase select-none shadow-[4px_4px_0_rgba(0,0,0,0.9)] ${
-                    isActiveRole
-                      ? "border-primary bg-background/95 text-primary"
-                      : "border-foreground bg-background/95 text-foreground"
-                  }`}
-                >
-                  {isActiveRole ? "★ ACTIVE ROLE ★" : "★ VERIFIED MISSION ★"}
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Bottom Card Title Banner */}
-            <div className="relative z-10 flex w-full flex-col items-center border-t-2 border-foreground/25 pt-3 pb-1 text-center">
-              <div className="-skew-x-12 bg-foreground px-3.5 py-1 text-background shadow-[3px_3px_0_#d4030d]">
-                <span className="block skew-x-12 font-linux-biolinum text-xs font-black tracking-[0.2em] uppercase">
-                  {primaryCategory} TRACK // {experience.durationMonths}
-                </span>
-              </div>
-              <span className="mt-2 line-clamp-1 font-lato text-[11px] font-semibold text-muted">
-                {experience.company}
-              </span>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* ───────────────────────────────────────────────────────────── */}
-        {/* RIGHT COLUMN: TACTICAL MISSION DOSSIER & DELIVERABLES         */}
-        {/* ───────────────────────────────────────────────────────────── */}
+      {/* Main Confidant Stage: Zero Scroll, Compact & Balanced */}
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl xl:max-w-6xl flex-col items-center justify-center gap-5 lg:flex-row lg:items-center lg:gap-8 xl:gap-10">
+        {/* Left Column: Compact Tarot Arcana Card & Bond Ledger */}
         <motion.div
           variants={{
-            hidden: { opacity: 0, x: 20 },
+            hidden: { opacity: 0, y: 14, scale: 0.96, rotate: -4 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              rotate: -2,
+              transition: { duration: 0.35, ease: [0.33, 1, 0.68, 1] },
+            },
+          }}
+          className="flex w-full max-w-[215px] lg:max-w-[230px] xl:max-w-[245px] shrink-0 flex-col items-center justify-between"
+        >
+          {/* Tarot Card Object */}
+          <div className="group relative flex aspect-[1/1.52] w-full flex-col justify-between border-3 md:border-4 border-foreground bg-background p-2.5 lg:p-3 shadow-[6px_6px_0_#d4030d] transition-transform duration-300 hover:rotate-0">
+            {/* Inner Ornate Borders */}
+            <div className="pointer-events-none absolute inset-1 border border-foreground/30" />
+            <div className="pointer-events-none absolute inset-2 border border-foreground/15" />
+
+            {/* Corner Red Diamonds */}
+            <div className="absolute top-1 left-1 h-2 w-2 bg-primary" />
+            <div className="absolute top-1 right-1 h-2 w-2 bg-primary" />
+            <div className="absolute bottom-1 left-1 h-2 w-2 bg-primary" />
+            <div className="absolute bottom-1 right-1 h-2 w-2 bg-primary" />
+
+            {/* Top Arcana Crest: Roman Numeral Centered */}
+            <div className="relative z-10 flex w-full items-center justify-center gap-1.5 pt-0.5">
+              <span className="text-[9px] text-primary">★</span>
+              <span className="font-linux-biolinum text-xl lg:text-2xl font-black tracking-widest text-foreground [-webkit-text-stroke:0.5px_currentColor]">
+                {experience.romanNumeral}
+              </span>
+              <span className="text-[9px] text-primary">★</span>
+            </div>
+
+            {/* Center Hero Artwork Window (Full Height, Unobstructed) */}
+            <div className="relative z-10 my-auto flex h-[180px] lg:h-[200px] w-full items-center justify-center p-0.5">
+              <ArcanaEmblem category={primaryCategory} />
+            </div>
+
+            {/* Bottom Arcana Title Banner (Clean, Completely Unobstructed) */}
+            <div className="relative z-10 w-full">
+              <div className="-skew-x-12 bg-primary px-2.5 py-0.5 lg:py-1 text-center shadow-[2px_2px_0_rgba(0,0,0,0.8)]">
+                <span className="block skew-x-12 font-linux-biolinum text-[11px] lg:text-xs font-black tracking-widest text-foreground uppercase">
+                  {arcanaTitle}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Under-Card Bond Status & Tactical Metadata */}
+          <div className="mt-2.5 flex w-full flex-col gap-1.5">
+            <div className="-skew-x-12 bg-foreground px-3 py-0.5 lg:py-1 text-center shadow-[2px_2px_0_#d4030d]">
+              <span className="block skew-x-12 font-linux-biolinum text-[11px] lg:text-xs font-black tracking-wider text-background uppercase">
+                {isActiveRole ? "CURRENT BOND" : "MAX BOND"} · {experience.durationMonths}
+              </span>
+            </div>
+
+            <div className="-skew-x-6 border-l-3 border-foreground/30 bg-foreground/[0.03] p-2 shadow-[2px_2px_0_rgba(0,0,0,0.4)]">
+              <div className="skew-x-6 flex flex-col gap-0.5 font-lato text-[11px] text-muted">
+                <div className="flex items-center gap-1.5">
+                  <Calendar className="h-3 w-3 text-primary shrink-0" />
+                  <span className="font-semibold text-foreground/90">{experience.duration}</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <MapPin className="h-3 w-3 text-primary shrink-0" />
+                  <span className="truncate">
+                    {experience.location}
+                    {experience.workplaceType ? ` · ${experience.workplaceType}` : ""}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Right Column: Confidant Profile, Story & Cooperation Abilities */}
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, x: 18 },
             visible: {
               opacity: 1,
               x: 0,
-              transition: { duration: 0.28, ease: [0.33, 1, 0.68, 1] },
+              transition: { duration: 0.35, ease: [0.33, 1, 0.68, 1] },
             },
           }}
-          className="flex min-w-0 flex-1 max-w-xl xl:max-w-2xl flex-col justify-center gap-3.5"
+          className="flex min-w-0 flex-1 flex-col gap-2.5 lg:gap-3"
         >
-          {/* Header Info: Role, Organization & Metadata */}
-          <div className="flex flex-col gap-2">
-            {/* Category Banner & Meta Badges */}
-            <div className="flex flex-wrap items-center gap-2.5 md:gap-3">
-              <div className="-skew-x-12 bg-primary px-3 py-0.5 font-linux-biolinum text-[11px] font-black tracking-widest text-foreground shadow-[2px_2px_0_rgba(0,0,0,0.8)]">
-                <span className="block skew-x-12">TACTICAL MISSION DOSSIER</span>
-              </div>
+          {/* Confidant Header: Character Role Title & Affiliation */}
+          <div className="flex flex-col">
+            <h1 className="origin-left -rotate-1 font-linux-biolinum text-xl sm:text-2xl md:text-3xl lg:text-[32px] xl:text-[36px] font-black leading-tight tracking-wide text-foreground uppercase [-webkit-text-stroke:0.5px_currentColor] [text-shadow:3px_3px_0_#d4030d] [text-stroke:0.5px_currentColor]">
+              {experience.role}
+            </h1>
 
-              <div className="flex items-center gap-1.5 font-lato text-xs font-semibold text-muted">
-                <Calendar className="h-3.5 w-3.5 text-primary" />
-                <span>
-                  {experience.duration}
-                  {experience.durationMonths ? ` · ${experience.durationMonths}` : ""}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-1.5 font-lato text-xs font-semibold text-muted">
-                <MapPin className="h-3.5 w-3.5 text-primary" />
-                <span>
-                  {experience.location}
-                  {experience.workplaceType ? ` · ${experience.workplaceType}` : ""}
-                </span>
-              </div>
-            </div>
-
-            {/* Role Title with Persona Cutout Shadow */}
-            <div className="origin-left">
-              <h1 className="font-linux-biolinum text-2xl font-black leading-tight tracking-wide text-foreground uppercase [-webkit-text-stroke:0.5px_currentColor] [text-shadow:3px_3px_0_#d4030d] [text-stroke:0.5px_currentColor] md:text-3xl lg:text-4xl">
-                {experience.role}
-              </h1>
-
-              {/* Company Affiliation Ribbon */}
-              <div className="mt-1 inline-flex items-center gap-2 border-l-4 border-primary bg-foreground/10 px-2.5 py-0.5 -skew-x-12">
-                <span className="block skew-x-12 font-linux-biolinum text-xs font-bold tracking-wider text-foreground md:text-sm">
-                  {experience.company}
-                  {experience.employmentType ? (
-                    <>
-                      {" "}
-                      <span className="font-normal text-primary">·</span>{" "}
-                      {experience.employmentType}
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </span>
-              </div>
+            {/* Affiliation Slash Ribbon */}
+            <div className="mt-1 inline-flex w-fit items-center gap-2 border-l-4 border-primary bg-foreground/10 px-2.5 py-0.5 -skew-x-12">
+              <span className="block skew-x-12 font-linux-biolinum text-xs font-bold tracking-wider text-foreground">
+                {experience.company}
+                {experience.employmentType ? (
+                  <>
+                    {" "}
+                    <span className="font-normal text-primary">·</span>{" "}
+                    {experience.employmentType}
+                  </>
+                ) : (
+                  ""
+                )}
+              </span>
             </div>
           </div>
 
-          {/* Operational Scope & Context Panel */}
-          <div className="flex flex-col gap-1.5 border-l-4 border-primary bg-foreground/[0.04] p-3 shadow-[3px_3px_0_rgba(0,0,0,0.5)]">
-            <div className="flex items-center gap-2">
-              <span className="font-linux-biolinum text-xs font-black tracking-widest text-primary uppercase">
-                OPERATIONAL SCOPE & CONTEXT
-              </span>
+          {/* Confidant Story & Context Quote */}
+          <div className="relative -skew-x-3 border-l-4 border-primary bg-foreground/[0.04] p-2.5 shadow-[2px_2px_0_rgba(0,0,0,0.5)]">
+            <div className="skew-x-3">
+              <div className="mb-0.5 flex items-center gap-1.5 font-linux-biolinum text-[10px] font-black tracking-widest text-primary uppercase">
+                <span>◆</span>
+                <span>CONFIDANT PROFILE & CONTEXT</span>
+              </div>
+              <p className="font-linux-biolinum text-xs leading-relaxed tracking-wide text-foreground/90 italic">
+                &ldquo;{experience.description}&rdquo;
+              </p>
             </div>
-
-            <p className="font-linux-biolinum text-xs leading-relaxed tracking-wide text-foreground/90">
-              {experience.description}
-            </p>
           </div>
 
-          {/* Key Technical Deliverables & Impact */}
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center justify-between border-l-4 border-primary pl-2.5 py-0.5">
-              <h2 className="font-linux-biolinum text-xs font-black tracking-[0.2em] text-foreground uppercase">
-                KEY TECHNICAL DELIVERABLES & IMPACT
-              </h2>
-              <span className="font-linux-biolinum text-[10px] font-bold tracking-widest text-muted uppercase">
-                {experience.deliverables.length} MILESTONES
+          {/* Cooperation Abilities Section (Key Deliverables) */}
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center justify-between">
+              <div className="-skew-x-12 bg-foreground px-3 py-0.5 text-background shadow-[2px_2px_0_#d4030d]">
+                <span className="block skew-x-12 font-linux-biolinum text-[11px] font-black tracking-[0.2em] uppercase">
+                  COOPERATION ABILITIES // {experience.deliverables.length} UNLOCKED
+                </span>
+              </div>
+              <span className="font-linux-biolinum text-[11px] font-bold tracking-widest text-muted uppercase">
+                {primaryCategory} TRACK
               </span>
             </div>
 
-            <div className="grid grid-cols-1 gap-2.5">
-              {experience.deliverables.map((deliverable) => (
+            {/* Slashed Ability Strips */}
+            <div className="flex flex-col gap-1.5">
+              {experience.deliverables.map((deliverable, dIdx) => (
                 <div
                   key={deliverable.title}
-                  className="group relative flex flex-col -skew-x-6 border border-foreground/20 bg-background/90 p-3 transition-colors hover:border-primary hover:bg-foreground/[0.03] hover:shadow-[3px_3px_0_#d4030d]"
+                  className="group relative -skew-x-6 border-l-4 border-primary bg-foreground/[0.05] p-2 lg:p-2.5 transition-all duration-200 hover:border-primary hover:bg-foreground/[0.1] hover:translate-x-1.5 hover:shadow-[3px_3px_0_#d4030d] cursor-default"
                 >
-                  {/* Symmetrical Top Row: Title on Left, Domain Badge on Right */}
-                  <div className="flex items-center justify-between gap-3 skew-x-6">
-                    <span className="font-linux-biolinum text-xs md:text-sm font-black tracking-wide text-foreground uppercase group-hover:text-primary transition-colors">
-                      {deliverable.title}
-                    </span>
-                    <span className="-skew-x-12 shrink-0 border border-primary/50 bg-primary/10 px-2 py-0.5 font-linux-biolinum text-[9px] font-black tracking-wider text-primary uppercase shadow-[1px_1px_0_rgba(0,0,0,0.5)]">
-                      <span className="block skew-x-12">{deliverable.tag}</span>
-                    </span>
-                  </div>
+                  <div className="skew-x-6">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="-skew-x-12 bg-primary px-1.5 py-0.5 font-linux-biolinum text-[9px] font-black tracking-wider text-foreground uppercase shadow-[1px_1px_0_rgba(0,0,0,0.6)]">
+                          <span className="block skew-x-12">ABILITY 0{dIdx + 1}</span>
+                        </span>
+                        <h2 className="font-linux-biolinum text-xs lg:text-sm font-black tracking-wide text-foreground uppercase transition-colors group-hover:text-primary">
+                          {deliverable.title}
+                        </h2>
+                      </div>
 
-                  {/* Symmetrical Spanning Description Below */}
-                  <p className="mt-1.5 font-lato text-xs leading-relaxed text-muted group-hover:text-foreground/90 transition-colors skew-x-6">
-                    {deliverable.desc}
-                  </p>
+                      <span className="-skew-x-12 shrink-0 border border-foreground/30 bg-background/80 px-2 py-0.5 font-linux-biolinum text-[9px] font-bold tracking-wider text-muted uppercase">
+                        <span className="block skew-x-12">{deliverable.tag}</span>
+                      </span>
+                    </div>
+
+                    <p className="mt-1 pl-0.5 font-lato text-[11px] leading-snug text-muted transition-colors group-hover:text-foreground/90 line-clamp-2">
+                      {deliverable.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Deployed Technologies & Tooling */}
+          {/* Confidant Deployed Skills */}
           <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-            <span className="mr-1 font-linux-biolinum text-[11px] font-bold tracking-widest text-muted uppercase">
-              DEPLOYED TECH & TOOLING:
-            </span>
+            <div className="mr-1 flex items-center gap-1.5 font-linux-biolinum text-[11px] font-bold tracking-widest text-muted uppercase">
+              <span className="text-primary">◆</span>
+              <span>CONFIDANT SKILLS:</span>
+            </div>
             {experience.skills.map((skill) => (
               <div
                 key={skill}
-                className="-skew-x-12 border border-foreground/40 bg-foreground px-2.5 py-0.5 font-linux-biolinum text-[11px] font-bold tracking-wider text-background shadow-[2px_2px_0_#d4030d] transition-colors hover:border-primary hover:bg-primary hover:text-foreground cursor-default"
+                className="-skew-x-12 border border-foreground/40 bg-foreground px-2 py-0.5 font-linux-biolinum text-[11px] font-bold tracking-wider text-background shadow-[2px_2px_0_#d4030d] transition-colors hover:border-primary hover:bg-primary hover:text-foreground cursor-default"
               >
                 <span className="block skew-x-12">{skill}</span>
               </div>
             ))}
           </div>
         </motion.div>
+
+        {/* Render Background Serial */}
+        <div className="pointer-events-none absolute -right-4 -bottom-6 rotate-[-5deg] font-linux-biolinum text-4xl text-foreground opacity-10 select-none [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-6xl">
+          EXPERIENCE_{experience.id.padStart(2, "0")}
+        </div>
       </div>
     </motion.div>
   );
