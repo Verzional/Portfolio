@@ -46,10 +46,6 @@ export function ExperienceClient() {
     setActiveIndex(idx);
   };
 
-  const handleExperienceHover = (idx: number) => {
-    setActiveIndex(idx);
-  };
-
   const displayIndex = useValidIndex(activeIndex, filteredExperiences.length);
   const activeExperience = filteredExperiences[displayIndex] || null;
   const isBackActive = activeIndex === filteredExperiences.length;
@@ -96,7 +92,6 @@ export function ExperienceClient() {
               durationMonths={exp.durationMonths}
               status={exp.status}
               onClick={handleExperienceClick}
-              onHover={handleExperienceHover}
             />
           ))}
         </div>

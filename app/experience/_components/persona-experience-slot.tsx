@@ -10,7 +10,6 @@ interface PersonaExperienceSlotProps {
   durationMonths: string;
   status: "ACTIVE" | "CLEARED";
   onClick: (index: number) => void;
-  onHover: (index: number) => void;
   index: number;
 }
 
@@ -22,11 +21,11 @@ export function PersonaExperienceSlot({
   durationMonths,
   status,
   onClick,
-  onHover,
   index,
 }: PersonaExperienceSlotProps) {
   const tiltClass = index % 2 === 0 ? "rotate-[1deg]" : "rotate-[-1deg]";
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const isInitialMount = useRef(true);
 
   // Split Teaching Assistant Roles for Distinct Domain Display
   const isTA = role.toLowerCase().startsWith("teaching assistant - ");
@@ -35,6 +34,11 @@ export function PersonaExperienceSlot({
 
   // Auto Scroll to Center on Selection
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
     if (isActive && buttonRef.current) {
       buttonRef.current.scrollIntoView({
         behavior: "smooth",
@@ -47,11 +51,6 @@ export function PersonaExperienceSlot({
     <button
       ref={buttonRef}
       onClick={() => onClick(index)}
-      onPointerMove={(e) => {
-        if (e.pointerType === "mouse" && !isActive) {
-          onHover(index);
-        }
-      }}
       className={`group relative mb-3.5 w-full cursor-pointer text-left outline-none focus:outline-none focus-visible:outline-none transition-all duration-200 ${tiltClass} ${
         isActive
           ? "z-10 translate-x-3 scale-[1.02] md:translate-x-4 md:scale-[1.03]"
