@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Calendar, MapPin } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { ExperienceData } from "@/data/experience";
 
 // Arcana Thematic Titles
@@ -392,13 +392,6 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
                   <Calendar className="h-3 w-3 text-primary shrink-0" />
                   <span className="font-semibold text-foreground/90">{experience.duration}</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <MapPin className="h-3 w-3 text-primary shrink-0" />
-                  <span className="truncate">
-                    {experience.location}
-                    {experience.workplaceType ? ` · ${experience.workplaceType}` : ""}
-                  </span>
-                </div>
               </div>
             </div>
           </div>
@@ -426,15 +419,6 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
             <div className="mt-1 inline-flex w-fit items-center gap-2 border-l-4 border-primary bg-foreground/10 px-2.5 py-0.5 -skew-x-12">
               <span className="block skew-x-12 font-linux-biolinum text-xs font-bold tracking-wider text-foreground">
                 {experience.company}
-                {experience.employmentType ? (
-                  <>
-                    {" "}
-                    <span className="font-normal text-primary">·</span>{" "}
-                    {experience.employmentType}
-                  </>
-                ) : (
-                  ""
-                )}
               </span>
             </div>
           </div>
@@ -449,51 +433,6 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
               <p className="font-linux-biolinum text-xs leading-relaxed tracking-wide text-foreground/90 italic">
                 &ldquo;{experience.description}&rdquo;
               </p>
-            </div>
-          </div>
-
-          {/* Cooperation Abilities Section (Key Deliverables) */}
-          <div className="flex flex-col gap-1.5">
-            <div className="flex items-center justify-between">
-              <div className="-skew-x-12 bg-foreground px-3 py-0.5 text-background shadow-[2px_2px_0_#d4030d]">
-                <span className="block skew-x-12 font-linux-biolinum text-[11px] font-black tracking-[0.2em] uppercase">
-                  COOPERATION ABILITIES // {experience.deliverables.length} UNLOCKED
-                </span>
-              </div>
-              <span className="font-linux-biolinum text-[11px] font-bold tracking-widest text-muted uppercase">
-                {primaryCategory} TRACK
-              </span>
-            </div>
-
-            {/* Slashed Ability Strips */}
-            <div className="flex flex-col gap-1.5">
-              {experience.deliverables.map((deliverable, dIdx) => (
-                <div
-                  key={deliverable.title}
-                  className="group relative -skew-x-6 border-l-4 border-primary bg-foreground/[0.05] p-2 lg:p-2.5 transition-all duration-200 hover:border-primary hover:bg-foreground/[0.1] hover:translate-x-1.5 hover:shadow-[3px_3px_0_#d4030d] cursor-default"
-                >
-                  <div className="skew-x-6">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div className="flex items-center gap-2">
-                        <span className="-skew-x-12 bg-primary px-1.5 py-0.5 font-linux-biolinum text-[9px] font-black tracking-wider text-foreground uppercase shadow-[1px_1px_0_rgba(0,0,0,0.6)]">
-                          <span className="block skew-x-12">ABILITY 0{dIdx + 1}</span>
-                        </span>
-                        <h2 className="font-linux-biolinum text-xs lg:text-sm font-black tracking-wide text-foreground uppercase transition-colors group-hover:text-primary">
-                          {deliverable.title}
-                        </h2>
-                      </div>
-
-                      <span className="-skew-x-12 shrink-0 border border-foreground/30 bg-background/80 px-2 py-0.5 font-linux-biolinum text-[9px] font-bold tracking-wider text-muted uppercase">
-                        <span className="block skew-x-12">{deliverable.tag}</span>
-                      </span>
-                    </div>
-
-                    <p className="mt-1 pl-0.5 font-lato text-[11px] leading-snug text-muted transition-colors group-hover:text-foreground/90 line-clamp-2">
-                      {deliverable.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
 
