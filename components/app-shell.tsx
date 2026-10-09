@@ -9,16 +9,16 @@ import { Sidebar as HomeMenu } from "@/components/sidebar";
 // Home Page Backgrounds
 const homeHoverBgMap: Record<string, string> = {
   "/projects": "/images/backgrounds/BG-Kiryu.webp",
-  "/skills": "/images/backgrounds/BG-Majima.webp",
   "/experience": "/images/backgrounds/BG-Saejima.webp",
+  "/skills": "/images/backgrounds/BG-Majima.webp",
   "/socials": "/images/backgrounds/BG-Nishiki.webp",
 };
 
 // Non-Home Page Backgrounds
 const pageBgMap: Record<string, string> = {
-  "/projects": "/images/backgrounds/BG-Persona.webp",
+  "/projects": "/images/backgrounds/BG-P5R-1.webp",
+  "/experience": "/images/backgrounds/BG-P5R-2.webp",
   "/skills": "/images/backgrounds/BG-Sekiro.webp",
-  "/experience": "/images/backgrounds/BG-Saejima.webp",
   "/socials": "/images/backgrounds/BG-Ichiban.webp",
 };
 
@@ -29,7 +29,8 @@ const bgOpacityMap: Record<string, string> = {
   "/images/backgrounds/BG-Saejima.webp": "opacity-7 md:opacity-4",
   "/images/backgrounds/BG-Nishiki.webp": "opacity-7 md:opacity-4",
   "/images/backgrounds/BG-Ichiban.webp": "opacity-7 md:opacity-4",
-  "/images/backgrounds/BG-Persona.webp": "opacity-8 md:opacity-5",
+  "/images/backgrounds/BG-P5R-1.webp": "opacity-8 md:opacity-5",
+  "/images/backgrounds/BG-P5R-2.webp": "opacity-8 md:opacity-5",
   "/images/backgrounds/BG-Sekiro.webp": "opacity-8 md:opacity-5",
 };
 
