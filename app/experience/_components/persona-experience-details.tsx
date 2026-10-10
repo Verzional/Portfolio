@@ -124,24 +124,36 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
           </motion.div>
         </div>
 
-        {/* Right: Connected Black & White Dossier Panel (Title Box Top + Content Box Below) */}
-        <div className="relative z-10 flex flex-1 flex-col items-stretch max-w-xl lg:max-w-2xl xl:max-w-3xl w-full md:-ml-10 lg:-ml-12 xl:-ml-14">
-          {/* Top Title Box (Consistent 3-Tier Hierarchy: Company Badge, Role, Duration) */}
-          <div className="relative z-10 flex flex-col items-start gap-1 border-4 md:border-l-0 border-black bg-white px-4 py-2.5 sm:px-5 sm:py-3 md:pl-14 lg:pl-16 xl:pl-18">
-            <span className="shrink-0 -skew-x-12 bg-black px-2 py-0.5 font-linux-biolinum text-[10px] sm:text-[11px] font-black text-white uppercase">
-              <span className="block skew-x-12">{experience.company}</span>
-            </span>
-            <h2 className="font-linux-biolinum text-sm sm:text-base md:text-lg lg:text-xl font-black tracking-wide text-black uppercase">
-              {experience.role}
-            </h2>
-            <span className="font-linux-biolinum text-xs font-bold tracking-widest text-black/60">
-              {experience.duration}
-            </span>
+        {/* Right: Connected Dossier with Refined Option 3 Architecture */}
+        <div className="relative z-10 flex flex-1 flex-col items-stretch max-w-xl lg:max-w-2xl xl:max-w-3xl w-full md:-ml-10 lg:-ml-12 xl:-ml-14 filter drop-shadow-[8px_8px_0_#000000]">
+          {/* Hanging Roof Tab for Company (No filler symbols, clean crisp -12deg slant) */}
+          <div className="relative -mb-1 z-30 self-start md:pl-10 lg:pl-12 xl:pl-14">
+            <div className="inline-block border-4 border-black bg-white px-4 py-1 -skew-x-12 shadow-[3px_3px_0_#d4030d]">
+              <span className="font-linux-biolinum text-xs sm:text-sm font-black uppercase tracking-wider text-black block skew-x-12">
+                {experience.company}
+              </span>
+            </div>
           </div>
 
-          {/* Bottom Content Box (Fuses with Top Title Box) */}
-          <div className="border-4 border-t-0 md:border-l-0 border-black bg-white p-5 sm:p-6 md:pl-16 lg:pl-18 xl:pl-20">
-            {/* Top Row: Arcana & Rank Header */}
+          {/* Tier 1 Header: Role Title & Balanced Date Row */}
+          <div className="relative z-20 flex flex-col items-start border-4 md:border-l-0 border-black bg-white px-4 py-3.5 sm:px-5 sm:py-4 md:pl-14 lg:pl-16 xl:pl-18">
+            <h2 className="-skew-x-12 origin-left font-linux-biolinum text-base sm:text-lg md:text-xl lg:text-2xl font-black uppercase tracking-tight text-black leading-tight">
+              {experience.role}
+            </h2>
+
+            {/* Persona Date Row (Clean, No Redundant Symbols) */}
+            <div className="mt-2.5 flex items-center gap-2 flex-wrap">
+              <span className="font-linux-biolinum text-xs sm:text-sm font-bold tracking-widest text-black/75 uppercase">
+                {experience.duration}
+              </span>
+              <span className="-skew-x-12 bg-black px-2.5 py-0.5 font-linux-biolinum text-[10px] font-black text-white uppercase ml-1 shadow-[2px_2px_0_#d4030d]">
+                <span className="block skew-x-12">{experience.durationMonths}</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Tier 2: Arcana & Rank Strip (Unified Left Padding) */}
+          <div className="border-4 border-t-0 md:border-l-0 border-black bg-white px-4 py-3.5 sm:px-5 sm:py-4 md:pl-14 lg:pl-16 xl:pl-18">
             <div className="flex items-center justify-between gap-4">
               {/* Arcana Title */}
               <div className="flex items-baseline gap-2">
@@ -176,27 +188,30 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Middle Row: Quote Icon + Description */}
-            <div className="mt-4 flex items-start gap-2.5">
-              <span className="text-black font-black text-lg sm:text-xl leading-none shrink-0 mt-0.5 select-none">
+          {/* Tier 3: Bottom Bio Intel Box (Solid Black with White Accents & Unified Padding) */}
+          <div className="border-4 border-t-0 md:border-l-0 border-black bg-black p-5 sm:p-6 md:pl-14 lg:pl-16 xl:pl-18 text-white">
+            {/* Description Quote */}
+            <div className="flex items-start gap-2.5">
+              <span className="text-white font-black text-lg sm:text-xl leading-none shrink-0 mt-0.5 select-none">
                 ◤
               </span>
-              <p className="font-linux-biolinum text-sm sm:text-base md:text-lg font-semibold leading-relaxed text-black">
+              <p className="font-linux-biolinum text-sm sm:text-base md:text-lg font-medium leading-relaxed text-zinc-100">
                 {experience.description}
               </p>
             </div>
 
-            {/* Bottom Row: Confidant Skills & Perks */}
+            {/* Confidant Perks */}
             {experience.skills.length > 0 && (
               <div className="mt-5 flex flex-wrap items-center gap-1.5">
-                <span className="font-linux-biolinum text-[10px] sm:text-xs font-black tracking-widest text-black/60 uppercase mr-1">
+                <span className="font-linux-biolinum text-[10px] sm:text-xs font-black tracking-widest text-zinc-400 uppercase mr-1">
                   PERKS:
                 </span>
                 {experience.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="-skew-x-12 bg-black px-2 py-0.5 font-linux-biolinum text-[10px] sm:text-xs font-bold tracking-wider text-white uppercase shadow-[2px_2px_0_#d4030d]"
+                    className="-skew-x-12 bg-white px-2 py-0.5 font-linux-biolinum text-[10px] sm:text-xs font-black tracking-wider text-black uppercase shadow-[2px_2px_0_#d4030d]"
                   >
                     <span className="block skew-x-12">{skill}</span>
                   </span>
