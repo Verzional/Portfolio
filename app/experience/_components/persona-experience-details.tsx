@@ -106,12 +106,12 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
     >
       {/* Connected Persona 5 Confidant Dossier Assembly */}
       <div className="relative flex flex-col md:flex-row items-center justify-center max-w-5xl lg:max-w-6xl w-full gap-4 md:gap-0">
-        {/* Left: Authentic Persona 5 Tarot Card */}
+        {/* Left: Authentic Persona 5 Tarot Card Anchor */}
         <div className="relative z-20 shrink-0 flex flex-col items-center">
           <motion.div
             whileHover={{ rotate: 0, scale: 1.04 }}
             transition={{ duration: 0.25, ease: [0.33, 1, 0.68, 1] }}
-            className="relative aspect-53/98 w-48 sm:w-56 md:w-60 lg:w-68 xl:w-72 -rotate-3 cursor-default select-none"
+            className="relative aspect-53/98 w-48 sm:w-56 md:w-60 lg:w-64 xl:w-68 -rotate-3 cursor-default select-none filter drop-shadow-[8px_10px_0_#000000]"
           >
             <ExportedImage
               src={arcana.image}
