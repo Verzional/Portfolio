@@ -146,8 +146,8 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
               <span className="font-linux-biolinum text-xs sm:text-sm font-bold tracking-widest text-black/75 uppercase">
                 {experience.duration}
               </span>
-              <span className="-skew-x-12 bg-black px-2.5 py-0.5 font-linux-biolinum text-[10px] font-black text-white uppercase ml-1 shadow-[2px_2px_0_#d4030d]">
-                <span className="block skew-x-12">{experience.durationMonths}</span>
+              <span className="skew-x-12 bg-black px-2.5 py-0.5 font-linux-biolinum text-[10px] font-black text-white uppercase ml-1 shadow-[2px_2px_0_#d4030d]">
+                <span className="block -skew-x-12">{experience.durationMonths}</span>
               </span>
             </div>
           </div>
