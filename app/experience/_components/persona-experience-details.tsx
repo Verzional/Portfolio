@@ -99,15 +99,35 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
   return (
     <motion.div
       key={experience.id}
-      initial={{ opacity: 0, scale: 0.96 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.35, ease: [0.33, 1, 0.68, 1] }}
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: { opacity: 0 },
+        visible: {
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.08,
+            delayChildren: 0.04,
+          },
+        },
+      }}
       className="relative flex h-full w-full items-center justify-center p-4 md:p-6 lg:p-8"
     >
       {/* Confidant Dossier Assembly */}
       <div className="relative flex flex-col md:flex-row items-center justify-center max-w-5xl lg:max-w-6xl w-full gap-4 md:gap-0">
         {/* Major Arcana Tarot Card Anchor */}
-        <div className="relative z-20 shrink-0 flex flex-col items-center">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, x: -60, scale: 0.94 },
+            visible: {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              transition: { type: "spring", stiffness: 300, damping: 25 },
+            },
+          }}
+          className="relative z-20 shrink-0 flex flex-col items-center"
+        >
           <div
             className="relative aspect-53/98 w-50 sm:w-58 md:w-68 lg:w-76 xl:w-84 -rotate-3 cursor-default select-none filter drop-shadow-[8px_10px_0_#000000]"
           >
@@ -120,21 +140,57 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
               className="h-full w-full object-contain pointer-events-none select-none"
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Confidant Dossier Panel */}
-        <div className="relative z-10 flex flex-1 flex-col items-stretch max-w-xl lg:max-w-2xl xl:max-w-3xl w-full md:-ml-10 lg:-ml-12 xl:-ml-14 filter drop-shadow-[8px_8px_0_#000000]">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, x: 50 },
+            visible: {
+              opacity: 1,
+              x: 0,
+              transition: {
+                type: "spring",
+                stiffness: 300,
+                damping: 25,
+                staggerChildren: 0.06,
+              },
+            },
+          }}
+          className="relative z-10 flex flex-1 flex-col items-stretch max-w-xl lg:max-w-2xl xl:max-w-3xl w-full md:-ml-10 lg:-ml-12 xl:-ml-14 filter drop-shadow-[8px_8px_0_#000000]"
+        >
           {/* Company Hanging Tab */}
-          <div className="relative -mb-1 z-30 self-start md:pl-8 lg:pl-9 xl:pl-10">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: -20, scale: 0.95 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                transition: { type: "spring", stiffness: 350, damping: 22 },
+              },
+            }}
+            className="relative -mb-1 z-30 self-start md:pl-8 lg:pl-9 xl:pl-10"
+          >
             <div className="inline-block border-4 border-black bg-white px-4 py-1 skew-x-12 shadow-[3px_0_0_#d4030d]">
               <span className="font-linux-biolinum text-xs sm:text-sm font-black uppercase tracking-wider text-black block -skew-x-12">
                 {experience.company}
               </span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Role Title And Duration Header */}
-          <div className="relative z-20 flex flex-col items-start border-4 md:border-l-0 border-black bg-white px-4 py-3.5 sm:px-5 sm:py-4 md:pl-14 lg:pl-16 xl:pl-18">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 15 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { type: "spring", stiffness: 350, damping: 25 },
+              },
+            }}
+            className="relative z-20 flex flex-col items-start border-4 md:border-l-0 border-black bg-white px-4 py-3.5 sm:px-5 sm:py-4 md:pl-14 lg:pl-16 xl:pl-18"
+          >
             <h2 className="font-linux-biolinum italic text-base sm:text-lg md:text-xl lg:text-2xl font-black uppercase tracking-tight text-black leading-tight">
               {experience.role}
             </h2>
@@ -148,10 +204,20 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
                 <span className="block -skew-x-12">{experience.durationMonths}</span>
               </span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Arcana And Rank Strip */}
-          <div className="border-4 border-t-0 md:border-l-0 border-black bg-white px-4 py-3.5 sm:px-5 sm:py-4 md:pl-14 lg:pl-16 xl:pl-18">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 15 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { type: "spring", stiffness: 350, damping: 25 },
+              },
+            }}
+            className="border-4 border-t-0 md:border-l-0 border-black bg-white px-4 py-3.5 sm:px-5 sm:py-4 md:pl-14 lg:pl-16 xl:pl-18"
+          >
             <div className="flex items-center justify-between gap-4">
               {/* Arcana Title */}
               <div className="flex items-baseline gap-2">
@@ -186,10 +252,25 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Confidant Bio Intel Box */}
-          <div className="border-4 border-t-0 md:border-l-0 border-black bg-black p-5 sm:p-6 md:pl-16 lg:pl-18 xl:pl-20 text-white">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  type: "spring",
+                  stiffness: 320,
+                  damping: 24,
+                  staggerChildren: 0.05,
+                },
+              },
+            }}
+            className="border-4 border-t-0 md:border-l-0 border-black bg-black p-5 sm:p-6 md:pl-16 lg:pl-18 xl:pl-20 text-white"
+          >
             {/* Description Quote */}
             <div className="flex items-start gap-2.5">
               <span className="text-white font-black text-lg sm:text-xl leading-none shrink-0 mt-0.5 select-none">
@@ -219,9 +300,19 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {experience.skills.map((skill, index) => (
-                    <div
+                    <motion.div
                       key={skill}
-                      className={`flex items-center gap-2.5 border border-zinc-800 bg-zinc-900/60 px-3 py-2 transition-colors hover:border-[#d4030d] ${
+                      variants={{
+                        hidden: { opacity: 0, scale: 0.92, y: 12 },
+                        visible: {
+                          opacity: 1,
+                          scale: 1,
+                          y: 0,
+                          transition: { type: "spring", stiffness: 400, damping: 22 },
+                        },
+                      }}
+                      whileHover={{ y: -2, transition: { duration: 0.15, ease: "easeOut" } }}
+                      className={`flex items-center gap-2.5 border border-zinc-800 bg-zinc-900/60 px-3 py-2 transition-colors hover:border-[#d4030d] cursor-default ${
                         index === experience.skills.length - 1 && experience.skills.length % 2 !== 0
                           ? "sm:col-span-2"
                           : ""
@@ -233,13 +324,13 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
                       <span className="font-linux-biolinum text-xs sm:text-sm font-black uppercase tracking-wider text-zinc-100 truncate">
                         {skill}
                       </span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
             )}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </motion.div>
   );
