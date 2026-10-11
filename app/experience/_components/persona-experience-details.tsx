@@ -104,9 +104,9 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
       transition={{ duration: 0.35, ease: [0.33, 1, 0.68, 1] }}
       className="relative flex h-full w-full items-center justify-center p-4 md:p-6 lg:p-8"
     >
-      {/* Connected Persona 5 Confidant Dossier Assembly */}
+      {/* Confidant Dossier Assembly */}
       <div className="relative flex flex-col md:flex-row items-center justify-center max-w-5xl lg:max-w-6xl w-full gap-4 md:gap-0">
-        {/* Left: Authentic Persona 5 Tarot Card Anchor */}
+        {/* Major Arcana Tarot Card Anchor */}
         <div className="relative z-20 shrink-0 flex flex-col items-center">
           <motion.div
             whileHover={{ rotate: 0, scale: 1.04 }}
@@ -124,24 +124,24 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
           </motion.div>
         </div>
 
-        {/* Right: Connected Dossier with Refined Option 3 Architecture */}
+        {/* Confidant Dossier Panel */}
         <div className="relative z-10 flex flex-1 flex-col items-stretch max-w-xl lg:max-w-2xl xl:max-w-3xl w-full md:-ml-10 lg:-ml-12 xl:-ml-14 filter drop-shadow-[8px_8px_0_#000000]">
-          {/* Hanging Roof Tab for Company (No filler symbols, clean crisp -12deg slant) */}
-          <div className="relative -mb-1 z-30 self-start md:pl-10 lg:pl-12 xl:pl-14">
-            <div className="inline-block border-4 border-black bg-white px-4 py-1 -skew-x-12 shadow-[3px_3px_0_#d4030d]">
-              <span className="font-linux-biolinum text-xs sm:text-sm font-black uppercase tracking-wider text-black block skew-x-12">
+          {/* Company Hanging Tab */}
+          <div className="relative -mb-1 z-30 self-start md:pl-8 lg:pl-9 xl:pl-10">
+            <div className="inline-block border-4 border-black bg-white px-4 py-1 skew-x-12 shadow-[3px_0_0_#d4030d]">
+              <span className="font-linux-biolinum text-xs sm:text-sm font-black uppercase tracking-wider text-black block -skew-x-12">
                 {experience.company}
               </span>
             </div>
           </div>
 
-          {/* Tier 1 Header: Role Title & Balanced Date Row */}
+          {/* Role Title And Duration Header */}
           <div className="relative z-20 flex flex-col items-start border-4 md:border-l-0 border-black bg-white px-4 py-3.5 sm:px-5 sm:py-4 md:pl-14 lg:pl-16 xl:pl-18">
-            <h2 className="-skew-x-12 origin-left font-linux-biolinum text-base sm:text-lg md:text-xl lg:text-2xl font-black uppercase tracking-tight text-black leading-tight">
+            <h2 className="font-linux-biolinum italic text-base sm:text-lg md:text-xl lg:text-2xl font-black uppercase tracking-tight text-black leading-tight">
               {experience.role}
             </h2>
 
-            {/* Persona Date Row (Clean, No Redundant Symbols) */}
+            {/* Duration Pill Row */}
             <div className="mt-2.5 flex items-center gap-2 flex-wrap">
               <span className="font-linux-biolinum text-xs sm:text-sm font-bold tracking-widest text-black/75 uppercase">
                 {experience.duration}
@@ -152,7 +152,7 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
             </div>
           </div>
 
-          {/* Tier 2: Arcana & Rank Strip (Unified Left Padding) */}
+          {/* Arcana And Rank Strip */}
           <div className="border-4 border-t-0 md:border-l-0 border-black bg-white px-4 py-3.5 sm:px-5 sm:py-4 md:pl-14 lg:pl-16 xl:pl-18">
             <div className="flex items-center justify-between gap-4">
               {/* Arcana Title */}
@@ -165,7 +165,7 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
                 </span>
               </div>
 
-              {/* Rank & Stars */}
+              {/* Rank And Stars Counter */}
               <div className="flex flex-col items-end">
                 <div className="flex items-baseline gap-1.5">
                   <span className="font-linux-biolinum text-[11px] sm:text-xs font-black tracking-widest text-black/60 uppercase">
@@ -175,7 +175,7 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
                     {isActiveRole ? "ACTIVE" : "10 MAX"}
                   </span>
                 </div>
-                {/* 10 Star Progress Rating */}
+                {/* Star Progress Rating */}
                 <div className="flex items-center gap-0.5 text-xs sm:text-sm text-black">
                   {Array.from({ length: 10 }).map((_, i) => (
                     <span
@@ -190,7 +190,7 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
             </div>
           </div>
 
-          {/* Tier 3: Bottom Bio Intel Box (Solid Black with White Accents & Unified Padding) */}
+          {/* Confidant Bio Intel Box */}
           <div className="border-4 border-t-0 md:border-l-0 border-black bg-black p-5 sm:p-6 md:pl-14 lg:pl-16 xl:pl-18 text-white">
             {/* Description Quote */}
             <div className="flex items-start gap-2.5">
