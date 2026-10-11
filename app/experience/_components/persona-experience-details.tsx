@@ -191,7 +191,7 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
           </div>
 
           {/* Confidant Bio Intel Box */}
-          <div className="border-4 border-t-0 md:border-l-0 border-black bg-black p-5 sm:p-6 md:pl-14 lg:pl-16 xl:pl-18 text-white">
+          <div className="border-4 border-t-0 md:border-l-0 border-black bg-black p-5 sm:p-6 md:pl-16 lg:pl-18 xl:pl-20 text-white">
             {/* Description Quote */}
             <div className="flex items-start gap-2.5">
               <span className="text-white font-black text-lg sm:text-xl leading-none shrink-0 mt-0.5 select-none">
@@ -202,20 +202,42 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
               </p>
             </div>
 
-            {/* Confidant Perks */}
+            {/* Confidant Abilities Grid */}
             {experience.skills.length > 0 && (
-              <div className="mt-5 flex flex-wrap items-center gap-1.5">
-                <span className="font-linux-biolinum text-[10px] sm:text-xs font-black tracking-widest text-zinc-400 uppercase mr-1">
-                  PERKS:
-                </span>
-                {experience.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="-skew-x-12 bg-white px-2 py-0.5 font-linux-biolinum text-[10px] sm:text-xs font-black tracking-wider text-black uppercase shadow-[2px_2px_0_#d4030d]"
-                  >
-                    <span className="block skew-x-12">{skill}</span>
+              <div className="mt-6 pt-5 border-t border-zinc-800/80">
+                <div className="flex items-baseline justify-between mb-3 border-b border-zinc-800/80 pb-2">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-linux-biolinum text-xs font-black tracking-widest text-[#d4030d] uppercase">
+                      CONFIDANT
+                    </span>
+                    <span className="font-linux-biolinum italic text-sm sm:text-base font-black tracking-wider text-white">
+                      ABILITIES
+                    </span>
+                  </div>
+                  <span className="font-linux-biolinum text-[11px] font-black tracking-widest text-zinc-400 uppercase">
+                    {experience.skills.length} SLOTS
                   </span>
-                ))}
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {experience.skills.map((skill, index) => (
+                    <div
+                      key={skill}
+                      className={`flex items-center gap-2.5 border border-zinc-800 bg-zinc-900/60 px-3 py-2 transition-colors hover:border-[#d4030d] ${
+                        index === experience.skills.length - 1 && experience.skills.length % 2 !== 0
+                          ? "sm:col-span-2"
+                          : ""
+                      }`}
+                    >
+                      <span className="text-[#d4030d] font-black text-xs leading-none select-none shrink-0">
+                        ◤
+                      </span>
+                      <span className="font-linux-biolinum text-xs sm:text-sm font-black uppercase tracking-wider text-zinc-100 truncate">
+                        {skill}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
