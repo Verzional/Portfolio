@@ -108,10 +108,8 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
       <div className="relative flex flex-col md:flex-row items-center justify-center max-w-5xl lg:max-w-6xl w-full gap-4 md:gap-0">
         {/* Major Arcana Tarot Card Anchor */}
         <div className="relative z-20 shrink-0 flex flex-col items-center">
-          <motion.div
-            whileHover={{ rotate: 0, scale: 1.04 }}
-            transition={{ duration: 0.25, ease: [0.33, 1, 0.68, 1] }}
-            className="relative aspect-53/98 w-48 sm:w-56 md:w-60 lg:w-64 xl:w-68 -rotate-3 cursor-default select-none filter drop-shadow-[8px_10px_0_#000000]"
+          <div
+            className="relative aspect-53/98 w-50 sm:w-58 md:w-68 lg:w-76 xl:w-84 -rotate-3 cursor-default select-none filter drop-shadow-[8px_10px_0_#000000]"
           >
             <ExportedImage
               src={arcana.image}
@@ -121,7 +119,7 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
               priority={true}
               className="h-full w-full object-contain pointer-events-none select-none"
             />
-          </motion.div>
+          </div>
         </div>
 
         {/* Confidant Dossier Panel */}
