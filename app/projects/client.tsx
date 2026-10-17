@@ -12,6 +12,19 @@ import { PersonaCategoryTab } from "./_components/persona-category-tab";
 import { PersonaProjectSlot } from "./_components/persona-project-slot";
 import { ProjectDetails } from "./_components/project-details";
 
+const ROMAN_NUMERALS = [
+  "I",
+  "II",
+  "III",
+  "IV",
+  "V",
+  "VI",
+  "VII",
+  "VIII",
+  "IX",
+  "X",
+];
+
 export function ProjectsClient() {
   const router = useRouter();
   const { activeCategory, setActiveCategory } =
@@ -80,16 +93,24 @@ export function ProjectsClient() {
         </div>
 
         {/* Project Slots */}
-        <div className="mt-4 flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto px-4 pr-6 pb-8 md:px-8 md:pr-12">
-          {filteredProjects.map((proj, idx) => (
-            <PersonaProjectSlot
-              key={proj.id}
-              index={idx}
-              isActive={idx === activeIndex}
-              title={proj.title}
-              onClick={handleProjectClick}
-            />
-          ))}
+        <div className="mt-2 flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto px-4 pr-6 pb-8 outline-none focus:outline-none focus-visible:outline-none md:px-8 md:pr-12">
+          {filteredProjects.map((proj, idx) => {
+            const projectIndex = parseInt(proj.id, 10);
+            const romanNumeral =
+              ROMAN_NUMERALS[projectIndex - 1] ?? String(projectIndex);
+
+            return (
+              <PersonaProjectSlot
+                key={proj.id}
+                index={idx}
+                isActive={idx === activeIndex}
+                title={proj.title}
+                category={proj.categories.join(" · ")}
+                romanNumeral={romanNumeral}
+                onClick={handleProjectClick}
+              />
+            );
+          })}
         </div>
       </div>
     </SubMenu>
