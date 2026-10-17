@@ -47,11 +47,11 @@ export function ProjectInfo({
             transition: { type: "spring", stiffness: 300, damping: 20 },
           },
         }}
-        className={`relative z-10 -rotate-1 border-l-4 border-primary p-4 text-foreground shadow-[4px_4px_0_rgba(255,255,255,0.2)] md:p-5 md:shadow-[5px_5px_0_rgba(255,255,255,0.2)] xl:p-6 xl:shadow-[6px_6px_0_rgba(255,255,255,0.2)] ${
-          isOverlay ? "bg-background/95" : "mt-4 bg-background md:mt-5 xl:mt-6"
+        className={`relative z-10 -rotate-1 border-2 border-white/15 border-l-4 border-l-primary bg-black/95 p-4 text-foreground shadow-[6px_6px_0_rgba(0,0,0,0.8)] backdrop-blur-sm md:p-5 xl:p-6 ${
+          isOverlay ? "" : "mt-4 md:mt-5 xl:mt-6"
         }`}
       >
-        <p className="font-linux-biolinum text-sm leading-relaxed tracking-wider [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-base xl:text-lg">
+        <p className="font-linux-biolinum text-sm font-medium leading-relaxed tracking-wide text-zinc-100 md:text-base xl:text-lg">
           {project.desc}
         </p>
       </motion.div>
