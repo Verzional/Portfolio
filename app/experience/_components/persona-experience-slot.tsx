@@ -80,7 +80,9 @@ export function PersonaExperienceSlot({
           <div className="flex items-center justify-between gap-1.5">
             <span
               className={`truncate font-linux-biolinum text-[10px] font-bold tracking-wider uppercase transition-colors ${
-                isActive ? "text-primary/90" : "text-primary"
+                isActive
+                  ? "text-primary font-black"
+                  : "text-muted group-hover:text-foreground"
               }`}
               title={company}
             >
