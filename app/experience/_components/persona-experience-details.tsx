@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { ExperienceData } from "@/data/experience";
+import { useIdlePreload } from "@/hooks/use-idle-preload";
 
 // Persona 5 Major Arcana Mapping
 const arcanaMap: Record<
@@ -76,6 +77,8 @@ interface PersonaExperienceDetailsProps {
 }
 
 export function PersonaExperienceDetails({ experience }: PersonaExperienceDetailsProps) {
+  const shouldPreload = useIdlePreload();
+
   // Handle Empty State
   if (!experience) {
     return (
@@ -142,22 +145,24 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
           </div>
 
           {/* Preload Other Tarot Cards for Instant Navigation */}
-          <div
-            className="pointer-events-none fixed inset-0 -z-50 overflow-hidden opacity-0"
-            aria-hidden="true"
-          >
-            {Object.values(arcanaMap)
-              .filter((item) => item.image !== arcana.image)
-              .map((item) => (
-                <Image
-                  key={item.image}
-                  src={item.image}
-                  alt=""
-                  width={530}
-                  height={980}
-                />
-              ))}
-          </div>
+          {shouldPreload && (
+            <div
+              className="pointer-events-none fixed inset-0 -z-50 overflow-hidden opacity-0"
+              aria-hidden="true"
+            >
+              {Object.values(arcanaMap)
+                .filter((item) => item.image !== arcana.image)
+                .map((item) => (
+                  <Image
+                    key={item.image}
+                    src={item.image}
+                    alt=""
+                    width={530}
+                    height={980}
+                  />
+                ))}
+            </div>
+          )}
         </motion.div>
 
         {/* Confidant Dossier Panel */}
