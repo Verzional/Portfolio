@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRef, useEffect } from "react";
 import { motion } from "motion/react";
 import { ExperienceData } from "@/data/experience";
 import { useIdlePreload } from "@/hooks/use-idle-preload";
@@ -61,7 +62,7 @@ const arcanaMap: Record<
   IX: {
     arcana: "IX",
     name: "The Hermit",
-    french: "L'HERMITE",
+    french: "L'ERMITE",
     image: "/images/tarot/IX-hermit.webp",
   },
   X: {
@@ -78,6 +79,14 @@ interface PersonaExperienceDetailsProps {
 
 export function PersonaExperienceDetails({ experience }: PersonaExperienceDetailsProps) {
   const shouldPreload = useIdlePreload();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Auto Reset Scroll Position on Selection
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = 0;
+    }
+  }, [experience?.id]);
 
   // Handle Empty State
   if (!experience) {
@@ -101,6 +110,7 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
 
   return (
     <motion.div
+      ref={containerRef}
       key={experience.id}
       initial="hidden"
       animate="visible"
@@ -114,10 +124,10 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
           },
         },
       }}
-      className="relative flex h-full w-full items-center justify-center p-4 md:p-6 lg:p-8"
+      className="relative flex h-full w-full justify-start overflow-x-hidden overflow-y-auto scrollbar-none p-3 pt-6 pb-20 md:items-center md:justify-center md:p-6 md:pb-6 lg:p-8"
     >
       {/* Confidant Dossier Assembly */}
-      <div className="relative flex flex-col md:flex-row items-center justify-center max-w-5xl lg:max-w-6xl w-full gap-4 md:gap-0">
+      <div className="relative flex flex-col md:flex-row items-center justify-center max-w-5xl lg:max-w-6xl w-full gap-6 md:gap-0 my-auto">
         {/* Major Arcana Tarot Card Anchor */}
         <motion.div
           variants={{
@@ -132,7 +142,7 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
           className="relative z-20 shrink-0 flex flex-col items-center"
         >
           <div
-            className="relative aspect-53/98 w-50 sm:w-58 md:w-68 lg:w-76 xl:w-84 -rotate-3 cursor-default select-none filter drop-shadow-[8px_10px_0_#000000]"
+            className="relative aspect-53/98 w-36 sm:w-48 md:w-64 lg:w-76 xl:w-84 -rotate-3 cursor-default select-none filter drop-shadow-[6px_8px_0_#000000] md:drop-shadow-[8px_10px_0_#000000]"
           >
             <Image
               src={arcana.image}
@@ -180,7 +190,7 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
               },
             },
           }}
-          className="relative z-10 flex flex-1 flex-col items-stretch max-w-xl lg:max-w-2xl xl:max-w-3xl w-full md:-ml-10 lg:-ml-12 xl:-ml-14 filter drop-shadow-[8px_8px_0_#000000]"
+          className="relative z-10 flex flex-1 flex-col items-stretch max-w-xl lg:max-w-2xl xl:max-w-3xl w-full md:-ml-10 lg:-ml-12 xl:-ml-14 filter drop-shadow-[6px_6px_0_#000000] md:drop-shadow-[8px_8px_0_#000000]"
         >
           {/* Company Hanging Tab */}
           <motion.div
@@ -195,8 +205,8 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
             }}
             className="relative -mb-1 z-30 self-start md:pl-8 lg:pl-9 xl:pl-10"
           >
-            <div className="inline-block border-4 border-black bg-white px-4 py-1 skew-x-12 shadow-[3px_0_0_#d4030d]">
-              <span className="font-linux-biolinum text-xs sm:text-sm font-black uppercase tracking-wider text-black block -skew-x-12">
+            <div className="inline-block border-3 sm:border-4 border-black bg-white px-3 sm:px-4 py-1 skew-x-12 shadow-[3px_0_0_#d4030d]">
+              <span className="font-linux-biolinum text-[10px] sm:text-xs md:text-sm font-black uppercase tracking-wider text-black block -skew-x-12 truncate max-w-[260px] sm:max-w-none">
                 {experience.company}
               </span>
             </div>
@@ -212,18 +222,18 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
                 transition: { type: "spring", stiffness: 350, damping: 25 },
               },
             }}
-            className="relative z-20 flex flex-col items-start border-4 md:border-l-0 border-black bg-white px-4 py-3.5 sm:px-5 sm:py-4 md:pl-14 lg:pl-16 xl:pl-18"
+            className="relative z-20 flex flex-col items-start border-4 md:border-l-0 border-black bg-white px-3.5 py-3 sm:px-5 sm:py-4 md:pl-14 lg:pl-16 xl:pl-18"
           >
-            <h2 className="font-linux-biolinum italic text-base sm:text-lg md:text-xl lg:text-2xl font-black uppercase tracking-tight text-black leading-tight">
+            <h2 className="font-linux-biolinum italic text-sm sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-black leading-tight">
               {experience.role}
             </h2>
 
             {/* Duration Pill Row */}
-            <div className="mt-2.5 flex items-center gap-2 flex-wrap">
+            <div className="mt-2 sm:mt-2.5 flex items-center gap-2 flex-wrap">
               <span className="font-linux-biolinum text-xs sm:text-sm font-bold tracking-widest text-black/75 uppercase">
                 {experience.duration}
               </span>
-              <span className="skew-x-12 bg-black px-2.5 py-0.5 font-linux-biolinum text-[10px] font-black text-white uppercase ml-1 shadow-[2px_2px_0_#d4030d]">
+              <span className="skew-x-12 bg-black px-2 sm:px-2.5 py-0.5 font-linux-biolinum text-[9px] sm:text-[10px] font-black text-white uppercase ml-1 shadow-[2px_2px_0_#d4030d]">
                 <span className="block -skew-x-12">{experience.durationMonths}</span>
               </span>
             </div>
@@ -239,26 +249,26 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
                 transition: { type: "spring", stiffness: 350, damping: 25 },
               },
             }}
-            className="border-4 border-t-0 md:border-l-0 border-black bg-white px-4 py-3.5 sm:px-5 sm:py-4 md:pl-14 lg:pl-16 xl:pl-18"
+            className="border-4 border-t-0 md:border-l-0 border-black bg-white px-3.5 py-3 sm:px-5 sm:py-4 md:pl-14 lg:pl-16 xl:pl-18"
           >
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 sm:gap-4">
               {/* Arcana Title */}
-              <div className="flex items-baseline gap-2">
-                <span className="font-linux-biolinum text-xs font-black tracking-widest text-black/60 uppercase">
+              <div className="flex items-baseline gap-1.5 sm:gap-2">
+                <span className="font-linux-biolinum text-[10px] sm:text-xs font-black tracking-widest text-black/60 uppercase">
                   ARCANA
                 </span>
-                <span className="font-linux-biolinum italic text-xl sm:text-2xl lg:text-3xl font-black text-black">
+                <span className="font-linux-biolinum italic text-lg sm:text-2xl lg:text-3xl font-black text-black">
                   {arcana.name.replace(/^The /i, "")}
                 </span>
               </div>
 
               {/* Rank And Stars Counter */}
-              <div className="flex flex-col items-end">
-                <div className="flex items-baseline gap-1.5">
-                  <span className="font-linux-biolinum text-[11px] sm:text-xs font-black tracking-widest text-black/60 uppercase">
+              <div className="flex flex-col items-start sm:items-end">
+                <div className="flex items-baseline gap-1 sm:gap-1.5">
+                  <span className="font-linux-biolinum text-[10px] sm:text-xs font-black tracking-widest text-black/60 uppercase">
                     RANK
                   </span>
-                  <span className="font-linux-biolinum text-lg sm:text-xl lg:text-2xl font-black italic tracking-wider text-black">
+                  <span className="font-linux-biolinum text-base sm:text-xl lg:text-2xl font-black italic tracking-wider text-black">
                     {isActiveRole ? "ACTIVE" : "10 MAX"}
                   </span>
                 </div>
@@ -292,31 +302,31 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
                 },
               },
             }}
-            className="border-4 border-t-0 md:border-l-0 border-black bg-black p-5 sm:p-6 md:pl-16 lg:pl-18 xl:pl-20 text-white"
+            className="border-4 border-t-0 md:border-l-0 border-black bg-black p-4 sm:p-5 md:p-6 md:pl-16 lg:pl-18 xl:pl-20 text-white"
           >
             {/* Description Quote */}
-            <div className="flex items-start gap-2.5">
-              <span className="text-white font-black text-lg sm:text-xl leading-none shrink-0 mt-0.5 select-none">
+            <div className="flex items-start gap-2 sm:gap-2.5">
+              <span className="text-white font-black text-base sm:text-lg leading-none shrink-0 mt-0.5 select-none">
                 ◤
               </span>
-              <p className="font-linux-biolinum text-sm sm:text-base md:text-lg font-medium leading-relaxed text-zinc-100">
+              <p className="font-linux-biolinum text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-relaxed text-zinc-100">
                 {experience.description}
               </p>
             </div>
 
             {/* Confidant Abilities Grid */}
             {experience.skills.length > 0 && (
-              <div className="mt-6 pt-5 border-t border-zinc-800/80">
-                <div className="flex items-baseline justify-between mb-3 border-b border-zinc-800/80 pb-2">
-                  <div className="flex items-baseline gap-2">
-                    <span className="font-linux-biolinum text-xs font-black tracking-widest text-[#d4030d] uppercase">
+              <div className="mt-4 sm:mt-6 pt-4 sm:pt-5 border-t border-zinc-800/80">
+                <div className="flex items-baseline justify-between mb-2.5 sm:mb-3 border-b border-zinc-800/80 pb-2">
+                  <div className="flex items-baseline gap-1.5 sm:gap-2">
+                    <span className="font-linux-biolinum text-[10px] sm:text-xs font-black tracking-widest text-[#d4030d] uppercase">
                       CONFIDANT
                     </span>
-                    <span className="font-linux-biolinum italic text-sm sm:text-base font-black tracking-wider text-white">
+                    <span className="font-linux-biolinum italic text-xs sm:text-sm md:text-base font-black tracking-wider text-white">
                       ABILITIES
                     </span>
                   </div>
-                  <span className="font-linux-biolinum text-[11px] font-black tracking-widest text-zinc-400 uppercase">
+                  <span className="font-linux-biolinum text-[10px] sm:text-[11px] font-black tracking-widest text-zinc-400 uppercase">
                     {experience.skills.length} SLOTS
                   </span>
                 </div>
@@ -335,16 +345,16 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
                         },
                       }}
                       whileHover={{ y: -2, transition: { duration: 0.15, ease: "easeOut" } }}
-                      className={`flex items-center gap-2.5 border border-zinc-800 bg-zinc-900/60 px-3 py-2 transition-colors hover:border-[#d4030d] cursor-default ${
+                      className={`flex items-center gap-2 border border-zinc-800 bg-zinc-900/60 px-2.5 sm:px-3 py-1.5 sm:py-2 transition-colors hover:border-[#d4030d] cursor-default ${
                         index === experience.skills.length - 1 && experience.skills.length % 2 !== 0
                           ? "sm:col-span-2"
                           : ""
                       }`}
                     >
-                      <span className="text-[#d4030d] font-black text-xs leading-none select-none shrink-0">
+                      <span className="text-[#d4030d] font-black text-[10px] sm:text-xs leading-none select-none shrink-0">
                         ◤
                       </span>
-                      <span className="font-linux-biolinum text-xs sm:text-sm font-black uppercase tracking-wider text-zinc-100 truncate">
+                      <span className="font-linux-biolinum text-[11px] sm:text-xs md:text-sm font-black uppercase tracking-wider text-zinc-100 truncate">
                         {skill}
                       </span>
                     </motion.div>
