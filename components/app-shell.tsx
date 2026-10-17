@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Sidebar as HomeMenu } from "@/components/sidebar";
+import { useIdlePreload } from "@/hooks/use-idle-preload";
 
 // Home Page Backgrounds
 const homeHoverBgMap: Record<string, string> = {
@@ -42,6 +43,7 @@ const allBackgrounds = Array.from(
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const shouldPreload = useIdlePreload();
   const [previewRoute, setPreviewRoute] = useState<string | null>(null);
   const [previousPath, setPreviousPath] = useState<string | null>(null);
   const [currentPath, setCurrentPath] = useState(pathname);
@@ -120,23 +122,25 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Preload Backgrounds for Instant Hover & Route Transitions */}
-      <div
-        className="pointer-events-none fixed inset-0 -z-50 overflow-hidden opacity-0"
-        aria-hidden="true"
-      >
-        {allBackgrounds
-          .filter((bg) => bg !== activeBg)
-          .map((bg) => (
-            <Image
-              key={bg}
-              src={bg}
-              alt=""
-              fill={true}
-              sizes="100vw"
-              className="object-cover"
-            />
-          ))}
-      </div>
+      {shouldPreload && (
+        <div
+          className="pointer-events-none fixed inset-0 -z-50 overflow-hidden opacity-0"
+          aria-hidden="true"
+        >
+          {allBackgrounds
+            .filter((bg) => bg !== activeBg)
+            .map((bg) => (
+              <Image
+                key={bg}
+                src={bg}
+                alt=""
+                fill={true}
+                sizes="100vw"
+                className="object-cover"
+              />
+            ))}
+        </div>
+      )}
 
       {/* Background Glow */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[60%] bg-hero-glow-mobile md:bottom-0 md:h-auto md:bg-hero-glow" />
