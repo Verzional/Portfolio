@@ -116,7 +116,7 @@ export function ProjectDetails({
 
         {/* Render Background Serial */}
         <div className="pointer-events-none absolute -right-4 -bottom-6 rotate-[-5deg] font-linux-biolinum text-4xl text-foreground opacity-10 select-none [-webkit-text-stroke:0.5px_currentColor] [text-stroke:0.5px_currentColor] md:text-6xl">
-          PROJECT_0{project.id}
+          PROJECT_{project.id.padStart(2, "0")}
         </div>
       </motion.div>
 
