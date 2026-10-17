@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next-image-export-optimizer",
+    "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
@@ -20,7 +20,6 @@
     "lucide-react": "^1.21.0",
     "motion": "^12.42.0",
     "next": "16.2.9",
-    "next-image-export-optimizer": "^1.20.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "tailwind-merge": "^3.6.0"
