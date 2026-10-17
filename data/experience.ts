@@ -1,6 +1,6 @@
-import { Layers, Terminal, GraduationCap, Users, type LucideIcon } from "lucide-react";
+import { Layers, Terminal, GraduationCap, type LucideIcon } from "lucide-react";
 
-export type ExperienceCategory = "DEV" | "ACAD" | "LEAD";
+export type ExperienceCategory = "ENG" | "ACAD";
 export type ExperienceStatus = "ACTIVE" | "CLEARED";
 
 export interface ExperienceData {
@@ -24,16 +24,15 @@ export interface ExperienceCategoryItem {
 
 export const experienceCategories: ExperienceCategoryItem[] = [
   { id: "ALL", label: "ALL", icon: Layers },
-  { id: "DEV", label: "DEV", icon: Terminal },
+  { id: "ENG", label: "ENGINEERING", icon: Terminal },
   { id: "ACAD", label: "ACADEMIC", icon: GraduationCap },
-  { id: "LEAD", label: "LEADERSHIP", icon: Users },
 ];
 
 export const experienceData: ExperienceData[] = [
   {
     id: "1",
     romanNumeral: "I",
-    categories: ["ACAD", "DEV"],
+    categories: ["ACAD"],
     role: "Teaching Assistant - Visual Programming",
     company: "Universitas Ciputra Surabaya",
     duration: "Aug 2026 - Present",
@@ -59,7 +58,7 @@ export const experienceData: ExperienceData[] = [
   {
     id: "3",
     romanNumeral: "III",
-    categories: ["DEV"],
+    categories: ["ENG"],
     role: "iOS Developer",
     company: "Apple Developer Academy @ UC Surabaya",
     duration: "Mar 2026 - Present",
@@ -111,7 +110,7 @@ export const experienceData: ExperienceData[] = [
   {
     id: "7",
     romanNumeral: "VII",
-    categories: ["LEAD", "DEV"],
+    categories: ["ENG"],
     role: "Technical Lead",
     company: "IMT Student Union",
     duration: "Apr 2025 - Jun 2026",
@@ -137,7 +136,7 @@ export const experienceData: ExperienceData[] = [
   {
     id: "9",
     romanNumeral: "IX",
-    categories: ["DEV"],
+    categories: ["ENG"],
     role: "Full Stack Engineer",
     company: "IMT Student Union",
     duration: "Aug 2024 - Apr 2025",
