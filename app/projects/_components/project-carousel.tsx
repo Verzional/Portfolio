@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { projectsData } from "@/data/projects";
+import { useIdlePreload } from "@/hooks/use-idle-preload";
 
 type Project = (typeof projectsData)[0];
 
@@ -16,6 +17,7 @@ export function ProjectCarousel({
   imageClipPath,
   children,
 }: ProjectCarouselProps) {
+  const shouldPreload = useIdlePreload();
   const [imageIndex, setImageIndex] = useState(0);
   const isMobileApp = project?.categories.includes("MOBILE");
 
@@ -96,7 +98,7 @@ export function ProjectCarousel({
       </AnimatePresence>
 
       {/* Preload Carousel Adjacent Images */}
-      {project.images && project.images.length > 1 && (
+      {shouldPreload && project.images && project.images.length > 1 && (
         <div
           className="pointer-events-none fixed inset-0 -z-50 overflow-hidden opacity-0"
           aria-hidden="true"
