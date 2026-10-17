@@ -95,6 +95,28 @@ export function ProjectCarousel({
         )}
       </AnimatePresence>
 
+      {/* Preload Carousel Adjacent Images */}
+      {project.images && project.images.length > 1 && (
+        <div
+          className="pointer-events-none fixed inset-0 -z-50 overflow-hidden opacity-0"
+          aria-hidden="true"
+        >
+          {project.images.map((img, i) => {
+            if (i === imageIndex) return null;
+            return (
+              <Image
+                key={img}
+                src={img}
+                alt=""
+                fill={true}
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 60vw, 50vw"
+                className="object-cover"
+              />
+            );
+          })}
+        </div>
+      )}
+
       {/* Render Bottom Gradient */}
       {!isMobileApp && (
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-linear-to-t from-background to-transparent" />

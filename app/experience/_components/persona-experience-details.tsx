@@ -140,6 +140,24 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
               className="h-full w-full object-contain pointer-events-none select-none"
             />
           </div>
+
+          {/* Preload Other Tarot Cards for Instant Navigation */}
+          <div
+            className="pointer-events-none fixed inset-0 -z-50 overflow-hidden opacity-0"
+            aria-hidden="true"
+          >
+            {Object.values(arcanaMap)
+              .filter((item) => item.image !== arcana.image)
+              .map((item) => (
+                <Image
+                  key={item.image}
+                  src={item.image}
+                  alt=""
+                  width={530}
+                  height={980}
+                />
+              ))}
+          </div>
         </motion.div>
 
         {/* Confidant Dossier Panel */}

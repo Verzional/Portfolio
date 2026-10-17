@@ -34,6 +34,11 @@ const bgOpacityMap: Record<string, string> = {
   "/images/backgrounds/BG-Sekiro.webp": "opacity-8 md:opacity-5",
 };
 
+// All Unique Backgrounds for Preloading
+const allBackgrounds = Array.from(
+  new Set([...Object.values(homeHoverBgMap), ...Object.values(pageBgMap)]),
+);
+
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -112,6 +117,25 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             />
           </motion.div>
         </AnimatePresence>
+      </div>
+
+      {/* Preload Backgrounds for Instant Hover & Route Transitions */}
+      <div
+        className="pointer-events-none fixed inset-0 -z-50 overflow-hidden opacity-0"
+        aria-hidden="true"
+      >
+        {allBackgrounds
+          .filter((bg) => bg !== activeBg)
+          .map((bg) => (
+            <Image
+              key={bg}
+              src={bg}
+              alt=""
+              fill={true}
+              sizes="100vw"
+              className="object-cover"
+            />
+          ))}
       </div>
 
       {/* Background Glow */}
