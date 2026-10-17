@@ -1,6 +1,6 @@
 "use client";
 
-import ExportedImage from "next-image-export-optimizer";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
@@ -102,11 +102,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
             className="absolute inset-0 h-full w-full"
           >
-            <ExportedImage
+            <Image
               src={activeBg}
               alt="Theme Background"
               fill={true}
-              preload={true}
+              priority={true}
               sizes="100vw"
               className={`object-cover ${activeMobilePosition} md:object-center ${activeOpacity}`}
             />

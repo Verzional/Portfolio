@@ -1,6 +1,6 @@
 "use client";
 
-import ExportedImage from "next-image-export-optimizer";
+import Image from "next/image";
 import { motion } from "motion/react";
 import { ExperienceData } from "@/data/experience";
 
@@ -131,7 +131,7 @@ export function PersonaExperienceDetails({ experience }: PersonaExperienceDetail
           <div
             className="relative aspect-53/98 w-50 sm:w-58 md:w-68 lg:w-76 xl:w-84 -rotate-3 cursor-default select-none filter drop-shadow-[8px_10px_0_#000000]"
           >
-            <ExportedImage
+            <Image
               src={arcana.image}
               alt={`${arcana.arcana} - ${arcana.french}`}
               width={530}
