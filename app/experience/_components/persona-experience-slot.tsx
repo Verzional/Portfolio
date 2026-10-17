@@ -27,11 +27,6 @@ export function PersonaExperienceSlot({
   const buttonRef = useRef<HTMLButtonElement>(null);
   const isInitialMount = useRef(true);
 
-  // Split Teaching Assistant Roles for Distinct Domain Display
-  const isTA = role.toLowerCase().startsWith("teaching assistant - ");
-  const displayRole = isTA ? role.replace(/^teaching assistant -\s*/i, "") : role;
-  const displayCompany = isTA ? `TA · ${company}` : company;
-
   // Auto Scroll to Center on Selection
   useEffect(() => {
     if (isInitialMount.current) {
@@ -87,9 +82,9 @@ export function PersonaExperienceSlot({
               className={`truncate font-linux-biolinum text-[10px] font-bold tracking-wider uppercase transition-colors ${
                 isActive ? "text-primary/90" : "text-primary"
               }`}
-              title={displayCompany}
+              title={company}
             >
-              {displayCompany}
+              {company}
             </span>
 
             {status === "ACTIVE" ? (
@@ -114,9 +109,9 @@ export function PersonaExperienceSlot({
             className={`truncate font-linux-biolinum text-xs font-black tracking-wide uppercase transition-colors md:text-sm ${
               isActive ? "text-background" : "text-foreground group-hover:text-primary"
             }`}
-            title={displayRole}
+            title={role}
           >
-            {displayRole}
+            {role}
           </h2>
         </div>
       </div>
