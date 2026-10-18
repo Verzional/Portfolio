@@ -3,70 +3,59 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useCategories } from "@/hooks/use-categories";
-import { skillsData } from "@/data/skills";
+import {
+  skillsData,
+  skillCategories,
+  type SkillCategory,
+} from "@/data/skills";
 import { SidebarPortal } from "@/components/sidebar-portal";
 import { SubMenu } from "@/components/sub-menu";
-import { SekiroCategoryTab } from "./_components/sekiro-category-tab";
-import { SekiroSkillTree } from "./_components/sekiro-skill-tree";
+import { YakuzaCategoryTab } from "./_components/yakuza-category-tab";
+import { YakuzaSkillWheel } from "./_components/yakuza-skill-wheel";
+import { YakuzaHeatDossier } from "./_components/yakuza-heat-dossier";
 
 export function SkillsClient() {
   const router = useRouter();
-  const { activeCategory, setActiveCategory } = useCategories(skillsData);
+  const { activeCategory, setActiveCategory } = useCategories(skillCategories);
 
-  // Track Active Skill Node
-  const [activeNodeId, setActiveNodeId] = useState<string | null>(null);
-
-  // Determine Active Style Based on Selected Category
-  const activeStyle =
-    skillsData.find((s) => s.id === activeCategory) || skillsData[0];
+  // Track Active Skill Node (Default to TypeScript)
+  const [activeNodeId, setActiveNodeId] = useState<string>("core-ts");
 
   // Derive Active Skill Node
   const activeNode =
-    activeStyle.skills?.find((n) => n.id === activeNodeId) ||
-    activeStyle.skills?.[0] ||
-    null;
+    skillsData.find((n) => n.id === activeNodeId) || skillsData[0];
 
-  // Render Sidebar Content
+  // Render Sidebar Tactical SubMenu
   const sidebarContent = (
     <SubMenu
       title="Skills"
       isBackActive={false}
       onBackClick={() => router.push("/")}
       controls={[
-        { key: "W / A / S / D & ▲ / ◀ / ▼ / ▶", action: "Navigate" },
+        { key: "W / A / S / D", action: "Navigate" },
         { key: "Q / E", action: "Category" },
         { key: "ESC", action: "Back" },
       ]}
     >
       <div className="flex min-h-0 w-full flex-1 flex-col">
-        {/* Category Tabs */}
-        <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-start gap-3 overflow-x-auto px-4 pt-4 pb-6 [-ms-overflow-style:none] md:ml-3 [&::-webkit-scrollbar]:hidden">
-          {skillsData.map((cat) => (
-            <SekiroCategoryTab
+        {/* Yakuza Stance Tabs */}
+        <div className="flex w-full shrink-0 scrollbar-none flex-nowrap items-center justify-start gap-3 overflow-x-auto px-6 pt-2.5 pb-4 [-ms-overflow-style:none] md:justify-between md:gap-0 md:px-8 md:pt-3 md:pb-4.5 [&::-webkit-scrollbar]:hidden">
+          {skillCategories.map((cat) => (
+            <YakuzaCategoryTab
               key={cat.id}
               id={cat.id}
-              isActive={activeCategory === cat.id}
-              onClick={setActiveCategory}
-              label={cat.title}
+              label={cat.label}
               themeColor={cat.themeColor}
+              glowColor={cat.glowColor}
               icon={cat.icon}
+              isActive={activeCategory === cat.id}
+              onClick={(id) => setActiveCategory(id)}
             />
           ))}
         </div>
 
-        {/* Active Skill Node Details */}
-        <div className="flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto px-4 pb-8 md:px-8">
-          {activeNode && (
-            <div className="flex flex-col gap-2">
-              <p className="font-edo-sz text-xl tracking-wider text-foreground md:text-2xl">
-                {activeNode.name}
-              </p>
-              <p className="mt-2 font-lato text-sm text-muted md:text-base">
-                {activeNode.description}
-              </p>
-            </div>
-          )}
-        </div>
+        {/* Tactical Heat Dossier */}
+        <YakuzaHeatDossier activeNode={activeNode} />
       </div>
     </SubMenu>
   );
@@ -75,44 +64,18 @@ export function SkillsClient() {
     <>
       <SidebarPortal>{sidebarContent}</SidebarPortal>
 
-      {/* Global SVG Ink Filter */}
-      <svg
-        width="0"
-        height="0"
-        className="pointer-events-none absolute"
-        style={{ position: "absolute", width: 0, height: 0 }}
-      >
-        <defs>
-          <filter
-            id="sekiro-ink-bleed"
-            x="-20%"
-            y="-20%"
-            width="140%"
-            height="140%"
-          >
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.4"
-              numOctaves="4"
-              result="noise"
-            />
-            <feDisplacementMap
-              in="SourceGraphic"
-              in2="noise"
-              scale="4"
-              xChannelSelector="R"
-              yChannelSelector="G"
-            />
-          </filter>
-        </defs>
-      </svg>
-
-      {/* Main Skill Tree Canvas */}
-      <SekiroSkillTree
-        activeStyle={activeStyle}
-        activeNodeId={activeNode?.id || null}
-        onActiveNodeChange={setActiveNodeId}
-      />
+      {/* Main Wheel Viewport */}
+      <div className="relative flex h-full w-full flex-1 flex-col items-center justify-center overflow-hidden p-2 sm:p-4 md:p-6 lg:p-8">
+        {/* Interactive Radial Ability Wheel */}
+        <div className="my-auto flex h-full max-h-[min(94vh,880px)] w-full max-w-[min(94vh,880px)] items-center justify-center">
+          <YakuzaSkillWheel
+            activeCategory={activeCategory as SkillCategory}
+            activeNodeId={activeNodeId}
+            onSelectNode={setActiveNodeId}
+            onSelectCategory={(cat) => setActiveCategory(cat)}
+          />
+        </div>
+      </div>
     </>
   );
 }
