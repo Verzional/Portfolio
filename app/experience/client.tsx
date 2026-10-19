@@ -18,7 +18,8 @@ import { PersonaExperienceDetails } from "./_components/persona-experience-detai
 
 export function ExperienceClient() {
   const router = useRouter();
-  const { activeCategory, setActiveCategory } = useCategories(experienceCategories);
+  const { activeCategory, setActiveCategory } =
+    useCategories(experienceCategories);
 
   // Filter Experiences by Active Category
   const filteredExperiences = experienceData.filter(

@@ -46,7 +46,7 @@ export function PersonaExperienceSlot({
     <button
       ref={buttonRef}
       onClick={() => onClick(index)}
-      className={`group relative mb-3.5 w-full cursor-pointer text-left outline-none focus:outline-none focus-visible:outline-none transition-all duration-200 ${tiltClass} ${
+      className={`group relative mb-3.5 w-full cursor-pointer text-left transition-all duration-200 outline-none focus:outline-none focus-visible:outline-none ${tiltClass} ${
         isActive
           ? "z-10 translate-x-3 scale-[1.02] md:translate-x-4 md:scale-[1.03]"
           : "hover:translate-x-2"
@@ -81,7 +81,7 @@ export function PersonaExperienceSlot({
             <span
               className={`truncate font-linux-biolinum text-[10px] font-bold tracking-wider uppercase transition-colors ${
                 isActive
-                  ? "text-primary font-black"
+                  ? "font-black text-primary"
                   : "text-muted group-hover:text-foreground"
               }`}
               title={company}
@@ -109,7 +109,9 @@ export function PersonaExperienceSlot({
           {/* Main Role Title */}
           <h2
             className={`truncate font-linux-biolinum text-xs font-black tracking-wide uppercase transition-colors md:text-sm ${
-              isActive ? "text-background" : "text-foreground group-hover:text-primary"
+              isActive
+                ? "text-background"
+                : "text-foreground group-hover:text-primary"
             }`}
             title={role}
           >

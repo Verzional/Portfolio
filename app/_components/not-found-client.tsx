@@ -166,9 +166,9 @@ export function NotFoundClient() {
           <span className="absolute top-0 left-0 h-2.5 w-2.5 border-t-2 border-l-2 border-primary" />
           <span className="absolute top-0 right-0 h-2.5 w-2.5 border-t-2 border-r-2 border-primary" />
           <span className="absolute bottom-0 left-0 h-2.5 w-2.5 border-b-2 border-l-2 border-primary" />
-          <span className="absolute bottom-0 right-0 h-2.5 w-2.5 border-b-2 border-r-2 border-primary" />
+          <span className="absolute right-0 bottom-0 h-2.5 w-2.5 border-r-2 border-b-2 border-primary" />
 
-          <p className="font-lato text-sm tracking-wider text-muted leading-relaxed md:text-base">
+          <p className="font-lato text-sm leading-relaxed tracking-wider text-muted md:text-base">
             There&apos;s nothing down this alley. Head back to the main street.
           </p>
         </motion.div>
