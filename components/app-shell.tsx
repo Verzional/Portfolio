@@ -19,7 +19,7 @@ const homeHoverBgMap: Record<string, string> = {
 const pageBgMap: Record<string, string> = {
   "/projects": "/images/backgrounds/BG-P5R-1.webp",
   "/experience": "/images/backgrounds/BG-P5R-2.webp",
-  "/skills": "/images/backgrounds/BG-Sekiro.webp",
+  "/skills": "/images/backgrounds/BG-Ryuji.webp",
   "/socials": "/images/backgrounds/BG-Ichiban.webp",
 };
 
@@ -30,9 +30,9 @@ const bgOpacityMap: Record<string, string> = {
   "/images/backgrounds/BG-Saejima.webp": "opacity-7 md:opacity-4",
   "/images/backgrounds/BG-Nishiki.webp": "opacity-7 md:opacity-4",
   "/images/backgrounds/BG-Ichiban.webp": "opacity-7 md:opacity-4",
+  "/images/backgrounds/BG-Ryuji.webp": "opacity-7 md:opacity-4",
   "/images/backgrounds/BG-P5R-1.webp": "opacity-8 md:opacity-5",
   "/images/backgrounds/BG-P5R-2.webp": "opacity-8 md:opacity-5",
-  "/images/backgrounds/BG-Sekiro.webp": "opacity-8 md:opacity-5",
 };
 
 // All Unique Backgrounds for Preloading
