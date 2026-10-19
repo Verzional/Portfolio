@@ -14,6 +14,9 @@ interface YakuzaSkillWheelProps {
   onSelectCategory: (category: SkillCategory) => void;
 }
 
+// Helper to ensure deterministic floating point values across SSR and Client hydration
+const round2 = (num: number): number => Math.round(num * 100) / 100;
+
 // Polar to Cartesian Math (theta in degrees clockwise from 12:00 North)
 function getCoordinates(ring: number, angleDeg: number) {
   const radii: Record<number, number> = {
@@ -24,8 +27,8 @@ function getCoordinates(ring: number, angleDeg: number) {
   const r = radii[ring] || 190;
   const rad = (angleDeg * Math.PI) / 180;
   return {
-    x: r * Math.sin(rad),
-    y: -r * Math.cos(rad),
+    x: round2(r * Math.sin(rad)),
+    y: round2(-r * Math.cos(rad)),
     r,
   };
 }
@@ -105,6 +108,16 @@ export function YakuzaSkillWheel({
     return found?.themeColor || "#2563eb";
   };
 
+  // Ring 1 Cross-discipline bridge gradient lookup
+  const getBridgeGradient = (cat1: string, cat2: string) => {
+    const pair = [cat1, cat2].sort().join("-");
+    if (pair === "MOBILE-WEB") return "url(#bridge-web-mobile)";
+    if (pair === "DEVOPS-MOBILE") return "url(#bridge-mobile-devops)";
+    if (pair === "DATA-DEVOPS") return "url(#bridge-devops-data)";
+    if (pair === "DATA-WEB") return "url(#bridge-data-web)";
+    return "rgba(255, 255, 255, 0.7)";
+  };
+
   // Generate outer rim ticks
   const rimTicks = Array.from({ length: 48 }).map((_, i) => {
     const angle = (i * 360) / 48;
@@ -112,10 +125,10 @@ export function YakuzaSkillWheel({
     const rInner = i % 4 === 0 ? 298 : 304;
     const rOuter = 312;
     return {
-      x1: rInner * Math.sin(rad),
-      y1: -rInner * Math.cos(rad),
-      x2: rOuter * Math.sin(rad),
-      y2: -rOuter * Math.cos(rad),
+      x1: round2(rInner * Math.sin(rad)),
+      y1: round2(-rInner * Math.cos(rad)),
+      x2: round2(rOuter * Math.sin(rad)),
+      y2: round2(-rOuter * Math.cos(rad)),
       isMajor: i % 4 === 0,
     };
   });
@@ -165,6 +178,24 @@ export function YakuzaSkillWheel({
           <clipPath id="center-hub-clip">
             <circle cx="0" cy="0" r="43.5" />
           </clipPath>
+
+          {/* Ring 1 Inter-Discipline Bridges: Seamless Radiant Transitions */}
+          <linearGradient id="bridge-web-mobile" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#2563eb" />
+            <stop offset="100%" stopColor="#f43f8e" />
+          </linearGradient>
+          <linearGradient id="bridge-mobile-devops" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#f43f8e" />
+            <stop offset="100%" stopColor="#ffffff" />
+          </linearGradient>
+          <linearGradient id="bridge-devops-data" x1="100%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="100%" stopColor="#eab308" />
+          </linearGradient>
+          <linearGradient id="bridge-data-web" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#eab308" />
+            <stop offset="100%" stopColor="#2563eb" />
+          </linearGradient>
         </defs>
 
         {/* ========================================== */}
@@ -227,35 +258,30 @@ export function YakuzaSkillWheel({
           />
         ))}
 
-        {/* Quadrant Divider Rays (45°, 135°, 225°, 315°) */}
-        {[45, 135, 225, 315].map((angle) => {
-          const rad = (angle * Math.PI) / 180;
-          return (
-            <line
-              key={angle}
-              x1={60 * Math.sin(rad)}
-              y1={-60 * Math.cos(rad)}
-              x2={300 * Math.sin(rad)}
-              y2={-300 * Math.cos(rad)}
-              stroke="rgba(255, 255, 255, 0.05)"
-              strokeDasharray="6 4"
+        {/* ========================================== */}
+        {/* CONTINUOUS CONCENTRIC CHASSIS RAILS        */}
+        {/* ========================================== */}
+        {[116, 190, 265].map((r) => (
+          <g key={r}>
+            {/* Primary Machined Track Rail */}
+            <circle
+              cx="0"
+              cy="0"
+              r={r}
+              fill="none"
+              stroke="rgba(255, 255, 255, 0.16)"
               strokeWidth="1.5"
             />
-          );
-        })}
-
-        {/* Concentric Guide Ring Tracks */}
-        {[116, 190, 265].map((r) => (
-          <circle
-            key={r}
-            cx="0"
-            cy="0"
-            r={r}
-            fill="none"
-            stroke="rgba(255, 255, 255, 0.07)"
-            strokeDasharray="3 3"
-            strokeWidth="1.5"
-          />
+            {/* Subtle Companion Track Groove */}
+            <circle
+              cx="0"
+              cy="0"
+              r={r - 3}
+              fill="none"
+              stroke="rgba(255, 255, 255, 0.04)"
+              strokeWidth="0.75"
+            />
+          </g>
         ))}
 
         {/* ========================================== */}
@@ -270,13 +296,26 @@ export function YakuzaSkillWheel({
             if (node.id > neighborId) return null;
             const neighbor = skillsData.find((n) => n.id === neighborId);
             if (!neighbor) return null;
+
+            // Only Ring 1 allows cross-category foundational bridges
+            if (node.category !== neighbor.category && node.ring !== 1) return null;
+
             const pos2 = getCoordinates(neighbor.ring, neighbor.angle);
+
+            const isCrossCategoryRing1 =
+              node.ring === 1 && node.category !== neighbor.category;
 
             const isCurrentActive =
               activeCategory === "ALL" ||
-              (node.category === activeCategory && neighbor.category === activeCategory);
+              (node.category === activeCategory && neighbor.category === activeCategory) ||
+              (isCrossCategoryRing1 &&
+                (node.category === activeCategory || neighbor.category === activeCategory));
 
-            const strokeColor = isCurrentActive
+            const strokeColor = isCrossCategoryRing1
+              ? isCurrentActive
+                ? getBridgeGradient(node.category, neighbor.category)
+                : "rgba(255, 255, 255, 0.08)"
+              : isCurrentActive
               ? getCategoryColor(node.category)
               : "rgba(255, 255, 255, 0.06)";
 
@@ -294,8 +333,8 @@ export function YakuzaSkillWheel({
                 d={`M ${pos1.x} ${pos1.y} A ${pos1.r} ${pos1.r} 0 0 ${sweepFlag} ${pos2.x} ${pos2.y}`}
                 fill="none"
                 stroke={strokeColor}
-                strokeWidth={isCurrentActive ? 2 : 1}
-                strokeOpacity={isCurrentActive ? 0.8 : 0.4}
+                strokeWidth={isCurrentActive ? 2.5 : 1}
+                strokeOpacity={isCurrentActive ? 0.9 : 0.25}
                 filter={isCurrentActive ? "url(#neon-glow)" : undefined}
                 className="transition-all duration-300"
               />
