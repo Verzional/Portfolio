@@ -40,7 +40,13 @@ export const experienceData: ExperienceData[] = [
     status: "ACTIVE",
     description:
       "Instructing undergraduate cohorts in declarative mobile interface design, reactive state management, and modern native Android architecture using Kotlin and Jetpack Compose.",
-    skills: ["Teaching", "Kotlin", "Android Development", "Jetpack Compose", "Mobile UI"],
+    skills: [
+      "Teaching",
+      "Kotlin",
+      "Android Development",
+      "Jetpack Compose",
+      "Mobile UI",
+    ],
   },
   {
     id: "2",
@@ -53,7 +59,13 @@ export const experienceData: ExperienceData[] = [
     status: "ACTIVE",
     description:
       "Facilitating hands-on security laboratories covering threat modeling, network traffic analysis, vulnerability assessment, and cryptographic principles.",
-    skills: ["Teaching", "Cybersecurity", "Network Security", "Vulnerability Assessment", "Cryptography"],
+    skills: [
+      "Teaching",
+      "Cybersecurity",
+      "Network Security",
+      "Vulnerability Assessment",
+      "Cryptography",
+    ],
   },
   {
     id: "3",
@@ -79,7 +91,13 @@ export const experienceData: ExperienceData[] = [
     status: "CLEARED",
     description:
       "Mentored undergraduate software engineering cohorts in system modeling rigor, agile sprint execution, and industry-standard pull request reviews.",
-    skills: ["Teaching", "UML", "Software Engineering", "Agile Methodologies", "Git Flow"],
+    skills: [
+      "Teaching",
+      "UML",
+      "Software Engineering",
+      "Agile Methodologies",
+      "Git Flow",
+    ],
   },
   {
     id: "5",
@@ -92,7 +110,13 @@ export const experienceData: ExperienceData[] = [
     status: "CLEARED",
     description:
       "Instructed cohorts in relational schema design, 3NF normalization, query execution plans, and transaction isolation benchmarks.",
-    skills: ["Teaching", "Database Design", "SQL", "Relational Databases", "PostgreSQL"],
+    skills: [
+      "Teaching",
+      "Database Design",
+      "SQL",
+      "Relational Databases",
+      "PostgreSQL",
+    ],
   },
   {
     id: "6",
@@ -105,7 +129,14 @@ export const experienceData: ExperienceData[] = [
     status: "CLEARED",
     description:
       "Taught foundational and intermediate full-stack web development, emphasizing semantic layouts, client-server communication, and REST APIs.",
-    skills: ["Teaching", "PHP", "JavaScript", "Web Architecture", "REST APIs", "HTML/CSS"],
+    skills: [
+      "Teaching",
+      "PHP",
+      "JavaScript",
+      "Web Architecture",
+      "REST APIs",
+      "HTML/CSS",
+    ],
   },
   {
     id: "7",
@@ -118,7 +149,14 @@ export const experienceData: ExperienceData[] = [
     status: "CLEARED",
     description:
       "Led technology operations for the student union, overseeing department infrastructure, mentoring engineers, and deploying competition platforms.",
-    skills: ["Software Project Management", "DevOps", "CI/CD", "Technical Leadership", "Docker", "Linux"],
+    skills: [
+      "Software Project Management",
+      "DevOps",
+      "CI/CD",
+      "Technical Leadership",
+      "Docker",
+      "Linux",
+    ],
   },
   {
     id: "8",
@@ -131,7 +169,13 @@ export const experienceData: ExperienceData[] = [
     status: "CLEARED",
     description:
       "Facilitated laboratory exercises centered on Object-Oriented Programming fundamentals, software design patterns, and idiomatic Java.",
-    skills: ["Teaching", "Object-Oriented Programming", "Java", "Design Patterns", "Clean Code"],
+    skills: [
+      "Teaching",
+      "Object-Oriented Programming",
+      "Java",
+      "Design Patterns",
+      "Clean Code",
+    ],
   },
   {
     id: "9",
@@ -144,7 +188,14 @@ export const experienceData: ExperienceData[] = [
     status: "CLEARED",
     description:
       "Engineered core modules and web platforms for major student union events, maintaining uptime and delivering rapid hotfixes.",
-    skills: ["Laravel", "PHP", "Full Stack Development", "MySQL", "Linux", "REST APIs"],
+    skills: [
+      "Laravel",
+      "PHP",
+      "Full Stack Development",
+      "MySQL",
+      "Linux",
+      "REST APIs",
+    ],
   },
   {
     id: "10",
@@ -157,6 +208,12 @@ export const experienceData: ExperienceData[] = [
     status: "CLEARED",
     description:
       "Guided undergraduate venture teams in business model formulation, customer discovery validation, and executive pitch delivery.",
-    skills: ["Teaching", "Entrepreneurship", "Business Modeling", "User Research", "Public Speaking"],
+    skills: [
+      "Teaching",
+      "Entrepreneurship",
+      "Business Modeling",
+      "User Research",
+      "Public Speaking",
+    ],
   },
 ];

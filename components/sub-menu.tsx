@@ -86,7 +86,8 @@ export function SubMenu({
               backClassName
                 ? `${backClassName} ${
                     isBackActive
-                      ? (backActiveClassName ?? "relative bg-menu-select text-foreground")
+                      ? (backActiveClassName ??
+                        "relative bg-menu-select text-foreground")
                       : "text-muted hover:bg-menu-select hover:text-foreground"
                   }`
                 : `block w-[95%] py-2 pl-6 text-left font-edo-sz text-2xl tracking-widest uppercase transition-colors md:py-3 md:pl-8 md:text-4xl xl:pt-2 xl:pb-4 xl:text-5xl ${

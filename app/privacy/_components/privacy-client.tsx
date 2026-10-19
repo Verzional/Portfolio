@@ -37,7 +37,7 @@ export function PrivacyClient() {
         <div className="mb-8 flex items-center justify-between">
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 font-edo-sz text-sm tracking-widest text-muted transition-colors hover:text-primary uppercase md:text-base"
+            className="group inline-flex items-center gap-2 font-edo-sz text-sm tracking-widest text-muted uppercase transition-colors hover:text-primary md:text-base"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
             Return to Home
@@ -166,10 +166,10 @@ export function PrivacyClient() {
               </h2>
               <p>
                 When you tap &quot;Share&quot; on the Game Over screen, PolyFuse
-                generates an image of your run scorecard and delegates it to your
-                device&apos;s native operating system share sheet (such as iOS
-                UIActivityViewController). PolyFuse does not view, upload, or
-                retain your shared images or recipient contacts.
+                generates an image of your run scorecard and delegates it to
+                your device&apos;s native operating system share sheet (such as
+                iOS UIActivityViewController). PolyFuse does not view, upload,
+                or retain your shared images or recipient contacts.
               </p>
             </section>
 
@@ -223,9 +223,9 @@ export function PrivacyClient() {
 
                 <a
                   href="mailto:contact@verzional.com"
-                  className="inline-flex items-center justify-center gap-2 -skew-x-12 border border-foreground/30 bg-primary px-5 py-2 font-edo-sz text-sm tracking-widest text-foreground uppercase shadow-[2px_2px_0_rgba(255,255,255,0.7)] transition-all hover:translate-x-0.5 hover:bg-primary/90"
+                  className="inline-flex -skew-x-12 items-center justify-center gap-2 border border-foreground/30 bg-primary px-5 py-2 font-edo-sz text-sm tracking-widest text-foreground uppercase shadow-[2px_2px_0_rgba(255,255,255,0.7)] transition-all hover:translate-x-0.5 hover:bg-primary/90"
                 >
-                  <span className="flex items-center gap-2 skew-x-12">
+                  <span className="flex skew-x-12 items-center gap-2">
                     <Mail className="h-4 w-4" />
                     Email Us
                   </span>

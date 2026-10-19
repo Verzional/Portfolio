@@ -6,13 +6,19 @@ interface UseMenuOptions {
   onSelect?: (index: number) => void;
 }
 
-export function useMenu({ itemCount, initialIndex = 0, onSelect }: UseMenuOptions) {
+export function useMenu({
+  itemCount,
+  initialIndex = 0,
+  onSelect,
+}: UseMenuOptions) {
   const [activeIndex, setActiveIndex] = useState(initialIndex);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Prevent Page Scrolling on Arrow Keys
-      if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(e.key)) {
+      if (
+        ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(e.key)
+      ) {
         e.preventDefault();
       }
 

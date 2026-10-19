@@ -66,8 +66,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }, []);
 
   // Standalone Document Routes (Privacy Policy)
-  const isPrivacy =
-    pathname === "/privacy" || pathname?.startsWith("/privacy");
+  const isPrivacy = pathname === "/privacy" || pathname?.startsWith("/privacy");
   if (isPrivacy) {
     return (
       <div className="min-h-screen w-full overflow-y-auto bg-background">
@@ -156,7 +155,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="relative z-20 flex h-full w-full flex-col bg-transparent md:flex-row">
         {/* Sidebar Container */}
         <aside
-          className={`order-2 flex h-[50%] w-full flex-col justify-center overflow-x-hidden bg-transparent py-4 outline-none focus:outline-none focus-visible:outline-none transition-sidebar md:order-1 md:h-full md:py-24 ${
+          className={`order-2 flex h-[50%] w-full flex-col justify-center overflow-x-hidden bg-transparent py-4 transition-sidebar outline-none focus:outline-none focus-visible:outline-none md:order-1 md:h-full md:py-24 ${
             isHome ? "md:w-[50%] lg:w-[40%]" : "md:w-[35%] lg:w-[20%]"
           }`}
         >
@@ -183,7 +182,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 transition={{ duration: 0.3 }}
                 className="flex h-full w-full flex-col justify-center"
               >
-                <div id="sidebar-root" className="h-full w-full outline-none focus:outline-none focus-visible:outline-none" />
+                <div
+                  id="sidebar-root"
+                  className="h-full w-full outline-none focus:outline-none focus-visible:outline-none"
+                />
               </motion.div>
             )}
           </AnimatePresence>

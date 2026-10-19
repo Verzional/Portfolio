@@ -47,11 +47,11 @@ export function ProjectInfo({
             transition: { type: "spring", stiffness: 300, damping: 20 },
           },
         }}
-        className={`relative z-10 -rotate-1 border-2 border-white/15 border-l-4 border-l-primary bg-black/95 p-4 text-foreground shadow-[6px_6px_0_rgba(0,0,0,0.8)] backdrop-blur-sm md:p-5 xl:p-6 ${
+        className={`relative z-10 -rotate-1 border-2 border-l-4 border-white/15 border-l-primary bg-black/95 p-4 text-foreground shadow-[6px_6px_0_rgba(0,0,0,0.8)] backdrop-blur-sm md:p-5 xl:p-6 ${
           isOverlay ? "" : "mt-4 md:mt-5 xl:mt-6"
         }`}
       >
-        <p className="font-linux-biolinum text-sm font-medium leading-relaxed tracking-wide text-zinc-100 md:text-base xl:text-lg">
+        <p className="font-linux-biolinum text-sm leading-relaxed font-medium tracking-wide text-zinc-100 md:text-base xl:text-lg">
           {project.desc}
         </p>
       </motion.div>

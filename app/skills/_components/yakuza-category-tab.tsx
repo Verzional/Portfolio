@@ -28,7 +28,7 @@ export function YakuzaCategoryTab({
       aria-label={label}
       className={`group relative flex h-8.5 w-8.5 shrink-0 cursor-pointer items-center justify-center rounded-full transition-all duration-200 select-none md:h-9 md:w-9 ${
         isActive
-          ? "scale-110 z-10 opacity-100"
+          ? "z-10 scale-110 opacity-100"
           : "opacity-75 hover:scale-105 hover:opacity-100"
       }`}
       style={{
@@ -41,7 +41,9 @@ export function YakuzaCategoryTab({
       <div
         className="pointer-events-none absolute inset-0.5 rounded-full border border-white/10"
         style={{
-          borderColor: isActive ? "rgba(255, 255, 255, 0.3)" : "rgba(255, 255, 255, 0.06)",
+          borderColor: isActive
+            ? "rgba(255, 255, 255, 0.3)"
+            : "rgba(255, 255, 255, 0.06)",
         }}
       />
 
