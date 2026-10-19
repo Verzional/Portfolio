@@ -78,6 +78,7 @@ Ensure all generated files are placed in the correct directories according to th
   - Use `feat` for new functionality, layout additions, and major responsive CSS changes.
   - Use `fix` for resolving layout bugs or broken responsiveness.
   - **CRITICAL:** The `style` commit type is *strictly* reserved for code formatting (e.g., whitespace, missing semicolons, indentation) that does not affect the compiled output. Do **not** use `style` for CSS, UI, or structural visual changes.
+- **CnP / cnp Shorthand:** The abbreviation "CnP" or "cnp" explicitly stands for **Commit & Push**. When issued, execute the atomic commit workflow and push to the remote repository.
 
 ---
 

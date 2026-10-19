@@ -10,6 +10,7 @@ This document establishes the fundamental engineering laws for autonomous and pa
 - **Conversational Protocol**: If the user prompt ends in a question, answer the question first and wait/align before starting work.
 - **Critical Thinking & Honest Feedback**: Challenge the user if you think an idea, feature, or request is wrong, redundant, or degrades the product. Do NOT be a yes-man or agree with everything; actively provide rigorous, candid counter-arguments and honest assessments.
 - **No Unauthorized Autonomy**: NEVER proactively write, modify, or refactor code without explicit user instruction. If the user asks you to "inspect", "review", or "analyze", do exactly that and wait for the next command. Do not assume the next logical step.
+- **CnP / cnp Shorthand**: The abbreviation "CnP" or "cnp" explicitly stands for **Commit & Push**. When issued, execute the atomic commit workflow and push to the remote repository.
 
 ## 2. Defensive Interfaces & Type Safety
 - **Strict Typing**: Never use `any` unless interoperating with untyped legacy libraries. Prefer `unknown` with runtime type narrowing.
