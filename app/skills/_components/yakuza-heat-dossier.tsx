@@ -19,17 +19,19 @@ export function YakuzaHeatDossier({ activeNode }: YakuzaHeatDossierProps) {
     );
   }
 
-  const categoryMeta = skillCategories.find((c) => c.id === activeNode.category);
+  const categoryMeta = skillCategories.find(
+    (c) => c.id === activeNode.category,
+  );
   const themeColor = categoryMeta?.themeColor || "var(--color-primary)";
   const glowColor = categoryMeta?.glowColor || "rgba(239, 68, 68, 0.4)";
 
   return (
-    <div className="flex min-h-0 w-full flex-1 flex-col overflow-x-hidden overflow-y-auto px-6 pt-3 pb-8 outline-none focus:outline-none focus-visible:outline-none md:px-8 md:pt-5 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border/40">
-      {/* Side-by-Side Hero Header */}
+    <div className="scrollbar-thumb-border/40 flex min-h-0 w-full flex-1 scrollbar-thin scrollbar-track-transparent flex-col overflow-x-hidden overflow-y-auto px-6 pt-3 pb-8 outline-none focus:outline-none focus-visible:outline-none md:px-8 md:pt-5">
+      {/* Side By Side Hero Header */}
       <div className="flex h-12 items-center gap-3 md:h-13 md:gap-3.5">
         {/* Tech Icon Square Frame */}
         <div
-          className="relative flex aspect-square h-full shrink-0 items-center justify-center rounded-sm border-2 bg-surface/90 p-2 transition-all md:p-2.5"
+          className="bg-surface/90 relative flex aspect-square h-full shrink-0 items-center justify-center rounded-sm border-2 p-2 transition-all md:p-2.5"
           style={{
             borderColor: themeColor,
             boxShadow: `0 0 12px ${glowColor}`,
@@ -44,7 +46,7 @@ export function YakuzaHeatDossier({ activeNode }: YakuzaHeatDossierProps) {
           />
         </div>
 
-        {/* Title and Domain Category */}
+        {/* Title And Domain Category */}
         <div className="flex h-full min-w-0 flex-1 flex-col justify-between py-0.5">
           <span
             className="font-lato text-[10px] font-bold tracking-widest uppercase md:text-[11px]"
@@ -53,7 +55,7 @@ export function YakuzaHeatDossier({ activeNode }: YakuzaHeatDossierProps) {
             {categoryMeta?.subtitle || activeNode.category}
           </span>
           <h3
-            className={`font-edo-sz leading-none tracking-wide text-foreground break-normal ${
+            className={`font-edo-sz leading-none tracking-wide break-normal text-foreground ${
               activeNode.name.length > 9
                 ? "text-lg sm:text-xl xl:text-2xl"
                 : "text-xl sm:text-2xl xl:text-3xl"
@@ -64,8 +66,8 @@ export function YakuzaHeatDossier({ activeNode }: YakuzaHeatDossierProps) {
         </div>
       </div>
 
-      {/* Description */}
-      <p className="mt-5 font-lato text-sm leading-relaxed text-foreground/80 md:mt-6 md:text-base md:pr-4">
+      {/* Skill Description */}
+      <p className="mt-5 font-lato text-sm leading-relaxed text-foreground/80 md:mt-6 md:pr-4 md:text-base">
         {activeNode.description}
       </p>
     </div>

@@ -3,11 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useCategories } from "@/hooks/use-categories";
-import {
-  skillsData,
-  skillCategories,
-  type SkillCategory,
-} from "@/data/skills";
+import { skillsData, skillCategories, type SkillCategory } from "@/data/skills";
 import { SidebarPortal } from "@/components/sidebar-portal";
 import { SubMenu } from "@/components/sub-menu";
 import { YakuzaCategoryTab } from "./_components/yakuza-category-tab";
@@ -18,7 +14,7 @@ export function SkillsClient() {
   const router = useRouter();
   const { activeCategory, setActiveCategory } = useCategories(skillCategories);
 
-  // Track Active Skill Node (Default to TypeScript)
+  // Track Active Skill Node
   const [activeNodeId, setActiveNodeId] = useState<string>("core-ts");
 
   // Derive Active Skill Node

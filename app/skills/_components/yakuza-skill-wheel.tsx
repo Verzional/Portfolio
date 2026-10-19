@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import {
-  type SkillCategory,
-  skillCategories,
-  skillsData,
-} from "@/data/skills";
+import { type SkillCategory, skillCategories, skillsData } from "@/data/skills";
 
 interface YakuzaSkillWheelProps {
   activeCategory: SkillCategory;
@@ -14,10 +10,10 @@ interface YakuzaSkillWheelProps {
   onSelectCategory: (category: SkillCategory) => void;
 }
 
-// Helper to ensure deterministic floating point values across SSR and Client hydration
+// Normalize Floating Point Precision
 const round2 = (num: number): number => Math.round(num * 100) / 100;
 
-// Polar to Cartesian Math (theta in degrees clockwise from 12:00 North)
+// Convert Polar Coordinates To Cartesian Space
 function getCoordinates(ring: number, angleDeg: number) {
   const radii: Record<number, number> = {
     1: 116,
@@ -39,14 +35,18 @@ export function YakuzaSkillWheel({
   onSelectNode,
   onSelectCategory,
 }: YakuzaSkillWheelProps) {
-  const activeCategoryMeta = skillCategories.find((c) => c.id === activeCategory);
-  const activeNode = skillsData.find((n) => n.id === activeNodeId) || skillsData[0];
+  const activeCategoryMeta = skillCategories.find(
+    (c) => c.id === activeCategory,
+  );
+  const activeNode =
+    skillsData.find((n) => n.id === activeNodeId) || skillsData[0];
   const effectiveCategory =
     activeCategory === "ALL" ? activeNode.category : activeCategory;
   const effectiveCategoryMeta =
-    skillCategories.find((c) => c.id === effectiveCategory) || activeCategoryMeta;
+    skillCategories.find((c) => c.id === effectiveCategory) ||
+    activeCategoryMeta;
 
-  // Authentic Center Medallion Icon & Theme (Kiwami seal for ALL, Stances for Disciplines)
+  // Resolve Center Crest Asset And Theme Styling
   const isAllCategory = activeCategory === "ALL";
   const currentStyleIcon = isAllCategory
     ? "/images/styles/all-kiwami.png"
@@ -59,11 +59,11 @@ export function YakuzaSkillWheel({
     : effectiveCategoryMeta?.glowColor || "rgba(255, 255, 255, 0.4)";
 
   // ==========================================
-  // Keyboard WASD & Arrow Key Navigation
+  // Keyboard WASD And Arrow Navigation
   // ==========================================
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Ignore inputs in text fields
+      // Ignore Keystrokes In Form Input Elements
       if (
         e.target instanceof HTMLInputElement ||
         e.target instanceof HTMLTextAreaElement
@@ -102,13 +102,13 @@ export function YakuzaSkillWheel({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeNode, activeCategory, onSelectNode, onSelectCategory]);
 
-  // Color lookup helper
+  // Resolve Category Theme Accent Color
   const getCategoryColor = (cat: string) => {
     const found = skillCategories.find((c) => c.id === cat);
     return found?.themeColor || "#2563eb";
   };
 
-  // Ring 1 Cross-discipline bridge gradient lookup
+  // Resolve Inter Discipline Bridge Gradient
   const getBridgeGradient = (cat1: string, cat2: string) => {
     const pair = [cat1, cat2].sort().join("-");
     if (pair === "MOBILE-WEB") return "url(#bridge-web-mobile)";
@@ -118,7 +118,7 @@ export function YakuzaSkillWheel({
     return "rgba(255, 255, 255, 0.7)";
   };
 
-  // Generate outer rim ticks
+  // Generate Outer Rim Gauge Markings
   const rimTicks = Array.from({ length: 48 }).map((_, i) => {
     const angle = (i * 360) / 48;
     const rad = (angle * Math.PI) / 180;
@@ -134,7 +134,7 @@ export function YakuzaSkillWheel({
   });
 
   return (
-    <div className="relative flex h-full w-full items-center justify-center select-none aspect-square">
+    <div className="relative flex aspect-square h-full w-full items-center justify-center select-none">
       <svg
         viewBox="-340 -340 680 680"
         className="h-full w-full overflow-visible drop-shadow-2xl"
@@ -164,9 +164,23 @@ export function YakuzaSkillWheel({
           </filter>
 
           {/* Active Selected Glow */}
-          <filter id="selected-glow" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur1" />
-            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur2" />
+          <filter
+            id="selected-glow"
+            x="-100%"
+            y="-100%"
+            width="300%"
+            height="300%"
+          >
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="8"
+              result="blur1"
+            />
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="3"
+              result="blur2"
+            />
             <feMerge>
               <feMergeNode in="blur1" />
               <feMergeNode in="blur2" />
@@ -179,27 +193,51 @@ export function YakuzaSkillWheel({
             <circle cx="0" cy="0" r="43.5" />
           </clipPath>
 
-          {/* Ring 1 Inter-Discipline Bridges: Seamless Radiant Transitions */}
-          <linearGradient id="bridge-web-mobile" x1="0%" y1="0%" x2="100%" y2="100%">
+          {/* Render Inter Discipline Bridge Gradients */}
+          <linearGradient
+            id="bridge-web-mobile"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
             <stop offset="0%" stopColor="#2563eb" />
             <stop offset="100%" stopColor="#f43f8e" />
           </linearGradient>
-          <linearGradient id="bridge-mobile-devops" x1="100%" y1="0%" x2="0%" y2="100%">
+          <linearGradient
+            id="bridge-mobile-devops"
+            x1="100%"
+            y1="0%"
+            x2="0%"
+            y2="100%"
+          >
             <stop offset="0%" stopColor="#f43f8e" />
             <stop offset="100%" stopColor="#ffffff" />
           </linearGradient>
-          <linearGradient id="bridge-devops-data" x1="100%" y1="100%" x2="0%" y2="0%">
+          <linearGradient
+            id="bridge-devops-data"
+            x1="100%"
+            y1="100%"
+            x2="0%"
+            y2="0%"
+          >
             <stop offset="0%" stopColor="#ffffff" />
             <stop offset="100%" stopColor="#eab308" />
           </linearGradient>
-          <linearGradient id="bridge-data-web" x1="0%" y1="100%" x2="100%" y2="0%">
+          <linearGradient
+            id="bridge-data-web"
+            x1="0%"
+            y1="100%"
+            x2="100%"
+            y2="0%"
+          >
             <stop offset="0%" stopColor="#eab308" />
             <stop offset="100%" stopColor="#2563eb" />
           </linearGradient>
         </defs>
 
         {/* ========================================== */}
-        {/* BACKGROUND ENGRAVED PLATE                   */}
+        {/* Background Engraved Plate                  */}
         {/* ========================================== */}
         {/* Outer Circular Disc */}
         <circle
@@ -253,13 +291,17 @@ export function YakuzaSkillWheel({
             y1={tick.y1}
             x2={tick.x2}
             y2={tick.y2}
-            stroke={tick.isMajor ? "rgba(255, 255, 255, 0.4)" : "rgba(255, 255, 255, 0.15)"}
+            stroke={
+              tick.isMajor
+                ? "rgba(255, 255, 255, 0.4)"
+                : "rgba(255, 255, 255, 0.15)"
+            }
             strokeWidth={tick.isMajor ? 2 : 1}
           />
         ))}
 
         {/* ========================================== */}
-        {/* CONTINUOUS CONCENTRIC CHASSIS RAILS        */}
+        {/* Continuous Concentric Chassis Rails        */}
         {/* ========================================== */}
         {[116, 190, 265].map((r) => (
           <g key={r}>
@@ -285,20 +327,21 @@ export function YakuzaSkillWheel({
         ))}
 
         {/* ========================================== */}
-        {/* CONCENTRIC CIRCULAR ARC CONNECTORS         */}
+        {/* Concentric Circular Arc Connectors         */}
         {/* ========================================== */}
         {skillsData.map((node) => {
           if (!node.arcNeighbors) return null;
           const pos1 = getCoordinates(node.ring, node.angle);
 
           return node.arcNeighbors.map((neighborId) => {
-            // Deduplicate arcs by ID sort
+            // Deduplicate Bidirectional Arc Segments
             if (node.id > neighborId) return null;
             const neighbor = skillsData.find((n) => n.id === neighborId);
             if (!neighbor) return null;
 
-            // Only Ring 1 allows cross-category foundational bridges
-            if (node.category !== neighbor.category && node.ring !== 1) return null;
+            // Restrict Cross Discipline Bridges To Foundational Ring
+            if (node.category !== neighbor.category && node.ring !== 1)
+              return null;
 
             const pos2 = getCoordinates(neighbor.ring, neighbor.angle);
 
@@ -307,21 +350,21 @@ export function YakuzaSkillWheel({
 
             const isCurrentActive =
               activeCategory === "ALL" ||
-              (node.category === activeCategory && neighbor.category === activeCategory) ||
+              (node.category === activeCategory &&
+                neighbor.category === activeCategory) ||
               (isCrossCategoryRing1 &&
-                (node.category === activeCategory || neighbor.category === activeCategory));
+                (node.category === activeCategory ||
+                  neighbor.category === activeCategory));
 
             const strokeColor = isCrossCategoryRing1
               ? isCurrentActive
                 ? getBridgeGradient(node.category, neighbor.category)
                 : "rgba(255, 255, 255, 0.08)"
               : isCurrentActive
-              ? getCategoryColor(node.category)
-              : "rgba(255, 255, 255, 0.06)";
+                ? getCategoryColor(node.category)
+                : "rgba(255, 255, 255, 0.06)";
 
-            // Draw circular arc path
-            // SVG Arc: A rx ry x-axis-rotation large-arc-flag sweep-flag x y
-            // Determine sweep flag: if angle2 > angle1 (taking modulo wrap into account)
+            // Calculate Sweep Direction Across Angle Boundary
             let diff = neighbor.angle - node.angle;
             if (diff < -180) diff += 360;
             if (diff > 180) diff -= 360;
@@ -343,7 +386,7 @@ export function YakuzaSkillWheel({
         })}
 
         {/* ========================================== */}
-        {/* RADIAL SPOKE CONNECTORS (INWARD / OUTWARD) */}
+        {/* Radial Spoke Connectors                    */}
         {/* ========================================== */}
         {skillsData.map((node) => {
           if (!node.radialOutward) return null;
@@ -356,7 +399,8 @@ export function YakuzaSkillWheel({
 
             const isCurrentActive =
               activeCategory === "ALL" ||
-              (node.category === activeCategory && child.category === activeCategory);
+              (node.category === activeCategory &&
+                child.category === activeCategory);
 
             const strokeColor = isCurrentActive
               ? getCategoryColor(node.category)
@@ -380,7 +424,7 @@ export function YakuzaSkillWheel({
         })}
 
         {/* ========================================== */}
-        {/* CENTER EMBLEM / CREST                      */}
+        {/* Center Emblem Crest                        */}
         {/* ========================================== */}
         <g
           className="cursor-pointer transition-transform duration-200 hover:scale-105"
@@ -422,7 +466,7 @@ export function YakuzaSkillWheel({
             strokeWidth="1.5"
           />
 
-          {/* Authentic Yakuza 0 / Kiwami Core Style Icon */}
+          {/* Render Stance Style Seal Asset */}
           <g clipPath="url(#center-hub-clip)">
             <image
               href={currentStyleIcon}
@@ -430,7 +474,7 @@ export function YakuzaSkillWheel({
               y="-38"
               width="76"
               height="76"
-              className="pointer-events-none select-none transition-all duration-300"
+              className="pointer-events-none transition-all duration-300 select-none"
               style={{
                 filter: `drop-shadow(0 0 10px ${currentGlowColor})`,
               }}
@@ -439,7 +483,7 @@ export function YakuzaSkillWheel({
         </g>
 
         {/* ========================================== */}
-        {/* SKILL NODES                                */}
+        {/* Interactive Skill Nodes                    */}
         {/* ========================================== */}
         {skillsData.map((node) => {
           const { x, y } = getCoordinates(node.ring, node.angle);
@@ -456,12 +500,15 @@ export function YakuzaSkillWheel({
               className="cursor-pointer transition-all duration-300 select-none"
               onClick={() => {
                 onSelectNode(node.id);
-                if (activeCategory !== "ALL" && node.category !== activeCategory) {
+                if (
+                  activeCategory !== "ALL" &&
+                  node.category !== activeCategory
+                ) {
                   onSelectCategory(node.category);
                 }
               }}
             >
-              {/* Invisible Large Hit Box for Mobile (48px) */}
+              {/* Expand Interactive Touch Hit Target Area */}
               <circle cx="0" cy="0" r="28" fill="transparent" />
 
               {/* Active Selection Glow Ring */}
@@ -491,7 +538,11 @@ export function YakuzaSkillWheel({
                       : "rgba(255, 255, 255, 0.15)"
                 }
                 strokeWidth={isSelected ? 2.5 : isInActiveCategory ? 2 : 1}
-                filter={isInActiveCategory && !isSelected ? "url(#neon-glow)" : undefined}
+                filter={
+                  isInActiveCategory && !isSelected
+                    ? "url(#neon-glow)"
+                    : undefined
+                }
                 opacity={isInActiveCategory ? 1 : 0.22}
                 className="transition-all duration-300"
               />
