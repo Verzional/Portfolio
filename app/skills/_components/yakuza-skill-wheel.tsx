@@ -112,9 +112,9 @@ export function YakuzaSkillWheel({
   const getBridgeGradient = (cat1: string, cat2: string) => {
     const pair = [cat1, cat2].sort().join("-");
     if (pair === "MOBILE-WEB") return "url(#bridge-web-mobile)";
-    if (pair === "DEVOPS-MOBILE") return "url(#bridge-mobile-devops)";
+    if (pair === "DATA-MOBILE") return "url(#bridge-mobile-data)";
     if (pair === "DATA-DEVOPS") return "url(#bridge-devops-data)";
-    if (pair === "DATA-WEB") return "url(#bridge-data-web)";
+    if (pair === "DEVOPS-WEB") return "url(#bridge-devops-web)";
     return "rgba(255, 255, 255, 0.7)";
   };
 
@@ -132,6 +132,43 @@ export function YakuzaSkillWheel({
       isMajor: i % 4 === 0,
     };
   });
+
+  // Precompute Dynamic Coordinates For Inter Discipline Bridges (userSpaceOnUse)
+  const bridgeWebMobilePos1 = getCoordinates(
+    1,
+    skillsData.find((n) => n.id === "core-js")?.angle ?? 294,
+  );
+  const bridgeWebMobilePos2 = getCoordinates(
+    1,
+    skillsData.find((n) => n.id === "sec-csharp")?.angle ?? 336,
+  );
+
+  const bridgeMobileDataPos1 = getCoordinates(
+    1,
+    skillsData.find((n) => n.id === "sec-java")?.angle ?? 24,
+  );
+  const bridgeMobileDataPos2 = getCoordinates(
+    1,
+    skillsData.find((n) => n.id === "data-sqlite")?.angle ?? 66,
+  );
+
+  const bridgeDataDevopsPos1 = getCoordinates(
+    1,
+    skillsData.find((n) => n.id === "data-postgres")?.angle ?? 114,
+  );
+  const bridgeDataDevopsPos2 = getCoordinates(
+    1,
+    skillsData.find((n) => n.id === "ops-linux")?.angle ?? 156,
+  );
+
+  const bridgeDevopsWebPos1 = getCoordinates(
+    1,
+    skillsData.find((n) => n.id === "ops-git")?.angle ?? 204,
+  );
+  const bridgeDevopsWebPos2 = getCoordinates(
+    1,
+    skillsData.find((n) => n.id === "core-php")?.angle ?? 246,
+  );
 
   return (
     <div className="relative flex aspect-square h-full w-full items-center justify-center select-none">
@@ -193,45 +230,49 @@ export function YakuzaSkillWheel({
             <circle cx="0" cy="0" r="43.5" />
           </clipPath>
 
-          {/* Render Inter Discipline Bridge Gradients */}
+          {/* Render Inter Discipline Bridge Gradients (userSpaceOnUse) */}
           <linearGradient
             id="bridge-web-mobile"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="100%"
+            gradientUnits="userSpaceOnUse"
+            x1={bridgeWebMobilePos1.x}
+            y1={bridgeWebMobilePos1.y}
+            x2={bridgeWebMobilePos2.x}
+            y2={bridgeWebMobilePos2.y}
           >
             <stop offset="0%" stopColor="#2563eb" />
             <stop offset="100%" stopColor="#f43f8e" />
           </linearGradient>
           <linearGradient
-            id="bridge-mobile-devops"
-            x1="100%"
-            y1="0%"
-            x2="0%"
-            y2="100%"
+            id="bridge-mobile-data"
+            gradientUnits="userSpaceOnUse"
+            x1={bridgeMobileDataPos1.x}
+            y1={bridgeMobileDataPos1.y}
+            x2={bridgeMobileDataPos2.x}
+            y2={bridgeMobileDataPos2.y}
           >
             <stop offset="0%" stopColor="#f43f8e" />
-            <stop offset="100%" stopColor="#ffffff" />
-          </linearGradient>
-          <linearGradient
-            id="bridge-devops-data"
-            x1="100%"
-            y1="100%"
-            x2="0%"
-            y2="0%"
-          >
-            <stop offset="0%" stopColor="#ffffff" />
             <stop offset="100%" stopColor="#eab308" />
           </linearGradient>
           <linearGradient
-            id="bridge-data-web"
-            x1="0%"
-            y1="100%"
-            x2="100%"
-            y2="0%"
+            id="bridge-devops-data"
+            gradientUnits="userSpaceOnUse"
+            x1={bridgeDataDevopsPos1.x}
+            y1={bridgeDataDevopsPos1.y}
+            x2={bridgeDataDevopsPos2.x}
+            y2={bridgeDataDevopsPos2.y}
           >
             <stop offset="0%" stopColor="#eab308" />
+            <stop offset="100%" stopColor="#ffffff" />
+          </linearGradient>
+          <linearGradient
+            id="bridge-devops-web"
+            gradientUnits="userSpaceOnUse"
+            x1={bridgeDevopsWebPos1.x}
+            y1={bridgeDevopsWebPos1.y}
+            x2={bridgeDevopsWebPos2.x}
+            y2={bridgeDevopsWebPos2.y}
+          >
+            <stop offset="0%" stopColor="#ffffff" />
             <stop offset="100%" stopColor="#2563eb" />
           </linearGradient>
         </defs>
