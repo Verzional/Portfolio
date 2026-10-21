@@ -112,9 +112,9 @@ export function YakuzaSkillWheel({
   const getBridgeGradient = (cat1: string, cat2: string) => {
     const pair = [cat1, cat2].sort().join("-");
     if (pair === "MOBILE-WEB") return "url(#bridge-web-mobile)";
-    if (pair === "DATA-MOBILE") return "url(#bridge-mobile-data)";
+    if (pair === "DEVOPS-MOBILE") return "url(#bridge-mobile-devops)";
     if (pair === "DATA-DEVOPS") return "url(#bridge-devops-data)";
-    if (pair === "DEVOPS-WEB") return "url(#bridge-devops-web)";
+    if (pair === "DATA-WEB") return "url(#bridge-data-web)";
     return "rgba(255, 255, 255, 0.7)";
   };
 
@@ -136,38 +136,38 @@ export function YakuzaSkillWheel({
   // Precompute Dynamic Coordinates For Inter Discipline Bridges (userSpaceOnUse)
   const bridgeWebMobilePos1 = getCoordinates(
     1,
-    skillsData.find((n) => n.id === "core-js")?.angle ?? 294,
+    skillsData.find((n) => n.id === "core-js")?.angle ?? 300,
   );
   const bridgeWebMobilePos2 = getCoordinates(
     1,
-    skillsData.find((n) => n.id === "sec-csharp")?.angle ?? 336,
+    skillsData.find((n) => n.id === "sec-csharp")?.angle ?? 330,
   );
 
-  const bridgeMobileDataPos1 = getCoordinates(
+  const bridgeMobileDevopsPos1 = getCoordinates(
     1,
-    skillsData.find((n) => n.id === "sec-java")?.angle ?? 24,
+    skillsData.find((n) => n.id === "sec-java")?.angle ?? 30,
   );
-  const bridgeMobileDataPos2 = getCoordinates(
+  const bridgeMobileDevopsPos2 = getCoordinates(
     1,
-    skillsData.find((n) => n.id === "data-sqlite")?.angle ?? 66,
-  );
-
-  const bridgeDataDevopsPos1 = getCoordinates(
-    1,
-    skillsData.find((n) => n.id === "data-postgres")?.angle ?? 114,
-  );
-  const bridgeDataDevopsPos2 = getCoordinates(
-    1,
-    skillsData.find((n) => n.id === "ops-linux")?.angle ?? 156,
+    skillsData.find((n) => n.id === "ops-linux")?.angle ?? 60,
   );
 
-  const bridgeDevopsWebPos1 = getCoordinates(
+  const bridgeDevopsDataPos1 = getCoordinates(
     1,
-    skillsData.find((n) => n.id === "ops-git")?.angle ?? 204,
+    skillsData.find((n) => n.id === "ops-git")?.angle ?? 120,
   );
-  const bridgeDevopsWebPos2 = getCoordinates(
+  const bridgeDevopsDataPos2 = getCoordinates(
     1,
-    skillsData.find((n) => n.id === "core-php")?.angle ?? 246,
+    skillsData.find((n) => n.id === "data-sqlite")?.angle ?? 150,
+  );
+
+  const bridgeDataWebPos1 = getCoordinates(
+    1,
+    skillsData.find((n) => n.id === "data-postgres")?.angle ?? 210,
+  );
+  const bridgeDataWebPos2 = getCoordinates(
+    1,
+    skillsData.find((n) => n.id === "core-php")?.angle ?? 240,
   );
 
   return (
@@ -239,41 +239,41 @@ export function YakuzaSkillWheel({
             x2={bridgeWebMobilePos2.x}
             y2={bridgeWebMobilePos2.y}
           >
-            <stop offset="0%" stopColor="#2563eb" />
-            <stop offset="100%" stopColor="#f43f8e" />
+            <stop offset="0%" stopColor="#f43f8e" />
+            <stop offset="100%" stopColor="#2563eb" />
           </linearGradient>
           <linearGradient
-            id="bridge-mobile-data"
+            id="bridge-mobile-devops"
             gradientUnits="userSpaceOnUse"
-            x1={bridgeMobileDataPos1.x}
-            y1={bridgeMobileDataPos1.y}
-            x2={bridgeMobileDataPos2.x}
-            y2={bridgeMobileDataPos2.y}
+            x1={bridgeMobileDevopsPos1.x}
+            y1={bridgeMobileDevopsPos1.y}
+            x2={bridgeMobileDevopsPos2.x}
+            y2={bridgeMobileDevopsPos2.y}
           >
-            <stop offset="0%" stopColor="#f43f8e" />
+            <stop offset="0%" stopColor="#2563eb" />
             <stop offset="100%" stopColor="#eab308" />
           </linearGradient>
           <linearGradient
             id="bridge-devops-data"
             gradientUnits="userSpaceOnUse"
-            x1={bridgeDataDevopsPos1.x}
-            y1={bridgeDataDevopsPos1.y}
-            x2={bridgeDataDevopsPos2.x}
-            y2={bridgeDataDevopsPos2.y}
+            x1={bridgeDevopsDataPos1.x}
+            y1={bridgeDevopsDataPos1.y}
+            x2={bridgeDevopsDataPos2.x}
+            y2={bridgeDevopsDataPos2.y}
           >
             <stop offset="0%" stopColor="#eab308" />
             <stop offset="100%" stopColor="#ffffff" />
           </linearGradient>
           <linearGradient
-            id="bridge-devops-web"
+            id="bridge-data-web"
             gradientUnits="userSpaceOnUse"
-            x1={bridgeDevopsWebPos1.x}
-            y1={bridgeDevopsWebPos1.y}
-            x2={bridgeDevopsWebPos2.x}
-            y2={bridgeDevopsWebPos2.y}
+            x1={bridgeDataWebPos1.x}
+            y1={bridgeDataWebPos1.y}
+            x2={bridgeDataWebPos2.x}
+            y2={bridgeDataWebPos2.y}
           >
             <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="100%" stopColor="#2563eb" />
+            <stop offset="100%" stopColor="#f43f8e" />
           </linearGradient>
         </defs>
 
