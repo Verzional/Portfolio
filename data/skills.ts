@@ -53,16 +53,6 @@ export const skillCategories: SkillCategoryItem[] = [
     styleIcon: "/images/styles/all-kiwami.png",
   },
   {
-    id: "WEB",
-    label: "WEB",
-    stance: "RUSH",
-    subtitle: "WEB & FULLSTACK",
-    themeColor: "#f43f8e",
-    glowColor: "rgba(244, 63, 142, 0.6)",
-    icon: Globe,
-    styleIcon: "/images/styles/kiryu-rush.png",
-  },
-  {
     id: "MOBILE",
     label: "MOBILE",
     stance: "BRAWLER",
@@ -73,14 +63,14 @@ export const skillCategories: SkillCategoryItem[] = [
     styleIcon: "/images/styles/kiryu-brawler.png",
   },
   {
-    id: "DATA",
-    label: "DATA",
-    stance: "LEGEND",
-    subtitle: "DATA & PERSISTENCE",
-    themeColor: "#ffffff",
-    glowColor: "rgba(255, 255, 255, 0.75)",
-    icon: Database,
-    styleIcon: "/images/styles/kiryu-legend.png",
+    id: "WEB",
+    label: "WEB",
+    stance: "RUSH",
+    subtitle: "WEB & FULLSTACK",
+    themeColor: "#f43f8e",
+    glowColor: "rgba(244, 63, 142, 0.6)",
+    icon: Globe,
+    styleIcon: "/images/styles/kiryu-rush.png",
   },
   {
     id: "DEVOPS",
@@ -91,6 +81,16 @@ export const skillCategories: SkillCategoryItem[] = [
     glowColor: "rgba(234, 179, 8, 0.6)",
     icon: Terminal,
     styleIcon: "/images/styles/kiryu-beast.png",
+  },
+  {
+    id: "DATA",
+    label: "DATA",
+    stance: "LEGEND",
+    subtitle: "DATA & PERSISTENCE",
+    themeColor: "#ffffff",
+    glowColor: "rgba(255, 255, 255, 0.75)",
+    icon: Database,
+    styleIcon: "/images/styles/kiryu-legend.png",
   },
 ];
 
@@ -317,7 +317,7 @@ export const skillsData: SkillNode[] = [
   // ==========================================
   {
     id: "sec-csharp",
-    name: "C#",
+    name: "C-Sharp",
     essenceName: "ESSENCE OF MANAGED RUNTIME",
     description:
       "Strongly-typed object-oriented language powering enterprise services and game loops.",
