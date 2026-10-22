@@ -7,7 +7,7 @@ interface YakuzaSkillWheelProps {
   activeCategory: SkillCategory;
   activeNodeId: string;
   onSelectNode: (nodeId: string) => void;
-  onSelectCategory: (category: SkillCategory) => void;
+  onSelectCategory: (category: SkillCategory, targetNodeId?: string) => void;
 }
 
 // Normalize Floating Point Precision
@@ -549,7 +549,7 @@ export function YakuzaSkillWheel({
                   activeCategory !== "ALL" &&
                   node.category !== activeCategory
                 ) {
-                  onSelectCategory(node.category);
+                  onSelectCategory(node.category, node.id);
                 }
               }}
             >

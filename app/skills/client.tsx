@@ -10,12 +10,46 @@ import { YakuzaCategoryTab } from "./_components/yakuza-category-tab";
 import { YakuzaSkillWheel } from "./_components/yakuza-skill-wheel";
 import { YakuzaHeatDossier } from "./_components/yakuza-heat-dossier";
 
+// Canonical Category Entry Nodes
+const CATEGORY_ROOT_NODES: Record<SkillCategory, string> = {
+  ALL: "core-ts",
+  WEB: "core-js",
+  MOBILE: "sec-swift",
+  DEVOPS: "ops-linux",
+  DATA: "data-mysql",
+};
+
 export function SkillsClient() {
   const router = useRouter();
-  const { activeCategory, setActiveCategory } = useCategories(skillCategories);
 
   // Track Active Skill Node
   const [activeNodeId, setActiveNodeId] = useState<string>("core-ts");
+
+  // Handle Category Switching With Root Node Targeting
+  const handleCategoryChange = (catId: string) => {
+    const rootNode = CATEGORY_ROOT_NODES[catId as SkillCategory];
+    if (rootNode) {
+      setActiveNodeId(rootNode);
+    }
+  };
+
+  const { activeCategory, setActiveCategory } = useCategories(
+    skillCategories,
+    handleCategoryChange,
+  );
+
+  // Handle Wheel Category Or Direct Node Selection
+  const handleSelectCategory = (cat: SkillCategory, targetNodeId?: string) => {
+    setActiveCategory(cat);
+    if (targetNodeId) {
+      setActiveNodeId(targetNodeId);
+    } else {
+      const rootNode = CATEGORY_ROOT_NODES[cat];
+      if (rootNode) {
+        setActiveNodeId(rootNode);
+      }
+    }
+  };
 
   // Derive Active Skill Node
   const activeNode =
@@ -68,7 +102,7 @@ export function SkillsClient() {
             activeCategory={activeCategory as SkillCategory}
             activeNodeId={activeNodeId}
             onSelectNode={setActiveNodeId}
-            onSelectCategory={(cat) => setActiveCategory(cat)}
+            onSelectCategory={handleSelectCategory}
           />
         </div>
       </div>
