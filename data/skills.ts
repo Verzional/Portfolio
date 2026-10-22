@@ -669,8 +669,8 @@ export const skillsData: SkillNode[] = [
     neighbors: {
       up: "ops-git",
       down: "data-mongodb",
-      left: "ops-git",
-      right: "data-mysql",
+      left: "data-mysql",
+      right: "ops-git",
     },
   },
   {
@@ -687,8 +687,8 @@ export const skillsData: SkillNode[] = [
     neighbors: {
       up: "data-mysql",
       down: "data-mariadb",
-      left: "data-sqlite",
-      right: "data-postgres",
+      left: "data-postgres",
+      right: "data-sqlite",
     },
   },
   {
@@ -705,8 +705,8 @@ export const skillsData: SkillNode[] = [
     neighbors: {
       up: "data-postgres",
       down: "data-prisma",
-      left: "data-mysql",
-      right: "core-php",
+      left: "core-php",
+      right: "data-mysql",
     },
   },
   {
@@ -724,8 +724,8 @@ export const skillsData: SkillNode[] = [
     neighbors: {
       up: "data-sqlite",
       down: "data-firebase",
-      left: "ops-actions",
-      right: "data-mariadb",
+      left: "data-mariadb",
+      right: "ops-actions",
     },
   },
   {
@@ -743,8 +743,8 @@ export const skillsData: SkillNode[] = [
     neighbors: {
       up: "data-mysql",
       down: "data-mariadb",
-      left: "data-mongodb",
-      right: "data-prisma",
+      left: "data-prisma",
+      right: "data-mongodb",
     },
   },
   {
@@ -762,8 +762,8 @@ export const skillsData: SkillNode[] = [
     neighbors: {
       up: "data-postgres",
       down: "data-supabase",
-      left: "data-mariadb",
-      right: "core-laravel",
+      left: "core-laravel",
+      right: "data-mariadb",
     },
   },
   {
@@ -781,8 +781,8 @@ export const skillsData: SkillNode[] = [
     neighbors: {
       up: "data-mongodb",
       down: "data-firebase",
-      left: "ops-vercel",
-      right: "data-supabase",
+      left: "data-supabase",
+      right: "ops-vercel",
     },
   },
   {
@@ -800,8 +800,8 @@ export const skillsData: SkillNode[] = [
     neighbors: {
       up: "data-prisma",
       down: "data-supabase",
-      left: "data-firebase",
-      right: "core-websocket",
+      left: "core-websocket",
+      right: "data-firebase",
     },
   },
 ];
