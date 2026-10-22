@@ -389,6 +389,17 @@ export function YakuzaSkillWheel({
             const isCrossCategoryRing1 =
               node.ring === 1 && node.category !== neighbor.category;
 
+            // Restrict Connectors In Category View To Active Stance
+            if (activeCategory !== "ALL") {
+              if (isCrossCategoryRing1) return null;
+              if (
+                node.category !== activeCategory ||
+                neighbor.category !== activeCategory
+              ) {
+                return null;
+              }
+            }
+
             const isCurrentActive =
               activeCategory === "ALL" ||
               (node.category === activeCategory &&
@@ -436,6 +447,17 @@ export function YakuzaSkillWheel({
           return node.radialOutward.map((childId) => {
             const child = skillsData.find((n) => n.id === childId);
             if (!child) return null;
+
+            // Restrict Radial Connectors In Category View To Active Stance
+            if (activeCategory !== "ALL") {
+              if (
+                node.category !== activeCategory ||
+                child.category !== activeCategory
+              ) {
+                return null;
+              }
+            }
+
             const pos2 = getCoordinates(child.ring, child.angle);
 
             const isCurrentActive =
