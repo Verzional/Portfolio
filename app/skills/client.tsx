@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { motion } from "motion/react";
 import { useCategories } from "@/hooks/use-categories";
 import { skillsData, skillCategories, type SkillCategory } from "@/data/skills";
 import { SidebarPortal } from "@/components/sidebar-portal";
@@ -97,14 +98,19 @@ export function SkillsClient() {
       {/* Main Wheel Viewport */}
       <div className="relative flex h-full w-full flex-1 flex-col items-center justify-center overflow-hidden p-2 sm:p-4 md:p-6 lg:p-8">
         {/* Interactive Radial Ability Wheel */}
-        <div className="my-auto flex h-full max-h-[min(94vh,880px)] w-full max-w-[min(94vh,880px)] items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="my-auto flex h-full max-h-[min(94vh,880px)] w-full max-w-[min(94vh,880px)] items-center justify-center"
+        >
           <YakuzaSkillWheel
             activeCategory={activeCategory as SkillCategory}
             activeNodeId={activeNodeId}
             onSelectNode={setActiveNodeId}
             onSelectCategory={handleSelectCategory}
           />
-        </div>
+        </motion.div>
       </div>
     </>
   );
