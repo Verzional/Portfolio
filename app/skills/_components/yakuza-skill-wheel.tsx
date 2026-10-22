@@ -533,6 +533,10 @@ export function YakuzaSkillWheel({
             activeCategory === "ALL" || node.category === activeCategory;
           const categoryColor = getCategoryColor(node.category);
           const radius = node.ring === 1 ? 19 : node.ring === 2 ? 18 : 16;
+          const reticleRadius = radius + 6;
+          const quarterCircumference = (2 * Math.PI * reticleRadius) / 4;
+          const dashLength = round2(quarterCircumference * 0.78);
+          const gapLength = round2(quarterCircumference * 0.22);
 
           return (
             <g
@@ -552,16 +556,20 @@ export function YakuzaSkillWheel({
               {/* Expand Interactive Touch Hit Target Area */}
               <circle cx="0" cy="0" r="28" fill="transparent" />
 
-              {/* Active Selection Glow Ring */}
+              {/* Active Yakuza Selection 4-Part Spinning Reticle */}
               {isSelected && (
                 <circle
                   cx="0"
                   cy="0"
-                  r={radius + 5}
+                  r={reticleRadius}
                   fill="none"
                   stroke="#ffffff"
                   strokeWidth="2.5"
+                  strokeDasharray={`${dashLength} ${gapLength}`}
+                  strokeLinecap="round"
                   filter="url(#selected-glow)"
+                  className="pointer-events-none animate-[spin_8s_linear_infinite]"
+                  style={{ transformBox: "fill-box", transformOrigin: "center" }}
                 />
               )}
 
@@ -572,15 +580,13 @@ export function YakuzaSkillWheel({
                 r={radius}
                 fill={isSelected ? "#1e2433" : "#0d1117"}
                 stroke={
-                  isSelected
-                    ? "#ffffff"
-                    : isInActiveCategory
-                      ? categoryColor
-                      : "rgba(255, 255, 255, 0.15)"
+                  isInActiveCategory
+                    ? categoryColor
+                    : "rgba(255, 255, 255, 0.15)"
                 }
-                strokeWidth={isSelected ? 2.5 : isInActiveCategory ? 2 : 1}
+                strokeWidth={isInActiveCategory ? 2 : 1}
                 filter={
-                  isInActiveCategory && !isSelected
+                  isInActiveCategory
                     ? "url(#neon-glow)"
                     : undefined
                 }
@@ -618,16 +624,7 @@ export function YakuzaSkillWheel({
                 />
               </g>
 
-              {/* Selected Node Cardinal Indicator Pip */}
-              {isSelected && (
-                <circle
-                  cx="0"
-                  cy={-(radius + 7)}
-                  r="2.5"
-                  fill="#ffffff"
-                  filter="url(#neon-glow)"
-                />
-              )}
+
             </g>
           );
         })}
