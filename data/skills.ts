@@ -13,7 +13,6 @@ export type SkillRing = 1 | 2 | 3;
 export interface SkillNode {
   id: string;
   name: string;
-  essenceName: string;
   description: string;
   icon: string;
   category: "WEB" | "DATA" | "DEVOPS" | "MOBILE";
@@ -101,7 +100,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "core-js",
     name: "JavaScript",
-    essenceName: "ESSENCE OF DYNAMIC RUNTIME",
     description:
       "Modern ECMAScript standard driving responsive web interfaces, event loops, and asynchronous I/O.",
     icon: "/images/skills/javascript.svg",
@@ -120,7 +118,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "core-php",
     name: "PHP",
-    essenceName: "ESSENCE OF SERVER HYPERTEXT",
     description:
       "Server-side scripting engine powering enterprise backends, MVC web apps, and CMS platforms.",
     icon: "/images/skills/php.svg",
@@ -139,7 +136,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "core-laravel",
     name: "Laravel",
-    essenceName: "ESSENCE OF ELOQUENT MVC",
     description:
       "Robust PHP framework featuring Eloquent ORM, expressive routing, queued jobs, and auth scaffolding.",
     icon: "/images/skills/laravel.svg",
@@ -159,7 +155,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "core-node",
     name: "Node.js",
-    essenceName: "ESSENCE OF ASYNC IO",
     description:
       "Event-driven, non-blocking I/O runtime powering modern backend microservices, realtime feeds, and high-throughput APIs.",
     icon: "/images/skills/node.svg",
@@ -179,7 +174,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "core-ts",
     name: "TypeScript",
-    essenceName: "ESSENCE OF STRICT TYPING",
     description:
       "Strict compile-time type validation powering scalable enterprise codebases with zero runtime overhead.",
     icon: "/images/skills/typescript.svg",
@@ -199,7 +193,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "core-react",
     name: "React",
-    essenceName: "ESSENCE OF VIRTUAL DOM",
     description:
       "Declarative component architecture with concurrent rendering, custom hooks, and reactive UI state.",
     icon: "/images/skills/react.svg",
@@ -219,7 +212,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "core-websocket",
     name: "WebSockets",
-    essenceName: "ESSENCE OF REALTIME DUPLEX",
     description:
       "Persistent bidirectional TCP communication protocol powering instant state synchronization and live feeds in Node.js.",
     icon: "/images/skills/websocket.svg",
@@ -238,7 +230,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "core-express",
     name: "Express",
-    essenceName: "ESSENCE OF MODULAR ROUTING",
     description:
       "Minimalist web framework for Node.js powering RESTful middleware pipelines and microservice routing.",
     icon: "/images/skills/express.svg",
@@ -257,7 +248,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "core-next",
     name: "Next.js",
-    essenceName: "ESSENCE OF FULLSTACK MATRIX",
     description:
       "Full-stack React framework synthesizing React components, Node.js server runtime, and TypeScript into production apps.",
     icon: "/images/skills/next.svg",
@@ -276,7 +266,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "core-tailwind",
     name: "Tailwind CSS",
-    essenceName: "ESSENCE OF UTILITY ENGINE",
     description:
       "Utility-first CSS design system generating atomic, responsive, and performance-optimized styles.",
     icon: "/images/skills/tailwind.svg",
@@ -296,7 +285,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "core-motion",
     name: "Motion",
-    essenceName: "ESSENCE OF KINETIC FLOW",
     description:
       "Physics-driven 60fps gesture animations and spring transitions for React and modern DOM trees.",
     icon: "/images/skills/motion.svg",
@@ -320,7 +308,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "sec-csharp",
     name: "C-Sharp",
-    essenceName: "ESSENCE OF MANAGED RUNTIME",
     description:
       "Strongly-typed object-oriented language powering enterprise services and game loops.",
     icon: "/images/skills/csharp.svg",
@@ -339,7 +326,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "sec-swift",
     name: "Swift",
-    essenceName: "ESSENCE OF COCOA ARCHITECTURE",
     description:
       "High-performance Apple systems language with automatic reference counting and protocols.",
     icon: "/images/skills/swift.svg",
@@ -358,7 +344,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "sec-java",
     name: "Java",
-    essenceName: "ESSENCE OF ENTERPRISE JVM",
     description:
       "Battle-tested object-oriented enterprise platform with garbage collection and multi-threading.",
     icon: "/images/skills/java.svg",
@@ -377,7 +362,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "sec-unity",
     name: "Unity",
-    essenceName: "ESSENCE OF COMPONENT LIFECYCLE",
     description:
       "Cross-platform real-time interactive engine powering 3D simulations and immersive gameplay.",
     icon: "/images/skills/unity.svg",
@@ -397,7 +381,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "sec-swiftui",
     name: "SwiftUI",
-    essenceName: "ESSENCE OF DECLARATIVE APPLE UI",
     description:
       "Declarative UI toolkit with reactive state binding, fluid gesture handling, and native iOS/macOS layout.",
     icon: "/images/skills/swiftui.svg",
@@ -417,7 +400,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "sec-kotlin",
     name: "Kotlin",
-    essenceName: "ESSENCE OF MODERN ANDROID",
     description:
       "Modern expressive JVM language powering idiomatic Android Jetpack architectures.",
     icon: "/images/skills/kotlin.svg",
@@ -437,7 +419,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "sec-godot",
     name: "Godot",
-    essenceName: "ESSENCE OF SCENE TREE",
     description:
       "Node-driven 2D/3D open-source game engine with GDScript and custom C# bindings.",
     icon: "/images/skills/godot.svg",
@@ -457,7 +438,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "sec-compose",
     name: "Jetpack Compose",
-    essenceName: "ESSENCE OF DECLARATIVE ANDROID UI",
     description:
       "Modern declarative UI toolkit simplifying native Android UI development with reactive composables.",
     icon: "/images/skills/jetpackcompose.svg",
@@ -481,7 +461,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "ops-linux",
     name: "Linux",
-    essenceName: "ESSENCE OF KERNEL SUBSYSTEM",
     description:
       "Unix-like open-source operating system kernel managing hardware resources and process isolation.",
     icon: "/images/skills/linux.svg",
@@ -500,7 +479,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "ops-git",
     name: "Git",
-    essenceName: "ESSENCE OF VERSION GRAPH",
     description:
       "Distributed version control managing multi-branch DAG commit trees and merging.",
     icon: "/images/skills/git.svg",
@@ -519,7 +497,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "ops-nginx",
     name: "Nginx",
-    essenceName: "ESSENCE OF EDGE PROXY",
     description:
       "High-performance edge reverse proxy handling TLS termination, routing, and Prometheus telemetry metrics.",
     icon: "/images/skills/nginx.svg",
@@ -539,7 +516,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "ops-docker",
     name: "Docker",
-    essenceName: "ESSENCE OF CONTAINER ISOLATION",
     description:
       "OS-level virtualization packaging apps and system dependencies into reproducible images.",
     icon: "/images/skills/docker.svg",
@@ -564,7 +540,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "ops-actions",
     name: "GitHub Actions",
-    essenceName: "ESSENCE OF AUTOMATION WORKFLOW",
     description:
       "Declarative CI/CD pipeline runner executing automated test suites, linting, and deploy hooks.",
     icon: "/images/skills/actions.svg",
@@ -584,7 +559,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "ops-artillery",
     name: "Artillery",
-    essenceName: "ESSENCE OF LOAD STRESS",
     description:
       "Containerized cloud-scale performance stress-testing toolkit for benchmarking high-throughput API latency.",
     icon: "/images/skills/artillery.svg",
@@ -604,7 +578,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "ops-prometheus",
     name: "Prometheus",
-    essenceName: "ESSENCE OF TIME SERIES METRICS",
     description:
       "Dimensional time-series monitoring system with pull-based metrics scraping and PromQL querying.",
     icon: "/images/skills/prometheus.svg",
@@ -624,7 +597,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "ops-grafana",
     name: "Grafana",
-    essenceName: "ESSENCE OF OBSERVABILITY HUD",
     description:
       "Interactive operational analytics and visualization dashboard for real-time telemetry alerting.",
     icon: "/images/skills/grafana.svg",
@@ -644,7 +616,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "ops-redis",
     name: "Redis",
-    essenceName: "ESSENCE OF MEMORY CACHE",
     description:
       "In-memory key-value data structure store used for caching, queues, and pub/sub messaging.",
     icon: "/images/skills/redis.svg",
@@ -664,7 +635,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "ops-vercel",
     name: "Vercel",
-    essenceName: "ESSENCE OF EDGE SERVERLESS",
     description:
       "Automated edge deployment platform providing zero-configuration preview deployments and serverless functions.",
     icon: "/images/skills/vercel.svg",
@@ -688,7 +658,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "data-sqlite",
     name: "SQLite",
-    essenceName: "ESSENCE OF EMBEDDED SQL",
     description:
       "Zero-configuration serverless storage engine embedded directly into applications and client processes.",
     icon: "/images/skills/sqlite.svg",
@@ -707,7 +676,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "data-mysql",
     name: "MySQL",
-    essenceName: "ESSENCE OF INNODB CLUSTER",
     description:
       "High-throughput relational SQL storage engine with multi-master clustering and replication.",
     icon: "/images/skills/mysql.svg",
@@ -726,7 +694,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "data-postgres",
     name: "PostgreSQL",
-    essenceName: "ESSENCE OF RELATIONAL ACID",
     description:
       "Advanced open-source relational database with robust ACID compliance and JSONB operators.",
     icon: "/images/skills/postgresql.svg",
@@ -745,7 +712,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "data-mongodb",
     name: "MongoDB",
-    essenceName: "ESSENCE OF DOCUMENT STORE",
     description:
       "Scalable NoSQL document database with rich BSON querying, dynamic schemas, and aggregation pipelines.",
     icon: "/images/skills/mongodb.svg",
@@ -765,7 +731,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "data-mariadb",
     name: "MariaDB",
-    essenceName: "ESSENCE OF COMMUNITY SQL",
     description:
       "High-performance open-source relational database server with optimized storage engines and binary drop-in parity.",
     icon: "/images/skills/mariadb.svg",
@@ -785,7 +750,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "data-prisma",
     name: "Prisma",
-    essenceName: "ESSENCE OF TYPE-SAFE SCHEMA",
     description:
       "Declarative data modeling ORM generating fully type-safe query builders and migration diffs.",
     icon: "/images/skills/prisma.svg",
@@ -805,7 +769,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "data-firebase",
     name: "Firebase",
-    essenceName: "ESSENCE OF REALTIME SYNC",
     description:
       "Cloud document store with real-time websocket synchronization and managed security rules.",
     icon: "/images/skills/firebase.svg",
@@ -825,7 +788,6 @@ export const skillsData: SkillNode[] = [
   {
     id: "data-supabase",
     name: "Supabase",
-    essenceName: "ESSENCE OF OPEN POSTGRES",
     description:
       "Open-source Firebase alternative featuring Postgres Row Level Security and auto-generated APIs.",
     icon: "/images/skills/supabase.svg",
