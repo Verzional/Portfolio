@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { round2 } from "./wheel-utils";
 
 // Generate Outer Rim Gauge Markings
@@ -16,8 +19,31 @@ const rimTicks = Array.from({ length: 48 }).map((_, i) => {
 });
 
 export function WheelChassis() {
+  const gearRef = useRef<SVGGElement>(null);
+
+  // Smooth SVG Attribute Rotation (60s/rev) Without CSS Container Transform Leakage
+  useEffect(() => {
+    let animId: number;
+    let angle = 0;
+    let last = performance.now();
+    const speed = 360 / 60000;
+
+    const step = (now: number) => {
+      const delta = now - last;
+      last = now;
+      angle = (angle + delta * speed) % 360;
+      if (gearRef.current) {
+        gearRef.current.setAttribute("transform", `rotate(${angle.toFixed(2)})`);
+      }
+      animId = requestAnimationFrame(step);
+    };
+
+    animId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
   return (
-    <g>
+    <>
       {/* Outer Circular Disc (Stationary Casing) */}
       <circle
         cx="0"
@@ -54,30 +80,32 @@ export function WheelChassis() {
         strokeWidth="1"
       />
 
-      {/* Outer Notched Rim Gear Ticks */}
-      <circle
-        cx="0"
-        cy="0"
-        r="312"
-        fill="none"
-        stroke="rgba(255, 255, 255, 0.18)"
-        strokeWidth="1.5"
-      />
-      {rimTicks.map((tick, i) => (
-        <line
-          key={i}
-          x1={tick.x1}
-          y1={tick.y1}
-          x2={tick.x2}
-          y2={tick.y2}
-          stroke={
-            tick.isMajor
-              ? "rgba(255, 255, 255, 0.4)"
-              : "rgba(255, 255, 255, 0.15)"
-          }
-          strokeWidth={tick.isMajor ? 2 : 1}
+      {/* Outer Notched Rim Gear Ticks (Spinning Outside Gear) */}
+      <g ref={gearRef}>
+        <circle
+          cx="0"
+          cy="0"
+          r="312"
+          fill="none"
+          stroke="rgba(255, 255, 255, 0.18)"
+          strokeWidth="1.5"
         />
-      ))}
+        {rimTicks.map((tick, i) => (
+          <line
+            key={i}
+            x1={tick.x1}
+            y1={tick.y1}
+            x2={tick.x2}
+            y2={tick.y2}
+            stroke={
+              tick.isMajor
+                ? "rgba(255, 255, 255, 0.4)"
+                : "rgba(255, 255, 255, 0.15)"
+            }
+            strokeWidth={tick.isMajor ? 2 : 1}
+          />
+        ))}
+      </g>
 
       {/* Continuous Concentric Chassis Rails */}
       {[116, 190, 265].map((r) => (
@@ -102,6 +130,6 @@ export function WheelChassis() {
           />
         </g>
       ))}
-    </g>
+    </>
   );
 }
