@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "motion/react";
 import { type SkillCategory, skillsData } from "@/data/skills";
 import {
   getCoordinates,
@@ -68,8 +71,12 @@ export function WheelConnectors({ activeCategory }: WheelConnectorsProps) {
           if (diff > 180) diff -= 360;
           const sweepFlag = diff > 0 ? 1 : 0;
 
+          // Synchronize Tier Arc Delays
+          const arcDelay =
+            node.ring === 1 ? 0 : node.ring === 2 ? 0.4 : 0.75;
+
           return (
-            <path
+            <motion.path
               key={`arc-${node.id}-${neighbor.id}`}
               d={`M ${pos1.x} ${pos1.y} A ${pos1.r} ${pos1.r} 0 0 ${sweepFlag} ${pos2.x} ${pos2.y}`}
               fill="none"
@@ -77,7 +84,14 @@ export function WheelConnectors({ activeCategory }: WheelConnectorsProps) {
               strokeWidth={isCurrentActive ? 2.5 : 1}
               strokeOpacity={isCurrentActive ? 0.9 : 0.25}
               filter={isCurrentActive ? "url(#neon-glow)" : undefined}
-              className="transition-all duration-300"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{
+                delay: arcDelay,
+                duration: 0.32,
+                ease: [0.4, 0, 0.2, 1],
+              }}
+              className="transition-colors duration-300"
             />
           );
         });
@@ -115,8 +129,11 @@ export function WheelConnectors({ activeCategory }: WheelConnectorsProps) {
             ? getCategoryColor(node.category)
             : "rgba(255, 255, 255, 0.06)";
 
+          // Synchronize Radial Spoke Delays
+          const spokeDelay = child.ring === 2 ? 0.22 : 0.58;
+
           return (
-            <line
+            <motion.line
               key={`radial-${node.id}-${child.id}`}
               x1={pos1.x}
               y1={pos1.y}
@@ -126,7 +143,14 @@ export function WheelConnectors({ activeCategory }: WheelConnectorsProps) {
               strokeWidth={isCurrentActive ? 2.5 : 1}
               strokeOpacity={isCurrentActive ? 0.85 : 0.4}
               filter={isCurrentActive ? "url(#neon-glow)" : undefined}
-              className="transition-all duration-300"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{
+                delay: spokeDelay,
+                duration: 0.28,
+                ease: [0.4, 0, 0.2, 1],
+              }}
+              className="transition-colors duration-300"
             />
           );
         });
