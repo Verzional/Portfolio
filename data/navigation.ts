@@ -2,25 +2,25 @@ export const menuItems = [
   {
     id: "projects",
     label: "Projects",
-    desc: "Compendium of completed applications and repositories.",
+    desc: "Compendium of engineered applications and repositories.",
     href: "/projects",
   },
   {
     id: "experience",
     label: "Experience",
-    desc: "Quest log of professional roles and key contributions.",
+    desc: "Confidant network of professional roles and milestones.",
     href: "/experience",
   },
   {
     id: "skills",
     label: "Skills",
-    desc: "Tree of mastered frameworks and unlocked technologies.",
+    desc: "Ability wheel of core technologies and frameworks.",
     href: "/skills",
   },
   {
     id: "socials",
     label: "Socials",
-    desc: "Waypoints for digital profiles and networking channels.",
+    desc: "Map of digital profiles and networking channels.",
     href: "/socials",
   },
 ];
