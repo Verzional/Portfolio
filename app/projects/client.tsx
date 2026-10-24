@@ -5,7 +5,11 @@ import { useEffect } from "react";
 import { useMenu } from "@/hooks/use-menu";
 import { useValidIndex } from "@/hooks/use-valid-index";
 import { useCategories } from "@/hooks/use-categories";
-import { projectsData, projectCategories } from "@/data/projects";
+import {
+  projectsData,
+  projectCategories,
+  type ProjectCategory,
+} from "@/data/projects";
 import { SubMenu } from "@/components/sub-menu";
 import { SidebarPortal } from "@/components/sidebar-portal";
 import { PersonaCategoryTab } from "./_components/persona-category-tab";
@@ -32,7 +36,9 @@ export function ProjectsClient() {
 
   // Filter Projects Based on Active Category
   const filteredProjects = projectsData.filter(
-    (p) => activeCategory === "ALL" || p.categories.includes(activeCategory),
+    (p) =>
+      activeCategory === "ALL" ||
+      p.categories.includes(activeCategory as ProjectCategory),
   );
 
   // Handle Menu Navigation and Selection
