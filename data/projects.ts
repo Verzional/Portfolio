@@ -56,7 +56,6 @@ export const projectsData: Project[] = [
       "NextAuth v4",
       "Tailwind CSS v4",
     ],
-    liveUrl: "#",
     githubUrl: "https://github.com/IMT-SU-25-26/13th-NPLC-CP",
   },
   {
@@ -102,7 +101,6 @@ export const projectsData: Project[] = [
       "QR Scanner",
       "Cloudinary",
     ],
-    liveUrl: "#",
     githubUrl: "https://github.com/Verzional/C-Think",
   },
   {
@@ -124,7 +122,6 @@ export const projectsData: Project[] = [
       "Tailwind CSS",
       "Alpine.js",
     ],
-    liveUrl: "#",
     githubUrl: "https://github.com/Verzional/Vexel",
   },
   {
@@ -166,7 +163,6 @@ export const projectsData: Project[] = [
       "Unity Input System",
       "Core Haptics",
     ],
-    liveUrl: "#",
     githubUrl: "https://github.com/Verzional/Polyfuse",
   },
   {
@@ -210,7 +206,6 @@ export const projectsData: Project[] = [
       "Zod",
       "Cloudinary",
     ],
-    liveUrl: "#",
     githubUrl: "https://github.com/IMT-SU-25-26/Web-Main",
   },
   {
@@ -224,7 +219,6 @@ export const projectsData: Project[] = [
     ],
     desc: "An iOS travel planner that synthesizes tailored Singapore itineraries based on personalized priorities, pace, and geographic districts. Uses SwiftData for offline-first persistence and fluid declarative SwiftUI interfaces.",
     techStack: ["Swift", "SwiftUI", "SwiftData", "Observation"],
-    liveUrl: "#",
     githubUrl: "https://github.com/Verzional/Singaplan",
   },
   {
@@ -237,6 +231,5 @@ export const projectsData: Project[] = [
     ],
     desc: "An interactive web-based visual novel developed for the 12th NPLC competition. Features branching narrative paths, dynamic dialogue evaluation, and backend state persistence driven by live team rally performance.",
     techStack: ["Unity WebGL", "C#", "Laravel", "PHP", "MySQL"],
-    liveUrl: "#",
   },
 ];

@@ -1,8 +1,6 @@
 import { motion } from "motion/react";
 import { PersonaSkillTag } from "./persona-skill-tag";
-import { projectsData } from "@/data/projects";
-
-type Project = (typeof projectsData)[0];
+import { type Project } from "@/data/projects";
 
 interface ProjectInfoProps {
   project: Project;

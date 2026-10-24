@@ -1,10 +1,8 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { projectsData } from "@/data/projects";
+import { type Project } from "@/data/projects";
 import { useIdlePreload } from "@/hooks/use-idle-preload";
-
-type Project = (typeof projectsData)[0];
 
 interface ProjectCarouselProps {
   project: Project;

@@ -2,12 +2,10 @@
 
 import { useEffect } from "react";
 import { motion } from "motion/react";
-import { projectsData } from "@/data/projects";
+import { type Project } from "@/data/projects";
 import { PersonaActionButton } from "./persona-action-button";
 import { ProjectCarousel } from "./project-carousel";
 import { ProjectInfo } from "./project-info";
-
-type Project = (typeof projectsData)[0];
 
 export function ProjectDetails({
   project,
@@ -29,10 +27,12 @@ export function ProjectDetails({
 
       if (e.key.toLowerCase() === "c") {
         e.preventDefault();
-        window.open(project.githubUrl, "_blank", "noopener,noreferrer");
+        if (project.githubUrl) {
+          window.open(project.githubUrl, "_blank", "noopener,noreferrer");
+        }
       } else if (e.key.toLowerCase() === "v") {
         e.preventDefault();
-        if (project.liveUrl && project.liveUrl !== "#") {
+        if (project.liveUrl) {
           window.open(project.liveUrl, "_blank", "noopener,noreferrer");
         }
       }
@@ -145,7 +145,7 @@ export function ProjectDetails({
           }}
           className="mt-0 flex flex-wrap gap-4 pb-12 md:gap-6 md:pb-0"
         >
-          {project.liveUrl && project.liveUrl !== "#" && (
+          {project.liveUrl && (
             <PersonaActionButton
               label="VIEW LIVE"
               href={project.liveUrl}
@@ -153,7 +153,7 @@ export function ProjectDetails({
             />
           )}
 
-          {project.githubUrl && project.githubUrl !== "#" && (
+          {project.githubUrl && (
             <PersonaActionButton
               label="SOURCE CODE"
               href={project.githubUrl}
