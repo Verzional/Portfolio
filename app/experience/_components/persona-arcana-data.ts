@@ -61,12 +61,6 @@ export const arcanaMap: Record<string, ArcanaItem> = {
     french: "L'ERMITE",
     image: "/images/tarot/IX-hermit.webp",
   },
-  X: {
-    arcana: "X",
-    name: "Fortune",
-    french: "LA ROUE DE FORTUNE",
-    image: "/images/tarot/X-fortune.webp",
-  },
 };
 
 // Fallback Default Arcana
