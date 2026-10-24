@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-// import { Hexagon } from "lucide-react";
 
 export function YakuzaTitle() {
   const subtitleDelay = 0.1;
@@ -22,16 +21,6 @@ export function YakuzaTitle() {
       }}
       className="relative z-10 flex w-full flex-col items-center justify-center text-center"
     >
-      {/* Logo */}
-      {/*<motion.div
-        initial={{ opacity: 0, scale: 0.3, rotate: -45 }}
-        animate={{ opacity: 0.15, scale: 1, rotate: 0 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        className="pointer-events-none absolute inset-0 m-auto flex items-center justify-center text-primary"
-      >
-        <Hexagon className="h-64 w-64 md:h-96 md:w-96" strokeWidth={1} />
-      </motion.div>*/}
-
       {/* Main Title Slam */}
       <motion.h1
         initial={{ opacity: 0, scale: 8 }}
