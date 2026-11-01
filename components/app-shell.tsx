@@ -9,30 +9,30 @@ import { useIdlePreload } from "@/hooks/use-idle-preload";
 
 // Home Page Backgrounds
 const homeHoverBgMap: Record<string, string> = {
-  "/projects": "/images/backgrounds/BG-Kiryu.webp",
-  "/experience": "/images/backgrounds/BG-Saejima.webp",
-  "/skills": "/images/backgrounds/BG-Majima.webp",
-  "/socials": "/images/backgrounds/BG-Nishiki.webp",
+  "/projects": "/images/backgrounds/bg-kiryu.webp",
+  "/experience": "/images/backgrounds/bg-saejima.webp",
+  "/skills": "/images/backgrounds/bg-majima.webp",
+  "/socials": "/images/backgrounds/bg-nishiki.webp",
 };
 
 // Non-Home Page Backgrounds
 const pageBgMap: Record<string, string> = {
-  "/projects": "/images/backgrounds/BG-P5R-1.webp",
-  "/experience": "/images/backgrounds/BG-P5R-2.webp",
-  "/skills": "/images/backgrounds/BG-Ryuji.webp",
-  "/socials": "/images/backgrounds/BG-Ichiban.webp",
+  "/projects": "/images/backgrounds/bg-p5r-1.webp",
+  "/experience": "/images/backgrounds/bg-p5r-2.webp",
+  "/skills": "/images/backgrounds/bg-ryuji.webp",
+  "/socials": "/images/backgrounds/bg-ichiban.webp",
 };
 
 // Background Opacity Mapping
 const bgOpacityMap: Record<string, string> = {
-  "/images/backgrounds/BG-Kiryu.webp": "opacity-8 md:opacity-5",
-  "/images/backgrounds/BG-Majima.webp": "opacity-15 md:opacity-12",
-  "/images/backgrounds/BG-Saejima.webp": "opacity-7 md:opacity-4",
-  "/images/backgrounds/BG-Nishiki.webp": "opacity-7 md:opacity-4",
-  "/images/backgrounds/BG-Ichiban.webp": "opacity-7 md:opacity-4",
-  "/images/backgrounds/BG-Ryuji.webp": "opacity-7 md:opacity-4",
-  "/images/backgrounds/BG-P5R-1.webp": "opacity-8 md:opacity-5",
-  "/images/backgrounds/BG-P5R-2.webp": "opacity-8 md:opacity-5",
+  "/images/backgrounds/bg-kiryu.webp": "opacity-8 md:opacity-5",
+  "/images/backgrounds/bg-majima.webp": "opacity-15 md:opacity-12",
+  "/images/backgrounds/bg-saejima.webp": "opacity-7 md:opacity-4",
+  "/images/backgrounds/bg-nishiki.webp": "opacity-7 md:opacity-4",
+  "/images/backgrounds/bg-ichiban.webp": "opacity-7 md:opacity-4",
+  "/images/backgrounds/bg-ryuji.webp": "opacity-7 md:opacity-4",
+  "/images/backgrounds/bg-p5r-1.webp": "opacity-8 md:opacity-5",
+  "/images/backgrounds/bg-p5r-2.webp": "opacity-8 md:opacity-5",
 };
 
 // All Unique Backgrounds for Preloading

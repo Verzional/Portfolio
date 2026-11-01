@@ -1,4 +1,4 @@
-import { Layers, Terminal, GraduationCap, type LucideIcon } from "lucide-react";
+import { Layers, Code, GraduationCap, type LucideIcon } from "lucide-react";
 
 export type ExperienceCategory = "ENG" | "ACAD";
 export type ExperienceStatus = "ACTIVE" | "CLEARED";
@@ -24,7 +24,7 @@ export interface ExperienceCategoryItem {
 
 export const experienceCategories: ExperienceCategoryItem[] = [
   { id: "ALL", label: "ALL", icon: Layers },
-  { id: "ENG", label: "ENGINEERING", icon: Terminal },
+  { id: "ENG", label: "ENGINEERING", icon: Code },
   { id: "ACAD", label: "ACADEMIC", icon: GraduationCap },
 ];
 
