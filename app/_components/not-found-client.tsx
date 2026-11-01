@@ -10,10 +10,10 @@ import { SidebarPortal } from "@/components/sidebar-portal";
 // Navigation Route Options
 const notFoundRoutes = [
   { label: "Title Screen", desc: "Return to Home", href: "/" },
-  { label: "Projects", desc: "Featured Works", href: "/projects" },
-  { label: "Skills", desc: "Combat & Engineering Tree", href: "/skills" },
-  { label: "Experience", desc: "Career Quest Log", href: "/experience" },
-  { label: "Socials", desc: "Taxi Dispatch & Contacts", href: "/socials" },
+  { label: "Projects", desc: "Project Compendium", href: "/projects" },
+  { label: "Skills", desc: "Ability Wheel", href: "/skills" },
+  { label: "Experience", desc: "Confidant Network", href: "/experience" },
+  { label: "Socials", desc: "Digital Profile Map", href: "/socials" },
 ];
 
 export function NotFoundClient() {
@@ -117,16 +117,6 @@ export function NotFoundClient() {
         }}
         className="relative z-10 flex w-full max-w-xl flex-col items-center justify-center px-4 text-center select-none"
       >
-        {/* Chapter Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-          className="mb-2 font-edo-sz text-sm tracking-[0.3em] text-muted uppercase md:text-xl"
-        >
-          {"// SUBSTORY FAILED //"}
-        </motion.div>
-
         {/* Primary 404 Slam */}
         <motion.h1
           initial={{ opacity: 0, scale: 6 }}
@@ -155,7 +145,7 @@ export function NotFoundClient() {
           Lost Route
         </motion.p>
 
-        {/* Redesigned HUD Narrative Frame with Red Corner Accents */}
+        {/* HUD Narrative Frame with Red Corner Accents */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}

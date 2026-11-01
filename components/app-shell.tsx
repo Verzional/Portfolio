@@ -9,6 +9,7 @@ import { useIdlePreload } from "@/hooks/use-idle-preload";
 
 // Home Page Backgrounds
 const homeHoverBgMap: Record<string, string> = {
+  "/": "/images/backgrounds/bg-daigo.webp",
   "/projects": "/images/backgrounds/bg-kiryu.webp",
   "/experience": "/images/backgrounds/bg-saejima.webp",
   "/skills": "/images/backgrounds/bg-majima.webp",
@@ -31,6 +32,7 @@ const bgOpacityMap: Record<string, string> = {
   "/images/backgrounds/bg-nishiki.webp": "opacity-7 md:opacity-4",
   "/images/backgrounds/bg-ichiban.webp": "opacity-7 md:opacity-4",
   "/images/backgrounds/bg-ryuji.webp": "opacity-7 md:opacity-4",
+  "/images/backgrounds/bg-daigo.webp": "opacity-7 md:opacity-4",
   "/images/backgrounds/bg-p5r-1.webp": "opacity-8 md:opacity-5",
   "/images/backgrounds/bg-p5r-2.webp": "opacity-8 md:opacity-5",
 };
@@ -76,7 +78,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   // Background Image Resolution
-  let activeBg = "/images/backgrounds/BG-Kiryu.webp";
+  let activeBg = "/images/backgrounds/bg-kiryu.webp";
   if (isHome) {
     if (previewRoute && homeHoverBgMap[previewRoute]) {
       activeBg = homeHoverBgMap[previewRoute];
@@ -86,6 +88,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       activeBg = pageBgMap[pathname];
     } else if (previewRoute && homeHoverBgMap[previewRoute]) {
       activeBg = homeHoverBgMap[previewRoute];
+    } else {
+      activeBg = "/images/backgrounds/bg-daigo.webp";
     }
   }
 
