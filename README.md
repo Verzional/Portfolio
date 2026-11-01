@@ -8,7 +8,7 @@
 [![Motion](https://img.shields.io/badge/Motion-v12-FF0055?style=flat-square&logo=framer&logoColor=white)](https://motion.dev)
 
 <p align="center">
-  <img src="assets/preview.png" width="800" alt="Verzional Portfolio Interface">
+  <img src="public/images/preview.png" width="800" alt="Verzional Portfolio Interface">
 </p>
 
 An interactive, high-fidelity portfolio website engineered with a **Yakuza & Persona-inspired video game HUD** aesthetic. Designed from the ground up around arcade-style tactile responsiveness, reactive visual feedback, and full keyboard navigation.
